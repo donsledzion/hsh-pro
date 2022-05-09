@@ -16,11 +16,12 @@ public class GameManager : MonoBehaviour
     public Vector3 drawingCanvasBackgroundLBCorner;
 
     public float zoom;
+    public bool pointerOverUI;
 
 
     private void Update()
     {
-        zoom = pointerController.outZoom;
+        Debug.Log("Pointer over UI: " + pointerOverUI);
 
         pointerPositionTMPro.text = ("Pointer [ " + Input.mousePosition.x + " , " + Input.mousePosition.y + " ]");
     }
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetCanvasScale()
     {
+        zoom = 1f;
         drawingCanvas.transform.localScale = Vector3.one;
     }
 

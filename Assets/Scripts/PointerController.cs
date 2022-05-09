@@ -16,12 +16,18 @@ public class PointerController : MonoBehaviour
 
     float lastZoom = 1f;
 
+    private void Start()
+    {
+        gameManager.zoom = outZoom;
+    }
+
     void Update()
     {
+        outZoom = gameManager.zoom;
         if(Input.mouseScrollDelta.y != 0)
         {
+            Debug.Log("Wheel delta: " + Input.mouseScrollDelta.y);
             outZoom = Mathf.Clamp((int)((outZoom + Input.mouseScrollDelta.y * scrollScale)*10f)/10f, minZoom,maxZoom);
-            
         }
 
         zoomIndicator.text = "Zoom: " + outZoom.ToString();
@@ -31,6 +37,7 @@ public class PointerController : MonoBehaviour
 
         lastZoom = outZoom;
 
+        gameManager.zoom = outZoom;
     }
 
     

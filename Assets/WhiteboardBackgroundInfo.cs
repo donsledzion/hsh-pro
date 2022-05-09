@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class WhiteboardBackgroundInfo : MonoBehaviour
@@ -12,6 +13,8 @@ public class WhiteboardBackgroundInfo : MonoBehaviour
 
     void Update()
     {
+        gameManager.pointerOverUI = EventSystem.current.IsPointerOverGameObject();
+
         float zoom = gameManager.zoom;
         Vector3 whiteboardPos = whiteboardHolder.position;
 
