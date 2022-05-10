@@ -8,14 +8,11 @@ public class WhiteboardBackgroundInfo : MonoBehaviour
 {
     [SerializeField] Transform whiteboardHolder;
     [SerializeField] TextMeshProUGUI LBCornerLabel;
-    [SerializeField] GameManager gameManager;
 
 
     void Update()
     {
-        gameManager.pointerOverUI = EventSystem.current.IsPointerOverGameObject();
-
-        float zoom = gameManager.zoom;
+        float zoom = GameManager.ins.zoom;
         Vector3 whiteboardPos = whiteboardHolder.position;
 
         RectTransform myRect = GetComponent<RectTransform>();
@@ -29,6 +26,6 @@ public class WhiteboardBackgroundInfo : MonoBehaviour
 
         LBCornerLabel.text = "LBCorner at: [" + lbCornerPos.x + " , " + lbCornerPos.y + "]";
 
-        gameManager.drawingCanvasBackgroundLBCorner = lbCornerPos;
+        GameManager.ins.drawingCanvasBackgroundLBCorner = lbCornerPos;
     }
 }

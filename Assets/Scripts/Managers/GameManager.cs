@@ -6,55 +6,26 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager ins { get; private set; }
 
-    [SerializeField] Canvas mainCanvas;
-    [SerializeField] public GameObject drawingCanvas;
-    [SerializeField] TextMeshProUGUI pointerPositionTMPro;
-    [SerializeField] public PointerController pointerController;
-    [SerializeField] public ClickerController clickerController;
+    private void Awake()
+    {
+        if (ins != null && ins != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            ins = this;
+        }
+    }
 
     public Vector3 drawingCanvasBackgroundLBCorner;
-
     public float zoom;
     public bool pointerOverUI;
 
 
-    private void Update()
-    {
-        Debug.Log("Pointer over UI: " + pointerOverUI);
+    
 
-        pointerPositionTMPro.text = ("Pointer [ " + Input.mousePosition.x + " , " + Input.mousePosition.y + " ]");
-    }
-
-    public void RedrawCanvas(Vector3 mousePosition, float currentScale, float previousScale)
-    {
-        Vector3 mouse2centerOffset = drawingCanvas.transform.position - mousePosition;
-        Debug.Log("m2cOffset: " + mouse2centerOffset);
-        drawingCanvas.transform.position = mousePosition + (mouse2centerOffset/previousScale)*(currentScale);
-        drawingCanvas.transform.localScale = Vector3.one * currentScale;
-    }
-
-    public void ResetCanvas()
-    {
-        ResetCanvasPosition();
-        ResetCanvasScale();
-    }
-
-    public void ResetCanvasPosition()
-    {
-        RectTransform mainRect = mainCanvas.GetComponent<RectTransform>();
-        drawingCanvas.transform.position = new Vector3(mainRect.rect.width/2, mainRect.rect.height/2,0);
-    }
-
-    public void ResetCanvasScale()
-    {
-        zoom = 1f;
-        drawingCanvas.transform.localScale = Vector3.one;
-    }
-
-    public void ClearPointsLabels()
-    {
-        foreach (PointLabel label in clickerController.labelsContainer.GetComponentsInChildren<PointLabel>())
-            Destroy(label.gameObject);
-    }
+    
 }
