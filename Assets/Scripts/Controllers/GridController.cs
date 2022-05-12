@@ -30,7 +30,6 @@ public class GridController : MonoBehaviour
         ClearGrid();
         int gridOffset = (int)gridLabelSlider.value;
         Vector2 gridSize = new Vector2(whiteboard.GetComponent<RectTransform>().rect.width, whiteboard.GetComponent<RectTransform>().rect.height);
-        Debug.Log("Generating grid: grid size: " + gridSize.x + ", " + gridSize.y + " | gridOffset: " + gridOffset );
         for(int i  = gridOffset; i < gridSize.y; i+=gridOffset)
             for (int j = gridOffset; j < gridSize.x; j += gridOffset)
             {
