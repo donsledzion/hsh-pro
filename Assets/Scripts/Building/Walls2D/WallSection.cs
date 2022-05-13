@@ -1,14 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
+using System.Xml.Linq;
 
 namespace Walls2D
 {
-    public abstract class WallSection : MonoBehaviour
+    [XmlInclude(typeof(SectionStraight))]    
+    [XmlType("wall-section")]
+    [Serializable]
+    public abstract class WallSection/* : MonoBehaviour*/
     {
+        [XmlAttribute]
         protected BasePoint _startPoint;
+        [XmlAttribute]
         protected BasePoint _endPoint;
-        protected WallType _wallType;
+                
 
         public BasePoint StartPoint
         {
@@ -22,16 +30,13 @@ namespace Walls2D
             set { _endPoint = value; }
         }
 
-        public WallType WallType
+        
+        public static XElement Serialize(WallSection wallSection)
         {
-            get { return _wallType; }
-            set { _wallType = value; }
+            return new XElement("wall-section", wallSection);
         }
     }
 
-    public enum WallType
-    {
-        LoadBearing,
-        Partition
-    }
+
+    
 }

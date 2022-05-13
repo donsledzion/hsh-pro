@@ -1,12 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 namespace Walls2D
 {
-    public class BasePoint : MonoBehaviour
+    [Serializable]
+    public class BasePoint/* : MonoBehaviour*/
     {
+        [XmlAttribute]
         Vector2 _position = new Vector2();
+
+
+        public BasePoint()
+        {
+            _position = new Vector2();
+        }
+
+        public BasePoint(Vector2 position)
+        {
+            _position = position;
+        }
 
         public Vector2 Position
         {
