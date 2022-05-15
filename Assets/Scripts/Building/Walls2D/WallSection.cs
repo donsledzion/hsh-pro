@@ -30,7 +30,12 @@ namespace Walls2D
             set { _endPoint = value; }
         }
 
-        
+        public override string ToString()
+        {
+            return "\nStart: [" + StartPoint.Position.x + " , " + StartPoint.Position.y + " ]\n" +
+                "End: [" + EndPoint.Position.x + " , " + EndPoint.Position.y + " ]";
+        }
+
         public static XElement Serialize(WallSection wallSection)
         {
             return new XElement("wall-section", wallSection);

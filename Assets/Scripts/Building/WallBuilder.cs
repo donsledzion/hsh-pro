@@ -9,6 +9,8 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Xml.Linq;
 using System.Linq;
+using TMPro;
+using UnityEngine.UI;
 //using System.Linq;
 
 public class WallBuilder : MonoBehaviour
@@ -24,7 +26,10 @@ public class WallBuilder : MonoBehaviour
     bool _relativeAngle = true;
     bool tmpLabelSpawned = false;
     GameObject tmpLabel;
-
+    [SerializeField] CanvasController _canvasController;
+    [SerializeField] TextMeshProUGUI _gridSnapButtonLabel;
+    [SerializeField] Slider gridLabelSlider;
+    private bool _gridSnap = false;
 
     List<WallSection> _wallSections = new List<WallSection>();
 
@@ -36,16 +41,24 @@ public class WallBuilder : MonoBehaviour
 
     void Update()
     {
+        Vector3 pointerPosition = Input.mousePosition;
+        if(_gridSnap)
+            GridSnap(pointerPosition);
+
         if (Input.GetMouseButtonDown(0) && GameManager.ins.pointerOverUI)
         {
-            SpawnPointLabel(Input.mousePosition, true);
+            SpawnPointLabel(pointerPosition, true);
             AddWallSection();
         }
+
         if (Input.GetKeyDown(KeyCode.A))
             _relativeAngle = !_relativeAngle;
+        
         if(GameManager.ins.pointerOverUI)        
-            DrawLive();
-
+            DrawLive(pointerPosition);
+        
+        if (Input.GetKeyDown(KeyCode.S))
+            ToggleGridSnap();
     }
 
     void AddWallSection()
@@ -57,6 +70,30 @@ public class WallBuilder : MonoBehaviour
         WallSection section = new SectionStraight(sectionPoints);
 
         _wallSections.Add(section);
+    }
+
+    public void ToggleGridSnap()
+    {
+        _gridSnap = !_gridSnap;
+        if (_gridSnap)
+            _gridSnapButtonLabel.text = "Grid snap: ON";
+        else
+            _gridSnapButtonLabel.text = "Grid snap: OFF";
+    }
+
+    public void GridSnap(Vector3 pointerPosition)
+    {
+        float x = GameManager.ins.drawingCanvasBackgroundLBCorner.x
+                + Mathf.Round((pointerPosition.x - GameManager.ins.drawingCanvasBackgroundLBCorner.x)
+                / (gridLabelSlider.value * GameManager.ins.zoom))
+                * (gridLabelSlider.value * GameManager.ins.zoom);
+
+        float y = GameManager.ins.drawingCanvasBackgroundLBCorner.y
+            + Mathf.Round((pointerPosition.y - GameManager.ins.drawingCanvasBackgroundLBCorner.y)
+            / (gridLabelSlider.value * GameManager.ins.zoom))
+            * (gridLabelSlider.value * GameManager.ins.zoom);
+
+        pointerPosition = new Vector3(x, y, 0);
     }
 
     public void SpawnPointLabel(Vector3 position, bool localPosition = false)
@@ -85,13 +122,13 @@ public class WallBuilder : MonoBehaviour
         }
     }
 
-    void DrawLive()
+    void DrawLive(Vector3 targetPos)
     {
         int pointsCount = _uILineRenderer.Points.Length;
         if (pointsCount < 1 || (_uILineRenderer.Points[0].x == 0f && _liveUILineRenderer.Points[0].y == 0f)) return;
 
         Vector2 lastPoint = _uILineRenderer.Points[pointsCount - 1];
-        Vector2 pointerPos = (Input.mousePosition - GameManager.ins.drawingCanvasBackgroundLBCorner) / GameManager.ins.zoom;
+        Vector2 pointerPos = (targetPos - GameManager.ins.drawingCanvasBackgroundLBCorner) / GameManager.ins.zoom;
         Vector2 lastVector = Vector2.right;
         if (pointsCount > 1 && _relativeAngle)
             lastVector = _uILineRenderer.Points[pointsCount - 1] - _uILineRenderer.Points[pointsCount - 2];
@@ -104,7 +141,7 @@ public class WallBuilder : MonoBehaviour
         if(tmpLabel==null) tmpLabel = Instantiate(pointLabelPrefab, new Vector3(pointerPos.x, pointerPos.y, 0), pointLabelPrefab.transform.rotation);
         tmpLabel.transform.SetParent(labelsContainer);
         tmpLabel.GetComponent<PointLabel>().SetLabelText("" + Mathf.Round((pointerPos - lastPoint).magnitude) + " [cm] | " + Mathf.Round(angle*10)/10f);
-        tmpLabel.transform.position = Input.mousePosition;
+        tmpLabel.transform.position = targetPos;
 
         _liveUILineRenderer.LineThickness += 0.1f;
         _liveUILineRenderer.LineThickness -= 0.1f;
@@ -133,6 +170,41 @@ public class WallBuilder : MonoBehaviour
         //XmlSerializer storeySerializer = new XmlSerializer(typeof(Storey));
         ns.Add("", "");
         wallSerializer.Serialize(writer, wall, ns);
+    }
+
+    void ClearWalls()
+    {        
+        _uILineRenderer.Points = new Vector2[0];
+        _liveUILineRenderer.Points = new Vector2[0];
+        _canvasController.ClearPointsLabels();
+    }
+
+    public void DeserializeXML(string fileName)
+    {
+        string path = Application.persistentDataPath + "/" + fileName + ".xml";
+
+        Wall wall = null;
+
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(Wall));
+        if(File.Exists(path))
+        {
+            ClearWalls();
+            TextReader textReader = new StreamReader(path);
+            wall = (Wall)xmlSerializer.Deserialize(textReader);
+            Debug.Log(wall.ToString());
+            _wallSections = new List<WallSection>(wall.WallSections);
+            Vector2[] _loadedPoints = new Vector2[_wallSections.Count+1];
+            for(int i = 0; i < _wallSections.Count; i++)
+            {
+                _loadedPoints[i] = wall.WallSections[i].StartPoint.Position;
+            }
+            _loadedPoints[_wallSections.Count] = wall.WallSections[_wallSections.Count - 1].EndPoint.Position;
+            _uILineRenderer.Points = _loadedPoints;
+            _uILineRenderer.LineThickness += 0.1f;
+            _uILineRenderer.LineThickness -= 0.1f;
+
+        }
+
     }
 
     private static void createXmlFromLinq(string fileName,List<WallSection> sections, WallType wallType = WallType.LoadBearing)

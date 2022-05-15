@@ -35,9 +35,9 @@ public class PointerDetector : MonoBehaviour
         //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
         
         GameManager.ins.pointerOverUI = (results.Count > 0);
-        foreach (RaycastResult result in results)
+        /*foreach (RaycastResult result in results)
         {
             //Debug.Log("Hit " + result.gameObject.name);
-        }
+        }*/
     }
 }

@@ -46,7 +46,22 @@ namespace Walls2D
                     )
                 );
         }
+
+        public override string ToString()
+        {
+            string strSections = "Sections: ";
+
+            foreach (WallSection section in _wallSections)
+            {
+                strSections += section.ToString() + "\n";
+            }
+
+            return "Type: " + _wallType + "\n" + strSections;
+                
     }
+    }
+
+   
 
     public enum WallType
     {
