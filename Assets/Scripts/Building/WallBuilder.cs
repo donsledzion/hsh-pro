@@ -30,6 +30,12 @@ public class WallBuilder : MonoBehaviour
     [SerializeField] TextMeshProUGUI _gridSnapButtonLabel;
     [SerializeField] Slider gridLabelSlider;
     private bool _gridSnap = false;
+    private bool _angleSnap = false;
+
+
+    [SerializeField] TextMeshProUGUI _angleSnapButtonLabel;
+    [SerializeField] TextMeshProUGUI _angleSnapSliderLabel;
+    [SerializeField] Slider _angleSnapSlider;
 
     List<WallSection> _wallSections = new List<WallSection>();
 
@@ -43,7 +49,10 @@ public class WallBuilder : MonoBehaviour
     {
         Vector3 pointerPosition = Input.mousePosition;
         if(_gridSnap)
-            GridSnap(pointerPosition);
+            pointerPosition = GridSnap(pointerPosition);
+
+        if (_angleSnap)
+            pointerPosition = AngleSnap(pointerPosition);
 
         if (Input.GetMouseButtonDown(0) && GameManager.ins.pointerOverUI)
         {
@@ -59,6 +68,8 @@ public class WallBuilder : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.S))
             ToggleGridSnap();
+        if (Input.GetKeyDown(KeyCode.O))
+            ToggleAngleSnap();
     }
 
     void AddWallSection()
@@ -72,6 +83,11 @@ public class WallBuilder : MonoBehaviour
         _wallSections.Add(section);
     }
 
+    public void UpdateAngleSnapLabel()
+    {
+        _angleSnapSliderLabel.text = "Snap angle: " + _angleSnapSlider.value + "°";
+    }
+
     public void ToggleGridSnap()
     {
         _gridSnap = !_gridSnap;
@@ -81,7 +97,7 @@ public class WallBuilder : MonoBehaviour
             _gridSnapButtonLabel.text = "Grid snap: OFF";
     }
 
-    public void GridSnap(Vector3 pointerPosition)
+    public Vector3 GridSnap(Vector3 pointerPosition)
     {
         float x = GameManager.ins.drawingCanvasBackgroundLBCorner.x
                 + Mathf.Round((pointerPosition.x - GameManager.ins.drawingCanvasBackgroundLBCorner.x)
@@ -89,11 +105,55 @@ public class WallBuilder : MonoBehaviour
                 * (gridLabelSlider.value * GameManager.ins.zoom);
 
         float y = GameManager.ins.drawingCanvasBackgroundLBCorner.y
-            + Mathf.Round((pointerPosition.y - GameManager.ins.drawingCanvasBackgroundLBCorner.y)
-            / (gridLabelSlider.value * GameManager.ins.zoom))
-            * (gridLabelSlider.value * GameManager.ins.zoom);
+                + Mathf.Round((pointerPosition.y - GameManager.ins.drawingCanvasBackgroundLBCorner.y)
+                / (gridLabelSlider.value * GameManager.ins.zoom))
+                * (gridLabelSlider.value * GameManager.ins.zoom);
 
-        pointerPosition = new Vector3(x, y, 0);
+        return new Vector3(x, y, 0);
+    }
+
+    public Vector3 AngleSnap(Vector3 pointerPosition)
+    {
+        if (_uILineRenderer.Points.Length == 1 && _uILineRenderer.Points[0] == Vector2.zero) return pointerPosition;
+
+        float zoom = GameManager.ins.zoom;
+        Vector2 lbCorner = GameManager.ins.drawingCanvasBackgroundLBCorner;
+
+        int pointsCount = _uILineRenderer.Points.Length;
+        float angleSnap = _angleSnapSlider.value;
+
+
+        Vector2 targetPos = pointerPosition;
+
+        Vector2 globalVector = Vector2.right;
+        Vector2 lastPoint = lbCorner + _uILineRenderer.Points[pointsCount - 1]*zoom;
+        Vector2 currentVector = targetPos - lastPoint;
+
+        float angle = Vector2.SignedAngle(currentVector, globalVector);
+
+        
+
+        float snappedAngle = angleSnap * Mathf.Round(angle / angleSnap);
+        Debug.Log("Angle: " + angle + " | Snapped: " + snappedAngle);
+
+        float radius = currentVector.magnitude;
+
+        float x = lastPoint.x + radius * Mathf.Cos(snappedAngle * Mathf.PI / 180f);
+        float y = lastPoint.y - radius * Mathf.Sin(snappedAngle * Mathf.PI / 180f);
+
+        Vector3 resVec = new Vector3(x, y, 0);
+
+        return resVec;
+    }
+
+    public void ToggleAngleSnap()
+    {
+        _angleSnap = !_angleSnap;
+        if (_angleSnap)
+            _angleSnapButtonLabel.text = "Angle snap: ON";
+        else
+            _angleSnapButtonLabel.text = "Angle snap: OFF";
+
     }
 
     public void SpawnPointLabel(Vector3 position, bool localPosition = false)
@@ -106,8 +166,6 @@ public class WallBuilder : MonoBehaviour
         label.transform.SetParent(transform.root);
         label.transform.position = position;
         label.transform.SetParent(labelsContainer);
-
-
 
         Destroy(tempScaler);
 
