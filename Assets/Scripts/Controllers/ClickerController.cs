@@ -9,7 +9,7 @@ public class ClickerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && GameManager.ins.pointerOverUI)
+        if (Input.GetMouseButtonDown(0) && GameManager.ins.PointerOverUI)
         {            
             SpawnPointLabel(Input.mousePosition, true);
         }
@@ -22,7 +22,7 @@ public class ClickerController : MonoBehaviour
 
         GameObject tempScaler = new GameObject("TempScaler");
         label.transform.SetParent(tempScaler.transform);
-        tempScaler.transform.localScale = Vector3.one * GameManager.ins.zoom;
+        tempScaler.transform.localScale = Vector3.one * GameManager.ins.Zoom;
         label.transform.SetParent(transform.root);
         label.transform.position = position;
         label.transform.SetParent(labelsContainer);
@@ -31,7 +31,7 @@ public class ClickerController : MonoBehaviour
 
         if (localPosition==true)
         {
-            Vector3 ovcPos = (position - GameManager.ins.drawingCanvasBackgroundLBCorner)/GameManager.ins.zoom;
+            Vector3 ovcPos = (position - GameManager.ins.DrawingCanvasBackgroundLBCorner)/GameManager.ins.Zoom;
 
             label.GetComponent<PointLabel>().SetLabelText("[ " + ((int)(10*ovcPos.x))/10f + " , " + ((int)(10*ovcPos.y))/10f + " ]");
         }

@@ -18,12 +18,12 @@ public class PointerController : MonoBehaviour
 
     private void Start()
     {
-        GameManager.ins.zoom = outZoom;
+        GameManager.ins.Zoom = outZoom;
     }
 
     void Update()
     {
-        outZoom = GameManager.ins.zoom;
+        outZoom = GameManager.ins.Zoom;
         if(Input.mouseScrollDelta.y != 0)
         {
             //Debug.Log("Wheel delta: " + Input.mouseScrollDelta.y);
@@ -37,7 +37,7 @@ public class PointerController : MonoBehaviour
 
         lastZoom = outZoom;
 
-        GameManager.ins.zoom = outZoom;
+        GameManager.ins.Zoom = outZoom;
     }
 
     

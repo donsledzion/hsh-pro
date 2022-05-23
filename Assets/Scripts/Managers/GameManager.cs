@@ -20,12 +20,44 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Vector3 drawingCanvasBackgroundLBCorner;
-    public float zoom;
-    public bool pointerOverUI;
+    public Vector3 DrawingCanvasBackgroundLBCorner;
+    public float Zoom;
+    public bool PointerOverUI;
+    public bool RelativeAngle = true;
+
+    //here should be (for now at least) all bools that represents buttons and togglers status
+
+    //Grid section
+
+    public bool GridSnap = false;
+
+    public  bool AngleSnap = false;
+
+    public bool DynamicDimensions = false;
+    public bool ToggleGridSnap()
+    {
+        GridSnap = !GridSnap;
+        return GridSnap;
+    }
+
+    public bool ToggleRelativeAngle()
+    {
+        RelativeAngle = !RelativeAngle;
+        return RelativeAngle;
+    }
+
+    public bool ToggleAngleSnap()
+    {
+        AngleSnap = !AngleSnap;
+        return AngleSnap;
+    }
+
+    public bool ToggleDynamicDimensions()
+    {
+        DynamicDimensions = !DynamicDimensions;
+        return DynamicDimensions;
+    }
 
 
-    
 
-    
 }

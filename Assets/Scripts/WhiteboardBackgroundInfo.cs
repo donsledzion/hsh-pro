@@ -12,7 +12,7 @@ public class WhiteboardBackgroundInfo : MonoBehaviour
 
     void Update()
     {
-        float zoom = GameManager.ins.zoom;
+        float zoom = GameManager.ins.Zoom;
         Vector3 whiteboardPos = whiteboardHolder.position;
 
         RectTransform myRect = GetComponent<RectTransform>();
@@ -26,6 +26,6 @@ public class WhiteboardBackgroundInfo : MonoBehaviour
 
         LBCornerLabel.text = "LBCorner at: [" + lbCornerPos.x + " , " + lbCornerPos.y + "]";
 
-        GameManager.ins.drawingCanvasBackgroundLBCorner = lbCornerPos;
+        GameManager.ins.DrawingCanvasBackgroundLBCorner = lbCornerPos;
     }
 }

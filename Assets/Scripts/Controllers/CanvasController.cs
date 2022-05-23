@@ -46,7 +46,7 @@ public class CanvasController : MonoBehaviour
 
     public void ResetCanvasScale()
     {
-        GameManager.ins.zoom = 1f;
+        GameManager.ins.Zoom = 1f;
         drawingCanvas.transform.localScale = Vector3.one;
     }
 

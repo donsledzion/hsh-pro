@@ -6,7 +6,7 @@ using TMPro;
 
 public class GridController : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI gridLabelText;
+    [SerializeField] UIController uIController;
     [SerializeField] Slider gridLabelSlider;
     [SerializeField] TextMeshProUGUI gridToggleButtonText;
 
@@ -19,7 +19,7 @@ public class GridController : MonoBehaviour
     private bool _gridIsOn;
     public void UpdateLabel()
     {
-        gridLabelText.text = "Grid density: " + gridLabelSlider.value + " cm";
+        uIController.UpdateGridSizeLabel();
         if (_gridIsOn)
             GenerateGrid();
     }
@@ -33,7 +33,7 @@ public class GridController : MonoBehaviour
         for(int i  = gridOffset; i < gridSize.y; i+=gridOffset)
             for (int j = gridOffset; j < gridSize.x; j += gridOffset)
             {
-                GameObject dot = Instantiate(gridDotPrefab, GameManager.ins.drawingCanvasBackgroundLBCorner+new Vector3(j * GameManager.ins.zoom, i * GameManager.ins.zoom, 0),gridDotPrefab.transform.rotation);
+                GameObject dot = Instantiate(gridDotPrefab, GameManager.ins.DrawingCanvasBackgroundLBCorner+new Vector3(j * GameManager.ins.Zoom, i * GameManager.ins.Zoom, 0),gridDotPrefab.transform.rotation);
                 dot.transform.SetParent(dotsContainer);
             }
     }

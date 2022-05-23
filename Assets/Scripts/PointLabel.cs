@@ -8,10 +8,6 @@ public class PointLabel : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI labelText;
 
-    private void Start()
-    {
-    }
-
     public void SetLabelText(string text)
     {
         labelText.text = text;
