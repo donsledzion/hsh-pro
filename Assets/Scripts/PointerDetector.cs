@@ -39,5 +39,6 @@ public class PointerDetector : MonoBehaviour
         {
             //Debug.Log("Hit " + result.gameObject.name);
         }*/
+        Debug.Log("Pointer over UI: " + GameManager.ins.PointerOverUI); 
     }
 }
