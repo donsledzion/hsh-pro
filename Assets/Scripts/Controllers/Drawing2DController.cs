@@ -60,13 +60,15 @@ public class Drawing2DController : MonoBehaviour
         Vector2 currentVector = pointerPos - _uILineRenderer.Points[pointsCount - 1];
 
         float angle = Vector2.Angle(currentVector, lastVector);
+        float labelAngle = Vector2.SignedAngle(currentVector, Vector2.right);
 
         _liveUILineRenderer.Points = new Vector2[] { lastPoint, pointerPos };
 
         if (tmpLabel == null) tmpLabel = Instantiate(pointLabelPrefab, new Vector3(pointerPos.x, pointerPos.y, 0), pointLabelPrefab.transform.rotation);
         tmpLabel.transform.SetParent(labelsContainer);
         tmpLabel.GetComponent<PointLabel>().SetLabelText("" + Mathf.Round((pointerPos - lastPoint).magnitude) + " [cm] | " + Mathf.Round(angle * 10) / 10f);
-        tmpLabel.transform.position = targetPos;
+        tmpLabel.transform.position = targetPos - new Vector3(currentVector.x,currentVector.y,0)/2;
+        tmpLabel.transform.localEulerAngles = new Vector3(0, 0, -labelAngle);
 
         _liveUILineRenderer.LineThickness += 0.1f;
         _liveUILineRenderer.LineThickness -= 0.1f;
