@@ -105,6 +105,10 @@ public class Drawing2DController : MonoBehaviour
         {
             ovcPos = (position - GameManager.ins.DrawingCanvasBackgroundLBCorner) / GameManager.ins.Zoom;
         }
+        else
+        {
+            label.transform.position = position + GameManager.ins.DrawingCanvasBackgroundLBCorner;
+        }
 
         _uILineRenderer.AddPoint(ovcPos);
         _uILineRenderer.LineThickness += 0.1f;
