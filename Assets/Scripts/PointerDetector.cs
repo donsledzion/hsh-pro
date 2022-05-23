@@ -33,12 +33,12 @@ public class PointerDetector : MonoBehaviour
         m_Raycaster.Raycast(m_PointerEventData, results);
 
         //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
-        
-        GameManager.ins.PointerOverUI = (results.Count > 0);
-        /*foreach (RaycastResult result in results)
+
+        GameManager.ins.PointerOverUI = false;
+        foreach (RaycastResult result in results)
         {
-            //Debug.Log("Hit " + result.gameObject.name);
-        }*/
+            if (result.gameObject.CompareTag("MainBoard")) GameManager.ins.PointerOverUI = true;
+        }
         Debug.Log("Pointer over UI: " + GameManager.ins.PointerOverUI); 
     }
 }
