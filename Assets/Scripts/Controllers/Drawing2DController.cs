@@ -89,7 +89,7 @@ public class Drawing2DController : MonoBehaviour
         _liveUILineRenderer.LineThickness -= 0.1f;
     }
 
-    public void SpawnPointLabel(Vector3 position, bool localPosition = false)
+    public Vector3 SpawnPointLabel(Vector3 position, bool localPosition = false)
     {
         GameObject label = Instantiate(pointLabelPrefab, position, pointLabelPrefab.transform.rotation);
 
@@ -104,19 +104,24 @@ public class Drawing2DController : MonoBehaviour
 
         Vector3 ovcPos = position;
         if (localPosition == true)
-        {
-            //ovcPos = (position - GameManager.ins.DrawingCanvasBackgroundLBCorner) / GameManager.ins.Zoom;
             ovcPos = CanvasController.ScreenPointToCanvasCoords(position);
-        }
         else
-        {
             label.transform.position = position + GameManager.ins.DrawingCanvasBackgroundLBCorner;
-        }
-
-        _uILineRenderer.AddPoint(ovcPos);
-        _uILineRenderer.LineThickness += 0.1f;
-        _uILineRenderer.LineThickness -= 0.1f;
         label.GetComponent<PointLabel>().SetLabelText("[ " + ((int)(10 * ovcPos.x)) / 10f + " , " + ((int)(10 * ovcPos.y)) / 10f + " ]");
+        return ovcPos;
+        
+    }
+
+    public void AddLinePointWithLabel(Vector3 position, bool localPosition = false)
+    {        
+        AddPointToLineRenderer(SpawnPointLabel(position, localPosition), _uILineRenderer);
+    }
+
+    private void AddPointToLineRenderer(Vector3 pointPos, UILineRenderer lineRenderer)
+    {
+        lineRenderer.AddPoint(pointPos);
+        lineRenderer.LineThickness += 0.1f;
+        lineRenderer.LineThickness -= 0.1f;
     }
 
     public Vector2 CurrentSectionVector(Vector3 targetPos)
@@ -131,7 +136,7 @@ public class Drawing2DController : MonoBehaviour
         Vector2 lastPoint = LinePoints[pointsCount - 1];
         Vector2 currentVector = CurrentSectionVector(pointerPosition);
         Vector2 newPoint = lastPoint + currentVector.normalized * int.Parse(_dynamicInputController.DynamicInputString);
-        SpawnPointLabel(newPoint, false);
+        AddLinePointWithLabel(newPoint, false);
         _dynamicInputController.ResetDynamicInput();
     }
 }

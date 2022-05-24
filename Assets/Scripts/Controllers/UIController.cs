@@ -69,6 +69,15 @@ public class UIController : MonoBehaviour
         else
             _dynamicDimensionsButtonLabel.text = "Dynamic Dimesions\nOFF";
     }
+
+    public void ToggleGridSnap()
+    {
+        GameManager.ins.ToggleGridSnap();
+    }
     
+    public void ToggleAngleSnap()
+    {
+        GameManager.ins.ToggleAngleSnap();
+    }
 
 }

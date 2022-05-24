@@ -482,8 +482,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 82147361}
-        m_TargetAssemblyTypeName: WallBuilder, Assembly-CSharp
+      - m_Target: {fileID: 207226373}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: UpdateAngleSnapLabel
         m_Mode: 1
         m_Arguments:
@@ -663,7 +663,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa2906c3b4149c4b8e98703699180b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uIController: {fileID: 207226373}
+  _angleSnapController: {fileID: 2019036111}
   _drawing2DController: {fileID: 1384077217}
+  _dynamicInputController: {fileID: 1491090875}
 --- !u!222 &82147362
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2693,8 +2696,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 82147361}
-        m_TargetAssemblyTypeName: WallBuilder, Assembly-CSharp
+      - m_Target: {fileID: 207226373}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ToggleGridSnap
         m_Mode: 1
         m_Arguments:
@@ -3940,8 +3943,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 82147361}
-        m_TargetAssemblyTypeName: WallBuilder, Assembly-CSharp
+      - m_Target: {fileID: 207226373}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ToggleAngleSnap
         m_Mode: 1
         m_Arguments:
@@ -6497,6 +6500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1200218061}
+  - component: {fileID: 1200218062}
   m_Layer: 0
   m_Name: DrawArcs
   m_TagString: Untagged
@@ -6518,6 +6522,21 @@ Transform:
   m_Father: {fileID: 1901018310}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1200218062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200218060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829dcbb66558158418f2a134be4d62ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIController: {fileID: 207226373}
+  _angleSnapController: {fileID: 2019036111}
+  _drawing2DController: {fileID: 1384077217}
 --- !u!1 &1230900126
 GameObject:
   m_ObjectHideFlags: 0
@@ -9760,11 +9779,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b737fc332be0a4488bd8f9ce0ddb7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIController: {fileID: 207226373}
-  _angleSnapController: {fileID: 2019036111}
-  _drawing2DController: {fileID: 1384077217}
-  _dynamicInputController: {fileID: 1491090875}
-  _wallBuilder: {fileID: 82147361}
 --- !u!1 &1798047799
 GameObject:
   m_ObjectHideFlags: 0
@@ -10457,6 +10471,7 @@ MonoBehaviour:
   Zoom: 0
   PointerOverUI: 0
   RelativeAngle: 1
+  ResolutionRatio: {x: 0, y: 0}
   GridSnap: 0
   AngleSnap: 0
   DynamicDimensions: 0
