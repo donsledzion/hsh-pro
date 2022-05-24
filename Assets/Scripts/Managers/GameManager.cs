@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public float Zoom;
     public bool PointerOverUI;
     public bool RelativeAngle = true;
+    public Vector2 ResolutionRatio;
 
     //here should be (for now at least) all bools that represents buttons and togglers status
 

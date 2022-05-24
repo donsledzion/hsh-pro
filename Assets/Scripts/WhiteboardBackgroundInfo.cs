@@ -15,7 +15,8 @@ public class WhiteboardBackgroundInfo : MonoBehaviour
     {
         Vector2 resolution = new Vector2(Screen.width,Screen.height);
         Vector2 resolutionRatio = resolution / referenceResolution;
-        Debug.Log("Resolution ratio: " + resolutionRatio);
+        //Debug.Log("Resolution ratio: " + resolutionRatio);
+        GameManager.ins.ResolutionRatio = resolutionRatio;
         float zoom = GameManager.ins.Zoom;
         Vector3 whiteboardPos = whiteboardHolder.position;
 

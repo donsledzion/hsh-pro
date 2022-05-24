@@ -7,6 +7,7 @@ public class CanvasController : MonoBehaviour
 {
     [SerializeField] public GameObject drawingCanvas;
     [SerializeField] TextMeshProUGUI pointerPositionTMPro;
+    [SerializeField] TextMeshProUGUI CanvasCoordsTMPro;
     [SerializeField] public PointerController pointerController;
     [SerializeField] public ClickerController clickerController;
 
@@ -22,6 +23,7 @@ public class CanvasController : MonoBehaviour
     private void Update()
     {
         pointerPositionTMPro.text = ("Pointer [ " + Input.mousePosition.x + " , " + Input.mousePosition.y + " ]");
+        UpdateCanvasCoords(ScreenPointToCanvasCoords(Input.mousePosition));
     }
 
     public void RedrawCanvas(Vector3 mousePosition, float currentScale, float previousScale)
@@ -30,6 +32,18 @@ public class CanvasController : MonoBehaviour
         //Debug.Log("m2cOffset: " + mouse2centerOffset);
         drawingCanvas.transform.position = mousePosition + (mouse2centerOffset / previousScale) * (currentScale);
         drawingCanvas.transform.localScale = Vector3.one * currentScale;
+    }
+
+    private void UpdateCanvasCoords(Vector2 coords)
+    {
+        CanvasCoordsTMPro.text = "Canvas coords [" + coords.x + "," + coords.y + "]";
+    }
+
+    public static Vector2 ScreenPointToCanvasCoords(Vector2 inputCoords)
+    {
+        Vector2 outCoords = inputCoords - new Vector2(GameManager.ins.DrawingCanvasBackgroundLBCorner.x,GameManager.ins.DrawingCanvasBackgroundLBCorner.y);
+
+        return new Vector2(outCoords.x/GameManager.ins.ResolutionRatio.x, outCoords.y/GameManager.ins.ResolutionRatio.y)/GameManager.ins.Zoom;
     }
 
     public void ResetCanvas()

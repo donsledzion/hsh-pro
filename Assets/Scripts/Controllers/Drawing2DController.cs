@@ -54,7 +54,9 @@ public class Drawing2DController : MonoBehaviour
         if (pointsCount < 1 || (_uILineRenderer.Points[0].x == 0f && _liveUILineRenderer.Points[0].y == 0f)) return;
 
         Vector2 lastPoint = _uILineRenderer.Points[pointsCount - 1];
-        Vector2 pointerPos = (targetPos - GameManager.ins.DrawingCanvasBackgroundLBCorner) / GameManager.ins.Zoom;
+        //Vector2 pointerPos = (targetPos - GameManager.ins.DrawingCanvasBackgroundLBCorner) / GameManager.ins.Zoom;
+        Vector2 pointerPos = CanvasController.ScreenPointToCanvasCoords(targetPos);
+        Debug.Log("PointerPos: " + pointerPos);
         Vector2 lastVector = Vector2.right;
         if (pointsCount > 1 && GameManager.ins.RelativeAngle)
             lastVector = _uILineRenderer.Points[pointsCount - 1] - _uILineRenderer.Points[pointsCount - 2];
@@ -93,7 +95,7 @@ public class Drawing2DController : MonoBehaviour
 
         GameObject tempScaler = new GameObject("TempScaler");
         label.transform.SetParent(tempScaler.transform);
-        tempScaler.transform.localScale = Vector3.one * GameManager.ins.Zoom;
+        tempScaler.transform.localScale = new Vector3(GameManager.ins.ResolutionRatio.x, GameManager.ins.ResolutionRatio.y,0) * GameManager.ins.Zoom ;
         label.transform.SetParent(transform.root);
         label.transform.position = position;
         label.transform.SetParent(labelsContainer);
@@ -103,7 +105,8 @@ public class Drawing2DController : MonoBehaviour
         Vector3 ovcPos = position;
         if (localPosition == true)
         {
-            ovcPos = (position - GameManager.ins.DrawingCanvasBackgroundLBCorner) / GameManager.ins.Zoom;
+            //ovcPos = (position - GameManager.ins.DrawingCanvasBackgroundLBCorner) / GameManager.ins.Zoom;
+            ovcPos = CanvasController.ScreenPointToCanvasCoords(position);
         }
         else
         {
