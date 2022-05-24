@@ -39,6 +39,6 @@ public class PointerDetector : MonoBehaviour
         {
             if (result.gameObject.CompareTag("MainBoard")) GameManager.ins.PointerOverUI = true;
         }
-        Debug.Log("Pointer over UI: " + GameManager.ins.PointerOverUI); 
+        //Debug.Log("Pointer over UI: " + GameManager.ins.PointerOverUI); 
     }
 }
