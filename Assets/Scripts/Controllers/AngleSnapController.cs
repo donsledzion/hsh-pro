@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 using Walls2D;
 public class AngleSnapController : MonoBehaviour
-{    
+{
     [SerializeField] Slider _angleSnapSlider;
     [SerializeField] Drawing2DController _drawing2DController;
 
@@ -30,7 +30,7 @@ public class AngleSnapController : MonoBehaviour
 
 
         float snappedAngle = angleSnap * Mathf.Round(angle / angleSnap);
-        Debug.Log("Angle: " + angle + " | Snapped: " + snappedAngle);
+        //Debug.Log("Angle: " + angle + " | Snapped: " + snappedAngle);
 
         float radius = currentVector.magnitude;
 

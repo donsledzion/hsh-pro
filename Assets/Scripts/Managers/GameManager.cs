@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public bool PointerOverUI;
     public bool RelativeAngle = true;
     public Vector2 ResolutionRatio;
+    public Building Building;
+
 
     //here should be (for now at least) all bools that represents buttons and togglers status
 
@@ -59,6 +61,10 @@ public class GameManager : MonoBehaviour
         return DynamicDimensions;
     }
 
-
+    [ContextMenu("Report Status")]
+    void ReportStatus()
+    {
+        Debug.Log("GameManager status: Building: " + Building.ToString());
+    }
 
 }

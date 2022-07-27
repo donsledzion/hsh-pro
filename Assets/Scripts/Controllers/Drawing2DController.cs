@@ -56,7 +56,7 @@ public class Drawing2DController : MonoBehaviour
         Vector2 lastPoint = _uILineRenderer.Points[pointsCount - 1];
         //Vector2 pointerPos = (targetPos - GameManager.ins.DrawingCanvasBackgroundLBCorner) / GameManager.ins.Zoom;
         Vector2 pointerPos = CanvasController.ScreenPointToCanvasCoords(targetPos);
-        Debug.Log("PointerPos: " + pointerPos);
+        //Debug.Log("PointerPos: " + pointerPos);
         Vector2 lastVector = Vector2.right;
         if (pointsCount > 1 && GameManager.ins.RelativeAngle)
             lastVector = _uILineRenderer.Points[pointsCount - 1] - _uILineRenderer.Points[pointsCount - 2];
