@@ -21,5 +21,10 @@ namespace Walls2D
             _startPoint = new BasePoint(_points[0]);
             _endPoint = new BasePoint(_points[1]);
         }
+        public SectionStraight(Vector2 startPoint, Vector2 endPoint)
+        {
+            _startPoint = new BasePoint(startPoint);
+            _endPoint = new BasePoint(endPoint);
+        }
     }
 }

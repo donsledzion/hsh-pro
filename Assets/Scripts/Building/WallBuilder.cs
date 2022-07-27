@@ -7,18 +7,23 @@ public class WallBuilder : DrawOnCanvas
     List<WallSection> _wallSections = new List<WallSection>();
     [SerializeField] DynamicInputController _dynamicInputController;
 
+    public bool IsDrawing { get; private set; }
 
     protected override void Update()
     {
         base.Update();
 
-        if (GameManager.ins.PointerOverUI)
+        if (GameManager.ins.PointerOverUI && IsDrawing)
             _drawing2DController.DrawLive(pointerPosition);
 
         if (Input.GetMouseButtonDown(0) && GameManager.ins.PointerOverUI)
         {
             _drawing2DController.AddLinePointWithLabel(pointerPosition, true);
             AddWallSection();
+        }
+        if (Input.GetMouseButtonDown(1) && GameManager.ins.PointerOverUI)
+        {
+            BrakeLine();
         }
 
 
@@ -33,6 +38,24 @@ public class WallBuilder : DrawOnCanvas
                 _drawing2DController.ApplyDynamicInput(pointerPosition);
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        IsDrawing = true;
+    }
+
+    private void OnDisable()
+    {
+        IsDrawing = false;
+    }
+
+    private void BrakeLine()
+    {
+        IsDrawing = false;
+        _drawing2DController.ClearLiveLine();
+        _drawing2DController.ApplyWallToBuilding();
+
     }
 
     public void AddWallSection()

@@ -41,4 +41,26 @@ public class Storey
         get { return _height; }
         set { _elevation = value; }
     }
+
+    public Wall AddNewWall()
+    {
+        foreach(Wall wall in _walls)
+            if (wall.WallSections.Length < 1) return wall;
+        Wall newWall = new Wall();
+        _walls.Add(newWall);
+        return newWall;
+    }
+
+    public override string ToString()
+    {
+        string basic = "Storey name: " + _name + ", Elevation: " + _elevation + "[m] , Height: " + _height + "[m].";
+        string walls = "Walls: " + _walls.Count + "\n";
+        if(_walls.Count > 0)
+        {
+            walls += "\n";
+            foreach (Wall wall in _walls)
+                walls += wall.ToString();
+        }
+        return basic + walls;
+    }
 }

@@ -54,10 +54,9 @@ public class Drawing2DController : MonoBehaviour
         if (pointsCount < 1 || (_uILineRenderer.Points[0].x == 0f && _liveUILineRenderer.Points[0].y == 0f)) return;
 
         Vector2 lastPoint = _uILineRenderer.Points[pointsCount - 1];
-        //Vector2 pointerPos = (targetPos - GameManager.ins.DrawingCanvasBackgroundLBCorner) / GameManager.ins.Zoom;
         Vector2 pointerPos = CanvasController.ScreenPointToCanvasCoords(targetPos);
-        //Debug.Log("PointerPos: " + pointerPos);
         Vector2 lastVector = Vector2.right;
+
         if (pointsCount > 1 && GameManager.ins.RelativeAngle)
             lastVector = _uILineRenderer.Points[pointsCount - 1] - _uILineRenderer.Points[pointsCount - 2];
         Vector2 currentVector = pointerPos - _uILineRenderer.Points[pointsCount - 1];
@@ -87,6 +86,21 @@ public class Drawing2DController : MonoBehaviour
 
         _liveUILineRenderer.LineThickness += 0.1f;
         _liveUILineRenderer.LineThickness -= 0.1f;
+    }
+
+    public void ClearLiveLine()
+    {
+        _liveUILineRenderer.Points = new Vector2[0];
+        _liveUILineRenderer.enabled = false;
+        _liveUILineRenderer.enabled = true;
+        Destroy(tmpLabel);
+        Destroy(tmpEmptyLabel);
+    }
+
+    public void ApplyWallToBuilding()
+    {
+        Wall wall = GameManager.ins.Building.CurrentStorey.AddNewWall();
+        wall.WallSections = new Wall(_uILineRenderer.Points).WallSections;
     }
 
     public Vector3 SpawnPointLabel(Vector3 position, bool localPosition = false)

@@ -22,6 +22,19 @@ namespace Walls2D
             _wallSections = wallSections.ToArray();
         }
 
+        public Wall(Vector2[] linePoints)
+        {
+            if (linePoints.Length < 2) return;
+
+            List<WallSection> newSections = new List<WallSection>();
+
+            for(int i = 0; i < linePoints.Length-1; i++)
+            {
+                newSections.Add(new SectionStraight(linePoints[i], linePoints[i + 1]));
+            }
+            _wallSections = newSections.ToArray();
+        }
+
         public WallSection[] WallSections
         {
             get { return _wallSections; }

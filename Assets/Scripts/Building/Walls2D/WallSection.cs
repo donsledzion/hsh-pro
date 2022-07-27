@@ -10,7 +10,7 @@ namespace Walls2D
     [XmlInclude(typeof(SectionStraight))]    
     [XmlType("wall-section")]
     [Serializable]
-    public abstract class WallSection/* : MonoBehaviour*/
+    public abstract class WallSection
     {
         [XmlAttribute]
         protected BasePoint _startPoint;
