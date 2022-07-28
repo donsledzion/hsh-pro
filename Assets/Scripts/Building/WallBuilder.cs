@@ -18,6 +18,8 @@ public class WallBuilder : DrawOnCanvas
 
         if (Input.GetMouseButtonDown(0) && GameManager.ins.PointerOverUI)
         {
+            if (!IsDrawing)
+                    IsDrawing = true;
             _drawing2DController.AddLinePointWithLabel(pointerPosition, true);
             AddWallSection();
         }
@@ -52,10 +54,12 @@ public class WallBuilder : DrawOnCanvas
 
     private void BrakeLine()
     {
+        if (_drawing2DController.IsEmptyOrDefault()) return;
         IsDrawing = false;
         _drawing2DController.ClearLiveLine();
         _drawing2DController.ApplyWallToBuilding();
-
+        _drawing2DController.StoreWall(_drawing2DController.StoreyContainer);
+        _drawing2DController.ClearCurrentLine();
     }
 
     public void AddWallSection()

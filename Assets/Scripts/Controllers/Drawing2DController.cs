@@ -12,10 +12,13 @@ public class Drawing2DController : MonoBehaviour
     [SerializeField] CanvasController _canvasController;
 
     [SerializeField] GameObject pointLabelPrefab;
+    [SerializeField] GameObject wallOnCanvasPrefab;
 
     [SerializeField] DynamicInputController _dynamicInputController;
 
     [SerializeField] public Transform labelsContainer;
+    [SerializeField] public Transform drawingsContainer;
+    [SerializeField] public Transform StoreyContainer;
 
     GameObject tmpLabel;
     GameObject tmpEmptyLabel;
@@ -152,5 +155,19 @@ public class Drawing2DController : MonoBehaviour
         Vector2 newPoint = lastPoint + currentVector.normalized * int.Parse(_dynamicInputController.DynamicInputString);
         AddLinePointWithLabel(newPoint, false);
         _dynamicInputController.ResetDynamicInput();
+    }
+
+    public void StoreWall(Transform storey)
+    {
+        GameObject wall = Instantiate(wallOnCanvasPrefab, storey);
+        WallOnCanvas wallOnCanvas = wall.GetComponent<WallOnCanvas>();
+        wallOnCanvas.DrawOnCanvas(_uILineRenderer.Points);
+    }
+
+    public void ClearCurrentLine()
+    {
+        _uILineRenderer.Points = new Vector2[0];
+        _uILineRenderer.LineThickness += .1f;
+        _uILineRenderer.LineThickness -= .1f;
     }
 }
