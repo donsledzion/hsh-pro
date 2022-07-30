@@ -5,6 +5,7 @@ using Walls2D;
 public class Storey
 {
     List<Wall> _walls = new List<Wall>();
+    uint _number;
     string _name;
     float _elevation;
     float _height;
@@ -12,13 +13,15 @@ public class Storey
 
     public Storey()
     {
+        _number = 0;
         _name = "Default floor";
         _elevation = 0f;
         _height = 3.2f;
     }
 
-    public Storey(string storeyName, float elevation = 0f, float height = 3.2f)
+    public Storey(uint number, string storeyName, float elevation = 0f, float height = 3.2f)
     {
+        _number = number;
         _name = storeyName;
         _elevation = elevation;
         _height = height;
@@ -28,6 +31,12 @@ public class Storey
     {
         get { return _walls; }
         set { _walls = value; }
+    }
+
+    public uint Number
+    {
+        get { return _number; }
+        private set { _number = value; }
     }
 
     public float Elevation
@@ -53,7 +62,7 @@ public class Storey
 
     public override string ToString()
     {
-        string basic = "Storey name: " + _name + ", Elevation: " + _elevation + "[m] , Height: " + _height + "[m].";
+        string basic = "Storey (" + _number + ") name: " + _name + ", Elevation: " + _elevation + "[m] , Height: " + _height + "[m].";
         string walls = "Walls: " + _walls.Count + "\n";
         if(_walls.Count > 0)
         {

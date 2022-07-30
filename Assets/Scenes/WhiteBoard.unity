@@ -2281,7 +2281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 322136985}
   m_Layer: 0
-  m_Name: Storey_01
+  m_Name: Storey_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4077,6 +4077,7 @@ GameObject:
   - component: {fileID: 570151805}
   - component: {fileID: 570151807}
   - component: {fileID: 570151806}
+  - component: {fileID: 570151808}
   m_Layer: 5
   m_Name: Storey
   m_TagString: Untagged
@@ -4145,6 +4146,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570151804}
   m_CullTransparentMesh: 1
+--- !u!114 &570151808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570151804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58d52e10997b5a447933d0afbc8073ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _label: {fileID: 448979334}
+  _number: {fileID: 308408087}
+  _elevation: {fileID: 856117848}
+  _height: {fileID: 1666390406}
 --- !u!1 &604663813
 GameObject:
   m_ObjectHideFlags: 0
@@ -7743,6 +7760,7 @@ GameObject:
   - component: {fileID: 1384077217}
   - component: {fileID: 1384077219}
   - component: {fileID: 1384077218}
+  - component: {fileID: 1384077220}
   m_Layer: 0
   m_Name: Drawing2DController
   m_TagString: Untagged
@@ -7835,6 +7853,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384077215}
   m_CullTransparentMesh: 1
+--- !u!114 &1384077220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384077215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8355f5dd2c3135e4697a077583e2146a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drawingsTransform: {fileID: 354395498}
+  _storeyNamePrefix: Storey_
 --- !u!1 &1395949705
 GameObject:
   m_ObjectHideFlags: 0

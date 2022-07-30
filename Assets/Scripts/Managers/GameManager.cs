@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public bool GridSnap = false;
 
-    public  bool AngleSnap = false;
+    public bool AngleSnap = false;
 
     public bool DynamicDimensions = false;
     public bool ToggleGridSnap()
@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour
     void ReportStatus()
     {
         Debug.Log("GameManager status: Building: " + Building.ToString());
+    }
+
+    [ContextMenu("Add Storey Simple")]
+    void AddStoreySimple()
+    {
+        Building.AddStoreySimple();
     }
 
 }
