@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
     void AddStoreySimple()
     {
         Building.AddStoreySimple();
+
+        Drawing2DController.ins.SwitchToStorey(Building.CurrentStorey);
     }
 
 }

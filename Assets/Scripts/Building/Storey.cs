@@ -39,6 +39,12 @@ public class Storey
         private set { _number = value; }
     }
 
+    public string Name
+    {
+        get { return _name; }
+        private set { _name = value; }
+    }
+
     public float Elevation
     {
         get { return _elevation; }

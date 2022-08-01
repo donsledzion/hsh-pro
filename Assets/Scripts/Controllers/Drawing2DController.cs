@@ -12,20 +12,56 @@ public class Drawing2DController : MonoBehaviour
     [SerializeField] CanvasController _canvasController;
 
     [SerializeField] GameObject pointLabelPrefab;
+    [SerializeField] GameObject storey2DPrefab;
     [SerializeField] GameObject wallOnCanvasPrefab;
+
 
     [SerializeField] DynamicInputController _dynamicInputController;
 
-    [SerializeField] public Transform labelsContainer;
+    //[SerializeField] public Transform labelsContainer;
     [SerializeField] public Transform drawingsContainer;
-    [SerializeField] public Transform StoreyContainer;
+
+    [SerializeField] List<Storey2D> _storeys2D = new List<Storey2D>();
+    [SerializeField] Storey2D currentStorey;
 
     GameObject tmpLabel;
     GameObject tmpEmptyLabel;
 
+    public static Drawing2DController ins { get; private set; }
+
+    private void Awake()
+    {
+        if (ins != null && ins != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            ins = this;
+        }
+    }
+
     private void OnEnable()
     {
         gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);
+        _storeys2D.Add(currentStorey);
+    }
+
+    public void SwitchToStorey(Storey storey)
+    {
+        foreach(Storey2D st in _storeys2D)
+        {
+            if (st.StoreyReference == storey)
+            {
+                currentStorey = st;
+                return;
+            }                
+        }
+        GameObject newStorey = Instantiate(storey2DPrefab, drawingsContainer);
+        newStorey.name = storey.Name;
+        newStorey.transform.SetParent(drawingsContainer);        
+        currentStorey = newStorey.GetComponent<Storey2D>();
+        _storeys2D.Add(currentStorey);
     }
 
     public Vector2[] LinePoints
@@ -72,14 +108,14 @@ public class Drawing2DController : MonoBehaviour
         if (tmpLabel == null)
         {
             tmpLabel = Instantiate(pointLabelPrefab, new Vector3(pointerPos.x, pointerPos.y, 0), pointLabelPrefab.transform.rotation);
-            tmpLabel.transform.SetParent(labelsContainer);
+            tmpLabel.transform.SetParent(currentStorey.LabelsContainer);
         }
         if (tmpEmptyLabel == null)
         {
             tmpEmptyLabel = Instantiate(pointLabelPrefab, new Vector3(pointerPos.x, pointerPos.y, 0), pointLabelPrefab.transform.rotation);
 
             tmpEmptyLabel.GetComponent<PointLabel>().SetLabelText("");
-            tmpEmptyLabel.transform.SetParent(labelsContainer);
+            tmpEmptyLabel.transform.SetParent(currentStorey.LabelsContainer);
             
         }
         tmpEmptyLabel.transform.position = targetPos;
@@ -115,7 +151,7 @@ public class Drawing2DController : MonoBehaviour
         tempScaler.transform.localScale = new Vector3(GameManager.ins.ResolutionRatio.x, GameManager.ins.ResolutionRatio.y,0) * GameManager.ins.Zoom ;
         label.transform.SetParent(transform.root);
         label.transform.position = position;
-        label.transform.SetParent(labelsContainer);
+        label.transform.SetParent(currentStorey.LabelsContainer);
 
         Destroy(tempScaler);
 
@@ -157,11 +193,9 @@ public class Drawing2DController : MonoBehaviour
         _dynamicInputController.ResetDynamicInput();
     }
 
-    public void StoreWall(Transform storey)
+    public void StoreWall()
     {
-        GameObject wall = Instantiate(wallOnCanvasPrefab, storey);
-        WallOnCanvas wallOnCanvas = wall.GetComponent<WallOnCanvas>();
-        wallOnCanvas.DrawOnCanvas(_uILineRenderer.Points);
+        currentStorey.AddWallToStorey(_uILineRenderer.Points);
     }
 
     public void ClearCurrentLine()
@@ -169,5 +203,7 @@ public class Drawing2DController : MonoBehaviour
         _uILineRenderer.Points = new Vector2[0];
         _uILineRenderer.LineThickness += .1f;
         _uILineRenderer.LineThickness -= .1f;
+        _uILineRenderer.enabled = false;
+        _uILineRenderer.enabled = true;
     }
 }
