@@ -27,6 +27,9 @@ public class Drawing2DController : MonoBehaviour
     GameObject tmpLabel;
     GameObject tmpEmptyLabel;
 
+
+    public List<Storey2D> Storeys2D { get { return _storeys2D; } }
+
     public static Drawing2DController ins { get; private set; }
 
     private void Awake()
