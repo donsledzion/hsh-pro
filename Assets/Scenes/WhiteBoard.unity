@@ -4313,6 +4313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4916c3b58822f489a916bfa27bac31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonPrefab: {fileID: 0}
+  buttonsContainer: {fileID: 649958252}
 --- !u!1 &549908118
 GameObject:
   m_ObjectHideFlags: 0
@@ -5087,6 +5089,7 @@ GameObject:
   - component: {fileID: 689936077}
   - component: {fileID: 689936076}
   - component: {fileID: 689936075}
+  - component: {fileID: 689936078}
   m_Layer: 5
   m_Name: Storey
   m_TagString: Untagged
@@ -5196,6 +5199,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689936073}
   m_CullTransparentMesh: 1
+--- !u!114 &689936078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689936073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb77e31a75ae274386462f4a4395444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonLabel: {fileID: 1704802638}
 --- !u!1 &702165702
 GameObject:
   m_ObjectHideFlags: 0
