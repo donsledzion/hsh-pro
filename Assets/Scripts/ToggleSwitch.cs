@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class ToggleSwitch : MonoBehaviour, IPointerDownHandler
 {
@@ -36,6 +37,8 @@ public class ToggleSwitch : MonoBehaviour, IPointerDownHandler
     public delegate void ValueChanged(bool value);
     public event ValueChanged valueChanged;
 
+    [SerializeField]
+    UnityEvent onToggle;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -51,7 +54,7 @@ public class ToggleSwitch : MonoBehaviour, IPointerDownHandler
      
     private void OnEnable()
     {
-        Toggle(isOn);
+       // Toggle(isOn);
     }
 
     private void Toggle(bool value)
@@ -62,12 +65,15 @@ public class ToggleSwitch : MonoBehaviour, IPointerDownHandler
 
             ToggleColor(isOn);
             MoveIndicator(isOn);
+
         }
 
         if(valueChanged != null)
         {
             valueChanged(isOn);
         }
+
+        onToggle?.Invoke();
     }
 
     private void ToggleColor(bool value)

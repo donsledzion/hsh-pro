@@ -9,6 +9,7 @@ public class WhiteboardController : MonoBehaviour
     [SerializeField]
     private GameObject _backGroundWhiteboard;
 
+    [SerializeField]
     ModalWindowController modalController;
 
     [SerializeField] TMP_InputField _inputWidth;

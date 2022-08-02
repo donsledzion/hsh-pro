@@ -33,6 +33,7 @@ public class GridController : MonoBehaviour
         for(int i  = gridOffset; i < gridSize.y; i+=gridOffset)
             for (int j = gridOffset; j < gridSize.x; j += gridOffset)
             {
+                Debug.Log("LB corner:= " + GameManager.ins.DrawingCanvasBackgroundLBCorner);
                 GameObject dot = Instantiate(gridDotPrefab, GameManager.ins.DrawingCanvasBackgroundLBCorner+new Vector3(j * GameManager.ins.Zoom, i * GameManager.ins.Zoom, 0),gridDotPrefab.transform.rotation);
                 dot.transform.SetParent(dotsContainer);
             }
@@ -53,13 +54,13 @@ public class GridController : MonoBehaviour
         {
             _gridIsOn = false;
             ClearGrid();
-            gridToggleButtonText.text = "Grid: OFF";
+ //           gridToggleButtonText.text = "Grid: OFF";
         }
         else
         {
             _gridIsOn = true;
             GenerateGrid();
-            gridToggleButtonText.text = "Grid: ON";
+//            gridToggleButtonText.text = "Grid: ON";
         }
     }
 }
