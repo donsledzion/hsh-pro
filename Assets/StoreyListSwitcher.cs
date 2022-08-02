@@ -18,6 +18,7 @@ public class StoreyListSwitcher : MonoBehaviour
             GameObject button = Instantiate(buttonPrefab, buttonsContainer);
             StoreyListButton listButton = button.GetComponent<StoreyListButton>();
             listButton.Initialize(storey2D);
+            _storeyListButtons.Add(listButton);
         }
     }
 }
