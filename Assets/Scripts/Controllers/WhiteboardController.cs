@@ -6,6 +6,11 @@ using TMPro;
 
 public class WhiteboardController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _backGroundWhiteboard;
+
+    ModalWindowController modalController;
+
     [SerializeField] TMP_InputField _inputWidth;
     [SerializeField] TMP_InputField _inputHeight;
     [SerializeField] RectTransform _whiteboardBackground;
@@ -19,6 +24,8 @@ public class WhiteboardController : MonoBehaviour
         _canvasController.ClearPointsLabels();
         _whiteboardBackground.sizeDelta = new Vector2(width, height);
         _canvasController.ResetCanvas();
+        _backGroundWhiteboard.SetActive(true); // Daniel dopisa³ w³¹cz wy³¹cz background.
+        modalController.Hide();
     }
 
     public void NewSheet()
