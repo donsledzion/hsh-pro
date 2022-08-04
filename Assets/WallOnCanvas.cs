@@ -19,4 +19,11 @@ public class WallOnCanvas : MonoBehaviour
         _uILineRenderer.LineThickness += .1f;
         _uILineRenderer.LineThickness -= .1f;
     }
+
+    public void SetThickness(float thickness)
+    {
+        _uILineRenderer.LineThickness = thickness;
+        _uILineRenderer.LineThickness += .1f;
+        _uILineRenderer.LineThickness -= .1f;
+    }
 }

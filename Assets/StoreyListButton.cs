@@ -15,4 +15,9 @@ public class StoreyListButton : MonoBehaviour
         Storey2D = storey2D;
         IsChosen = false;
     }
+
+    public void SwitchToStorey()
+    {
+        Drawing2DController.ins.SwitchToStorey(Storey2D.StoreyReference);
+    }
 }

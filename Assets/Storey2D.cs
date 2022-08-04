@@ -24,4 +24,10 @@ public class Storey2D : MonoBehaviour
         wallOnCanvas.DrawOnCanvas(points);
         _wallsOnCanvas.Add(wallOnCanvas);        
     }
+
+    public void SetThickness(float thickness)
+    {
+        foreach (WallOnCanvas wall in _wallsOnCanvas)
+            wall.SetThickness(thickness);
+    }
 }

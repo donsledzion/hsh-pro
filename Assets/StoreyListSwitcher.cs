@@ -10,9 +10,11 @@ public class StoreyListSwitcher : MonoBehaviour
 
 
     [ContextMenu("Update List")]
-    void UpdateList()
+    public void UpdateList()
     {
         List<Storey2D> storeys2D = Drawing2DController.ins.Storeys2D;
+        Debug.Log("Updating storeys list: " + storeys2D.Count);
+        ClearList();
         foreach(Storey2D storey2D in storeys2D)
         {
             GameObject button = Instantiate(buttonPrefab, buttonsContainer);
@@ -20,5 +22,16 @@ public class StoreyListSwitcher : MonoBehaviour
             listButton.Initialize(storey2D);
             _storeyListButtons.Add(listButton);
         }
+    }
+
+    void ClearList()
+    {
+        List<Storey2D> storeys2D = Drawing2DController.ins.Storeys2D;
+        Debug.Log("Clearing storeys list: " + storeys2D.Count);
+        foreach (StoreyListButton listButton in _storeyListButtons)
+        {
+            Destroy(listButton.gameObject);
+        }
+        _storeyListButtons.Clear();
     }
 }

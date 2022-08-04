@@ -7,7 +7,7 @@ public class OnStartEvent : MonoBehaviour
 {
 
     [SerializeField]
-    UnityEvent _onStart;
+    protected UnityEvent _onStart;
 
     void Start()
     {

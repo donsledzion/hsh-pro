@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     }
 
     [ContextMenu("Add Storey Simple")]
-    void AddStoreySimple()
+    public void AddStoreySimple()
     {
         Building.AddStoreySimple();
 

@@ -40,10 +40,10 @@ public class Building
         
     public void AddStoreySimple(bool seAsCurrent = true)
     {
-        string name = "Storey_" + _storeys.Count + 1;
+        string name = "Storey_" + (_storeys.Count + 1);
         float elevation = _storeys[_storeys.Count - 1].Elevation + _storeys[_storeys.Count - 1].Height;
         float height = _storeys[_storeys.Count - 1].Height;
-        AddStorey("Storey_" + _storeys.Count + 1,elevation,height);
+        AddStorey(name,elevation,height);
         if (seAsCurrent)
             CurrentStorey = _storeys[_storeys.Count - 1];
     }

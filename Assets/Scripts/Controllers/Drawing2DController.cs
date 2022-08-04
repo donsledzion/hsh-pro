@@ -27,6 +27,8 @@ public class Drawing2DController : MonoBehaviour
     GameObject tmpLabel;
     GameObject tmpEmptyLabel;
 
+    [SerializeField] float visibleStoreyThickness = 10f;
+    [SerializeField] float invisibleStoreyThickness = 2f;
 
     public List<Storey2D> Storeys2D { get { return _storeys2D; } }
 
@@ -46,10 +48,15 @@ public class Drawing2DController : MonoBehaviour
 
     private void OnEnable()
     {
-        gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);
+        gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);        
         _storeys2D.Add(currentStorey);
     }
 
+
+    public void InitializeFirstStorey(Storey storey)
+    {
+        currentStorey.StoreyReference = storey;
+    }
     public void SwitchToStorey(Storey storey)
     {
         foreach(Storey2D st in _storeys2D)
@@ -57,6 +64,7 @@ public class Drawing2DController : MonoBehaviour
             if (st.StoreyReference == storey)
             {
                 currentStorey = st;
+                SetStoreysVisibility();
                 return;
             }                
         }
@@ -64,7 +72,21 @@ public class Drawing2DController : MonoBehaviour
         newStorey.name = storey.Name;
         newStorey.transform.SetParent(drawingsContainer);        
         currentStorey = newStorey.GetComponent<Storey2D>();
+        currentStorey.StoreyReference = storey;
         _storeys2D.Add(currentStorey);
+        SetStoreysVisibility();
+    }
+
+    void SetStoreysVisibility()
+    {
+        foreach(Storey2D storey in _storeys2D)
+        {
+            if (storey == currentStorey)
+                storey.SetThickness(visibleStoreyThickness);
+            else
+                storey.SetThickness(invisibleStoreyThickness);
+
+        }
     }
 
     public Vector2[] LinePoints

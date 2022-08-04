@@ -19,6 +19,8 @@ public class BuildingCreator : MonoBehaviour
             Debug.Log("Creating new building");
             _building = new Building();
             GameManager.ins.Building = _building;
+            Drawing2DController.ins.InitializeFirstStorey(GameManager.ins.Building.CurrentStorey);
+            Debug.Log(GameManager.ins.Building.ToString());
         }
         else
         {

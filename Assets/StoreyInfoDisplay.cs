@@ -11,7 +11,7 @@ public class StoreyInfoDisplay : MonoBehaviour
     [SerializeField] TextMeshProUGUI _height;    
 
     [ContextMenu("UpdateCanvasInfo")]
-    void UpdateCanvasInfo()
+    public void UpdateCanvasInfo()
     {
         _label.text = "Storey(" + (GameManager.ins.Building.CurrentStorey.Number+1) + "/" + GameManager.ins.Building.Storeys.Count + "):";
         _number.text = "No.:" + GameManager.ins.Building.CurrentStorey.Number.ToString();
