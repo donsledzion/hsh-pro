@@ -26,7 +26,7 @@ public class WhiteboardController : MonoBehaviour
         _whiteboardBackground.sizeDelta = new Vector2(width, height);
         _canvasController.ResetCanvas();
         _backGroundWhiteboard.SetActive(true); // Daniel dopisa³ w³¹cz wy³¹cz background.
-        modalController.Hide();
+        modalController?.Hide();
     }
 
     public void NewSheet()
