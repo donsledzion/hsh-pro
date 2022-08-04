@@ -31,7 +31,7 @@ public class UIController : MonoBehaviour
     public void UpdateGridSizeLabel()
     {
 
-        gridLabelText.text = "Grid density: " + gridLabelSlider.value + " cm";
+        gridLabelText.text = "Gêstoœæ siatki: " + gridLabelSlider.value + " cm";
     }
 
     public Vector3 GridSnap(Vector3 pointerPosition)
@@ -59,7 +59,7 @@ public class UIController : MonoBehaviour
 
     public void UpdateAngleSnapLabel()
     {
-        _angleSnapSliderLabel.text = "Snap angle: " + _angleSnapSlider.value + "°";
+        _angleSnapSliderLabel.text = "K¹t przyci¹gania: " + _angleSnapSlider.value + "°";
     }
 
     public void UpdateDynamicDimensions()
