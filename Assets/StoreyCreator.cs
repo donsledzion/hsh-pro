@@ -1,11 +1,24 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StoreyCreator : MonoBehaviour
 {
     [SerializeField] GameObject _drawWalls;
     [SerializeField] GameObject _drawArcs;
+
+    public static StoreyCreator ins { get; private set; }
+
+    private void Awake()
+    {
+        if (ins != null && ins != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            ins = this;
+        }
+    }
 
     public void DrawWalls()
     {
@@ -20,7 +33,7 @@ public class StoreyCreator : MonoBehaviour
         _drawArcs.SetActive(true);
     }
 
-    private void SwitchOffAll()
+    public void SwitchOffAll()
     {
         _drawWalls.SetActive(false);
         _drawArcs.SetActive(false);
