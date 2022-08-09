@@ -81,5 +81,15 @@ public class MathHelpers
         return field/(0.5f*t_base);
     }
 
-
+    public static bool DoesPointCastsOnLine(Vector2 linePointA, Vector2 linePointB, Vector2 distantPoint)
+    {
+        Vector2 AC = distantPoint - linePointA;
+        Vector2 AB = linePointB - linePointA;
+        Vector2 BA = linePointA - linePointB;
+        Vector2 BC = distantPoint - linePointB;
+        float angleOne = Vector2.Angle(AC, AB);
+        float angleTwo = Vector2.Angle(BC, BA);
+        //Debug.Log("AngleOne: " + angleOne + " | AngleTwo: " + angleTwo);
+        return angleOne <= 90f && angleTwo <= 90f;
+    }
 }

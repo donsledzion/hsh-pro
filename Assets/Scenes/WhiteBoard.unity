@@ -2399,7 +2399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &235832283
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2443,7 +2443,8 @@ MonoBehaviour:
   m_improveResolution: 0
   m_Resolution: 0
   m_useNativeSize: 0
-  m_points: []
+  m_points:
+  - {x: 0, y: 0}
   lineThickness: 2
   relativeSize: 0
   lineList: 0
@@ -2474,6 +2475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hoverColor: {r: 1, g: 0, b: 0, a: 1}
   _selectColor: {r: 0, g: 0, b: 1, a: 1}
+  _lineSnapDistance: 40
 --- !u!1 &250236469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,9 +2559,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Selector2D, Assembly-CSharp
-        m_MethodName: SelectWall
+      - m_Target: {fileID: 1901018311}
+        m_TargetAssemblyTypeName: StoreyCreator, Assembly-CSharp
+        m_MethodName: SelectionTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14989,6 +14991,7 @@ MonoBehaviour:
   _drawWalls: {fileID: 82147359}
   _drawArcs: {fileID: 1200218060}
   _wallTypeSelector: {fileID: 1746845848}
+  _selector2D: {fileID: 235832282}
 --- !u!1 &1907149654
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class StoreyCreator : MonoBehaviour
     [SerializeField] GameObject _drawWalls;
     [SerializeField] GameObject _drawArcs;
     [SerializeField] GameObject _wallTypeSelector;
+    [SerializeField] GameObject _selector2D;
 
     public static StoreyCreator ins { get; private set; }
 
@@ -36,10 +37,17 @@ public class StoreyCreator : MonoBehaviour
         _drawArcs.SetActive(true);
     }
 
+    public void SelectionTool()
+    {
+        SwitchOffAll();
+        _selector2D.SetActive(true);
+    }
+
     public void SwitchOffAll()
     {
         _wallTypeSelector.SetActive(false);
         _drawWalls.SetActive(false);
         _drawArcs.SetActive(false);
+        _selector2D.SetActive(false);
     }
 }

@@ -9,6 +9,9 @@ public class Selector2D : MonoBehaviour
 {
     [SerializeField] Color _hoverColor = Color.red;
     [SerializeField] Color _selectColor = Color.blue;
+    [SerializeField] Color _defaultColor = Color.black;
+
+    [SerializeField] float _lineSnapDistance = 10f;
     bool _delayCooldown = false;
     UILineRenderer _uILineRenderer;
     internal struct LineSection
@@ -28,21 +31,11 @@ public class Selector2D : MonoBehaviour
         _uILineRenderer = GetComponent<UILineRenderer>();
     }
 
-    private void OnEnable()
-    {
-        //StoreyCreator.ins.SwitchOffAll();
-    }
-
     private void Update()
     {
-        //Check if the left Mouse button is clicked
-        //if (Input.GetKey(KeyCode.Mouse0)&&!_delayCooldown)
-        {
-            Vector2 mouseOverCanvas = CanvasController.ScreenPointToCanvasCoords(Input.mousePosition);
-            //Debug.Log("Mouse Position [ " +mouseOverCanvas.x+ ", " + mouseOverCanvas.y +  " ]");
-            HoverSection(ClosestSection(mouseOverCanvas));
-            StartCoroutine("DelayCor");
-        }
+        Vector2 mouseOverCanvas = CanvasController.ScreenPointToCanvasCoords(Input.mousePosition);
+        HoverSection(ClosestSection(mouseOverCanvas));
+        StartCoroutine("DelayCor");
     }
 
     public WallSection ClosestSection(Vector2 mouseOverCanvas)
@@ -50,21 +43,21 @@ public class Selector2D : MonoBehaviour
         List<LineSection> segments = new List<LineSection>();
         List<Wall> walls = GameManager.ins.Building.CurrentStorey.Walls;
         WallSection closestSection = null;
-        float closestDistance = float.MaxValue;
+        float closestDistance = _lineSnapDistance;
         foreach (Wall wall in walls)
         {
             foreach (WallSection section in wall.WallSections)
             {
                 LineSection lSection = new LineSection(section);
                 segments.Add(lSection);
-                float distance = MathHelpers.PointToLineDistance(lSection.Start, lSection.End, mouseOverCanvas);                
-                if(distance < closestDistance)
+                float distance = MathHelpers.PointToLineDistance(lSection.Start, lSection.End, mouseOverCanvas);
+                bool pointWithinSection = MathHelpers.DoesPointCastsOnLine(lSection.Start, lSection.End, mouseOverCanvas);
+                if((distance < closestDistance) && pointWithinSection)
                 {
                     closestDistance = distance;
                     closestSection = section;
                     //Debug.Log("Section distance " + MathHelpers.PointToLineDistance(lSection.Start, lSection.End, mouseOverCanvas));
-                }
-                
+                }                
             }
         }
         return closestSection;
@@ -72,13 +65,30 @@ public class Selector2D : MonoBehaviour
 
     void HoverSection(WallSection section)
     {
-        if (section == null) return;
+        if (section == null)
+        {
+            if(_uILineRenderer.color != _defaultColor)
+                ClearLine();
+            return;
+        }
+        _uILineRenderer.enabled = true;
         Vector2[] points = { section.StartPoint.Position, section.EndPoint.Position };
         _uILineRenderer.Points = points;
         _uILineRenderer.color = _hoverColor;
         _uILineRenderer.LineThickness += .1f;
         _uILineRenderer.LineThickness -= .1f;
         _uILineRenderer.LineThickness = 15f;
+    }
+
+    void ClearLine()
+    {
+        _uILineRenderer.enabled = false;
+        Debug.Log("Clearing line...");
+        Vector2[] points = { };
+        _uILineRenderer.color = _defaultColor;
+        _uILineRenderer.Points = points;
+        _uILineRenderer.LineThickness += .1f;
+        _uILineRenderer.LineThickness -= .1f;
     }
 
     public void SelectWall()
