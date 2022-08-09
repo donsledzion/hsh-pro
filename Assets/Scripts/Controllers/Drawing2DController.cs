@@ -32,6 +32,7 @@ public class Drawing2DController : MonoBehaviour
 
     public WallType CurrentWallType { get; set; }
 
+    public Vector2[] CurrentStoreyPoints => currentStorey.Points;
     public List<Storey2D> Storeys2D { get { return _storeys2D; } }
 
     public static Drawing2DController ins { get; private set; }

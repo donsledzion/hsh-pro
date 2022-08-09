@@ -7,6 +7,9 @@ public class WallOnCanvas : MonoBehaviour
 {
     UILineRenderer _uILineRenderer;
 
+    public Vector2[] Points => _uILineRenderer.Points;
+    
+
     private void Awake()
     {
         _uILineRenderer = gameObject.GetComponent<UILineRenderer>();
