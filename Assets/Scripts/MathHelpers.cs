@@ -69,5 +69,17 @@ public class MathHelpers
         return CloserPoint(peakOne, peakTwo, pointer);
     }
 
+    public static float TriangleField(Vector2 pA, Vector2 pB, Vector2 pC)
+    {
+        return 0.5f * Mathf.Abs((pB.x - pA.x) * (pC.y - pA.y) - (pB.y - pA.y) * (pC.x - pA.x));
+    }
+
+    public static float PointToLineDistance(Vector2 linePointA, Vector2 linePointB, Vector2 distantPoint)
+    {
+        float field = TriangleField(linePointA, linePointB, distantPoint);
+        float t_base = (linePointB - linePointA).magnitude;
+        return field/(0.5f*t_base);
+    }
+
 
 }
