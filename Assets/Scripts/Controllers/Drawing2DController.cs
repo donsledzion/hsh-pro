@@ -30,6 +30,9 @@ public class Drawing2DController : MonoBehaviour
     [SerializeField] float visibleStoreyThickness = 10f;
     [SerializeField] float invisibleStoreyThickness = 2f;
 
+    public WallType CurrentWallType { get; set; }
+
+    public Vector2[] CurrentStoreyPoints => currentStorey.Points;
     public List<Storey2D> Storeys2D { get { return _storeys2D; } }
 
     public static Drawing2DController ins { get; private set; }
@@ -165,6 +168,7 @@ public class Drawing2DController : MonoBehaviour
     {
         Wall wall = GameManager.ins.Building.CurrentStorey.AddNewWall();
         wall.WallSections = new Wall(_uILineRenderer.Points).WallSections;
+        wall.WallType = Drawing2DController.ins.CurrentWallType;
     }
 
     public Vector3 SpawnPointLabel(Vector3 position, bool localPosition = false)

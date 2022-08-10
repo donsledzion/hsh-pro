@@ -17,6 +17,22 @@ public class Storey2D : MonoBehaviour
 
     public Transform LabelsContainer { get { return _labelsContainer; } }
 
+    public Vector2[]Points
+    {
+        get
+        {
+            List<Vector2> points = new List<Vector2>();
+            foreach(WallOnCanvas wallOnCanvas in _wallsOnCanvas)
+            {
+                foreach(Vector2 point in wallOnCanvas.Points)
+                {
+                    points.Add(point);
+                }
+            }
+            return points.ToArray();
+        }
+    }
+
     public void AddWallToStorey(Vector2[] points)
     {
         GameObject wall = Instantiate(_wall2DPrefab, gameObject.transform);

@@ -12,7 +12,6 @@ public class WallBuilder : DrawOnCanvas
     protected override void Update()
     {
         base.Update();
-
         if (GameManager.ins.PointerOverUI && IsDrawing)
             _drawing2DController.DrawLive(pointerPosition);
 

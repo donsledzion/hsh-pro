@@ -69,5 +69,27 @@ public class MathHelpers
         return CloserPoint(peakOne, peakTwo, pointer);
     }
 
+    public static float TriangleField(Vector2 pA, Vector2 pB, Vector2 pC)
+    {
+        return 0.5f * Mathf.Abs((pB.x - pA.x) * (pC.y - pA.y) - (pB.y - pA.y) * (pC.x - pA.x));
+    }
 
+    public static float PointToLineDistance(Vector2 linePointA, Vector2 linePointB, Vector2 distantPoint)
+    {
+        float field = TriangleField(linePointA, linePointB, distantPoint);
+        float t_base = (linePointB - linePointA).magnitude;
+        return field/(0.5f*t_base);
+    }
+
+    public static bool DoesPointCastsOnLine(Vector2 linePointA, Vector2 linePointB, Vector2 distantPoint)
+    {
+        Vector2 AC = distantPoint - linePointA;
+        Vector2 AB = linePointB - linePointA;
+        Vector2 BA = linePointA - linePointB;
+        Vector2 BC = distantPoint - linePointB;
+        float angleOne = Vector2.Angle(AC, AB);
+        float angleTwo = Vector2.Angle(BC, BA);
+        //Debug.Log("AngleOne: " + angleOne + " | AngleTwo: " + angleTwo);
+        return angleOne <= 90f && angleTwo <= 90f;
+    }
 }
