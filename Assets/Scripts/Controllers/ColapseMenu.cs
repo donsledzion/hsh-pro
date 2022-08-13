@@ -13,7 +13,8 @@ public class ColapseMenu : MonoBehaviour
     [SerializeField]
     private bool _isOn = false;
 
-    public void colapse()
+
+    public void collapse()
     {
         show(_isOn);
     }
@@ -21,19 +22,24 @@ public class ColapseMenu : MonoBehaviour
 
     private void show (bool value)
     {
-        Debug.Log("this is value " + value);
+        
         if (value)
         {
-            Debug.Log("this is value " + value);
             dropDownMenu.SetActive(false);
             _isOn = false;
+            
         }
         else
         {
-            Debug.Log("this is value " + value);
             dropDownMenu.SetActive(true);
             _isOn = true;
         }
 
+    }
+
+    public void hide()
+    {
+        dropDownMenu.SetActive(false);
+        _isOn = false;
     }
 }
