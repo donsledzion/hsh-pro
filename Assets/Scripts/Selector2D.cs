@@ -17,9 +17,14 @@ public class Selector2D : MonoBehaviour
     [SerializeField] GameObject dotPrefab;
     GameObject _dotInstance;
     [SerializeField] SelectionType _selectionType = SelectionType.Line;
-
+    [SerializeField] float _lineThickness = 15f;
     bool _delayCooldown = false;
-    UILineRenderer _uILineRenderer;
+    [SerializeField] UILineRenderer _hoveredUILineRenderer;
+    [SerializeField] UILineRenderer _selectedUILineRenderer;
+
+    WallSection _hoveredSection;
+    WallSection _selectedSection;
+
     internal struct LineSection
     {
         public Vector2 Start { get; private set; }
@@ -39,18 +44,33 @@ public class Selector2D : MonoBehaviour
         Wall,
     }
 
-    private void Start()
-    {
-        _uILineRenderer = GetComponent<UILineRenderer>();
-    }
-
     private void Update()
     {
         Vector2 mouseOverCanvas = CanvasController.ScreenPointToCanvasCoords(Input.mousePosition);
-        if(_selectionType == SelectionType.Line)
-            HoverSection(ClosestSection(mouseOverCanvas));
-        else if(_selectionType == SelectionType.Point)
+        if (_selectionType == SelectionType.Line)
+        {
+            _hoveredSection = ClosestSection(mouseOverCanvas);
+            HoverSection(_hoveredSection);
+        }
+        else if (_selectionType == SelectionType.Point)
+        {
+            if(_hoveredSection!= null)
+                _hoveredSection = null;
             HoverPoint(ClosestPoint(mouseOverCanvas));
+        }
+        
+        if(Input.GetMouseButtonDown(0))
+        {
+            SelectSection(_hoveredSection);            
+        }
+        if(Input.GetKeyDown(KeyCode.Delete))
+        {
+            WallSectionDeleter.DeleteSection(_selectedSection);
+            Unselect();
+            Unhover();
+        }
+
+
         StartCoroutine("DelayCor");
     }
 
@@ -72,7 +92,6 @@ public class Selector2D : MonoBehaviour
                 {
                     closestDistance = distance;
                     closestSection = section;
-                    //Debug.Log("Section distance " + MathHelpers.PointToLineDistance(lSection.Start, lSection.End, mouseOverCanvas));
                 }                
             }
         }
@@ -81,19 +100,44 @@ public class Selector2D : MonoBehaviour
 
     void HoverSection(WallSection section)
     {
+        if (section != null && section != _selectedSection)
+        {
+            HighlightSection(section, _hoveredUILineRenderer,_hoverColor);
+            _hoveredSection = section;
+        }
+    }
+
+    void Unselect()
+    {
+        ClearLine(_selectedUILineRenderer);
+        _selectedSection = null;
+    }
+
+    void Unhover()
+    {
+        ClearLine(_hoveredUILineRenderer);
+        _hoveredSection = null;
+    }
+
+    void SelectSection(WallSection section)
+    {
+        HighlightSection(section,_selectedUILineRenderer,_selectColor);
+        _selectedSection = section;
+    }
+
+    void HighlightSection(WallSection section, UILineRenderer uiLineRenderer, Color highlightColor)
+    {
         if (section == null)
         {
-            if(_uILineRenderer.color != _defaultColor)
-                ClearLine();
+            if (uiLineRenderer.color != _defaultColor)
+                ClearLine(uiLineRenderer);
             return;
         }
-        _uILineRenderer.enabled = true;
+        uiLineRenderer.enabled = true;
         Vector2[] points = { section.StartPoint.Position, section.EndPoint.Position };
-        _uILineRenderer.Points = points;
-        _uILineRenderer.color = _hoverColor;
-        _uILineRenderer.LineThickness += .1f;
-        _uILineRenderer.LineThickness -= .1f;
-        _uILineRenderer.LineThickness = 15f;
+        uiLineRenderer.Points = points;
+        uiLineRenderer.color = highlightColor;
+        uiLineRenderer.LineThickness = _lineThickness;
     }
 
     void HoverPoint(Vector2 point)
@@ -130,15 +174,15 @@ public class Selector2D : MonoBehaviour
         return closestPoint;
     }
 
-    void ClearLine()
+    void ClearLine(UILineRenderer uILineRenderer)
     {
-        _uILineRenderer.enabled = false;
+        _hoveredUILineRenderer.enabled = false;
         Debug.Log("Clearing line...");
         Vector2[] points = { };
-        _uILineRenderer.color = _defaultColor;
-        _uILineRenderer.Points = points;
-        _uILineRenderer.LineThickness += .1f;
-        _uILineRenderer.LineThickness -= .1f;
+        uILineRenderer.color = _defaultColor;
+        uILineRenderer.Points = points;
+        uILineRenderer.LineThickness += .1f;
+        uILineRenderer.LineThickness -= .1f;
     }
 
     public void SelectWall()

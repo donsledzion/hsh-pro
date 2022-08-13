@@ -47,6 +47,72 @@ namespace Walls2D
             set { _wallType = value; }
         }
 
+        public Vector2[] Points2D
+        {
+            get
+            {
+                List<Vector2> points = new List<Vector2>();
+
+                if (WallSections.Length == 0) return points.ToArray();
+                points.Add(WallSections[0].StartPoint.Position);
+                foreach(WallSection section in WallSections)
+                {
+                    points.Add(section.EndPoint.Position);
+                }
+                return points.ToArray();
+            }
+            
+        }
+
+        internal bool RemoveMidSection(WallSection section)
+        {
+            if (WallSectionDeleter.IsSectionOnWallsEdge(section, this)) return false;
+            int sectionStartIndex = -1;
+            int sectionEndIndex = -1;
+            for(int i = 0; i < this.Points2D.Length; i++)
+            {
+                if (Points2D[i] == section.StartPoint.Position) sectionStartIndex = i;
+                if (Points2D[i] == section.EndPoint.Position) sectionEndIndex = i;
+            }
+            List<Vector2> firstWallPoints = new List<Vector2>();
+            List<Vector2> secondWallPoints = new List<Vector2>();
+            bool sectionSpotted = false;
+            
+            foreach(Vector2 point in Points2D)
+            {
+                if (!sectionSpotted)
+                    firstWallPoints.Add(point);
+                else
+                    secondWallPoints.Add(point);
+                if (sectionStartIndex < sectionEndIndex)
+                {
+                    if (point == section.StartPoint.Position)
+                        sectionSpotted = true;
+                }
+                else if (sectionEndIndex < sectionStartIndex)
+                {
+                    if (point == section.EndPoint.Position)
+                        sectionSpotted = true;
+                }
+            }
+            Wall firstWall = new Wall(firstWallPoints.ToArray());
+            Wall secondWall = new Wall(secondWallPoints.ToArray());
+            GameManager.ins.Building.CurrentStorey.AddNewWall(firstWall);
+            GameManager.ins.Building.CurrentStorey.AddNewWall(secondWall);
+            return GameManager.ins.Building.CurrentStorey.RemoveWall(this);            
+        }
+
+
+
+
+        public void RemoveEdgeSection(WallSection section)
+        {
+            if (!WallSectionDeleter.IsSectionOnWallsEdge(section, this)) return;
+            List<WallSection> sections = new List<WallSection>(_wallSections);
+            sections.Remove(section);
+            _wallSections = sections.ToArray();
+        }
+
         public static XElement Serialize(Wall wall)
         {
             return new XElement("wall",

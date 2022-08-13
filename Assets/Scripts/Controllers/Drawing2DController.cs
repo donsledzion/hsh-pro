@@ -36,7 +36,15 @@ public class Drawing2DController : MonoBehaviour
     public List<Storey2D> Storeys2D { get { return _storeys2D; } }
 
     public static Drawing2DController ins { get; private set; }
+    public Vector2[] LinePoints
+    {
+        get { return _uILineRenderer.Points; }
+    }
 
+    public int LinePointsCount
+    {
+        get { return _uILineRenderer.Points.Length; }
+    }
     private void Awake()
     {
         if (ins != null && ins != this)
@@ -51,10 +59,9 @@ public class Drawing2DController : MonoBehaviour
 
     private void OnEnable()
     {
-        gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);        
+        gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);
         _storeys2D.Add(currentStorey);
     }
-
 
     public void InitializeFirstStorey(Storey storey)
     {
@@ -62,18 +69,18 @@ public class Drawing2DController : MonoBehaviour
     }
     public void SwitchToStorey(Storey storey)
     {
-        foreach(Storey2D st in _storeys2D)
+        foreach (Storey2D st in _storeys2D)
         {
             if (st.StoreyReference == storey)
             {
                 currentStorey = st;
                 SetStoreysVisibility();
                 return;
-            }                
+            }
         }
         GameObject newStorey = Instantiate(storey2DPrefab, drawingsContainer);
         newStorey.name = storey.Name;
-        newStorey.transform.SetParent(drawingsContainer);        
+        newStorey.transform.SetParent(drawingsContainer);
         currentStorey = newStorey.GetComponent<Storey2D>();
         currentStorey.StoreyReference = storey;
         _storeys2D.Add(currentStorey);
@@ -82,38 +89,61 @@ public class Drawing2DController : MonoBehaviour
 
     void SetStoreysVisibility()
     {
-        foreach(Storey2D storey in _storeys2D)
+        foreach (Storey2D storey in _storeys2D)
         {
             if (storey == currentStorey)
                 storey.SetThickness(visibleStoreyThickness);
             else
                 storey.SetThickness(invisibleStoreyThickness);
-
         }
     }
 
-    public Vector2[] LinePoints
+
+    public void ApplyWallToBuilding()
     {
-        get { return _uILineRenderer.Points; }
+        Wall wall = GameManager.ins.Building.CurrentStorey.AddNewWall();
+        wall.WallSections = new Wall(_uILineRenderer.Points).WallSections;
+        wall.WallType = CurrentWallType;        
+    }
+    public void StoreWall()
+    {
+        currentStorey.AddWallToStorey(_uILineRenderer.Points);
     }
 
-    public int LinePointsCount
+    public void DrawStorey(Storey storey)
     {
-        get { return _uILineRenderer.Points.Length; }
+        ClearCurrentStorey();
+        foreach(Wall wall in storey.Walls)
+        {
+            currentStorey.AddWallToStorey(wall.Points2D);
+        }
+    }
+    
+    [ContextMenu("RedrawCurrentStorey")]
+    public void RedrawCurrentStorey()
+    {
+        DrawStorey(GameManager.ins.Building.CurrentStorey);
+        DrawLabels();
     }
 
-    public bool IsEmptyOrDefault()
+    void DrawLabels()
     {
-        return (LinePointsCount < 1)||(LinePointsCount==1 && LinePoints[0] == Vector2.zero);
+        foreach(Wall wall in currentStorey.StoreyReference.Walls)
+        {
+            foreach (Vector2 point in wall.Points2D)
+                SpawnPointLabelOnRedraw(point,false);
+        }
     }
 
-    public void ClearWallsLines()
+    void ClearCurrentStorey()
     {
-        _uILineRenderer.Points = new Vector2[0];
-        _liveUILineRenderer.Points = new Vector2[0];
-        _canvasController.ClearPointsLabels();
+        ClearStorey(currentStorey);
     }
 
+    void ClearStorey(Storey2D storey)
+    {
+        storey.ClearStorey2D();
+    }
     public void DrawLive(Vector3 targetPos)
     {
         if (IsEmptyOrDefault()) return;
@@ -144,11 +174,11 @@ public class Drawing2DController : MonoBehaviour
 
             tmpEmptyLabel.GetComponent<PointLabel>().SetLabelText("");
             tmpEmptyLabel.transform.SetParent(currentStorey.LabelsContainer);
-            
+
         }
         tmpEmptyLabel.transform.position = targetPos;
         tmpLabel.GetComponent<PointLabel>().SetLabelText("" + Mathf.Round((pointerPos - lastPoint).magnitude) + " [cm] | " + Mathf.Round(angle * 10) / 10f);
-        tmpLabel.transform.position = targetPos - new Vector3(currentVector.x,currentVector.y,0)/2;
+        tmpLabel.transform.position = targetPos - new Vector3(currentVector.x, currentVector.y, 0) / 2;
         tmpLabel.transform.localEulerAngles = new Vector3(0, 0, -labelAngle);
 
         _liveUILineRenderer.LineThickness += 0.1f;
@@ -163,21 +193,13 @@ public class Drawing2DController : MonoBehaviour
         Destroy(tmpLabel);
         Destroy(tmpEmptyLabel);
     }
-
-    public void ApplyWallToBuilding()
-    {
-        Wall wall = GameManager.ins.Building.CurrentStorey.AddNewWall();
-        wall.WallSections = new Wall(_uILineRenderer.Points).WallSections;
-        wall.WallType = Drawing2DController.ins.CurrentWallType;
-    }
-
     public Vector3 SpawnPointLabel(Vector3 position, bool localPosition = false)
     {
         GameObject label = Instantiate(pointLabelPrefab, position, pointLabelPrefab.transform.rotation);
 
         GameObject tempScaler = new GameObject("TempScaler");
         label.transform.SetParent(tempScaler.transform);
-        tempScaler.transform.localScale = new Vector3(GameManager.ins.ResolutionRatio.x, GameManager.ins.ResolutionRatio.y,0) * GameManager.ins.Zoom ;
+        tempScaler.transform.localScale = new Vector3(GameManager.ins.ResolutionRatio.x, GameManager.ins.ResolutionRatio.y, 0) * GameManager.ins.Zoom;
         label.transform.SetParent(transform.root);
         label.transform.position = position;
         label.transform.SetParent(currentStorey.LabelsContainer);
@@ -191,11 +213,35 @@ public class Drawing2DController : MonoBehaviour
             label.transform.position = position + GameManager.ins.DrawingCanvasBackgroundLBCorner;
         label.GetComponent<PointLabel>().SetLabelText("[ " + ((int)(10 * ovcPos.x)) / 10f + " , " + ((int)(10 * ovcPos.y)) / 10f + " ]");
         return ovcPos;
-        
+
+    }
+
+    public Vector3 SpawnPointLabelOnRedraw(Vector3 position, bool localPosition = false)
+    {
+        GameObject label = Instantiate(pointLabelPrefab, position, pointLabelPrefab.transform.rotation);
+
+        GameObject tempScaler = new GameObject("TempScaler");
+        label.transform.SetParent(tempScaler.transform);
+        tempScaler.transform.localScale = new Vector3(GameManager.ins.ResolutionRatio.x, GameManager.ins.ResolutionRatio.y, 0) * GameManager.ins.Zoom;
+        //label.transform.SetParent(transform.root);
+        //label.transform.position = position;
+        label.transform.SetParent(currentStorey.LabelsContainer);
+        label.transform.localPosition = position;
+
+        Destroy(tempScaler);
+
+        Vector3 ovcPos = position;
+        /*if (localPosition == true)
+            ovcPos = CanvasController.ScreenPointToCanvasCoords(position);
+        else
+            label.transform.position = position + GameManager.ins.DrawingCanvasBackgroundLBCorner;*/
+        label.GetComponent<PointLabel>().SetLabelText("[ " + ((int)(10 * ovcPos.x)) / 10f + " , " + ((int)(10 * ovcPos.y)) / 10f + " ]");
+        return ovcPos;
+
     }
 
     public void AddLinePointWithLabel(Vector3 position, bool localPosition = false)
-    {        
+    {
         AddPointToLineRenderer(SpawnPointLabel(position, localPosition), _uILineRenderer);
     }
 
@@ -222,11 +268,6 @@ public class Drawing2DController : MonoBehaviour
         _dynamicInputController.ResetDynamicInput();
     }
 
-    public void StoreWall()
-    {
-        currentStorey.AddWallToStorey(_uILineRenderer.Points);
-    }
-
     public void ClearCurrentLine()
     {
         _uILineRenderer.Points = new Vector2[0];
@@ -235,4 +276,19 @@ public class Drawing2DController : MonoBehaviour
         _uILineRenderer.enabled = false;
         _uILineRenderer.enabled = true;
     }
+
+    public void ClearWallsLines()
+    {
+        _uILineRenderer.Points = new Vector2[0];
+        _liveUILineRenderer.Points = new Vector2[0];
+        _canvasController.ClearPointsLabels();
+    }
+    public bool IsEmptyOrDefault()
+    {
+        return (LinePointsCount < 1) || (LinePointsCount == 1 && LinePoints[0] == Vector2.zero);
+    }
+
+    
+
+
 }

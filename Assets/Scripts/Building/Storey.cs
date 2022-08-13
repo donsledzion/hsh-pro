@@ -66,6 +66,22 @@ public class Storey
         return newWall;
     }
 
+    public Wall AddNewWall(Wall newWall)
+    {
+        _walls.Add(newWall);
+        return newWall;
+    }
+
+    public bool RemoveWall(Wall wall)
+    {
+        if (_walls.Contains(wall))
+        {
+            _walls.Remove(wall);
+            return true;
+        }
+        return false;            
+    }
+
     public override string ToString()
     {
         string basic = "Storey (" + _number + ") name: " + _name + ", Elevation: " + _elevation + "[m] , Height: " + _height + "[m].";

@@ -15,6 +15,8 @@ public class Storey2D : MonoBehaviour
         set { _storeyReference = value; }
     }
 
+    public List<WallOnCanvas> WallsOnCanvas { get { return _wallsOnCanvas; } }
+
     public Transform LabelsContainer { get { return _labelsContainer; } }
 
     public Vector2[]Points
@@ -45,5 +47,26 @@ public class Storey2D : MonoBehaviour
     {
         foreach (WallOnCanvas wall in _wallsOnCanvas)
             wall.SetThickness(thickness);
+    }
+
+    void ClearWalls()
+    {
+        foreach (WallOnCanvas wall in WallsOnCanvas)
+            Destroy(wall.gameObject);
+        _wallsOnCanvas.Clear();
+    }
+
+    void ClearLabels()
+    {
+        foreach(PointLabel label in LabelsContainer.GetComponentsInChildren<PointLabel>())
+        {
+            Destroy(label.gameObject);
+        }
+    }
+
+    public void ClearStorey2D()
+    {
+        ClearWalls();
+        ClearLabels();
     }
 }
