@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
+using Walls2D;
 
 public class WallOnCanvas : MonoBehaviour
 {
     UILineRenderer _uILineRenderer;
 
     public Vector2[] Points => _uILineRenderer.Points;
-    
+
+    public Wall Wall { get; private set; }
 
     private void Awake()
     {
@@ -28,5 +30,10 @@ public class WallOnCanvas : MonoBehaviour
         _uILineRenderer.LineThickness = thickness;
         _uILineRenderer.LineThickness += .1f;
         _uILineRenderer.LineThickness -= .1f;
+    }
+
+    public void SetWall(Wall wall)
+    {
+        Wall = wall;
     }
 }

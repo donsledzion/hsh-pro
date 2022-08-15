@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 using Walls2D;
+using static Selector2D;
 
 public class Drawing2DController : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class Drawing2DController : MonoBehaviour
     public WallType CurrentWallType { get; set; }
 
     public Vector2[] CurrentStoreyPoints => currentStorey.Points;
+
+    public Point2DInfo[] CurrentStoreyInfoPoints => currentStorey.Points2DInfo;
+
     public List<Storey2D> Storeys2D { get { return _storeys2D; } }
 
     public static Drawing2DController ins { get; private set; }
@@ -99,15 +103,16 @@ public class Drawing2DController : MonoBehaviour
     }
 
 
-    public void ApplyWallToBuilding()
+    public Wall ApplyWallToBuilding()
     {
         Wall wall = GameManager.ins.Building.CurrentStorey.AddNewWall();
         wall.WallSections = new Wall(_uILineRenderer.Points).WallSections;
-        wall.WallType = CurrentWallType;        
+        wall.WallType = CurrentWallType;
+        return wall;
     }
-    public void StoreWall()
+    public void StoreWall(Wall wall)
     {
-        currentStorey.AddWallToStorey(_uILineRenderer.Points);
+        currentStorey.AddWallToStorey(wall);
     }
 
     public void DrawStorey(Storey storey)
@@ -115,7 +120,7 @@ public class Drawing2DController : MonoBehaviour
         ClearCurrentStorey();
         foreach(Wall wall in storey.Walls)
         {
-            currentStorey.AddWallToStorey(wall.Points2D);
+            currentStorey.AddWallToStorey(wall);
         }
     }
     

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using Walls2D;
 using System.Collections;
+using System;
 
 public class Selector2D : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class Selector2D : MonoBehaviour
     [SerializeField] float _pointSnapDistance = 10f;
 
     [SerializeField] GameObject dotPrefab;
-    GameObject _dotInstance;
+    GameObject _hoveringDotInstance;
+    GameObject _selectingDotInstance;
     [SerializeField] SelectionType _selectionType = SelectionType.Line;
     [SerializeField] float _lineThickness = 15f;
     bool _delayCooldown = false;
@@ -24,6 +26,11 @@ public class Selector2D : MonoBehaviour
 
     WallSection _hoveredSection;
     WallSection _selectedSection;
+
+    Vector2 _hoveredPoint;
+    Vector2 _selectedPoint;
+
+    bool _pointDrag = false;
 
     internal struct LineSection
     {
@@ -56,20 +63,42 @@ public class Selector2D : MonoBehaviour
         {
             if(_hoveredSection!= null)
                 _hoveredSection = null;
-            HoverPoint(ClosestPoint(mouseOverCanvas));
+            HoverPoint(ClosestPoint(mouseOverCanvas).Point);
         }
         
         if(Input.GetMouseButtonDown(0))
-        {
-            SelectSection(_hoveredSection);            
+        {   
+            
+            if (_selectionType == SelectionType.Line)
+                SelectSection(_hoveredSection);            
+            else if(_selectionType == SelectionType.Point)
+            {
+                _pointDrag = true;
+                SelectPoint(_hoveredPoint);
+            }
         }
-        if(Input.GetKeyDown(KeyCode.Delete))
+
+        if (Input.GetKeyDown(KeyCode.Delete))
         {
             WallSectionDeleter.DeleteSection(_selectedSection);
             Unselect();
             Unhover();
         }
 
+        if(Input.GetMouseButtonUp(0))
+        {
+            _pointDrag = false;
+        }
+
+        if(_pointDrag && _selectingDotInstance!=null)
+        {
+            Debug.Log("Dragging point");
+            DragPoint.DragPointTo(_selectedPoint, CanvasController.ScreenPointToCanvasCoords(Input.mousePosition));
+        }
+        else
+        {
+            Debug.Log("NOT Dragging point");
+        }
 
         StartCoroutine("DelayCor");
     }
@@ -107,6 +136,21 @@ public class Selector2D : MonoBehaviour
         }
     }
 
+    void HighlightSection(WallSection section, UILineRenderer uiLineRenderer, Color highlightColor)
+    {
+        if (section == null)
+        {
+            if (uiLineRenderer.color != _defaultColor)
+                ClearLine(uiLineRenderer);
+            return;
+        }
+        uiLineRenderer.enabled = true;
+        Vector2[] points = { section.StartPoint.Position, section.EndPoint.Position };
+        uiLineRenderer.Points = points;
+        uiLineRenderer.color = highlightColor;
+        uiLineRenderer.LineThickness = _lineThickness;
+    }
+
     void Unselect()
     {
         ClearLine(_selectedUILineRenderer);
@@ -125,49 +169,54 @@ public class Selector2D : MonoBehaviour
         _selectedSection = section;
     }
 
-    void HighlightSection(WallSection section, UILineRenderer uiLineRenderer, Color highlightColor)
+    void SelectPoint(Vector2 point)
     {
-        if (section == null)
+        if(_hoveringDotInstance!=null && (point == _hoveredPoint)/* && (point != _selectedPoint)*/)
         {
-            if (uiLineRenderer.color != _defaultColor)
-                ClearLine(uiLineRenderer);
-            return;
-        }
-        uiLineRenderer.enabled = true;
-        Vector2[] points = { section.StartPoint.Position, section.EndPoint.Position };
-        uiLineRenderer.Points = points;
-        uiLineRenderer.color = highlightColor;
-        uiLineRenderer.LineThickness = _lineThickness;
+            if(_selectingDotInstance == null)
+                _selectingDotInstance = Instantiate(dotPrefab);
+            _selectingDotInstance.transform.SetParent(transform);
+            _selectingDotInstance.transform.localPosition = point;
+            _selectingDotInstance.transform.localScale = 5 * Vector3.one;
+            _selectingDotInstance.GetComponent<Image>().color = _selectColor;
+            _selectedPoint = point;
+        }        
     }
+    
 
     void HoverPoint(Vector2 point)
     {
-        if(point != new Vector2())
+        if (point != null && point != _hoveredPoint)
         {
-            if (!_dotInstance)
-                _dotInstance = Instantiate(dotPrefab);
-            _dotInstance.transform.SetParent(transform);
-            _dotInstance.transform.localPosition = point;
-            _dotInstance.transform.localScale = 5*Vector3.one;
-            _dotInstance.GetComponent<Image>().color = _hoverColor;
-        }
-        else
-        {
-            Destroy(_dotInstance);
-        }
+            if (point != new Vector2(0,0))
+            {
+                if (_hoveringDotInstance== null)
+                    _hoveringDotInstance = Instantiate(dotPrefab);
+                _hoveringDotInstance.transform.SetParent(transform);
+                _hoveringDotInstance.transform.localPosition = point;
+                _hoveringDotInstance.transform.localScale = 5 * Vector3.one;
+                _hoveringDotInstance.GetComponent<Image>().color = _hoverColor;
+                _hoveredPoint = point;
+            }
+            else
+            {
+                _hoveredPoint = new Vector2(0,0);
+                Destroy(_hoveringDotInstance);
+            }
+        }            
     }
 
-    Vector2 ClosestPoint(Vector2 mouseInput)
+    Point2DInfo ClosestPoint(Vector2 mouseInput)
     {
-        Vector2[] points = Drawing2DController.ins.CurrentStoreyPoints;
+        Point2DInfo[] points = Drawing2DController.ins.CurrentStoreyInfoPoints;
         Debug.Log("Points count: " + points.Length);
-        Vector2 closestPoint = new Vector2();
+        Point2DInfo closestPoint = new Point2DInfo();
         float maxDist = _pointSnapDistance;
-        foreach(Vector2 point in points)
+        foreach(Point2DInfo point in points)
         {
-            if((point - mouseInput).magnitude < maxDist)
+            if((point.Point - mouseInput).magnitude < maxDist)
             {
-                maxDist = (point - mouseInput).magnitude;
+                maxDist = (point.Point - mouseInput).magnitude;
                 closestPoint = point;
             }
         }
@@ -195,5 +244,36 @@ public class Selector2D : MonoBehaviour
         _delayCooldown = true;
         yield return new WaitForSeconds(.1f);
         _delayCooldown = false;
+    }
+
+    public struct Section2DInfo
+    {
+        WallSection _section;
+        Wall _wall;
+
+        public Section2DInfo(WallSection section, Wall wall)
+        {
+            _section = section;
+            _wall = wall;
+        }
+
+        public WallSection Section { get { return _section; } }
+        public Wall Wall { get { return _wall; } }
+    }
+
+    public struct Point2DInfo
+    {
+        Vector2 _point;
+        Wall _wall;
+
+        public Point2DInfo(Vector2 point, Wall wall)
+        {
+            _point = point;
+            _wall = wall;
+        }
+
+
+        public Vector2 Point { get { return _point; } }
+        public Wall Wall{ get { return _wall; } }
     }
 }

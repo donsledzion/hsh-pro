@@ -56,8 +56,8 @@ public class WallBuilder : DrawOnCanvas
         if (_drawing2DController.IsEmptyOrDefault()) return;
         IsDrawing = false;
         _drawing2DController.ClearLiveLine();
-        _drawing2DController.ApplyWallToBuilding();
-        _drawing2DController.StoreWall();
+        Wall wall = _drawing2DController.ApplyWallToBuilding();
+        _drawing2DController.StoreWall(wall);
         _drawing2DController.ClearCurrentLine();
     }
 

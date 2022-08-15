@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Walls2D;
+using static Selector2D;
 
 public class Storey2D : MonoBehaviour
 {
@@ -35,11 +37,26 @@ public class Storey2D : MonoBehaviour
         }
     }
 
-    public void AddWallToStorey(Vector2[] points)
+    public Point2DInfo[] Points2DInfo
+    { 
+        get
+        {
+            List<Point2DInfo> points2DInfo = new List<Point2DInfo>();
+            foreach(Wall wall in StoreyReference.Walls)
+            {
+                foreach (Vector2 point in wall.Points2D)
+                    points2DInfo.Add(new Point2DInfo(point, wall));
+            }
+            return points2DInfo.ToArray();
+        }
+    }
+
+    public void AddWallToStorey(/*Vector2[] points*/ Wall wall)
     {
-        GameObject wall = Instantiate(_wall2DPrefab, gameObject.transform);
-        WallOnCanvas wallOnCanvas = wall.GetComponent<WallOnCanvas>();
-        wallOnCanvas.DrawOnCanvas(points);
+        GameObject wallObject = Instantiate(_wall2DPrefab, gameObject.transform);
+        WallOnCanvas wallOnCanvas = wallObject.GetComponent<WallOnCanvas>();
+        wallOnCanvas.DrawOnCanvas(wall.Points2D);
+        wallOnCanvas.SetWall(wall);
         _wallsOnCanvas.Add(wallOnCanvas);        
     }
 
