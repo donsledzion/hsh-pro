@@ -633,67 +633,17 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &82147359
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 82147363}
-  - component: {fileID: 82147361}
-  - component: {fileID: 82147362}
-  m_Layer: 0
-  m_Name: DrawWalls
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &82147361
+--- !u!114 &82147361 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3540409414360640718, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+  m_PrefabInstance: {fileID: 2558196768840686909}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82147359}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aaa2906c3b4149c4b8e98703699180b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIController: {fileID: 207226373}
-  _angleSnapController: {fileID: 2019036111}
-  _drawing2DController: {fileID: 1384077217}
-  _dynamicInputController: {fileID: 1491090875}
---- !u!222 &82147362
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82147359}
-  m_CullTransparentMesh: 1
---- !u!224 &82147363
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82147359}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.6129761}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1901018310}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 874.68896, y: 314.79858}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &88531516 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6660764147873089874, guid: 20176a2ab57d3324c85f54da38ffe2ba, type: 3}
@@ -8290,52 +8240,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1200218060
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1200218061}
-  - component: {fileID: 1200218062}
-  m_Layer: 0
-  m_Name: DrawArcs
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1200218061
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200218060}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1901018310}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1200218062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200218060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 829dcbb66558158418f2a134be4d62ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uIController: {fileID: 207226373}
-  _angleSnapController: {fileID: 2019036111}
-  _drawing2DController: {fileID: 1384077217}
 --- !u!1 &1230900126 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8808361924386264330, guid: 20176a2ab57d3324c85f54da38ffe2ba, type: 3}
@@ -13169,56 +13073,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892127207}
   m_CullTransparentMesh: 1
---- !u!1 &1901018309
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1901018310}
-  - component: {fileID: 1901018311}
-  m_Layer: 0
-  m_Name: StoreyCreator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1901018310
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901018309}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85.31106, y: 225.20142, z: 0.6129761}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1200218061}
-  - {fileID: 82147363}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1901018311
+--- !u!114 &1901018311 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3540409414584395816, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+  m_PrefabInstance: {fileID: 2558196768840686909}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901018309}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5b599400e0748649bb12b8eed19a2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _drawWalls: {fileID: 82147359}
-  _drawArcs: {fileID: 1200218060}
-  _wallTypeSelector: {fileID: 1746845848}
-  _selector2D: {fileID: 235832282}
-  _wallSectionDeleter: {fileID: 607938217}
 --- !u!1 &1907149654
 GameObject:
   m_ObjectHideFlags: 0
@@ -14970,6 +14835,103 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136359279}
   m_CullTransparentMesh: 1
+--- !u!1001 &2558196768840686909
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3540409414360640718, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: uIController
+      value: 
+      objectReference: {fileID: 207226373}
+    - target: {fileID: 3540409414360640718, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: _angleSnapController
+      value: 
+      objectReference: {fileID: 2019036111}
+    - target: {fileID: 3540409414360640718, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: _drawing2DController
+      value: 
+      objectReference: {fileID: 1384077217}
+    - target: {fileID: 3540409414360640718, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: _dynamicInputController
+      value: 
+      objectReference: {fileID: 1491090875}
+    - target: {fileID: 3540409414584395816, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: _selector2D
+      value: 
+      objectReference: {fileID: 235832282}
+    - target: {fileID: 3540409414584395816, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: _wallTypeSelector
+      value: 
+      objectReference: {fileID: 1746845848}
+    - target: {fileID: 3540409414584395816, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: _wallSectionDeleter
+      value: 
+      objectReference: {fileID: 607938217}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 85.31106
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 225.20142
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.6129761
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409414584395818, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: m_Name
+      value: StoreyCreator
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540409415411075873, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: uIController
+      value: 
+      objectReference: {fileID: 207226373}
+    - target: {fileID: 3540409415411075873, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: _angleSnapController
+      value: 
+      objectReference: {fileID: 2019036111}
+    - target: {fileID: 3540409415411075873, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: _drawing2DController
+      value: 
+      objectReference: {fileID: 1384077217}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
 --- !u!1001 &5000951805565535512
 PrefabInstance:
   m_ObjectHideFlags: 0
