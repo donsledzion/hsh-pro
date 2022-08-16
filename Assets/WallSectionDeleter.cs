@@ -7,6 +7,7 @@ public class WallSectionDeleter : MonoBehaviour
 {
     public static void DeleteSection(WallSection section)
     {
+        Debug.Log("Trying to delete section...");
         Wall sectionsWall;
         if(section == null)
         {
