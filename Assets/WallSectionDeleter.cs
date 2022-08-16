@@ -14,7 +14,9 @@ public class WallSectionDeleter : MonoBehaviour
             Debug.Log("No section to delete");
             return;
         }
-        foreach(Wall wall in GameManager.ins.Building.CurrentStorey.Walls)
+        Storey currentStorey = GameManager.ins.Building.CurrentStorey;
+
+        foreach (Wall wall in currentStorey.Walls)
         {
             foreach (WallSection wallSection in wall.WallSections)
             {
@@ -27,7 +29,15 @@ public class WallSectionDeleter : MonoBehaviour
                     else if (DeleteMidSection(section, sectionsWall)) return;
                 }
             }
-        }        
+            if (wall.WallSections.Length < 1)
+            {
+                currentStorey.RemoveWall(wall);
+                Drawing2DController.ins.RedrawCurrentStorey();
+                break;
+            }
+                
+        }
+
     }
 
     public static bool IsSectionOnWallsEdge(WallSection section, Wall wall)
@@ -46,6 +56,7 @@ public class WallSectionDeleter : MonoBehaviour
             Drawing2DController.ins.RedrawCurrentStorey();
             return true;
         }
+        Drawing2DController.ins.RedrawCurrentStorey();
         return false;
     }
 

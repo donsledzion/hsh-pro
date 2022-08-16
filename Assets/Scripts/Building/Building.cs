@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Walls2D;
 
 public class Building
 {
@@ -30,6 +31,11 @@ public class Building
             CurrentStorey = storey;
         else
             Debug.Log("Sorry, seems like this storey does not belong to this building.");
+    }
+
+    public void RemoveWall(Wall wall)
+    {
+
     }
 
 

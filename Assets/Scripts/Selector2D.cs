@@ -153,15 +153,17 @@ public class Selector2D : MonoBehaviour
         uiLineRenderer.LineThickness = _lineThickness;
     }
 
-    void Unselect()
+    protected void Unselect()
     {
         ClearLine(_selectedUILineRenderer);
+        _selectedUILineRenderer.enabled = false;
         _selectedSection = null;
     }
 
-    void Unhover()
+    protected void Unhover()
     {
         ClearLine(_hoveredUILineRenderer);
+        _hoveredUILineRenderer.enabled = false;
         _hoveredSection = null;
     }
 
@@ -235,6 +237,22 @@ public class Selector2D : MonoBehaviour
         uILineRenderer.Points = points;
         uILineRenderer.LineThickness += .1f;
         uILineRenderer.LineThickness -= .1f;
+    }
+
+    protected void ClearSelectingLine()
+    {
+        ClearLine(_selectedUILineRenderer);
+    }
+
+    protected void ClearHoveringLine()
+    {
+        ClearLine(_hoveredUILineRenderer);
+    }
+
+    protected void ClearLines()
+    {
+        ClearSelectingLine();
+        ClearHoveringLine();
     }
 
     public void SelectWall()

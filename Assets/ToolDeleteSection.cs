@@ -7,5 +7,8 @@ public class ToolDeleteSection : Selector2D
     {
         base.SelectSection(section);
         WallSectionDeleter.DeleteSection(_hoveredSection);
+        Unselect();
+        Unhover();
+        ClearLines();
     }
 }

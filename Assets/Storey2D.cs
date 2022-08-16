@@ -51,7 +51,7 @@ public class Storey2D : MonoBehaviour
         }
     }
 
-    public void AddWallToStorey(/*Vector2[] points*/ Wall wall)
+    public void AddWallToStorey(Wall wall)
     {
         GameObject wallObject = Instantiate(_wall2DPrefab, gameObject.transform);
         WallOnCanvas wallOnCanvas = wallObject.GetComponent<WallOnCanvas>();
