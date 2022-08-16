@@ -24,11 +24,13 @@ public class Selector2D : MonoBehaviour
     [SerializeField] UILineRenderer _hoveredUILineRenderer;
     [SerializeField] UILineRenderer _selectedUILineRenderer;
 
-    WallSection _hoveredSection;
-    WallSection _selectedSection;
+    protected WallSection _hoveredSection;
+    protected WallSection _selectedSection;
 
     Vector2 _hoveredPoint;
     Vector2 _selectedPoint;
+
+
 
     bool _pointDrag = false;
 
@@ -163,10 +165,11 @@ public class Selector2D : MonoBehaviour
         _hoveredSection = null;
     }
 
-    void SelectSection(WallSection section)
+    protected virtual void SelectSection(WallSection section)
     {
         HighlightSection(section,_selectedUILineRenderer,_selectColor);
         _selectedSection = section;
+
     }
 
     void SelectPoint(Vector2 point)
