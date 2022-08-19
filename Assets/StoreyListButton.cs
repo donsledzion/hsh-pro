@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class StoreyListButton : MonoBehaviour
 {
     public Storey2D Storey2D { get; private set; }
     public bool IsChosen { get; set; }
-    [SerializeField] TextMeshProUGUI buttonLabel;
+    [SerializeField] Text buttonLabel;
 
     public void Initialize(Storey2D storey2D)
     {
