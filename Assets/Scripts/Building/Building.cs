@@ -18,7 +18,7 @@ public class Building
         _storeys.Add(new Storey());
         SetCurrentStorey(_storeys[0]);
     }
-    public Building(string buildingName, string storeyName = "Default floor", float elevation = 0f, float height = 3.2f)
+    public Building(string buildingName, string storeyName = "Default floor", float elevation = 0f, float height = 320f)
     {
         _name = buildingName;
         _storeys.Add(new Storey(0,storeyName,elevation,height));

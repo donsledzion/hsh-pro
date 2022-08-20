@@ -32,8 +32,8 @@ public class WallSectionMeshGenerator : MonoBehaviour
 
     public void SetStoreyParams(Storey storey)
     {
-        floorLvl = storey.Elevation*10;
-        ceilLvl = (storey.Elevation + storey.Height)*10;
+        floorLvl = storey.Elevation;
+        ceilLvl = (storey.Elevation + storey.Height);
     }
 
     Vector3[] GenerateVertices(WallSection wallSection)
