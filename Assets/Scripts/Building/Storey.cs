@@ -16,10 +16,10 @@ public class Storey
         _number = 0;
         _name = "Default floor";
         _elevation = 0f;
-        _height = 3.2f;
+        _height = 320f;
     }
 
-    public Storey(uint number, string storeyName, float elevation = 0f, float height = 3.2f)
+    public Storey(uint number, string storeyName, float elevation = 0f, float height = 320f)
     {
         _number = number;
         _name = storeyName;
