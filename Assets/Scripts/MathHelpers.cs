@@ -92,4 +92,14 @@ public class MathHelpers
         //Debug.Log("AngleOne: " + angleOne + " | AngleTwo: " + angleTwo);
         return angleOne <= 90f && angleTwo <= 90f;
     }
+
+    public static float VectorAzimuthDeg(Vector2 vector)
+    {
+        return Vector2.Angle(Vector2.right, vector);
+    }
+
+    public static float VectorAzimuthRad(Vector2 vector)
+    {
+        return Vector2.Angle(Vector2.right, vector)*(180/Mathf.PI);
+    }
 }

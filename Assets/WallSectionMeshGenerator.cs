@@ -10,19 +10,9 @@ public class WallSectionMeshGenerator : MonoBehaviour
     float floorLvl;
     float ceilLvl;
 
-    void Start()
-    {        
-        
-        
-
-
-        width = DefaultSettings.ins.LoadBareringWallWidth;
-        floorLvl = GameManager.ins.Building.CurrentStorey.Elevation;
-        ceilLvl = GameManager.ins.Building.CurrentStorey.Elevation + GameManager.ins.Building.CurrentStorey.Height;
-    }
-
     public void GenerateSectionMesh(WallSection wallSection)
     {
+        width = DefaultSettings.ins.LoadBareringWallWidth;
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         mesh.vertices = GenerateVertices(wallSection);
@@ -38,18 +28,20 @@ public class WallSectionMeshGenerator : MonoBehaviour
 
     Vector3[] GenerateVertices(WallSection wallSection)
     {
+        float azimuth = MathHelpers.VectorAzimuthRad(wallSection.EndPoint.Position - wallSection.StartPoint.Position);
+        Debug.Log("Azimuth: " + azimuth);
         List<Vector3> verticesList = new List<Vector3>();
-        verticesList.Add(new Vector3(wallSection.StartPoint.Position.x - width / 2, floorLvl, wallSection.StartPoint.Position.y));
-        verticesList.Add(new Vector3(wallSection.StartPoint.Position.x + width / 2, floorLvl, wallSection.StartPoint.Position.y));
+        verticesList.Add(new Vector3(wallSection.StartPoint.Position.x - (width / 2) * Mathf.Cos(azimuth), floorLvl, wallSection.StartPoint.Position.y + (width / 2) * Mathf.Sin(azimuth)));
+        verticesList.Add(new Vector3(wallSection.StartPoint.Position.x + (width / 2) * Mathf.Cos(azimuth), floorLvl, wallSection.StartPoint.Position.y - (width / 2) * Mathf.Sin(azimuth)));
 
-        verticesList.Add(new Vector3(wallSection.EndPoint.Position.x - width / 2, floorLvl, wallSection.EndPoint.Position.y));
-        verticesList.Add(new Vector3(wallSection.EndPoint.Position.x + width / 2, floorLvl, wallSection.EndPoint.Position.y));
+        verticesList.Add(new Vector3(wallSection.EndPoint.Position.x - (width / 2) * Mathf.Cos(azimuth), floorLvl, wallSection.EndPoint.Position.y + (width / 2) * Mathf.Sin(azimuth)));
+        verticesList.Add(new Vector3(wallSection.EndPoint.Position.x + (width / 2) * Mathf.Cos(azimuth), floorLvl, wallSection.EndPoint.Position.y - (width / 2) * Mathf.Sin(azimuth)));
 
-        verticesList.Add(new Vector3(wallSection.StartPoint.Position.x - width / 2, ceilLvl, wallSection.StartPoint.Position.y));
-        verticesList.Add(new Vector3(wallSection.StartPoint.Position.x + width / 2, ceilLvl, wallSection.StartPoint.Position.y));
+        verticesList.Add(new Vector3(wallSection.StartPoint.Position.x - (width / 2) * Mathf.Cos(azimuth), ceilLvl, wallSection.StartPoint.Position.y + (width / 2) * Mathf.Sin(azimuth)));
+        verticesList.Add(new Vector3(wallSection.StartPoint.Position.x + (width / 2) * Mathf.Cos(azimuth), ceilLvl, wallSection.StartPoint.Position.y - (width / 2) * Mathf.Sin(azimuth)));
 
-        verticesList.Add(new Vector3(wallSection.EndPoint.Position.x - width / 2, ceilLvl, wallSection.EndPoint.Position.y));
-        verticesList.Add(new Vector3(wallSection.EndPoint.Position.x + width / 2, ceilLvl, wallSection.EndPoint.Position.y));
+        verticesList.Add(new Vector3(wallSection.EndPoint.Position.x - (width / 2) * Mathf.Cos(azimuth), ceilLvl, wallSection.EndPoint.Position.y + (width / 2) * Mathf.Sin(azimuth)));
+        verticesList.Add(new Vector3(wallSection.EndPoint.Position.x + (width / 2) * Mathf.Cos(azimuth), ceilLvl, wallSection.EndPoint.Position.y - (width / 2) * Mathf.Sin(azimuth)));
 
         return verticesList.ToArray();
     }
