@@ -27,4 +27,11 @@ public class Builder3D : MonoBehaviour
     {
         GenerateStorey(GameManager.ins.Building.CurrentStorey);
     }
+
+    public void GenerateBuilding()
+    {
+        Building building = GameManager.ins.Building;
+        foreach (Storey storey in building.Storeys)
+            GenerateStorey(storey);
+    }
 }
