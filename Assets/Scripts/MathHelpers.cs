@@ -95,11 +95,11 @@ public class MathHelpers
 
     public static float VectorAzimuthDeg(Vector2 vector)
     {
-        return Vector2.Angle(Vector2.right, vector);
+        return Vector2.SignedAngle(vector, Vector2.right);
     }
 
     public static float VectorAzimuthRad(Vector2 vector)
     {
-        return Vector2.Angle(Vector2.right, vector)*(180/Mathf.PI);
+        return Vector2.Angle(Vector2.right, vector)*(180/Mathf.PI); 
     }
 }
