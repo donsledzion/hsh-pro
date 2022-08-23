@@ -54,6 +54,8 @@ namespace UnityTemplateProjects
             }
         }
 
+        [SerializeField] float _cameraMoveSpeedFactor = 1f;
+
         const float k_MouseSensitivityMultiplier = 0.01f;
 
         CameraState m_TargetCameraState = new CameraState();
@@ -161,7 +163,7 @@ namespace UnityTemplateProjects
                 direction += Vector3.up;
             }
 #endif
-            return direction;
+            return direction*_cameraMoveSpeedFactor;
         }
         
         void Update()

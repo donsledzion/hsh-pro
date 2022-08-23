@@ -570,6 +570,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2129458862423332191, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
+      propertyPath: invertY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129458862423332191, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
+      propertyPath: _cameraMoveSpeedFactor
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8048049651243689289, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1992,6 +2000,17 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &319776682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2129458862423332191, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
+  m_PrefabInstance: {fileID: 69505079}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be76e5f14cfee674cb30b491fb72b09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330227628
 GameObject:
   m_ObjectHideFlags: 0
@@ -9976,6 +9995,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Builder3D, Assembly-CSharp
         m_MethodName: GenerateBuilding
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 319776682}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
