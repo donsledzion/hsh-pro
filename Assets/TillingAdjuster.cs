@@ -9,16 +9,11 @@ public class TillingAdjuster : MonoBehaviour
 
     [SerializeField] float _baseSize = 300f;
 
-    Material _material;
-
-    private void Start()
-    {
-        _material = gameObject.GetComponent<MeshRenderer>().material;
-    }
+    [SerializeField] MeshRenderer _renderer;
 
     public void SetTilling(Vector2 textureScale)
     {
-        _material.mainTextureScale = textureScale;
+        _renderer.material.mainTextureScale = textureScale / _baseSize;
     }
 
     /*private void Update()

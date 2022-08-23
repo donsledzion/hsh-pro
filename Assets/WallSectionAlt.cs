@@ -14,7 +14,8 @@ public class WallSectionAlt : MonoBehaviour
         transform.position = parameters.Position;
         transform.RotateAround(transform.position,Vector3.up,parameters.Azimuth);
 
-        
+        Vector2 textureTilling = new Vector2(parameters.Length,parameters.Height);
+        tillingAdjuster.SetTilling(textureTilling);
     }
 
     public void SetParameters(Storey storey, Wall wall, WallSection wallSection)
