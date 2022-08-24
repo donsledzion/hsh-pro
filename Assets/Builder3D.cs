@@ -15,9 +15,12 @@ public class Builder3D : MonoBehaviour
             foreach(WallSection section in wall.WallSections)
             {
                 GameObject sectionObject = Instantiate(wallSectionPrefab, gameObject.transform);
-                WallSectionMeshGenerator meshGenerator = sectionObject.GetComponent<WallSectionMeshGenerator>();
+                WallSectionAlt sectionAlt = sectionObject.GetComponent<WallSectionAlt>();
+                sectionAlt.SetParameters(storey, wall, section);
+                sectionAlt.Spatialize(section);
+                /*WallSectionMeshGenerator meshGenerator = sectionObject.GetComponent<WallSectionMeshGenerator>();
                 meshGenerator.SetStoreyParams(storey);
-                meshGenerator.GenerateSectionMesh(section);
+                meshGenerator.GenerateSectionMesh(section);*/
             }
         }
     }
