@@ -570,14 +570,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2129458862423332191, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
-      propertyPath: invertY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129458862423332191, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
-      propertyPath: _cameraMoveSpeedFactor
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 8048049651243689289, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1774,10 +1766,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3DBuilder
       objectReference: {fileID: 0}
-    - target: {fileID: 389612657073832360, guid: f44a31794eaaade4b963ad25fa682cd1, type: 3}
-      propertyPath: wallSectionPrefab
-      value: 
-      objectReference: {fileID: 8435642805451370783, guid: 46c2afb58c72913498aa2040240b984d, type: 3}
     - target: {fileID: 389612657073832361, guid: f44a31794eaaade4b963ad25fa682cd1, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1840,20 +1828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b963f0e9aa762347a126cf88ea1067c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &311015809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311015806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed61a1b036f86942a9577341c017043, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  shouldRotate: 0
 --- !u!1 &315943677
 GameObject:
   m_ObjectHideFlags: 0
@@ -7066,6 +7040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropDownMenu: {fileID: 1594363278}
+  toolTipBox: {fileID: 0}
   _isOn: 0
 --- !u!1 &1605292617
 GameObject:
@@ -11653,6 +11628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropDownMenu: {fileID: 4118300705695591469}
+  toolTipBox: {fileID: 0}
   _isOn: 0
 --- !u!114 &4118300705730550860
 MonoBehaviour:
@@ -18206,6 +18182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropDownMenu: {fileID: 5000951805603128901}
+  toolTipBox: {fileID: 0}
   _isOn: 0
 --- !u!114 &5000951805603128905
 MonoBehaviour:
