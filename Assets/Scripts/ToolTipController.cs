@@ -22,7 +22,7 @@ public class ToolTipController : MonoBehaviour
     public void Start()
     {
         Cursor.visible = true;
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 
     public void Update()

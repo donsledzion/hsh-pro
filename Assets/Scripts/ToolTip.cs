@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ToolTip : MonoBehaviour, IPointerEnterHandler
 {
 
     public string message;
@@ -15,8 +15,4 @@ public class ToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         ToolTipController._instance.ShowToolTip(message);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        ToolTipController._instance.HideToolTip();
-    }
 }

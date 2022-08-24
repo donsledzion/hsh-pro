@@ -11,6 +11,9 @@ public class ColapseMenu : MonoBehaviour
     GameObject dropDownMenu;
 
     [SerializeField]
+    GameObject toolTipBox;
+
+    [SerializeField]
     private bool _isOn = false;
 
 
@@ -26,12 +29,14 @@ public class ColapseMenu : MonoBehaviour
         if (value)
         {
             dropDownMenu.SetActive(false);
+            toolTipBox.SetActive(false);
             _isOn = false;
             
         }
         else
         {
             dropDownMenu.SetActive(true);
+            toolTipBox.SetActive(true);
             _isOn = true;
         }
 
@@ -40,6 +45,7 @@ public class ColapseMenu : MonoBehaviour
     public void hide()
     {
         dropDownMenu.SetActive(false);
+        toolTipBox.SetActive(false);
         _isOn = false;
     }
 }
