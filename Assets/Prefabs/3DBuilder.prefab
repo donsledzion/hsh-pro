@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 389612657073832361}
   - component: {fileID: 389612657073832360}
+  - component: {fileID: 311015809}
   m_Layer: 0
   m_Name: 3DBuilder
   m_TagString: Untagged
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389612657073832342}
-  m_LocalRotation: {x: -0.18178336, y: -0.37556598, z: 0.07538321, w: 0.90566134}
+  m_LocalRotation: {x: -0.18178672, y: -0.37556303, z: 0.0753864, w: 0.9056616}
   m_LocalPosition: {x: 1000, y: 300, z: -400}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -43,4 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b963f0e9aa762347a126cf88ea1067c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallSectionPrefab: {fileID: 3482302084586697300, guid: 17dbda0d8ae9d6f4dbb98787656c44b8, type: 3}
+  wallSectionPrefab: {fileID: 8435642805451370783, guid: 46c2afb58c72913498aa2040240b984d, type: 3}
+--- !u!114 &311015809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389612657073832342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ed61a1b036f86942a9577341c017043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
+  shouldRotate: 0
