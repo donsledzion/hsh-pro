@@ -17,10 +17,7 @@ public class Builder3D : MonoBehaviour
                 GameObject sectionObject = Instantiate(wallSectionPrefab, gameObject.transform);
                 WallSectionAlt sectionAlt = sectionObject.GetComponent<WallSectionAlt>();
                 sectionAlt.SetParameters(storey, wall, section);
-                sectionAlt.Spatialize(section);
-                /*WallSectionMeshGenerator meshGenerator = sectionObject.GetComponent<WallSectionMeshGenerator>();
-                meshGenerator.SetStoreyParams(storey);
-                meshGenerator.GenerateSectionMesh(section);*/
+                sectionAlt.Spatialize(section);                
             }
         }
     }
@@ -33,8 +30,20 @@ public class Builder3D : MonoBehaviour
 
     public void GenerateBuilding()
     {
+        EraseStoreyDrawings();
         Building building = GameManager.ins.Building;
         foreach (Storey storey in building.Storeys)
             GenerateStorey(storey);
+    }
+
+    void EraseStoreyDrawings()
+    {
+        foreach(Transform _transform in gameObject.GetComponentsInChildren<Transform>())
+        {
+            if(_transform != transform)
+            {
+                Destroy(_transform.gameObject);
+            }
+        }
     }
 }
