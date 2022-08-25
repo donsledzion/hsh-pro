@@ -19,6 +19,7 @@ public class ColapseMenu : MonoBehaviour
 
     public void collapse()
     {
+        
         show(_isOn);
     }
 

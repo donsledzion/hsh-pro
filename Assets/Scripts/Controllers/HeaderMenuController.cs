@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeaderMenuController : MonoBehaviour
 {
     [SerializeField]
     GameObject twoDMenu;
-
+    
     [SerializeField]
     GameObject threeDMenu;
 
@@ -29,39 +30,42 @@ public class HeaderMenuController : MonoBehaviour
     GameObject mainMenu;
 
     [SerializeField]
-    private bool _isOn = false;
+    public bool _isOn = false;
 
 
     public void collapse()
     {
 
         hide();
-        show(_isOn);
-        
+        show();
     }
 
 
-    private void show(bool value)
+    private void show()
     {
-
-        if (value)
-        {
-            gameObject.SetActive(false);
-            _isOn = false;
-
-        }
-        else
-        {
             gameObject.SetActive(true);
-            _isOn = true;
-        }
 
     }
 
     private void hide()
     {
         twoDMenu.SetActive(false);
-        mainMenu.SetActive(false);
-        _isOn = false;
+        mainMenu.SetActive(false);        
+    }
+
+    private void Update()
+    {
+
+        Button activeButtonTwoD = GameObject.Find("2D View").GetComponent<Button>();
+        Button activeButtonThreeD = GameObject.Find("3D View").GetComponent<Button>();
+        Button activeButtonMainMenu = GameObject.Find("Menu").GetComponent<Button>();
+
+        if (twoDMenu.activeSelf)
+            activeButtonTwoD.Select();
+
+        if (mainMenu.activeSelf)
+            activeButtonMainMenu.Select();
+
+
     }
 }

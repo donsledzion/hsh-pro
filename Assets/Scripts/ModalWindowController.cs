@@ -9,12 +9,6 @@ public class ModalWindowController : MonoBehaviour
     [SerializeField]
     private GameObject modalWindow;
 
-    [SerializeField]
-    private Button closeButton;
-
-    [SerializeField]
-    private Button createButton;
-
     public void Show()
     {
         modalWindow.SetActive(true);
