@@ -34,6 +34,11 @@ public class Builder3D : MonoBehaviour
                 plane.SetParameters(ceiling);
                 plane.Spatialize();
             }
+            foreach(CeilingBand band in ceilingSection.CeilingBands)
+            {
+                band.SetParameters(ceiling);
+                band.Spatialize();
+            }
             
         }
     }
