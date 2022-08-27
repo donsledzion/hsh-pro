@@ -6,11 +6,16 @@ using Walls2D;
 public class Builder3D : MonoBehaviour
 {
     [SerializeField] GameObject wallSectionPrefab;
-
+    [SerializeField] GameObject ceilingSectionPrefab;
     
     void GenerateStorey(Storey storey)
     {
-        foreach(Wall wall in storey.Walls)
+        /*
+         * TODO:
+         * create wall and ceiling sections in separate transforms depending on the storey they belong to
+         */
+        Debug.Log("Generating walls - " + storey.Walls.Count);
+        foreach (Wall wall in storey.Walls)
         {
             foreach(WallSection section in wall.WallSections)
             {
@@ -19,6 +24,17 @@ public class Builder3D : MonoBehaviour
                 sectionAlt.SetParameters(storey, wall, section);
                 sectionAlt.Spatialize(section);                
             }
+        }
+        Debug.Log("Generating ceilings - " + storey.Ceilings.Count);
+        foreach(Ceiling ceiling in storey.Ceilings)
+        {
+            Debug.Log("Ceiling is generated - " + ceiling.ToString()); ;
+            GameObject ceilingObject = Instantiate(ceilingSectionPrefab);
+            ceilingObject.transform.SetParent(gameObject.transform);
+            CeilingSection ceilingSection = ceilingObject.GetComponent<CeilingSection>();
+            ceilingSection.SetParameters(ceiling);
+            ceilingSection.Spatialize();
+            Debug.Log("Finished generating ceiling");
         }
     }
 
@@ -30,8 +46,11 @@ public class Builder3D : MonoBehaviour
 
     public void GenerateBuilding()
     {
+        Debug.Log("Generating building...");
         EraseStoreyDrawings();
+        Debug.Log("Erased drawings");
         Building building = GameManager.ins.Building;
+        Debug.Log("Assigned building, now starting the loop through storeys");
         foreach (Storey storey in building.Storeys)
             GenerateStorey(storey);
     }

@@ -5,6 +5,7 @@ using Walls2D;
 public class Storey
 {
     List<Wall> _walls = new List<Wall>();
+    List<Ceiling> _ceilings = new List<Ceiling>();
     uint _number;
     string _name;
     float _elevation;
@@ -31,6 +32,12 @@ public class Storey
     {
         get { return _walls; }
         set { _walls = value; }
+    }
+
+    public List<Ceiling> Ceilings
+    {
+        get { return _ceilings; }
+        set { _ceilings = value; }
     }
 
     public uint Number
@@ -82,16 +89,36 @@ public class Storey
         return false;            
     }
 
+    public Ceiling AddNewCeiling(Ceiling newCeiling)
+    {
+        _ceilings.Add(newCeiling);
+        return newCeiling;
+    }
+
+    public bool RemoveCeiling(Ceiling ceiling)
+    {
+        if(_ceilings.Contains(ceiling))
+        {
+            _ceilings.Remove(ceiling);
+            return true;
+        }
+        return false;
+    }
+
     public override string ToString()
     {
         string basic = "Storey (" + _number + ") name: " + _name + ", Elevation: " + _elevation + "[m] , Height: " + _height + "[m].";
         string walls = "Walls: " + _walls.Count + "\n";
+        string ceilings = "Ceilings: " + _ceilings.Count + "\n";
         if(_walls.Count > 0)
         {
             walls += "\n";
             foreach (Wall wall in _walls)
                 walls += wall.ToString();
+            ceilings += "\n";
+            foreach (Ceiling ceiling in _ceilings)
+                ceilings += ceiling.ToString();
         }
-        return basic + walls;
+        return basic + walls + ceilings;
     }
 }

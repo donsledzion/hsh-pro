@@ -8,7 +8,7 @@ public class DefaultSettings : MonoBehaviour
 
     public float LoadBareringWallWidth = 30f;
     public float PartialWallWidth = 10f;
-    public float CeilingHeight = 30f;
+    public float CeilingThickness = 30f;
 
     private void Awake()
     {

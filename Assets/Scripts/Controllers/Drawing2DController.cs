@@ -31,6 +31,8 @@ public class Drawing2DController : MonoBehaviour
     [SerializeField] float visibleStoreyThickness = 10f;
     [SerializeField] float invisibleStoreyThickness = 2f;
 
+
+    public Storey2D CurrentStorey { get { return currentStorey; } }
     public WallType CurrentWallType { get; set; }
 
     public Vector2[] CurrentStoreyPoints => currentStorey.Points;
