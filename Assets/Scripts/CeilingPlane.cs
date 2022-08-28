@@ -28,15 +28,13 @@ public class CeilingPlane : MonoBehaviour
         {
             mesh.vertices = SpatializePoints(_ceiling.Points, _ceiling.TopLevel -_ceiling.Thickness);
             Array.Reverse(triangles);
-            mesh.triangles = triangles;
-            
+            mesh.triangles = triangles;            
         }            
         else
         {
             mesh.vertices = SpatializePoints(_ceiling.Points, _ceiling.TopLevel + _overlappingOffset);
             mesh.triangles = triangles;
-        }
-            
+        }            
     }
 
     public static Vector3[] SpatializePoints(Vector2[] points, float elevation)
@@ -50,9 +48,6 @@ public class CeilingPlane : MonoBehaviour
     public void SetParameters(Ceiling ceiling)
     {
         this._ceiling = ceiling;
-        /*Parameters._thicknes = ceiling.Thickness;
-        Parameters._topLevel = ceiling.TopLevel;
-        Parameters._points = ceiling.Points;*/
     }
 
     public void Spatialize()
@@ -60,11 +55,3 @@ public class CeilingPlane : MonoBehaviour
         MakeMeshPlane(_upsideDown);
     }
 }
-
-public class CeilingParameters
-{
-    public float _thicknes;
-    public float _topLevel;
-    public Vector2[] _points;
-}
-
