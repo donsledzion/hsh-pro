@@ -8,6 +8,7 @@ public class TabGroup : MonoBehaviour
     public Sprite tabIdle;
     public Sprite tabhover;
     public Sprite tabActive;
+    public TabButtonGallery selectedTab; 
 
     public void Subscribe(TabButtonGallery button)
     {
@@ -19,8 +20,11 @@ public class TabGroup : MonoBehaviour
     }
     public void onTabEnter(TabButtonGallery button)
     {
-        ResetTabs();
-        button.background.sprite = tabhover;
+        if (selectedTab == null || button != selectedTab)
+        {
+            ResetTabs();
+            button.background.sprite = tabhover;
+        }
     }
     
     public void onTabExit(TabButtonGallery button)
@@ -30,6 +34,7 @@ public class TabGroup : MonoBehaviour
     
     public void onTabSelected(TabButtonGallery button)
     {
+        selectedTab = button;
         ResetTabs();
         button.background.sprite = tabActive;
 
@@ -39,6 +44,7 @@ public class TabGroup : MonoBehaviour
     {
         foreach (TabButtonGallery button in tabButtons)
         {
+            if(selectedTab!=null && button == selectedTab) { continue; }
             button.background.sprite = tabIdle;
         }
     }
