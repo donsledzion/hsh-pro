@@ -10,6 +10,20 @@ public class AngleSnapController : MonoBehaviour
     [SerializeField] Slider _angleSnapSlider;
     [SerializeField] Drawing2DController _drawing2DController;
 
+
+    public static AngleSnapController ins { get; private set; }
+    private void Awake()
+    {
+        if (ins != null && ins != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            ins = this;
+        }
+    }
+
     public Vector3 AngleSnap(Vector3 pointerPosition)
     {
         if (_drawing2DController.IsEmptyOrDefault()) return pointerPosition;

@@ -94,12 +94,36 @@ public class MathHelpers
     }
 
     public static float VectorAzimuthDeg(Vector2 vector)
-    {
+    {  
         return Vector2.SignedAngle(vector, Vector2.right);
     }
 
     public static float VectorAzimuthRad(Vector2 vector)
     {
         return Vector2.Angle(Vector2.right, vector)*(180/Mathf.PI); 
+    }
+
+    public static float Cross(Vector2 a, Vector2 b)
+    {
+        return a.x * b.y - a.y * b.x;
+    }
+
+    public static T GetItem<T>(T[] array, int index)
+    {
+        if (index >= array.Length)
+            return array[index % array.Length];
+        else if (index < 0)
+            return array[index % array.Length + array.Length];
+        else
+            return array[index];
+    }
+    public static T GetItem<T>(List<T> list, int index)
+    {
+        if (index >= list.Count)
+            return list[index % list.Count];
+        else if (index < 0)
+            return list[index % list.Count + list.Count];
+        else
+            return list[index];
     }
 }

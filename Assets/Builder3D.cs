@@ -6,11 +6,15 @@ using Walls2D;
 public class Builder3D : MonoBehaviour
 {
     [SerializeField] GameObject wallSectionPrefab;
-
+    [SerializeField] GameObject ceilingSectionPrefab;
     
     void GenerateStorey(Storey storey)
     {
-        foreach(Wall wall in storey.Walls)
+        /*
+         * TODO:
+         * create wall and ceiling sections in separate transforms depending on the storey they belong to
+         */
+        foreach (Wall wall in storey.Walls)
         {
             foreach(WallSection section in wall.WallSections)
             {
@@ -19,6 +23,18 @@ public class Builder3D : MonoBehaviour
                 sectionAlt.SetParameters(storey, wall, section);
                 sectionAlt.Spatialize(section);                
             }
+        }
+        foreach(Ceiling ceiling in storey.Ceilings)
+        {
+            GameObject ceilingObject = Instantiate(ceilingSectionPrefab);
+            ceilingObject.transform.SetParent(gameObject.transform);
+            CeilingSection ceilingSection = ceilingObject.GetComponent<CeilingSection>();
+            foreach(CeilingPlane plane in ceilingSection.CeilingPlanes)
+            {
+                plane.SetParameters(ceiling);
+                plane.Spatialize();
+            }
+            
         }
     }
 

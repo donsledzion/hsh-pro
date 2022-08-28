@@ -18,6 +18,19 @@ public class DynamicInputController : MonoBehaviour
         set { _dynamicInputLength = value; }
     }
 
+    public static DynamicInputController ins { get; private set; }
+    private void Awake()
+    {
+        if (ins != null && ins != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            ins = this;
+        }
+    }
+
     public void ToggleDynamicInput()
     {
         GameManager.ins.ToggleDynamicDimensions();

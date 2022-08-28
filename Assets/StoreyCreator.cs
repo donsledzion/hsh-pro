@@ -8,6 +8,7 @@ public class StoreyCreator : MonoBehaviour
     [SerializeField] GameObject _wallTypeSelector;
     [SerializeField] GameObject _selector2D;
     [SerializeField] GameObject _wallSectionDeleter;
+    [SerializeField] GameObject _drawCeiling;
 
     public static StoreyCreator ins { get; private set; }
 
@@ -38,6 +39,12 @@ public class StoreyCreator : MonoBehaviour
         _drawArcs.SetActive(true);
     }
 
+    public void DrawCeiling()
+    {
+        SwitchOffAll();
+        _drawCeiling.SetActive(true);
+    }
+
     public void SelectionTool()
     {
         SwitchOffAll();
@@ -54,6 +61,7 @@ public class StoreyCreator : MonoBehaviour
     {
         _wallTypeSelector.SetActive(false);
         _drawWalls.SetActive(false);
+        _drawCeiling.SetActive(false);
         _drawArcs.SetActive(false);
         _selector2D.SetActive(false);
         _wallSectionDeleter.SetActive(false);

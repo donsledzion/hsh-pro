@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,6 +48,12 @@ public class GameManager : MonoBehaviour
     {
         RelativeAngle = !RelativeAngle;
         return RelativeAngle;
+    }
+
+    internal void AddCeilingToCurrentStorey(Vector2[] points)
+    {
+        Storey currentStorey = ins.Building.CurrentStorey;
+        currentStorey.AddNewCeiling(new Ceiling(DefaultSettings.ins.CeilingThickness, currentStorey.Elevation + currentStorey.Height, points));
     }
 
     public bool ToggleAngleSnap()

@@ -20,6 +20,20 @@ public class UIController : MonoBehaviour
     [SerializeField] Slider _angleSnapSlider;
     [SerializeField] TextMeshProUGUI _angleSnapButtonLabel;
 
+
+    public static UIController ins { get; private set; }
+    private void Awake()
+    {
+        if (ins != null && ins != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            ins = this;
+        }
+    }
+
     public void UpdateGridSnapToggleButton()
     {
         if (GameManager.ins.GridSnap)
