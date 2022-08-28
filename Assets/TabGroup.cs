@@ -15,8 +15,9 @@ public class TabGroup : MonoBehaviour
         if(tabButtons == null)
         {
             tabButtons = new List<TabButtonGallery>();
-            tabButtons.Add(button);
         }
+        
+        tabButtons.Add(button);
     }
     public void onTabEnter(TabButtonGallery button)
     {
