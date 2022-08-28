@@ -81,6 +81,14 @@ public class MathHelpers
         return field/(0.5f*t_base);
     }
 
+    public static Vector2 PointCastOnLine(Vector2 linePointA, Vector2 linePointB, Vector2 distantPoint)
+    {
+        float b = PointToLineDistance(linePointA, linePointB, distantPoint);
+        float c = (distantPoint - linePointA).magnitude;
+        float a = Mathf.Sqrt(c * c - b * b);
+        return linePointA+(linePointB-linePointA).normalized*a;
+    }
+
     public static bool DoesPointCastsOnLine(Vector2 linePointA, Vector2 linePointB, Vector2 distantPoint)
     {
         Vector2 AC = distantPoint - linePointA;

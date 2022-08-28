@@ -16,9 +16,31 @@ public class DrawCeiling : DrawWithLines
         lineRenderer.Points = _drawing2DController.LinePoints;
         lineRenderer.LineThickness += .1f;
         lineRenderer.LineThickness -= .1f;        
-        GameManager.ins.AddCeilingToCurrentStorey(lineRenderer.Points);
+        GameManager.ins.AddCeilingToCurrentStorey(FilterPoints(lineRenderer.Points));
         _drawing2DController.ClearCurrentLine();
         Debug.Log("Finishing drawing ceiling");
+    }
+
+    Vector2[] FilterPoints(Vector2[] sourcePoints)
+    {
+        return FilterFirstLastPoint(sourcePoints);
+    }
+
+    Vector2[] FilterFirstLastPoint(Vector2[] sourcePoints)
+    {
+        Vector2[] newPoints = new Vector2[0];
+        bool isFiltered = false;
+        if(sourcePoints[0] == sourcePoints[sourcePoints.Length-1])
+        {
+            newPoints = new Vector2[sourcePoints.Length - 1];
+            for(int i = 0; i < newPoints.Length; i++)
+            {
+                newPoints[i] = sourcePoints[i];
+            }
+            isFiltered = true;
+        }
+        Debug.Log("NewPoints.Count: " + newPoints.Length);
+        return isFiltered ? newPoints : sourcePoints;
     }
 
     protected override void HandleClick()

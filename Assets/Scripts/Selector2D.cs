@@ -53,7 +53,7 @@ public class Selector2D : MonoBehaviour
         Wall,
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         Vector2 mouseOverCanvas = CanvasController.ScreenPointToCanvasCoords(Input.mousePosition);
         if (_selectionType == SelectionType.Line)
@@ -174,7 +174,7 @@ public class Selector2D : MonoBehaviour
 
     }
 
-    void SelectPoint(Vector2 point)
+    protected void SelectPoint(Vector2 point)
     {
         if(_hoveringDotInstance!=null && (point == _hoveredPoint)/* && (point != _selectedPoint)*/)
         {
@@ -189,7 +189,7 @@ public class Selector2D : MonoBehaviour
     }
     
 
-    void HoverPoint(Vector2 point)
+    protected void HoverPoint(Vector2 point)
     {
         if (point != null && point != _hoveredPoint)
         {
@@ -211,7 +211,7 @@ public class Selector2D : MonoBehaviour
         }            
     }
 
-    Point2DInfo ClosestPoint(Vector2 mouseInput)
+    protected Point2DInfo ClosestPoint(Vector2 mouseInput)
     {
         Point2DInfo[] points = Drawing2DController.ins.CurrentStoreyInfoPoints;
         Debug.Log("Points count: " + points.Length);
