@@ -102,7 +102,22 @@ namespace Walls2D
             return GameManager.ins.Building.CurrentStorey.RemoveWall(this);            
         }
 
-
+        public void InsertJambIntoSection(WallSection wallSection, Jamb jamb)
+        {
+            if(_wallSections.Contains(wallSection))
+            {
+                Vector2 closerAnchor = (jamb.StartPoint.Position - wallSection.StartPoint.Position).magnitude < (jamb.EndPoint.Position - wallSection.StartPoint.Position).magnitude ? jamb.StartPoint.Position : jamb.EndPoint.Position;
+                Vector2 furtherAnchor = closerAnchor == jamb.StartPoint.Position ? jamb.EndPoint.Position : jamb.StartPoint.Position;
+                wallSection.EndPoint.Position = closerAnchor;
+                /*
+                WallSection duplicateSection = wallSection.Clone();
+                duplicateSection.EndPoint.Position = furtherAnchor;
+                List<WallSection> sections = new List<WallSection>(wallSection.Wall.WallSections);
+                sections.Add(duplicateSection);
+                wallSection.Wall.WallSections = sections.ToArray();
+                Drawing2DController.ins.RedrawCurrentStorey();*/
+            }
+        }
 
 
         public void RemoveEdgeSection(WallSection section)
@@ -137,7 +152,7 @@ namespace Walls2D
 
             return "Type: " + _wallType + "\n" + strSections;
                 
-    }
+        }
     }
 
    

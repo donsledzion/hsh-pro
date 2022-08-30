@@ -34,12 +34,28 @@ public class InsertDoor : Selector2D
             if (_doorInstance != null)
                 Destroy(_doorInstance);
         }
+
+
+        if(_doorInstance!= null)
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                TryFitDoors(_hoveredSection,_snappedPoint);
+            }
+        }
             
+    }
+
+    void TryFitDoors(WallSection wallSection, Vector2 position)
+    {
+        Debug.Log("Trying to fit door at :" + position);
+        Jamb jamb = new Jamb();
+        jamb.SetAnchors(wallSection, position);
+        wallSection.Wall.InsertJambIntoSection(wallSection, jamb);
     }
 
     Vector2 CastedPoint(WallSection section, Vector2 mouseInput)
     {
         return MathHelpers.PointCastOnLine(section.StartPoint.Position,section.EndPoint.Position,mouseInput);
     }
-
 }

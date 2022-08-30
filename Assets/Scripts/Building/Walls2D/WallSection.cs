@@ -7,16 +7,16 @@ using System.Xml.Linq;
 
 namespace Walls2D
 {
-    [XmlInclude(typeof(SectionStraight))]    
+    [XmlInclude(typeof(SectionStraight))]
     [XmlType("wall-section")]
     [Serializable]
     public abstract class WallSection
     {
+        protected Wall _wallReference;
         [XmlAttribute]
         protected BasePoint _startPoint;
         [XmlAttribute]
         protected BasePoint _endPoint;
-                
 
         public BasePoint StartPoint
         {
@@ -28,6 +28,15 @@ namespace Walls2D
         {
             get { return _endPoint; }
             set { _endPoint = value; }
+        }
+
+        public Wall Wall { get { return _wallReference; } }
+
+        public abstract WallSection Clone();
+
+        public void AssignToWall(Wall wall)
+        {
+            _wallReference = wall;
         }
 
         public override string ToString()

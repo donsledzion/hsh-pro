@@ -26,5 +26,16 @@ namespace Walls2D
             _startPoint = new BasePoint(startPoint);
             _endPoint = new BasePoint(endPoint);
         }
+
+        public SectionStraight(SectionStraight sectionStraight)
+        {
+            _startPoint = new BasePoint(sectionStraight.StartPoint.Position);
+            _endPoint = new BasePoint(sectionStraight.EndPoint.Position);
+        }
+
+        public override WallSection Clone()
+        {
+            return new SectionStraight(this);
+        }
     }
 }
