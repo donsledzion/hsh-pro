@@ -102,21 +102,30 @@ namespace Walls2D
             return GameManager.ins.Building.CurrentStorey.RemoveWall(this);            
         }
 
-        public void InsertJambIntoSection(WallSection wallSection, Jamb jamb)
+        public Wall InsertJambIntoSection(WallSection wallSection, Jamb jamb)
         {
             if(_wallSections.Contains(wallSection))
             {
+                WallSection duplicateSectionA = wallSection.Clone();
+                WallSection duplicateSectionB = wallSection.Clone();
+                List<WallSection> newSections = new List<WallSection>();
+
                 Vector2 closerAnchor = (jamb.StartPoint.Position - wallSection.StartPoint.Position).magnitude < (jamb.EndPoint.Position - wallSection.StartPoint.Position).magnitude ? jamb.StartPoint.Position : jamb.EndPoint.Position;
                 Vector2 furtherAnchor = closerAnchor == jamb.StartPoint.Position ? jamb.EndPoint.Position : jamb.StartPoint.Position;
-                wallSection.EndPoint.Position = closerAnchor;
-                /*
-                WallSection duplicateSection = wallSection.Clone();
-                duplicateSection.EndPoint.Position = furtherAnchor;
-                List<WallSection> sections = new List<WallSection>(wallSection.Wall.WallSections);
-                sections.Add(duplicateSection);
-                wallSection.Wall.WallSections = sections.ToArray();
-                Drawing2DController.ins.RedrawCurrentStorey();*/
+
+                duplicateSectionA.EndPoint.Position = closerAnchor;
+                duplicateSectionB.StartPoint.Position = furtherAnchor;
+
+                
+                newSections.Add(duplicateSectionA);
+                newSections.Add(duplicateSectionB);
+                newSections.Add(jamb);
+
+                Wall newWall = new Wall(newSections);
+                newWall.WallType = this.WallType;
+                return newWall;
             }
+            return null;
         }
 
 

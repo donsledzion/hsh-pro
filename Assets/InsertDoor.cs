@@ -42,8 +42,7 @@ public class InsertDoor : Selector2D
             {
                 TryFitDoors(_hoveredSection,_snappedPoint);
             }
-        }
-            
+        }            
     }
 
     void TryFitDoors(WallSection wallSection, Vector2 position)
@@ -51,7 +50,10 @@ public class InsertDoor : Selector2D
         Debug.Log("Trying to fit door at :" + position);
         Jamb jamb = new Jamb();
         jamb.SetAnchors(wallSection, position);
-        wallSection.Wall.InsertJambIntoSection(wallSection, jamb);
+        Wall newWall = wallSection.Wall.InsertJambIntoSection(wallSection, jamb);
+        WallSectionDeleter.DeleteSection(wallSection);
+        GameManager.ins.Building.CurrentStorey.AddNewWall(newWall);
+        Drawing2DController.ins.RedrawCurrentStorey();
     }
 
     Vector2 CastedPoint(WallSection section, Vector2 mouseInput)

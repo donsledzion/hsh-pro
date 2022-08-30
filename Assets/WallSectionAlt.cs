@@ -5,19 +5,18 @@ using Walls2D;
 
 public class WallSectionAlt : MonoBehaviour
 {
-    WallParameters parameters = new WallParameters();
-    [SerializeField] Transform _scallableChild;
+    protected WallParameters parameters = new WallParameters();
+    [SerializeField] protected Transform _scallableChild;
     [SerializeField] List<TillingAdjuster> tillingAdjustersTop = new List<TillingAdjuster>();
     [SerializeField] List<TillingAdjuster> tillingAdjustersHead = new List<TillingAdjuster>();
     [SerializeField] List<TillingAdjuster> tillingAdjustersFace = new List<TillingAdjuster>();
     
-    public void Spatialize(WallSection wallSection)
+    public virtual void Spatialize(WallSection wallSection)
     {
         transform.RotateAround(transform.position, Vector3.up, parameters.Azimuth);
         _scallableChild.localScale = new Vector3(parameters.Length, parameters.Height, parameters.Width);
         transform.position = parameters.Position;
         
-
         SetTilling();
     }
 
@@ -30,17 +29,17 @@ public class WallSectionAlt : MonoBehaviour
     {
         foreach(TillingAdjuster adjuster in tillingAdjustersTop)
         {
-            Vector2 textureScale = new Vector2(parameters.Width*parameters.Azimuth,parameters.Length);
+            Vector2 textureScale = new Vector2(_scallableChild.localScale.x* parameters.Azimuth,parameters.Length);
             adjuster.SetTilling(textureScale);
         }
         foreach(TillingAdjuster adjuster in tillingAdjustersHead)
         {
-            Vector2 textureScale = new Vector2(parameters.Width,parameters.Height);
+            Vector2 textureScale = new Vector2(_scallableChild.localScale.z,_scallableChild.localScale.y);
             adjuster.SetTilling(textureScale);
         }
         foreach(TillingAdjuster adjuster in tillingAdjustersFace)
         {
-            Vector2 textureScale = new Vector2(parameters.Length,parameters.Height);
+            Vector2 textureScale = new Vector2(_scallableChild.localScale.x, _scallableChild.localScale.y);
             adjuster.SetTilling(textureScale);
         }
     }

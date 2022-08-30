@@ -14,17 +14,21 @@ namespace Walls2D
         {
             _width = 80f;
             _height = 200f;
+            _startPoint = new BasePoint();
+            _endPoint = new BasePoint();
         }
 
         public override WallSection Clone()
         {
-            throw new System.NotImplementedException();
+            return new Jamb(_width,_height,_startPoint.Position,_endPoint.Position);
         }
 
-        public Jamb(float width, float height, float thickness, Vector2 anchorA, Vector2 anchorB)
+        public Jamb(float width, float height, Vector2 startPoint, Vector2 endPoint)
         {
             _width = width;
             _height = height;
+            _startPoint.Position = startPoint;
+            _endPoint.Position = endPoint;
         }
 
         public float Width { get { return _width; } }
@@ -33,8 +37,8 @@ namespace Walls2D
         public void SetAnchors(WallSection wallSection, Vector2 position)
         {
             Vector2 wallVersor = (wallSection.EndPoint.Position - wallSection.StartPoint.Position).normalized;
-            StartPoint.Position = position - wallVersor * _height / 2f;
-            EndPoint.Position = position + wallVersor * _height / 2f;
+            StartPoint.Position = position - wallVersor * _height / 4f;
+            EndPoint.Position = position + wallVersor * _height / 4f;
         }
     }
 }
