@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-
+[RequireComponent(typeof(Image))]
 public class TabButtonGallery : MonoBehaviour,IPointerEnterHandler,IPointerClickHandler,IPointerExitHandler
 {
 
