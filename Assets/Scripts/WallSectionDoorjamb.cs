@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Walls2D;
 
-public class WallSectionJamb : WallSectionAlt
+public class WallSectionDoorjamb : WallSectionAlt
 {
     new DoorParameters parameters = new DoorParameters();
     public void Spatialize(Doorjamb jamb)
