@@ -56,12 +56,12 @@ public class HeaderMenuController : MonoBehaviour
     private void Update()
     {
 
-        Button activeButtonTwoD = GameObject.Find("2D View").GetComponent<Button>();
-        Button activeButtonThreeD = GameObject.Find("3D View").GetComponent<Button>();
+        /*Button activeButtonTwoD = GameObject.Find("2D View").GetComponent<Button>();
+        Button activeButtonThreeD = GameObject.Find("3D View").GetComponent<Button>();*/
         //Button activeButtonMainMenu = GameObject.Find("Menu").GetComponent<Button>();
 
-        if (twoDMenu.activeSelf)
-            activeButtonTwoD.Select();
+        /*if (twoDMenu.activeSelf)
+            activeButtonTwoD.Select();*/
 
         /*if (mainMenu.activeSelf)
             activeButtonMainMenu.Select();*/
