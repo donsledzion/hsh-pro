@@ -123,7 +123,7 @@ namespace Walls2D
 
                 Wall newWall = new Wall(newSections);
                 newWall.WallType = this.WallType;
-                AssignSections();
+                //AssignSections();
                 newWall.AssignSections();
                 return newWall;
             }
