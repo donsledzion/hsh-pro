@@ -7,6 +7,7 @@ public class Builder3D : MonoBehaviour
 {
     [SerializeField] GameObject _sectionStraightPrefab;
     [SerializeField] GameObject _sectionDoorjambPrefab;
+    [SerializeField] GameObject _sectionWindowjambPrefab;
     [SerializeField] GameObject _ceilingSectionPrefab;
     
     void GenerateStorey(Storey storey)
@@ -30,13 +31,21 @@ public class Builder3D : MonoBehaviour
                     sectionAlt.SetParameters(storey, wall, section);
                     sectionAlt.Spatialize(section);
                 }
-                else if(section is Jamb)
+                else if(section is Doorjamb)
                 {
                     Debug.Log("Spatializing JAMB sections...");
                     GameObject sectionObject = Instantiate(_sectionDoorjambPrefab, gameObject.transform);
                     WallSectionJamb sectionJamb = sectionObject.GetComponent<WallSectionJamb>();
-                    sectionJamb.SetParameters(storey, wall, (Jamb)section);
-                    sectionJamb.Spatialize((Jamb)section);
+                    sectionJamb.SetParameters(storey, wall, (Doorjamb)section);
+                    sectionJamb.Spatialize((Doorjamb)section);
+                }
+                else if(section is Doorjamb)
+                {
+                    Debug.Log("Spatializing JAMB sections...");
+                    GameObject sectionObject = Instantiate(_sectionDoorjambPrefab, gameObject.transform);
+                    WallSectionJamb sectionJamb = sectionObject.GetComponent<WallSectionJamb>();
+                    sectionJamb.SetParameters(storey, wall, (Doorjamb)section);
+                    sectionJamb.Spatialize((Doorjamb)section);
                 }
             }
         }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Walls2D
 {
-    public class Jamb : WallSection
+    public class Windowjamb : WallSection
     {
 
         float _width;
         float _height;
 
-        public Jamb()
+        public Windowjamb()
         {
             _width = 80f;
             _height = 200f;
@@ -20,10 +20,10 @@ namespace Walls2D
 
         public override WallSection Clone()
         {
-            return new Jamb(_width,_height,_startPoint.Position,_endPoint.Position);
+            return new Windowjamb(_width,_height,_startPoint.Position,_endPoint.Position);
         }
 
-        public Jamb(float width, float height, Vector2 startPoint, Vector2 endPoint)
+        public Windowjamb(float width, float height, Vector2 startPoint, Vector2 endPoint)
         {
             _width = width;
             _height = height;

@@ -20,7 +20,7 @@ public class DoorParameters : MonoBehaviour
         Position = new Vector3(Position.x, storey.Elevation+WallHeight, Position.z);
     }
 
-    public void SetParameters(Jamb jamb)
+    public void SetParameters(Doorjamb jamb)
     {
         Length = (jamb.EndPoint.Position - jamb.StartPoint.Position).magnitude;
         Azimuth = MathHelpers.VectorAzimuthDeg(jamb.EndPoint.Position - jamb.StartPoint.Position);
@@ -33,7 +33,7 @@ public class DoorParameters : MonoBehaviour
         Width = wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth;
     }
 
-    public void SetParameters(Storey storey, Wall wall, Jamb jamb)
+    public void SetParameters(Storey storey, Wall wall, Doorjamb jamb)
     {
         SetParameters(storey);
         SetParameters(wall);
