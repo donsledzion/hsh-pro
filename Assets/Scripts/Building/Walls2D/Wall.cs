@@ -123,11 +123,17 @@ namespace Walls2D
 
                 Wall newWall = new Wall(newSections);
                 newWall.WallType = this.WallType;
+                AssignSections();
                 return newWall;
             }
             return null;
         }
 
+        public void AssignSections()
+        {
+            foreach (WallSection section in _wallSections)
+                section.AssignToWall(this);
+        }
 
         public void RemoveEdgeSection(WallSection section)
         {
