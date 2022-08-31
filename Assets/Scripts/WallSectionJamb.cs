@@ -6,7 +6,7 @@ using Walls2D;
 public class WallSectionJamb : WallSectionAlt
 {
     new DoorParameters parameters = new DoorParameters();
-    public void Spatialize(Jamb jamb)
+    public void Spatialize(Doorjamb jamb)
     {
         transform.RotateAround(transform.position, Vector3.up, parameters.Azimuth);
         _scallableChild.localScale = new Vector3(parameters.Length, parameters.WallHeight - parameters.Height, parameters.Width);
@@ -16,7 +16,7 @@ public class WallSectionJamb : WallSectionAlt
     }
 
 
-    public void SetParameters(Storey storey, Wall wall, Jamb jamb)
+    public void SetParameters(Storey storey, Wall wall, Doorjamb jamb)
     {
         parameters.SetParameters(storey, wall, jamb);
     }

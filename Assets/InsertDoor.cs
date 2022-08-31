@@ -51,7 +51,7 @@ public class InsertDoor : Selector2D
         Debug.Log("wallSection :" + wallSection.ToString());
         Debug.Log("Section's wall :" + wallSection.Wall.ToString());
         
-        Jamb jamb = new Jamb();
+        Doorjamb jamb = new Doorjamb();
         jamb.SetAnchors(wallSection, position);
         Wall newWall = wallSection.Wall.InsertJambIntoSection(wallSection, jamb);
         WallSectionDeleter.DeleteSection(wallSection);
