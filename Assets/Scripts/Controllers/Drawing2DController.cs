@@ -109,8 +109,7 @@ public class Drawing2DController : MonoBehaviour
     {
         Wall wall = GameManager.ins.Building.CurrentStorey.AddNewWall();
         wall.WallSections = new Wall(_uILineRenderer.Points).WallSections;
-        foreach (WallSection section in wall.WallSections)
-            section.AssignToWall(wall);
+        wall.AssignSections();
         wall.WallType = CurrentWallType;
         return wall;
     }
