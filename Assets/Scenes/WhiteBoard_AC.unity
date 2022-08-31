@@ -775,10 +775,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 3DBuilder
       objectReference: {fileID: 0}
-    - target: {fileID: 389612657073832360, guid: f44a31794eaaade4b963ad25fa682cd1, type: 3}
-      propertyPath: _sectionWindowjambPrefab
-      value: 
-      objectReference: {fileID: 8435642805451370783, guid: 26403aac1fdb08742bfaaf0b5fa836f0, type: 3}
     - target: {fileID: 389612657073832361, guid: f44a31794eaaade4b963ad25fa682cd1, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1941,11 +1937,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7882642257228485688, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
   m_PrefabInstance: {fileID: 7882642256710890550}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &693682687 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3540409414584395817, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
-  m_PrefabInstance: {fileID: 3540409414295966959}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &783254305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,50 +2401,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &881524894
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 881524895}
-  - component: {fileID: 881524896}
-  m_Layer: 0
-  m_Name: InsertInsert
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &881524895
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 881524894}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 693682687}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &881524896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 881524894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef58683af6d84184cb3865165f25f5b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _drawTool: {fileID: 995219401}
 --- !u!1 &995219401 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1330333004945182403, guid: 20176a2ab57d3324c85f54da38ffe2ba, type: 3}
@@ -3762,6 +3709,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771144644}
   m_CullTransparentMesh: 1
+--- !u!1 &1784180494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 514179759872069439, guid: 20176a2ab57d3324c85f54da38ffe2ba, type: 3}
+  m_PrefabInstance: {fileID: 8808361923465748116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1797002547
 GameObject:
   m_ObjectHideFlags: 0
@@ -4562,6 +4514,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1401282626292423129, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
+      propertyPath: _drawTool
+      value: 
+      objectReference: {fileID: 1784180494}
     - target: {fileID: 1650319728242288971, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
       propertyPath: _drawTool
       value: 
@@ -6064,6 +6020,34 @@ PrefabInstance:
     - target: {fileID: 7882642257127231134, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -102.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882642257127231135, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882642257127231135, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882642257127231135, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1901018311}
+    - target: {fileID: 7882642257127231135, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882642257127231135, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: DrawWindowTool
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882642257127231135, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: StoreyCreator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882642257127231135, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7882642257147064542, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
       propertyPath: m_AnchorMax.y
