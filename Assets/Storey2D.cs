@@ -54,10 +54,13 @@ public class Storey2D : MonoBehaviour
     public void AddWallToStorey(Wall wall)
     {
         GameObject wallObject = Instantiate(_wall2DPrefab, gameObject.transform);
-        WallOnCanvas wallOnCanvas = wallObject.GetComponent<WallOnCanvas>();
-        wallOnCanvas.DrawOnCanvas(wall.Points2D);
+
+        Wall2D wall2D = wallObject.GetComponent<Wall2D>();
+        wall2D.DrawOnCanvas(wall);
+        /*WallSection2D wallSection2D = wallObject.GetComponent<WallSection2D>();
+        wallSection2D.DrawOnCanvas(wall.Points2D);
         wallOnCanvas.SetWall(wall);
-        _wallsOnCanvas.Add(wallOnCanvas);        
+        _wallsOnCanvas.Add(wallOnCanvas);*/
     }
 
     public void SetThickness(float thickness)
