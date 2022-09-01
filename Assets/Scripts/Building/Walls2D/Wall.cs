@@ -102,7 +102,7 @@ namespace Walls2D
             return GameManager.ins.Building.CurrentStorey.RemoveWall(this);            
         }
 
-        public Wall InsertJambIntoSection(WallSection wallSection, Doorjamb jamb)
+        public Wall InsertJambIntoSection(WallSection wallSection, Jamb jamb)
         {
             if(_wallSections.Contains(wallSection))
             {
@@ -124,6 +124,7 @@ namespace Walls2D
                 Wall newWall = new Wall(newSections);
                 newWall.WallType = this.WallType;
                 AssignSections();
+                newWall.AssignSections();
                 return newWall;
             }
             return null;

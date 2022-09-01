@@ -260,6 +260,11 @@ public class Selector2D : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public Vector2 CastedPoint(WallSection section, Vector2 mouseInput)
+    {
+        return MathHelpers.PointCastOnLine(section.StartPoint.Position, section.EndPoint.Position, mouseInput);
+    }
+
     IEnumerator DelayCor()
     {
         _delayCooldown = true;

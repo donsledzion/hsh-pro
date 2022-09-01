@@ -10,6 +10,8 @@ public class WindowParameters : MonoBehaviour
     public float Width { get; private set; }
     public float Length { get; private set; }
     public float Azimuth { get; private set; }
+
+    public float Windowsill { get; private set; }
     public Vector3 Position { get; private set; }
 
     public float WallHeight { get; private set; }
@@ -26,6 +28,7 @@ public class WindowParameters : MonoBehaviour
         Azimuth = MathHelpers.VectorAzimuthDeg(jamb.EndPoint.Position - jamb.StartPoint.Position);
         Position = new Vector3(jamb.StartPoint.Position.x, Position.y, jamb.StartPoint.Position.y);
         Height = jamb.Height;
+        Windowsill = jamb.WindowSill;
     }
 
     public void SetParameters(Wall wall)
