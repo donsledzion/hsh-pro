@@ -47,10 +47,6 @@ public class InsertDoor : Selector2D
 
     void TryFitDoors(WallSection wallSection, Vector2 position)
     {
-        Debug.Log("Trying to fit door at :" + position);
-        Debug.Log("wallSection :" + wallSection.ToString());
-        Debug.Log("Section's wall :" + wallSection.Wall.ToString());
-        
         Doorjamb jamb = new Doorjamb();
         jamb.SetAnchors(wallSection, position);
         Wall newWall = wallSection.Wall.InsertJambIntoSection(wallSection, jamb);

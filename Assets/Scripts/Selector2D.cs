@@ -126,6 +126,8 @@ public class Selector2D : MonoBehaviour
                 }                
             }
         }
+        if(closestSection != null)
+            Debug.Log("Closest section wall: " + closestSection.Wall);
         return closestSection;
     }
 
