@@ -19,7 +19,11 @@ public class WallSection2D : MonoBehaviour
     public void DrawOnCanvas(WallSection section)
     {
         _wallSection = section;
-        _scalableSection.localScale = new Vector3((WallSection.EndPoint.Position - WallSection.StartPoint.Position).magnitude/120f,WallSection.Wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth/60f : DefaultSettings.ins.PartialWallWidth/60f,0f);
+        Debug.Log("Wall Section: " + section);
+        Debug.Log("Wall type: " + section.Wall.WallType);
+        _scalableSection.localScale = new Vector3((WallSection.EndPoint.Position - WallSection.StartPoint.Position).magnitude/120f
+            ,WallSection.Wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth/40f : DefaultSettings.ins.PartialWallWidth/40f
+            ,0f);
         transform.localPosition = WallSection.StartPoint.Position;
         transform.Rotate(-transform.forward, MathHelpers.VectorAzimuthDeg(WallSection.EndPoint.Position - WallSection.StartPoint.Position));
     }

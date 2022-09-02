@@ -38,7 +38,8 @@ public class Wall2D : MonoBehaviour
             {
                 sectionInstance = Instantiate(sectionWindowjambPrefab, transform);
             }
-            WallSection2D section2D = sectionInstance.GetComponent<WallSection2D>();
+            section.AssignToWall(wall);
+            WallSection2D section2D = sectionInstance.GetComponent<WallSection2D>();            
             section2D.DrawOnCanvas(section);
         }
     }
