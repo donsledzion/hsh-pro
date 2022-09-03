@@ -24,7 +24,7 @@ public abstract class DrawWithLines : DrawOnCanvas
         {
             if (!IsDrawing)
                 IsDrawing = true;
-            _drawing2DController.AddLinePointWithLabel(pointerPosition, true);
+            _drawing2DController.AddLinePoint(CanvasController.ScreenPointToCanvasCoords(pointerPosition), true,false);
             HandleClick();
         }
         if (Input.GetMouseButtonDown(1) && GameManager.ins.PointerOverUI)

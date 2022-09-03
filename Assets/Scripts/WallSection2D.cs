@@ -16,7 +16,7 @@ public class WallSection2D : MonoBehaviour
     public float Thickness { get { return _thickness; } }
     public WallSection WallSection { get { return _wallSection; } }
 
-    public void DrawOnCanvas(WallSection section)
+    public virtual void DrawOnCanvas(WallSection section)
     {
         _wallSection = section;
         Debug.Log("Wall Section: " + section);
