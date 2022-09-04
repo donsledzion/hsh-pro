@@ -22,7 +22,7 @@ public class WallSection2D : MonoBehaviour
         Debug.Log("Wall Section: " + section);
         Debug.Log("Wall type: " + section.Wall.WallType);
         _scalableSection.localScale = new Vector3((WallSection.EndPoint.Position - WallSection.StartPoint.Position).magnitude/600f
-            ,(WallSection.Wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth)/600f
+            ,(WallSection.Wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth)/300f
             , 0f);
         transform.localPosition = WallSection.StartPoint.Position;
         transform.Rotate(-transform.forward, MathHelpers.VectorAzimuthDeg(WallSection.EndPoint.Position - WallSection.StartPoint.Position));
