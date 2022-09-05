@@ -7,8 +7,6 @@ public class SectionWindowjamb2D : SectionStraight2D
 {
     [SerializeField] RectTransform _startLineOffset;
     [SerializeField] RectTransform _glassWrapper;
-    [SerializeField] RectTransform _glassLineTop;
-    [SerializeField] RectTransform _glassLIneBottom;
     public override void DrawOnCanvas(WallSection section)
     {
         _wallSection = section;

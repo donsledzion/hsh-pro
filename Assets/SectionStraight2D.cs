@@ -5,18 +5,6 @@ using Walls2D;
 
 public class SectionStraight2D : WallSection2D
 {
-    [SerializeField] protected RectTransform _topLine;
-    [SerializeField] protected RectTransform _bottomLine;
-    [SerializeField] protected RectTransform _startLine;
-    [SerializeField] protected RectTransform _endLine;
-
-    [SerializeField] protected Transform _start;
-    [SerializeField] protected Transform _end;
-    [SerializeField] protected Transform _top;
-    [SerializeField] protected Transform _bottom;
-
-    protected float _scaleFactor = 1f;
-
     public override void DrawOnCanvas(WallSection section)
     {
         _wallSection = section;
