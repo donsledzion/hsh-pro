@@ -10,12 +10,12 @@ public class SectionStraight2D : WallSection2D
     [SerializeField] protected RectTransform _startLine;
     [SerializeField] protected RectTransform _endLine;
 
-    [SerializeField] Transform _start;
-    [SerializeField] Transform _end;
-    [SerializeField] Transform _top;
-    [SerializeField] Transform _bottom;
+    [SerializeField] protected Transform _start;
+    [SerializeField] protected Transform _end;
+    [SerializeField] protected Transform _top;
+    [SerializeField] protected Transform _bottom;
 
-    float _scaleFactor = 1f;
+    protected float _scaleFactor = 1f;
 
     public override void DrawOnCanvas(WallSection section)
     {
@@ -33,14 +33,5 @@ public class SectionStraight2D : WallSection2D
         _bottom.localScale = new Vector3(Lenght * _scaleFactor, 1f, 1f);
 
         transform.Rotate(-transform.forward, MathHelpers.VectorAzimuthDeg(WallSection.EndPoint.Position - WallSection.StartPoint.Position));
-
-        /*base.DrawOnCanvas(section);
-
-        Vector3 shortsVector = new Vector3(1f/(20f * _scalableSection.localScale.x), _startLine.localScale.y, _startLine.localScale.z);
-        Vector3 longsVector = new Vector3(_topLine.localScale.x, _topLine.localScale.y, _topLine.localScale.z);
-        _startLine.localScale = shortsVector;
-        _endLine.localScale = shortsVector;
-        _topLine.localScale = longsVector;
-        _bottomLine.localScale = longsVector;*/
     }
 }
