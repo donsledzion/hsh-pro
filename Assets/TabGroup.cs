@@ -12,6 +12,7 @@ public class TabGroup : MonoBehaviour
     public TabButtonGallery selectedTab;
     public List<GameObject> objectsToSwap;
     private Object[] textures;
+    private AddressablesController addressablesController;
 
     public void Subscribe(TabButtonGallery button)
     {
@@ -48,12 +49,6 @@ public class TabGroup : MonoBehaviour
             if (i == index)
             {
                 objectsToSwap[i].SetActive(true);
-                textures = Resources.LoadAll("Wall textures", typeof(Texture2D));
-                Debug.Log("jestem tu");
-                foreach (var t in textures)
-                {
-                    Debug.Log(t.name + "jestem tu2");
-                }
             }
             else {
                 objectsToSwap[i].SetActive(false);
