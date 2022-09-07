@@ -221,7 +221,6 @@ public class Drawing2DController : MonoBehaviour
             label.transform.position = position + GameManager.ins.DrawingCanvasBackgroundLBCorner;
         label.GetComponent<PointLabel>().SetLabelText("[ " + ((int)(10 * ovcPos.x)) / 10f + " , " + ((int)(10 * ovcPos.y)) / 10f + " ]");
         return ovcPos;
-
     }
 
     public Vector3 SpawnPointLabelOnRedraw(Vector3 position, bool localPosition = false)
@@ -231,21 +230,24 @@ public class Drawing2DController : MonoBehaviour
         GameObject tempScaler = new GameObject("TempScaler");
         label.transform.SetParent(tempScaler.transform);
         tempScaler.transform.localScale = new Vector3(GameManager.ins.ResolutionRatio.x, GameManager.ins.ResolutionRatio.y, 0) * GameManager.ins.Zoom;
-        //label.transform.SetParent(transform.root);
-        //label.transform.position = position;
         label.transform.SetParent(currentStorey.LabelsContainer);
         label.transform.localPosition = position;
 
         Destroy(tempScaler);
 
         Vector3 ovcPos = position;
-        /*if (localPosition == true)
-            ovcPos = CanvasController.ScreenPointToCanvasCoords(position);
-        else
-            label.transform.position = position + GameManager.ins.DrawingCanvasBackgroundLBCorner;*/
+
         label.GetComponent<PointLabel>().SetLabelText("[ " + ((int)(10 * ovcPos.x)) / 10f + " , " + ((int)(10 * ovcPos.y)) / 10f + " ]");
         return ovcPos;
 
+    }
+
+    public void AddLinePoint(Vector3 position, bool localPosition, bool withLabel)
+    {
+        if (withLabel)
+            AddLinePointWithLabel(position, localPosition);
+        else
+            AddPointToLineRenderer(position,_uILineRenderer);
     }
 
     public void AddLinePointWithLabel(Vector3 position, bool localPosition = false)
@@ -272,7 +274,8 @@ public class Drawing2DController : MonoBehaviour
         Vector2 lastPoint = LinePoints[pointsCount - 1];
         Vector2 currentVector = CurrentSectionVector(pointerPosition);
         Vector2 newPoint = lastPoint + currentVector.normalized * int.Parse(_dynamicInputController.DynamicInputString);
-        AddLinePointWithLabel(newPoint, false);
+        AddLinePoint(newPoint, false, false);
+        //AddLinePointWithLabel(newPoint, false);
         _dynamicInputController.ResetDynamicInput();
     }
 
