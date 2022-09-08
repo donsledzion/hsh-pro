@@ -50,7 +50,9 @@ public class HeaderMenuController : MonoBehaviour
     private void hide()
     {
         twoDMenu.SetActive(false);
-        mainMenu.SetActive(false);        
+        mainMenu.SetActive(false);
+        buildMenu.SetActive(false);
+        threeDMenu.SetActive(false);
     }
 
     private void Update()
