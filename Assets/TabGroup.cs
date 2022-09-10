@@ -12,7 +12,7 @@ public class TabGroup : MonoBehaviour
     public TabButtonGallery selectedTab;
     public List<GameObject> objectsToSwap;
     private Object[] textures;
-    private AddressablesController addressablesController;
+    //private AddressablesController addressablesController;
 
     public void Subscribe(TabButtonGallery button)
     {
@@ -53,9 +53,7 @@ public class TabGroup : MonoBehaviour
             else {
                 objectsToSwap[i].SetActive(false);
             }
-
         }
-
     }
 
     public void ResetTabs()
