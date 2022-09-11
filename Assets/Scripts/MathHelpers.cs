@@ -108,7 +108,7 @@ public class MathHelpers
 
     public static float VectorAzimuthRad(Vector2 vector)
     {
-        return Vector2.Angle(Vector2.right, vector)*(Mathf.PI/180f); 
+        return Vector2.SignedAngle(Vector2.right, vector)*(Mathf.PI/180f); 
     }
 
     public static float Cross(Vector2 a, Vector2 b)

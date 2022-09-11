@@ -7,7 +7,9 @@ public class Measure : MonoBehaviour
 {
     [SerializeField] GameObject _measurePrefab;
     [SerializeField] float _offset = 50f;
-    Storey storey; 
+    Storey storey;
+
+    bool _isVisible = false;
 
     [ContextMenu("Show Storey Measure")]
     public void ShowStoreyMeasure()
@@ -23,11 +25,21 @@ public class Measure : MonoBehaviour
                 measure.Draw(section, _offset);
             }
         }
+        _isVisible = true;
     }
 
-    void ClearMeasures()
+    public void ClearMeasures()
     {
         foreach (SingleMeasure measure in gameObject.GetComponentsInChildren<SingleMeasure>())
             Destroy(measure.gameObject);
+        _isVisible = false;
+    }
+
+    public void Toggle()
+    {
+        if (_isVisible)
+            ClearMeasures();
+        else
+            ShowStoreyMeasure();
     }
 }
