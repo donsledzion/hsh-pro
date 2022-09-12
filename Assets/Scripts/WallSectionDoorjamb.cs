@@ -10,7 +10,9 @@ public class WallSectionDoorjamb : WallSectionAlt
     {
         transform.RotateAround(transform.position, Vector3.up, parameters.Azimuth);
         _scallableChild.localScale = new Vector3(parameters.Length, parameters.WallHeight - parameters.Height, parameters.Width);
+        _phantomTransform.localScale = new Vector3(parameters.Length, parameters.Height, parameters.Width);
         transform.position = parameters.Position;
+        _phantomTransform.position = new Vector3(parameters.Position.x,parameters.Height, parameters.Position.z);
 
         SetTilling();
     }

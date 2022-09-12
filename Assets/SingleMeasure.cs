@@ -29,7 +29,7 @@ public class SingleMeasure : MonoBehaviour
             angle += Mathf.PI;
             factor = -1f;
         }
-        else if(/*Mathf.Abs(Mathf.Abs(angle/Mathf.PI) - 1f) < 0.01f ||*/ Mathf.Abs(angle) < 0.01f )
+        else if(Mathf.Abs(angle) < 0.01f )
         {
             Debug.Log("Case 3: ");
             angle /= Mathf.PI;
@@ -40,10 +40,6 @@ public class SingleMeasure : MonoBehaviour
             Debug.Log("Case 4: ");
             angle = 0f;
             factor = -1f;
-        }
-        else
-        {
-            Debug.Log("Else i huj!");
         }
         Vector2 offset = new Vector2(-lineOffset * Mathf.Cos(angle + Mathf.PI / 2), -lineOffset * Mathf.Sin(angle + Mathf.PI / 2));
 

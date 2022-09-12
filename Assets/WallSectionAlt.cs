@@ -7,6 +7,7 @@ public class WallSectionAlt : MonoBehaviour
 {
     protected WallParameters parameters = new WallParameters();
     [SerializeField] protected Transform _scallableChild;
+    [SerializeField] protected Transform _phantomTransform;
     [SerializeField] List<TillingAdjuster> tillingAdjustersTop = new List<TillingAdjuster>();
     [SerializeField] List<TillingAdjuster> tillingAdjustersHead = new List<TillingAdjuster>();
     [SerializeField] List<TillingAdjuster> tillingAdjustersFace = new List<TillingAdjuster>();
