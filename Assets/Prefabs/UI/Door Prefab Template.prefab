@@ -670,7 +670,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5005003041174033071}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SelectMe, Assembly-CSharp
+        m_MethodName: SelectMeAsPrefab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5005003041809013850
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +940,7 @@ GameObject:
   - component: {fileID: 5005003042438793603}
   - component: {fileID: 5005003042438793614}
   - component: {fileID: 7743732114722186729}
+  - component: {fileID: 1019117245491869466}
   m_Layer: 5
   m_Name: Door Prefab Template
   m_TagString: Untagged
@@ -1026,6 +1039,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1019117245491869466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005003042438793610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa76be3b1116d5148868d57e760d91e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5853199872069064752
 GameObject:
   m_ObjectHideFlags: 0

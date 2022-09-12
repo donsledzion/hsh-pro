@@ -14,7 +14,6 @@ public class DoorAssetController : MonoBehaviour
     [SerializeField] GameObject templateWindowPrefab;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
-
     GameObject itemPrefab;
     public TMP_InputField inputField;
 
@@ -50,6 +49,7 @@ public class DoorAssetController : MonoBehaviour
         {
             GetDoorPrefab(item);
         });
+        //g.GetComponent<DoorPrefabWindow>().DoorPrefab = 
     }
 
     private void FetchDoor()

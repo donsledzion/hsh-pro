@@ -8,7 +8,17 @@ public class Pointer3DSelector : MonoBehaviour
     protected Transform _selection;
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject _jjDoorPrefab;
-    [SerializeField] Vector3 _doorSize;
+
+    public GameObject DoorPrefab {
+        get
+        {
+            return _jjDoorPrefab;
+        } 
+        set
+        {
+            _jjDoorPrefab = value;
+        }
+    }
 
     private void Start()
     {
@@ -21,10 +31,9 @@ public class Pointer3DSelector : MonoBehaviour
         {
             _selection = null;
         }
-        //var ray = GameObject.Find("Main Camera").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)/* && !mainManager.cursorOverUI*/)
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             _selection = hit.transform;
             Debug.Log("Selection: " + _selection.gameObject.name) ;
@@ -34,7 +43,6 @@ public class Pointer3DSelector : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
-                //_selection.gameObject.SetActive(false);
                 FitDoorIntoJamb();
             }
         }
@@ -47,6 +55,5 @@ public class Pointer3DSelector : MonoBehaviour
         doorInstance.transform.SetParent(_selection);
         doorInstance.transform.localPosition = Vector3.zero;
         doorInstance.transform.localRotation = Quaternion.identity;
-        
     }
 }
