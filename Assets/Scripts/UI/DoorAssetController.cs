@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class DoorAssetController : MonoBehaviour
 {
     public System.EventHandler<DoorScriptableObjects> OnItemSelected;
+    public System.EventHandler<DoorScriptableObjects> OnItemChoosen;
+
 
     private List<DoorScriptableObjects> itemList = new List<DoorScriptableObjects>();
     private AssetBundle doorAsset;
@@ -45,11 +47,27 @@ public class DoorAssetController : MonoBehaviour
         g.name = item.name;
         g.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>().sprite = item.imagePreview;
         g.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = item.name;
+
+        g.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
+        {
+            DoorPrefabToFit(item);
+        
+        });
+
         g.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
         {
             GetDoorPrefab(item);
         });
         //g.GetComponent<DoorPrefabWindow>().DoorPrefab = 
+    }
+
+    private void DoorPrefabToFit(DoorScriptableObjects item)
+    {
+        item3DViewer.SetActive(true);
+        item3DViewer.SetActive(false);
+        CurrentPrefabController.ins.Door3DSelector.DoorPrefab = item.prefab;
+
+        //OnItemChoosen?.Invoke(this, item);
     }
 
     private void FetchDoor()
