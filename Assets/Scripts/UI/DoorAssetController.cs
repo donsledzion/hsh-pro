@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class DoorAssetController : MonoBehaviour
 {
-    public System.EventHandler<DoorScriptableObjects> OnItemSelected;
-    public System.EventHandler<DoorScriptableObjects> OnItemChoosen;
+    public System.EventHandler<ScriptableObjectsController> OnItemSelected;
+    public System.EventHandler<ScriptableObjectsController> OnItemChoosen;
 
 
-    private List<DoorScriptableObjects> itemList = new List<DoorScriptableObjects>();
+    private List<ScriptableObjectsController> itemList = new List<ScriptableObjectsController>();
     private AssetBundle doorAsset;
     [SerializeField] GameObject templateWindowPrefab;
     [SerializeField] GameObject item3DViewer;
@@ -34,13 +34,13 @@ public class DoorAssetController : MonoBehaviour
     private void InstantiateList()
     {
         
-        foreach (DoorScriptableObjects item in itemList)
+        foreach (ScriptableObjectsController item in itemList)
         {
             SetupInstance(item);
         }
     }
 
-    private void SetupInstance(DoorScriptableObjects item)
+    private void SetupInstance(ScriptableObjectsController item)
     {
         GameObject g;
         g = Instantiate(templateWindowPrefab, transform);
@@ -61,10 +61,10 @@ public class DoorAssetController : MonoBehaviour
         //g.GetComponent<DoorPrefabWindow>().DoorPrefab = 
     }
 
-    private void DoorPrefabToFit(DoorScriptableObjects item)
+    private void DoorPrefabToFit(ScriptableObjectsController item)
     {
-        item3DViewer.SetActive(true);
-        item3DViewer.SetActive(false);
+        //item3DViewer.SetActive(true);
+        //item3DViewer.SetActive(false);
         CurrentPrefabController.ins.Door3DSelector.DoorPrefab = item.prefab;
 
         //OnItemChoosen?.Invoke(this, item);
@@ -77,7 +77,7 @@ public class DoorAssetController : MonoBehaviour
         if (doorAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");
 
-        itemList.AddRange(doorAsset.LoadAllAssets<DoorScriptableObjects>());
+        itemList.AddRange(doorAsset.LoadAllAssets<ScriptableObjectsController>());
     }
 
     private void OnInputValueChange(string arg0)
@@ -97,7 +97,7 @@ public class DoorAssetController : MonoBehaviour
         }
     }
 
-    public void GetDoorPrefab(DoorScriptableObjects item) {
+    public void GetDoorPrefab(ScriptableObjectsController item) {
 
 
         item3DViewer.SetActive(true);
@@ -114,7 +114,7 @@ public class DoorAssetController : MonoBehaviour
 
     }
 
-    public void FindDoorPrefab(DoorScriptableObjects item) {
+    public void FindDoorPrefab(ScriptableObjectsController item) {
         DestroyAllPrefabs();
 
         SetupInstance(item);
