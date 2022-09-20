@@ -13,6 +13,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
 {
     [SerializeField] private DoorAssetController invertoryItems;
     [SerializeField] private WindowAssetController invertoryItems2;
+    [SerializeField] private GameObject itemViewer;
 
     private GameObject itemPrefab = null;
 
@@ -36,8 +37,10 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     public void invertoryItems_OnItemSelectedWindow(object sender, ScriptableObjectsController itemSO)
     {
         Debug.Log(itemSO);
-        itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9900, 10000), Quaternion.identity);
+        itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000), Quaternion.identity);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
+        
+        
     }
 
     public void invertoryItems_OnItemSelectedDoor(object sender, ScriptableObjectsController itemSO)
@@ -45,6 +48,13 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         Debug.Log(itemSO);
         itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000), Quaternion.identity);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
+
+        this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
+
+            CurrentPrefabController.ins.Door3DSelector.DoorPrefab = itemSO.prefab;
+            itemViewer.SetActive(false); 
+
+        });
     }
 
     public void destroyPrefab() {

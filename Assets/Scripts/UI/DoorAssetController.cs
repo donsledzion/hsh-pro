@@ -58,16 +58,16 @@ public class DoorAssetController : MonoBehaviour
         {
             GetDoorPrefab(item);
         });
-        //g.GetComponent<DoorPrefabWindow>().DoorPrefab = 
+ 
     }
 
     private void DoorPrefabToFit(ScriptableObjectsController item)
     {
         //item3DViewer.SetActive(true);
-        //item3DViewer.SetActive(false);
+        
         CurrentPrefabController.ins.Door3DSelector.DoorPrefab = item.prefab;
-
-        //OnItemChoosen?.Invoke(this, item);
+        item3DViewer.SetActive(false);
+        itemsGallery.SetActive(false);
     }
 
     private void FetchDoor()
