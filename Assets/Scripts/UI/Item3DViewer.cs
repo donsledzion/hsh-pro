@@ -39,8 +39,6 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         Debug.Log(itemSO);
         itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000), Quaternion.identity);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
-        
-        
     }
 
     public void invertoryItems_OnItemSelectedDoor(object sender, ScriptableObjectsController itemSO)
