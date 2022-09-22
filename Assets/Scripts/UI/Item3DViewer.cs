@@ -39,6 +39,14 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         Debug.Log(itemSO);
         itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000), Quaternion.identity);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
+
+        this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
+
+            CurrentPrefabController.ins.Door3DSelector.ItemPrefab = itemSO.prefab;
+            itemViewer.SetActive(false);
+            destroyPrefab();
+
+        });
     }
 
     public void invertoryItems_OnItemSelectedDoor(object sender, ScriptableObjectsController itemSO)
@@ -50,8 +58,8 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
             CurrentPrefabController.ins.Door3DSelector.ItemPrefab = itemSO.prefab;
-            itemViewer.SetActive(false); 
-
+            itemViewer.SetActive(false);
+            destroyPrefab();
         });
     }
 

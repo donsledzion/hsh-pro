@@ -61,11 +61,9 @@ public class WindowAssetController : MonoBehaviour
 
     private void WindowPrefabToFit(ScriptableObjectsController item)
     {
-        //item3DViewer.SetActive(true);
-        //item3DViewer.SetActive(false);
-        //CurrentPrefabController.ins.Door3DSelector.DoorPrefab = item.prefab;
-
-        //OnItemChoosen?.Invoke(this, item);
+        CurrentPrefabController.ins.Window3DSelector.ItemPrefab = item.prefab;
+        item3DViewer.SetActive(false);
+        itemsGallery.SetActive(false);
     }
 
     private void FetchWindows()
@@ -91,7 +89,7 @@ public class WindowAssetController : MonoBehaviour
         else
         {
             Debug.Log("I have found a name");
-            FindDoorPrefab(itemList.Find(i => i.name == arg0));
+            FindWindowPrefab(itemList.Find(i => i.name == arg0));
         }
     }
 
@@ -113,7 +111,7 @@ public class WindowAssetController : MonoBehaviour
 
     }
 
-    public void FindDoorPrefab(ScriptableObjectsController item)
+    public void FindWindowPrefab(ScriptableObjectsController item)
     {
         DestroyAllPrefabs();
 
