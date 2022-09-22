@@ -7,16 +7,16 @@ public class Pointer3DSelector : MonoBehaviour
 {
     protected Transform _selection;
     [SerializeField] LayerMask layerMask;
-    [SerializeField] GameObject _jjDoorPrefab;
+    [SerializeField] GameObject _itemPrefab;
 
-    public GameObject DoorPrefab {
+    public GameObject ItemPrefab {
         get
         {
-            return _jjDoorPrefab;
+            return _itemPrefab;
         } 
         set
         {
-            _jjDoorPrefab = value;
+            _itemPrefab = value;
         }
     }
 
@@ -43,15 +43,15 @@ public class Pointer3DSelector : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
-                FitDoorIntoJamb();
+                FitItemIntoJamb();
             }
         }
     }
 
-    private void FitDoorIntoJamb()
+    private void FitItemIntoJamb()
     {
         _selection.GetComponent<MeshRenderer>().enabled = false;
-        GameObject doorInstance = Instantiate(_jjDoorPrefab, _selection.GetComponentInParent<WallSectionDoorjamb>().transform);
+        GameObject doorInstance = Instantiate(_itemPrefab, _selection.GetComponentInParent<WallSectionAlt>().transform);
         doorInstance.transform.SetParent(_selection);
         doorInstance.transform.localPosition = Vector3.zero;
         doorInstance.transform.localRotation = Quaternion.identity;
