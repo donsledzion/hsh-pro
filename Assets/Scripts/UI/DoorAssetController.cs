@@ -65,7 +65,7 @@ public class DoorAssetController : MonoBehaviour
     {
         //item3DViewer.SetActive(true);
         
-        CurrentPrefabController.ins.Door3DSelector.DoorPrefab = item.prefab;
+        CurrentPrefabController.ins.Door3DSelector.ItemPrefab = item.prefab;
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
     }

@@ -31,7 +31,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     private void PrefabToFit(object sender, ScriptableObjectsController itemSO)
     {
         Debug.Log(itemSO.prefab.name);
-        CurrentPrefabController.ins.Door3DSelector.DoorPrefab = itemSO.prefab;
+        CurrentPrefabController.ins.Door3DSelector.ItemPrefab = itemSO.prefab;
     }
 
     public void invertoryItems_OnItemSelectedWindow(object sender, ScriptableObjectsController itemSO)
@@ -49,7 +49,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
-            CurrentPrefabController.ins.Door3DSelector.DoorPrefab = itemSO.prefab;
+            CurrentPrefabController.ins.Door3DSelector.ItemPrefab = itemSO.prefab;
             itemViewer.SetActive(false); 
 
         });
