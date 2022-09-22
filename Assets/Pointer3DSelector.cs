@@ -52,8 +52,13 @@ public class Pointer3DSelector : MonoBehaviour
     {
         _selection.GetComponent<MeshRenderer>().enabled = false;
         GameObject doorInstance = Instantiate(_itemPrefab, _selection.GetComponentInParent<WallSectionAlt>().transform);
+        Vector3 prefabSize = doorInstance.GetComponent<BoxCollider>().bounds.size;
+        Vector3 jambSize = _selection.GetComponent<BoxCollider>().bounds.size;
+
+        doorInstance.transform.localScale = new Vector3(jambSize.x / prefabSize.x, jambSize.y / prefabSize.y, jambSize.z / prefabSize.z);
         doorInstance.transform.SetParent(_selection);
         doorInstance.transform.localPosition = Vector3.zero;
         doorInstance.transform.localRotation = Quaternion.identity;
+
     }
 }
