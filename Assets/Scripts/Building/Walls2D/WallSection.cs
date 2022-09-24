@@ -30,6 +30,31 @@ namespace Walls2D
             set { _endPoint = value; }
         }
 
+        public float AzimuthRad
+        {
+            get
+            {
+                return MathHelpers.VectorAzimuthRad(EndPoint.Position - StartPoint.Position);
+            }
+        }
+
+        public Vector3 MidPoint
+        {
+            get
+            {
+                return StartPoint.Position + (EndPoint.Position - StartPoint.Position) / 2;
+            }
+        }
+
+        public float Length
+        {
+            get
+            {
+                return (EndPoint.Position - StartPoint.Position).magnitude;
+            }
+        }
+
+
         public Wall Wall { get { return _wallReference; } }
 
         public abstract WallSection Clone();
