@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4649979536745330258
 Transform:
   m_ObjectHideFlags: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  _itemPrefab: {fileID: 5226207412465504202, guid: f1956c4773bf6a544917ed3d19ec1a9d, type: 3}
+  _itemPrefab: {fileID: 1464866569059386703, guid: 8179a63c4d95a3c4a93d892cd3e9bb11, type: 3}
 --- !u!1 &4649979536844877779
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4649979536844877778}
   - component: {fileID: 4649979536844877777}
+  - component: {fileID: 1144613865}
   m_Layer: 0
   m_Name: InteriorFinishingMode
   m_TagString: Untagged
@@ -94,6 +95,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _doorPhantomScalers: []
   _windowPhantomScalers: []
+--- !u!114 &1144613865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649979536844877779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d1d15ba0218d248850256ec15528ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fittingDoorTool: {fileID: 4649979537190472715}
+  _fittingWindowsTool: {fileID: 4649979536745330259}
 --- !u!1 &4649979537190472715
 GameObject:
   m_ObjectHideFlags: 0

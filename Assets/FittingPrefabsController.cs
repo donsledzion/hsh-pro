@@ -8,6 +8,7 @@ public class FittingPrefabsController : MonoBehaviour
     [SerializeField] List<DoorPhantomScaler> _doorPhantomScalers = new List<DoorPhantomScaler>();
     [SerializeField] List<WindowPhantomScaler> _windowPhantomScalers = new List<WindowPhantomScaler>();
 
+
     private void OnEnable()
     {
         InitializeScalers();
