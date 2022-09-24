@@ -31,6 +31,7 @@ public class WallBuilder : DrawWithLines
     protected override void BreakLine()
     {
         if (_drawing2DController.IsEmptyOrDefault()) return;
+        if (_drawing2DController.LinePointsCount < 2) return;
         IsDrawing = false;
         _drawing2DController.ClearLiveLine();
         Wall wall = _drawing2DController.ApplyWallToBuilding();
