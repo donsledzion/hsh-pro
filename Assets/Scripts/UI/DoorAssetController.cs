@@ -72,7 +72,7 @@ public class DoorAssetController : MonoBehaviour
 
     private void FetchDoor()
     {
-        doorAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/doorassetso");
+        doorAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/door_bundle");
 
         if (doorAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");

@@ -52,7 +52,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     public void invertoryItems_OnItemSelectedDoor(object sender, ScriptableObjectsController itemSO)
     {
         Debug.Log(itemSO);
-        itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000), Quaternion.identity);
+        itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000.80f), Quaternion.identity);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
