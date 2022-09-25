@@ -20,9 +20,4 @@ public class TillingAdjuster : MonoBehaviour
     {
         _renderer.material.mainTextureScale = textureScale / _baseSize;
     }
-
-    /*private void Update()
-    {
-        _material.mainTextureScale = new Vector2(_verticalTilling,_horizontalTilling);
-    }*/
 }

@@ -20,11 +20,6 @@ public class Pointer3DSelector : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        
-    }
-
     protected virtual void Update()
     {
         if (_selection != null)
