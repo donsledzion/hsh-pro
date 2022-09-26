@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Walls2D;
 
-public class WindowParameters : MonoBehaviour
+public class WindowParameters
 {
+    public WindowParameters(){}
+
     public float Elevation { get; private set; }
     public float Height { get; private set; }
     public float Width { get; private set; }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Walls2D;
 
-public class DoorParameters : MonoBehaviour
+public class DoorParameters
 {
+    public DoorParameters(){ }
     public float Elevation { get; private set; }
     public float Height { get; private set; }
     public float Width { get; private set; }
