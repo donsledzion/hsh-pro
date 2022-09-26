@@ -16,6 +16,7 @@ public class SurfaceSelector : MonoBehaviour
         if (_selection != null)
         {
             _selection.GetComponent<MeshRenderer>().material = _originalMaterial;
+            SetTiling();
             _selection = null;
         }
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -45,6 +46,10 @@ public class SurfaceSelector : MonoBehaviour
 
     private void SetTiling()
     {
-        _selection.GetComponent<WallSectionAlt>().SetTilling();
+        Transform scalerTransform = _selection.GetComponentInParent<ScallableSection>().transform;        
+        Vector2 textureSize = new Vector2(scalerTransform.localScale.x, scalerTransform.localScale.y);
+        Debug.Log("Texture size: " + textureSize);
+        _selection.GetComponent<TillingAdjuster>().SetTilling(textureSize);
+
     }
 }
