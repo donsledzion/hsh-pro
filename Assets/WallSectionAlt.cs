@@ -12,7 +12,6 @@ public class WallSectionAlt : MonoBehaviour
     [SerializeField] List<TillingAdjuster> tillingAdjustersHead = new List<TillingAdjuster>();
     [SerializeField] List<TillingAdjuster> tillingAdjustersFace = new List<TillingAdjuster>();
     
-
     public WallParameters Parameters{ get { return parameters; } }
 
     public virtual void Spatialize(WallSection wallSection)

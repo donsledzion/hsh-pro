@@ -7,11 +7,18 @@ public class FittingModeSwitcher : MonoBehaviour
 
     [SerializeField] GameObject _fittingDoorTool;
     [SerializeField] GameObject _fittingWindowsTool;
+    [SerializeField] GameObject _surfaceSelector;
 
     public void DoorFittingMode()
     {
         SwitchOffAll();
         _fittingDoorTool.SetActive(true);
+    }
+
+    public void WallsPaintingMode()
+    {
+        SwitchOffAll();
+        _surfaceSelector.SetActive(true);
     }
 
     public void WindowsFittingMode()
@@ -22,6 +29,7 @@ public class FittingModeSwitcher : MonoBehaviour
 
     public void SwitchOffAll()
     {
+        _surfaceSelector.SetActive(false);
         _fittingDoorTool.SetActive(false);
         _fittingWindowsTool.SetActive(false);
     }
