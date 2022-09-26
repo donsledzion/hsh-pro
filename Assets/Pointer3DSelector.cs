@@ -55,7 +55,7 @@ public class Pointer3DSelector : MonoBehaviour
         doorInstance.transform.localScale = new Vector3(
             scaleFactor.x * jambSize.x / prefabSize.x,
             scaleFactor.y * jambSize.y / prefabSize.y, 
-            scaleFactor.z * jambSize.z / prefabSize.z);
+            scaleFactor.z * (jambSize.z/2) / prefabSize.z);
         doorInstance.transform.SetParent(_selection);
         doorInstance.transform.localPosition = Vector3.zero;
         doorInstance.transform.localRotation = Quaternion.identity;
