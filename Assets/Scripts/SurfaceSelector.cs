@@ -10,6 +10,17 @@ public class SurfaceSelector : MonoBehaviour
     [SerializeField] Material _selectionMaterial;
     [SerializeField] Material _originalMaterial;
 
+    public Material SelectionMaterial
+    {
+        get
+        {
+            return _selectionMaterial;
+        }
+        set
+        {
+            _selectionMaterial = value;
+        }
+    }
 
     protected virtual void Update()
     {

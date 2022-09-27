@@ -63,6 +63,7 @@ public class TextureAssetController : MonoBehaviour
         
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
+        CurrentMaterialController.ins.SurfaceSelector.SelectionMaterial = item.material;
     }
 
     private void FetchTextures()
