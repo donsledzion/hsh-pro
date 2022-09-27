@@ -11,7 +11,7 @@ public class WindowAssetController : MonoBehaviour
 
 
     private List<ScriptableObjectsController> itemList = new List<ScriptableObjectsController>();
-    private AssetBundle doorAsset;
+    private AssetBundle windowAsset;
     [SerializeField] GameObject templateWindowPrefab;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
@@ -68,12 +68,12 @@ public class WindowAssetController : MonoBehaviour
 
     private void FetchWindows()
     {
-        doorAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/windowassets");
+        windowAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/windowassets");
 
-        if (doorAsset) Debug.Log("Loaded successfuly");
+        if (windowAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");
 
-        itemList.AddRange(doorAsset.LoadAllAssets<ScriptableObjectsController>());
+        itemList.AddRange(windowAsset.LoadAllAssets<ScriptableObjectsController>());
     }
 
     private void OnInputValueChange(string arg0)

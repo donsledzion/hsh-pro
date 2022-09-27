@@ -8,6 +8,7 @@ public class ScriptableObjectsController : ScriptableObject
 {
     public Sprite imagePreview;
     public GameObject prefab;
+    public Material material;
     public TextAsset Description;
     public string name;
     public string collectionName;

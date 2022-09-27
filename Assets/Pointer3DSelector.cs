@@ -51,11 +51,13 @@ public class Pointer3DSelector : MonoBehaviour
         Vector3 jambSize = _selection.GetComponent<BoxCollider>().size;
 
         Vector3 scaleFactor = _selection.GetComponentInParent<PhantomScaler>().transform.localScale;
-        Debug.Log("Scale factor.x: " + scaleFactor.z + " | jambSize.z: " + jambSize.z + " | prefabSize.z: " + prefabSize.z);
+        Debug.Log("Scale factor.z: " + scaleFactor.z + " | jambSize.z: " + jambSize.z + " | prefabSize.z: " + prefabSize.z);
+
         doorInstance.transform.localScale = new Vector3(
-            scaleFactor.x * jambSize.x / prefabSize.x,
-            scaleFactor.y * jambSize.y / prefabSize.y, 
-            scaleFactor.z * (jambSize.z/2) / prefabSize.z);
+                scaleFactor.x * jambSize.x / prefabSize.x,
+                scaleFactor.y * jambSize.y / prefabSize.y,
+                10 * jambSize.z / prefabSize.z);
+
         doorInstance.transform.SetParent(_selection);
         doorInstance.transform.localPosition = Vector3.zero;
         doorInstance.transform.localRotation = Quaternion.identity;
