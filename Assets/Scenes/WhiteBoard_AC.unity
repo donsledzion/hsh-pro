@@ -913,6 +913,17 @@ MonoBehaviour:
   whiteboard: {fileID: 1230900126}
   gridDotPrefab: {fileID: 5192344911870528310, guid: df9b32bbdcfaaf948ab89d12b7d48040, type: 3}
   dotsContainer: {fileID: 1502280371}
+--- !u!114 &375042716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1440946268, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
+  m_PrefabInstance: {fileID: 4649979537981965371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d9415c9eecac042885bb8d182521a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &409703016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4255,6 +4266,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326d36d5e0468b54a90867085ae392c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1334161114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1334161115}
+  - component: {fileID: 1334161116}
+  m_Layer: 0
+  m_Name: CurrentMaterialController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1334161115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334161114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2113215542}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1334161116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334161114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5436eee31696514cabd5a0c05607241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _surfaceSelector: {fileID: 375042716}
 --- !u!114 &1364379698 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4649979537190472713, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
@@ -6192,6 +6247,7 @@ Transform:
   - {fileID: 492138988}
   - {fileID: 186357580}
   - {fileID: 1144082884}
+  - {fileID: 1334161115}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
