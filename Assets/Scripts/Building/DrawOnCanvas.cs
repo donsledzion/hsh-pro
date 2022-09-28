@@ -11,6 +11,7 @@ namespace Walls2D
         protected AngleSnapController _angleSnapController;
         protected Drawing2DController _drawing2DController;
         protected Vector3 pointerPosition;
+        protected Vector2 snappedPoint => GameManager.ins.SnappedPoint;
 
         protected virtual void Start()
         {
@@ -27,7 +28,12 @@ namespace Walls2D
 
             if (GameManager.ins.AngleSnap)
                 pointerPosition = _angleSnapController.AngleSnap(pointerPosition);
-
+            Debug.Log("Snapped point: " + snappedPoint);
+            if (GameManager.ins.WallPointSnap && snappedPoint != new Vector2(-1f, -1f))
+            {
+                pointerPosition = snappedPoint;
+                Debug.Log("Applying snapped point");
+            }
         }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Walls2D;
 
@@ -17,7 +15,7 @@ public class InsertWindow : Selector2D
         if (_hoveredSection != null)
         {
             _snappedPoint = CastedPoint(_hoveredSection, mouseOverCanvas);
-            HoverPoint(_snappedPoint);
+            HoverPoint(_snappedPoint,_hoverColor);
             if (_windowInstance == null)
             {
                 _windowInstance = Instantiate(_windowPrefab, transform);
@@ -34,7 +32,6 @@ public class InsertWindow : Selector2D
             if (_windowInstance != null)
                 Destroy(_windowInstance);
         }
-
 
         if (_windowInstance != null)
         {

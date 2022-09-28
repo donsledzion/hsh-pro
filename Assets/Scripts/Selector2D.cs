@@ -6,18 +6,14 @@ using Walls2D;
 using System.Collections;
 using System;
 
-public class Selector2D : MonoBehaviour
+public class Selector2D : Point2DSelector
 {
-    [SerializeField] Color _hoverColor = Color.red;
-    [SerializeField] Color _selectColor = Color.blue;
-    [SerializeField] Color _defaultColor = Color.black;
+    [SerializeField] protected Color _hoverColor = Color.red;
+    [SerializeField] protected Color _selectColor = Color.blue;
+    [SerializeField] protected Color _defaultColor = Color.black;
 
     [SerializeField] float _lineSnapDistance = 10f;
-    [SerializeField] float _pointSnapDistance = 10f;
 
-    [SerializeField] GameObject dotPrefab;
-    GameObject _hoveringDotInstance;
-    GameObject _selectingDotInstance;
     [SerializeField] SelectionType _selectionType = SelectionType.Line;
     [SerializeField] float _lineThickness = 15f;
     bool _delayCooldown = false;
@@ -26,9 +22,6 @@ public class Selector2D : MonoBehaviour
 
     protected WallSection _hoveredSection;
     protected WallSection _selectedSection;
-
-    Vector2 _hoveredPoint;
-    Vector2 _selectedPoint;
 
 
 
@@ -65,18 +58,17 @@ public class Selector2D : MonoBehaviour
         {
             if(_hoveredSection!= null)
                 _hoveredSection = null;
-            HoverPoint(ClosestPoint(mouseOverCanvas).Point);
+            HoverPoint(ClosestPoint(mouseOverCanvas).Point, _hoverColor);
         }
         
         if(Input.GetMouseButtonDown(0))
-        {   
-            
+        {               
             if (_selectionType == SelectionType.Line)
                 SelectSection(_hoveredSection);            
             else if(_selectionType == SelectionType.Point)
             {
                 _pointDrag = true;
-                SelectPoint(_hoveredPoint);
+                SelectPoint(_hoveredPoint, _selectColor);
             }
         }
 
@@ -176,60 +168,7 @@ public class Selector2D : MonoBehaviour
 
     }
 
-    protected void SelectPoint(Vector2 point)
-    {
-        if(_hoveringDotInstance!=null && (point == _hoveredPoint)/* && (point != _selectedPoint)*/)
-        {
-            if(_selectingDotInstance == null)
-                _selectingDotInstance = Instantiate(dotPrefab);
-            _selectingDotInstance.transform.SetParent(transform);
-            _selectingDotInstance.transform.localPosition = point;
-            _selectingDotInstance.transform.localScale = 5 * Vector3.one;
-            _selectingDotInstance.GetComponent<Image>().color = _selectColor;
-            _selectedPoint = point;
-        }        
-    }
     
-
-    protected void HoverPoint(Vector2 point)
-    {
-        if (point != null && point != _hoveredPoint)
-        {
-            if (point != new Vector2(0,0))
-            {
-                if (_hoveringDotInstance== null)
-                    _hoveringDotInstance = Instantiate(dotPrefab);
-                _hoveringDotInstance.transform.SetParent(transform);
-                _hoveringDotInstance.transform.localPosition = point;
-                _hoveringDotInstance.transform.localScale = 5 * Vector3.one;
-                _hoveringDotInstance.GetComponent<Image>().color = _hoverColor;
-                _hoveredPoint = point;
-            }
-            else
-            {
-                _hoveredPoint = new Vector2(0,0);
-                Destroy(_hoveringDotInstance);
-            }
-        }            
-    }
-
-    protected Point2DInfo ClosestPoint(Vector2 mouseInput)
-    {
-        Point2DInfo[] points = Drawing2DController.ins.CurrentStoreyInfoPoints;
-        Debug.Log("Points count: " + points.Length);
-        Point2DInfo closestPoint = new Point2DInfo();
-        float maxDist = _pointSnapDistance;
-        foreach(Point2DInfo point in points)
-        {
-            if((point.Point - mouseInput).magnitude < maxDist)
-            {
-                maxDist = (point.Point - mouseInput).magnitude;
-                closestPoint = point;
-            }
-        }
-        return closestPoint;
-    }
-
     void ClearLine(UILineRenderer uILineRenderer)
     {
         _hoveredUILineRenderer.enabled = false;

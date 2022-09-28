@@ -17,7 +17,7 @@ public class InsertDoor : Selector2D
         if(_hoveredSection != null)
         {
             _snappedPoint = CastedPoint(_hoveredSection, mouseOverCanvas);
-            HoverPoint(_snappedPoint);
+            HoverPoint(_snappedPoint,_hoverColor);
             if(_doorInstance == null)
             {
                 _doorInstance = Instantiate(_doorPrefab, transform);

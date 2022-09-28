@@ -24,6 +24,12 @@ public abstract class DrawWithLines : DrawOnCanvas
         {
             if (!IsDrawing)
                 IsDrawing = true;
+            Debug.Log("Snapped point: " + snappedPoint);
+            if (GameManager.ins.WallPointSnap && snappedPoint != new Vector2(-1f, -1f))
+            {
+                pointerPosition = snappedPoint;
+                Debug.Log("Applying snapped point");
+            }
             _drawing2DController.AddLinePoint(CanvasController.ScreenPointToCanvasCoords(pointerPosition), true,false);
             HandleClick();
         }
