@@ -29,11 +29,11 @@ namespace Walls2D
             if (GameManager.ins.AngleSnap)
                 pointerPosition = _angleSnapController.AngleSnap(pointerPosition);
             Debug.Log("Snapped point: " + snappedPoint);
-            if (GameManager.ins.WallPointSnap && snappedPoint != new Vector2(-1f, -1f))
+            /*if (GameManager.ins.WallPointSnap && snappedPoint != new Vector2(-1f, -1f))
             {
                 pointerPosition = snappedPoint;
                 Debug.Log("Applying snapped point");
-            }
+            }*/
         }
     }
 }
