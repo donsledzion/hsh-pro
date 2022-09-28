@@ -2794,56 +2794,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5897ec0eaa8f8c42a1c943dcc282de5, type: 3}
---- !u!1 &883788829
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 883788830}
-  - component: {fileID: 883788831}
-  m_Layer: 5
-  m_Name: PointSnap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &883788830
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883788829}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1439386367}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &883788831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883788829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16cfc9fd7d2b4b48a004934c3dbbd7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pointSnapDistance: 10
-  dotPrefab: {fileID: 5192344911870528310, guid: df9b32bbdcfaaf948ab89d12b7d48040, type: 3}
 --- !u!1 &995219401 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1330333004945182403, guid: 20176a2ab57d3324c85f54da38ffe2ba, type: 3}
@@ -3447,11 +3397,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438544239}
   m_CullTransparentMesh: 1
---- !u!224 &1439386367 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8808361924841425204, guid: 20176a2ab57d3324c85f54da38ffe2ba, type: 3}
-  m_PrefabInstance: {fileID: 8808361923465748116}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1469057209
 GameObject:
   m_ObjectHideFlags: 0
@@ -4739,6 +4684,7 @@ MonoBehaviour:
   PointerOverUI: 0
   RelativeAngle: 1
   ResolutionRatio: {x: 0, y: 0}
+  SnappedPoint: {x: 0, y: 0}
   GridSnap: 0
   AngleSnap: 0
   DynamicDimensions: 0

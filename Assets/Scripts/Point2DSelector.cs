@@ -34,7 +34,7 @@ public class Point2DSelector : MonoBehaviour
     {
         if (point != null && point != _hoveredPoint)
         {
-            if (point != new Vector2(-1f, -1f))
+            if (point != new Vector2(0f, 0f))
             {
                 if (_hoveringDotInstance == null)
                     _hoveringDotInstance = Instantiate(dotPrefab);
@@ -43,22 +43,17 @@ public class Point2DSelector : MonoBehaviour
                 _hoveringDotInstance.transform.localScale = 5 * Vector3.one;
                 _hoveringDotInstance.GetComponent<Image>().color = hoverColor;
                 _hoveredPoint = point;
-                return _hoveredPoint;
             }
             else
             {
-                _hoveredPoint = new Vector2(-1f, -1f);
+                _hoveredPoint = new Vector2(0f, 0f);
                 Destroy(_hoveringDotInstance);
-                return new Vector2(-1f, -1f);
             }
         }
-        else if (point == _hoveredPoint)
-            return _hoveredPoint;
-        else
-            return new Vector2(-1f, -1f);
+        return _hoveredPoint;
     }
 
-    protected Point2DInfo ClosestPoint(Vector2 mouseInput)
+    protected virtual Point2DInfo ClosestPoint(Vector2 mouseInput)
     {
         Point2DInfo[] points = Drawing2DController.ins.CurrentStoreyInfoPoints;
         Debug.Log("Points count: " + points.Length);

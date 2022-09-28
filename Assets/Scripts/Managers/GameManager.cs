@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public bool PointerOverUI;
     public bool RelativeAngle = true;
     public Vector2 ResolutionRatio;
-    public Vector2 SnappedPoint;
+    public Vector2 SnappedPoint = new Vector2(0f,0f);
     public Building Building;
 
 
