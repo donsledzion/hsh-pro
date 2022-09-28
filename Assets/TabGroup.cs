@@ -43,14 +43,15 @@ public class TabGroup : MonoBehaviour
         ResetTabs();
         button.background.color = tabActive;
         int index = button.transform.GetSiblingIndex();
-        for(int i =0; i<objectsToSwap.Count; i++)
+        for (int i = 0; i < objectsToSwap.Count; i++)
         {
 
             if (i == index)
             {
                 objectsToSwap[i].SetActive(true);
             }
-            else {
+            else
+            {
                 objectsToSwap[i].SetActive(false);
             }
         }
