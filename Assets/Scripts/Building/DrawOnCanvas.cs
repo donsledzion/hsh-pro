@@ -11,8 +11,10 @@ namespace Walls2D
         protected AngleSnapController _angleSnapController;
         protected Drawing2DController _drawing2DController;
         protected Vector3 pointerPosition;
-        protected Vector2 snappedPoint => GameManager.ins.SnappedPoint;
-        protected bool snappedPointFound => snappedPoint != new Vector2(0f, 0f);
+        protected Vector2 snappedEndPoint => GameManager.ins.SnappedEndPoint;
+        protected Vector2 snappedClosePoint => GameManager.ins.SnappedClosePoint;
+        protected bool snappedEndPointFound => snappedEndPoint != new Vector2(0f, 0f);
+        protected bool snappedClosePointFound => snappedClosePoint != new Vector2(0f, 0f);
 
         protected virtual void Start()
         {
@@ -24,17 +26,19 @@ namespace Walls2D
         protected virtual void Update()
         {
             pointerPosition = Input.mousePosition;
+            
+            if (GameManager.ins.WallSectionCloseSnap && snappedClosePointFound)
+                pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedClosePoint);
+
+            if (GameManager.ins.WallSectionEndSnap && snappedEndPointFound)
+                pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedEndPoint);
+            
             if (GameManager.ins.GridSnap)
                 pointerPosition = _uIController.GridSnap(pointerPosition);
 
             if (GameManager.ins.AngleSnap)
                 pointerPosition = _angleSnapController.AngleSnap(pointerPosition);
-            Debug.Log("Snapped point: " + snappedPoint);
-            if (GameManager.ins.WallPointSnap && snappedPointFound)
-            {
-                pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedPoint);
-                Debug.Log("Applying snapped point");
-            }
+
         }
     }
 }

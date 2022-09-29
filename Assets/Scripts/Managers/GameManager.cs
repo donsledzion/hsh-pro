@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     public bool PointerOverUI;
     public bool RelativeAngle = true;
     public Vector2 ResolutionRatio;
-    public Vector2 SnappedPoint = new Vector2(0f,0f);
+    public Vector2 SnappedEndPoint = new Vector2(0f,0f);
+    public Vector2 SnappedClosePoint = new Vector2(0f,0f);
     public Building Building;
 
 
@@ -40,7 +41,9 @@ public class GameManager : MonoBehaviour
 
     public bool DynamicDimensions = false;
 
-    public bool WallPointSnap = true;
+    public bool WallSectionEndSnap = true;
+
+    public bool WallSectionCloseSnap = true;
     public bool ToggleGridSnap()
     {
         GridSnap = !GridSnap;
@@ -55,8 +58,8 @@ public class GameManager : MonoBehaviour
 
     public bool ToggleWallPointSnap()
     {
-        WallPointSnap = !WallPointSnap;
-        return WallPointSnap;
+        WallSectionEndSnap = !WallSectionEndSnap;
+        return WallSectionEndSnap;
     }
 
     internal void AddCeilingToCurrentStorey(Vector2[] points)

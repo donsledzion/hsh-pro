@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Selector2D;
 
-public class WallSnapPoint : Point2DSelector
+public class WallEndSnapPoint : Point2DSelector
 {
     Color _hoverColor = Color.blue;
     Color _selectingColor = Color.red;
@@ -12,7 +12,7 @@ public class WallSnapPoint : Point2DSelector
     private void Update()
     {
         Vector2 mouseOverCanvas = CanvasController.ScreenPointToCanvasCoords(Input.mousePosition);
-        GameManager.ins.SnappedPoint = HoverPoint(ClosestPoint(mouseOverCanvas).Point, _hoverColor);
+        GameManager.ins.SnappedEndPoint = HoverPoint(ClosestPoint(mouseOverCanvas).Point, _hoverColor);
     }
 
     protected override Selector2D.Point2DInfo ClosestPoint(Vector2 mouseInput)
