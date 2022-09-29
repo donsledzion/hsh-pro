@@ -32,7 +32,7 @@ namespace Walls2D
             Debug.Log("Snapped point: " + snappedPoint);
             if (GameManager.ins.WallPointSnap && snappedPointFound)
             {
-                pointerPosition = snappedPoint;
+                pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedPoint);
                 Debug.Log("Applying snapped point");
             }
         }

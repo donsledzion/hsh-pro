@@ -46,6 +46,13 @@ public class CanvasController : MonoBehaviour
         return new Vector2(outCoords.x/GameManager.ins.ResolutionRatio.x, outCoords.y/GameManager.ins.ResolutionRatio.y)/GameManager.ins.Zoom;
     }
 
+    public static Vector2 CanvasCoordsToScreenPoint(Vector2 canvasCoords)
+    {
+        Vector2 outCoords = new Vector2(canvasCoords.x * GameManager.ins.ResolutionRatio.x, canvasCoords.y * GameManager.ins.ResolutionRatio.y) * GameManager.ins.Zoom;
+
+        return new Vector2(outCoords.x + GameManager.ins.DrawingCanvasBackgroundLBCorner.x, outCoords.y + GameManager.ins.DrawingCanvasBackgroundLBCorner.y);
+    }
+
     public void ResetCanvas()
     {
         ResetCanvasPosition();
