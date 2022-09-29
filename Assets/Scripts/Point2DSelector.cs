@@ -46,11 +46,16 @@ public class Point2DSelector : MonoBehaviour
             }
             else
             {
-                _hoveredPoint = new Vector2(0f, 0f);
-                Destroy(_hoveringDotInstance);
+                UnhoverPoint();
             }
         }
         return _hoveredPoint;
+    }
+
+    protected void UnhoverPoint()
+    {
+        _hoveredPoint = new Vector2(0f, 0f);
+        Destroy(_hoveringDotInstance);
     }
 
     protected virtual Point2DInfo ClosestPoint(Vector2 mouseInput)
