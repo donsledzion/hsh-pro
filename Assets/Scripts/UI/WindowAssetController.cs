@@ -44,7 +44,8 @@ public class WindowAssetController : MonoBehaviour
         GameObject g;
         g = Instantiate(templateWindowPrefab, transform);
         g.name = item.name;
-        g.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>().sprite = item.imagePreview;
+        g.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = item.imagePreview;
+        g.transform.GetChild(0).GetChild(1).GetComponent<LayoutElement>().preferredHeight = 400;
         g.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = item.name;
 
         g.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
