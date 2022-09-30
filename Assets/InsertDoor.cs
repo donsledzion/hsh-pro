@@ -37,7 +37,7 @@ public class InsertDoor : Selector2D
 
 
         if(_doorInstance!= null)
-        {
+        {            
             if(Input.GetMouseButtonDown(0))
             {
                 TryFitDoors(_hoveredSection,_snappedPoint);

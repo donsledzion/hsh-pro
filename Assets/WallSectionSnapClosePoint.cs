@@ -12,8 +12,9 @@ public class WallSectionSnapClosePoint : Selector2D
         Vector2 mouseOverCanvas = CanvasController.ScreenPointToCanvasCoords(Input.mousePosition);
         _hoveredSection = ClosestSection(mouseOverCanvas);
         if (_hoveredSection != null)
-        {
+        {            
             _snappedPoint = CastedPoint(_hoveredSection, mouseOverCanvas);
+            _hoveredSection.SplitSection(_snappedPoint);
             GameManager.ins.SnappedClosePoint = HoverPoint(_snappedPoint, _hoverColor);            
         }
         else
@@ -29,10 +30,10 @@ public class WallSectionSnapClosePoint : Selector2D
         List<Wall> walls = GameManager.ins.Building.CurrentStorey.Walls;
         WallSection closestSection = null;
 
-        if(Drawing2DController.ins.LinePoints.Length > 1)
+        /*if(Drawing2DController.ins.LinePoints.Length > 1)
         {
             walls.Add(new Wall(Drawing2DController.ins.LinePoints));
-        }
+        }*/
 
         float closestDistance = _lineSnapDistance;
         foreach (Wall wall in walls)
@@ -53,5 +54,10 @@ public class WallSectionSnapClosePoint : Selector2D
         if (closestSection != null)
             Debug.Log("Closest section wall: " + closestSection.Wall);
         return closestSection;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.ins.WallSectionCloseSnap = false;
     }
 }
