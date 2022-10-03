@@ -63,6 +63,23 @@ namespace Walls2D
         {
             _wallReference = wall;
         }
+        public void SplitSection(Vector2 point)
+        {
+            if (PointBelongsToSection(point))
+                Debug.Log("Point belongs to section!");
+        }
+
+        public bool PointBelongsToSection(Vector2 point)
+        {
+            Vector2 lineFactors = MathHelpers.LineFactors(StartPoint.Position, EndPoint.Position);
+
+            float A = lineFactors.x;
+            float B = lineFactors.y;
+
+
+
+            return point.y == A*point.x+B;
+        }
 
         public override string ToString()
         {

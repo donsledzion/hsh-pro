@@ -15,7 +15,7 @@ public class WallEndSnapPoint : Point2DSelector
         GameManager.ins.SnappedEndPoint = HoverPoint(ClosestPoint(mouseOverCanvas).Point, _hoverColor);
     }
 
-    protected override Selector2D.Point2DInfo ClosestPoint(Vector2 mouseInput)
+    protected override Point2DInfo ClosestPoint(Vector2 mouseInput)
     {
         Point2DInfo closestPoint = base.ClosestPoint(mouseInput);
         float maxDist = Mathf.Min(_pointSnapDistance,(closestPoint.Point-mouseInput).magnitude);
@@ -27,7 +27,11 @@ public class WallEndSnapPoint : Point2DSelector
                 closestPoint = new Point2DInfo(point, new Walls2D.Wall());
             }
         }
-
         return closestPoint;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.ins.WallSectionEndSnap = false;
     }
 }

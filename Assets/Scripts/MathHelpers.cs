@@ -111,6 +111,24 @@ public class MathHelpers
         return Vector2.SignedAngle(Vector2.right, vector)*(Mathf.PI/180f); 
     }
 
+    //directional straight line
+    public static float FactorA(Vector2 pointA, Vector2 pointB)
+    {
+        return (pointB.y - pointA.y) / (pointB.x - pointA.x);
+    }
+
+    public static float FactorB(Vector2 pointA, Vector2 pointB)
+    {
+        float A = FactorA(pointA, pointB);
+
+        return -A * pointA.x + pointA.y;
+    }
+
+    public static Vector2 LineFactors(Vector2 pointA, Vector2 pointB)
+    {
+        return new Vector2(FactorA(pointA, pointB),FactorB(pointA,pointB));
+    }
+
     public static float Cross(Vector2 a, Vector2 b)
     {
         return a.x * b.y - a.y * b.x;

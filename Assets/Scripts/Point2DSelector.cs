@@ -60,8 +60,7 @@ public class Point2DSelector : MonoBehaviour
 
     protected virtual Point2DInfo ClosestPoint(Vector2 mouseInput)
     {
-        Point2DInfo[] points = Drawing2DController.ins.CurrentStoreyInfoPoints;
-        Debug.Log("Points count: " + points.Length);
+        Point2DInfo[] points = Drawing2DController.ins.CurrentStoreyInfoPoints;        
         Point2DInfo closestPoint = new Point2DInfo();
         float maxDist = _pointSnapDistance;
         foreach (Point2DInfo point in points)
