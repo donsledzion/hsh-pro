@@ -106,6 +106,7 @@ namespace Walls2D
         {
             if(_wallSections.Contains(wallSection))
             {
+                Debug.Log("Inserting (inside if)");
                 WallSection duplicateSectionA = wallSection.Clone();
                 WallSection duplicateSectionB = wallSection.Clone();
                 List<WallSection> newSections = new List<WallSection>();

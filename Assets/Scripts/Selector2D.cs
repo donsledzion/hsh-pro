@@ -12,7 +12,7 @@ public class Selector2D : Point2DSelector
     [SerializeField] protected Color _selectColor = Color.blue;
     [SerializeField] protected Color _defaultColor = Color.black;
 
-    [SerializeField] float _lineSnapDistance = 10f;
+    [SerializeField] protected float _lineSnapDistance = 10f;
 
     [SerializeField] SelectionType _selectionType = SelectionType.Line;
     [SerializeField] float _lineThickness = 15f;
@@ -97,7 +97,7 @@ public class Selector2D : Point2DSelector
         StartCoroutine("DelayCor");
     }
 
-    public WallSection ClosestSection(Vector2 mouseOverCanvas)
+    public virtual WallSection ClosestSection(Vector2 mouseOverCanvas)
     {
         List<LineSection> segments = new List<LineSection>();
         List<Wall> walls = GameManager.ins.Building.CurrentStorey.Walls;
