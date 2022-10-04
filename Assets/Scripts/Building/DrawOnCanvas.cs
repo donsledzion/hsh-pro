@@ -24,12 +24,15 @@ namespace Walls2D
         }
 
         protected virtual void Update()
-        {
+        {            
             pointerPosition = Input.mousePosition;
+
             
             if (GameManager.ins.WallSectionCloseSnap && snappedClosePointFound)
+            {
                 pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedClosePoint);
-
+                GameManager.ins.SnappedClosePoint = pointerPosition;
+            }            
             if (GameManager.ins.WallSectionEndSnap && snappedEndPointFound)
                 pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedEndPoint);
             
@@ -38,7 +41,6 @@ namespace Walls2D
 
             if (GameManager.ins.AngleSnap)
                 pointerPosition = _angleSnapController.AngleSnap(pointerPosition);
-
         }
     }
 }

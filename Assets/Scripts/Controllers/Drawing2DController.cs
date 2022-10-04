@@ -130,6 +130,7 @@ public class Drawing2DController : MonoBehaviour
     [ContextMenu("RedrawCurrentStorey")]
     public void RedrawCurrentStorey()
     {
+        Debug.Log("Redrawing current storey...");
         DrawStorey(GameManager.ins.Building.CurrentStorey);
         DrawLabels();
     }
@@ -257,6 +258,9 @@ public class Drawing2DController : MonoBehaviour
 
     private void AddPointToLineRenderer(Vector3 pointPos, UILineRenderer lineRenderer)
     {
+        /*
+         *  TODO: Hear need to implement breaking line into separate wall sections.
+         */
         lineRenderer.AddPoint(pointPos);
         lineRenderer.LineThickness += 0.1f;
         lineRenderer.LineThickness -= 0.1f;

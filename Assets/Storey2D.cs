@@ -9,6 +9,7 @@ public class Storey2D : MonoBehaviour
     [SerializeField] GameObject _wall2DPrefab;
     [SerializeField] Storey _storeyReference;
     [SerializeField] List<WallOnCanvas> _wallsOnCanvas = new List<WallOnCanvas>();
+    [SerializeField] List<Wall2D> _walls2D = new List<Wall2D>();
     [SerializeField] Transform _labelsContainer;
 
     public Storey StoreyReference
@@ -54,8 +55,9 @@ public class Storey2D : MonoBehaviour
     public void AddWallToStorey(Wall wall)
     {
         GameObject wallObject = Instantiate(_wall2DPrefab, gameObject.transform);
-
+        
         Wall2D wall2D = wallObject.GetComponent<Wall2D>();
+        _walls2D.Add(wall2D);
         wall2D.DrawOnCanvas(wall);
     }
 
@@ -65,11 +67,18 @@ public class Storey2D : MonoBehaviour
             wall.SetThickness(thickness);
     }
 
-    void ClearWalls()
+    void ClearWallsOnCanvas()
     {
         foreach (WallOnCanvas wall in WallsOnCanvas)
             Destroy(wall.gameObject);
         _wallsOnCanvas.Clear();
+    }
+
+    void ClearWalls2D()
+    {
+        foreach (Wall2D wall in _walls2D)
+            Destroy(wall.gameObject);
+        _walls2D.Clear();
     }
 
     void ClearLabels()
@@ -82,7 +91,8 @@ public class Storey2D : MonoBehaviour
 
     public void ClearStorey2D()
     {
-        ClearWalls();
+        ClearWallsOnCanvas();
+        ClearWalls2D();
         ClearLabels();
     }
 }
