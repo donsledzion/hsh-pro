@@ -130,6 +130,7 @@ public class Drawing2DController : MonoBehaviour
     [ContextMenu("RedrawCurrentStorey")]
     public void RedrawCurrentStorey()
     {
+        Debug.Log("Redrawing current storey...");
         DrawStorey(GameManager.ins.Building.CurrentStorey);
         DrawLabels();
     }
