@@ -80,6 +80,8 @@ public class ModeController : MonoBehaviour
 
     public void ModeMenu() {
 
+        ResetAllListObjects();
+
         foreach (GameObject objectsMenu in listOfMenuObjects)
         {
             objectsMenu.SetActive(true);

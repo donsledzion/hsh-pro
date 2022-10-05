@@ -27,7 +27,7 @@ public class ToolsTabGroup : MonoBehaviour
         if (selectedTab == null || button != selectedTab)
         {
             ResetTabs();
-
+            button.background.color = tabhover;
         }
     }
 
