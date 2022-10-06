@@ -11,6 +11,9 @@ public class StoreyCreator : MonoBehaviour
     [SerializeField] GameObject _drawCeiling;
     [SerializeField] GameObject _drawDoor;
     [SerializeField] GameObject _drawWindow;
+    [SerializeField] GameObject _pointSnap;
+    [SerializeField] GameObject _sectionSnap;
+
 
     public static StoreyCreator ins { get; private set; }
 
@@ -32,6 +35,9 @@ public class StoreyCreator : MonoBehaviour
         _drawWalls.SetActive(true);
         _wallTypeSelector.SetActive(true);
         _wallTypeSelector.GetComponent<WallInfoDisplay>().UpdateInfo();
+        _pointSnap.SetActive(true);
+        _sectionSnap.SetActive(true);
+
     }
 
     public void DrawArcs()
@@ -81,5 +87,7 @@ public class StoreyCreator : MonoBehaviour
         _wallSectionDeleter.SetActive(false);
         _drawDoor.SetActive(false);
         _drawWindow.SetActive(false);
+        _pointSnap.SetActive(false);
+        _sectionSnap.SetActive(false);
     }
 }

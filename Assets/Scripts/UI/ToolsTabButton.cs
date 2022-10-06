@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Image))]
-public class ToolsTabButton : MonoBehaviour, IPointerClickHandler
+public class ToolsTabButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,IPointerExitHandler
 {
     public ToolsTabGroup tabGroup;
     public int index;
@@ -17,6 +17,16 @@ public class ToolsTabButton : MonoBehaviour, IPointerClickHandler
 
         tabGroup.onTabSelected(this);
 
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        tabGroup.onTabEnter(this);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        tabGroup.onTabExit(this);
     }
 
     // Start is called before the first frame update
