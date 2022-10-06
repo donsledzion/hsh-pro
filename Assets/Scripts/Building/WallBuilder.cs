@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Walls2D;
@@ -36,7 +37,25 @@ public class WallBuilder : DrawWithLines
         _drawing2DController.ClearLiveLine();
         Wall wall = _drawing2DController.ApplyWallToBuilding();
         _drawing2DController.StoreWall(wall);
+        CheckForLinesToBreak();
         _drawing2DController.ClearCurrentLine();
+        
+    }
+
+    private void CheckForLinesToBreak()
+    {
+        Debug.Log("Looking for lines to break...");
+        List<Vector2> points = new List<Vector2>(_drawing2DController.LinePoints);
+        foreach(Wall wall in GameManager.ins.Building.CurrentStorey.Walls)
+        {
+            foreach(WallSection section in wall.WallSections)
+            {
+                foreach(Vector2 point in points)
+                {
+                    section.SplitSection(point);
+                }
+            }
+        }
     }
 
     protected override void HandleClick()

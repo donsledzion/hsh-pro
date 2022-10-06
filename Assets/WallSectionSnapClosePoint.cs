@@ -14,7 +14,7 @@ public class WallSectionSnapClosePoint : Selector2D
         if (_hoveredSection != null)
         {            
             _snappedPoint = CastedPoint(_hoveredSection, mouseOverCanvas);
-            _hoveredSection.SplitSection(_snappedPoint);
+            //_hoveredSection.SplitSection(_snappedPoint);
             GameManager.ins.SnappedClosePoint = HoverPoint(_snappedPoint, _hoverColor);            
         }
         else
@@ -51,8 +51,8 @@ public class WallSectionSnapClosePoint : Selector2D
                 }
             }
         }
-        if (closestSection != null)
-            Debug.Log("Closest section wall: " + closestSection.Wall);
+        /*if (closestSection != null)
+            Debug.Log("Closest section wall: " + closestSection.Wall);*/
         return closestSection;
     }
 

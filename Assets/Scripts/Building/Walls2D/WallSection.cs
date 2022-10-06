@@ -76,26 +76,33 @@ namespace Walls2D
                 Debug.Log("Point belongs to section!");
                 if(this.GetType() == typeof(SectionStraight))
                 {
-                    Debug.Log("Inserting section straight");
+                    Debug.Log("Splitting section straight");
                     sectionA = new SectionStraight();
                     sectionB = new SectionStraight();
                 }
                 else
                 {
                     Debug.Log("Sorry, but  splitting section of type " + this.GetType().ToString() + " is not allowed.");
-                }
-                    
+                }                    
             }
-                
+            else
+            {
+                Debug.Log("Dude: point does not belong to this section!");
+            }                
         }
 
-        public bool PointBelongsToSection(Vector2 point)
+        public bool PointBelongsToSection(Vector2 point, bool includeEdges=false)
         {
-            Vector2 lineFactors = MathHelpers.LineFactors(StartPoint.Position, EndPoint.Position);
+            if(!includeEdges)
+            {
+                if (((point - StartPoint.Position).magnitude < 0.01f) || ((point - EndPoint.Position).magnitude < 0.01f))
+                    return false;
+            }
 
+            Vector2 lineFactors = MathHelpers.LineFactors(StartPoint.Position, EndPoint.Position);
+            
             float A = lineFactors.x;
             float B = lineFactors.y;
-
 
             float equasionLeft = A * point.x + B;
             float equasionRight = point.y;
