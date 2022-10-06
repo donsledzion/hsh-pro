@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Xml.Linq;
 using System.Runtime.CompilerServices;
 using System.CodeDom;
+using UnityEngine.UIElements;
 
 namespace Walls2D
 {
@@ -72,13 +73,20 @@ namespace Walls2D
             if (PointBelongsToSection(point))
             {
                 WallSection sectionA;
-                WallSection sectionB;
+                //WallSection sectionB;
                 Debug.Log("Point belongs to section!");
                 if(this.GetType() == typeof(SectionStraight))
                 {
                     Debug.Log("Splitting section straight");
-                    sectionA = new SectionStraight();
-                    sectionB = new SectionStraight();
+                    sectionA = this.Clone();
+                    sectionA.StartPoint.Position = this.StartPoint.Position;
+                    sectionA.EndPoint.Position = point;
+                    sectionA.AssignToWall(this.Wall);
+                    this.StartPoint.Position = point;
+                    List<WallSection> sections = new List<WallSection>(Wall.WallSections);
+                    sections.Add(sectionA);
+
+                    this.Wall.WallSections = sections.ToArray();
                 }
                 else
                 {
@@ -95,7 +103,9 @@ namespace Walls2D
         {
             if(!includeEdges)
             {
-                if (((point - StartPoint.Position).magnitude < 0.01f) || ((point - EndPoint.Position).magnitude < 0.01f))
+                Debug.Log("Point does not belong due to containing edges!");
+                if (((point - StartPoint.Position).magnitude < 0.01f)
+                    || ((point - EndPoint.Position).magnitude < 0.01f))
                     return false;
             }
 
@@ -107,7 +117,7 @@ namespace Walls2D
             float equasionLeft = A * point.x + B;
             float equasionRight = point.y;
             float offset = equasionLeft - equasionRight;
-            //Debug.Log("Left: " + equasionLeft +  " | Right: " + equasionRight+  " | Distance: " + Mathf.Abs(offset));
+            Debug.Log(/*"Left: " + equasionLeft +  " | Right: " + equasionRight+  */" | Distance: " + Mathf.Abs(offset));
 
             return Mathf.Abs(offset) < 0.01f;
         }
