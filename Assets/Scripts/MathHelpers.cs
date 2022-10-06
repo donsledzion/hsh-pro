@@ -121,7 +121,7 @@ public class MathHelpers
     {
         float A = FactorA(pointA, pointB);
 
-        return -A * pointA.x + pointA.y;
+        return pointA.y - A * pointA.x ;
     }
 
     public static Vector2 LineFactors(Vector2 pointA, Vector2 pointB)

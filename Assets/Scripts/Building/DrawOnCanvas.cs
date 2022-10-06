@@ -40,7 +40,7 @@ namespace Walls2D
                 pointerPosition = _uIController.GridSnap(pointerPosition);
 
             if (GameManager.ins.AngleSnap)
-                pointerPosition = _angleSnapController.AngleSnap(pointerPosition);
+                pointerPosition = _angleSnapController.AngleSnap(pointerPosition);            
         }
     }
 }

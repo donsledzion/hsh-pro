@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
+using System.CodeDom;
 
 namespace Walls2D
 {
@@ -65,8 +67,26 @@ namespace Walls2D
         }
         public void SplitSection(Vector2 point)
         {
+            //Debug.Log("WallSectionStartPoint: " + StartPoint.Position + " | point: " + point);
+            //Debug.Log("Trying to split points...");
             if (PointBelongsToSection(point))
+            {
+                WallSection sectionA;
+                WallSection sectionB;
                 Debug.Log("Point belongs to section!");
+                if(this.GetType() == typeof(SectionStraight))
+                {
+                    Debug.Log("Inserting section straight");
+                    sectionA = new SectionStraight();
+                    sectionB = new SectionStraight();
+                }
+                else
+                {
+                    Debug.Log("Sorry, but  splitting section of type " + this.GetType().ToString() + " is not allowed.");
+                }
+                    
+            }
+                
         }
 
         public bool PointBelongsToSection(Vector2 point)
@@ -77,8 +97,12 @@ namespace Walls2D
             float B = lineFactors.y;
 
 
+            float equasionLeft = A * point.x + B;
+            float equasionRight = point.y;
+            float offset = equasionLeft - equasionRight;
+            //Debug.Log("Left: " + equasionLeft +  " | Right: " + equasionRight+  " | Distance: " + Mathf.Abs(offset));
 
-            return point.y == A*point.x+B;
+            return Mathf.Abs(offset) < 0.01f;
         }
 
         public override string ToString()
