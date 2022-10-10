@@ -11,21 +11,25 @@ using UnityEngine.UI;
 
 public class Item3DViewer : MonoBehaviour, IDragHandler
 {
-    [SerializeField] private DoorAssetController invertoryItems;
-    [SerializeField] private WindowAssetController invertoryItems2;
+    [SerializeField] private DoorAssetController invertoryDoor;
+    [SerializeField] private WindowAssetController invertoryWindow;
+    [SerializeField] private FloorAssetController invertoryFloor;
+
     [SerializeField] private GameObject itemViewer;
 
     private GameObject itemPrefab = null;
+    private GameObject itemPrefabNotMovable = null;
 
     [SerializeField]
     private TextMeshProUGUI description;
 
     private void Awake()
     {
-
+        
         //invertoryItems.OnItemChoosen += PrefabToFit;
-        invertoryItems.OnItemSelected += invertoryItems_OnItemSelectedDoor;
-        invertoryItems2.OnItemSelected += invertoryItems_OnItemSelectedWindow;
+        invertoryDoor.OnItemSelected += invertoryItems_OnItemSelectedDoor;
+        invertoryWindow.OnItemSelected += invertoryItems_OnItemSelectedWindow;
+        invertoryFloor.OnItemSelected += invertoryItems_OnItemSelectedFloor;
     }
 
     private void PrefabToFit(object sender, ScriptableObjectsController itemSO)
@@ -36,6 +40,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
 
     public void invertoryItems_OnItemSelectedWindow(object sender, ScriptableObjectsController itemSO)
     {
+        destroyPrefab();
         Debug.Log(itemSO);
         itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000), Quaternion.identity);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
@@ -51,6 +56,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
 
     public void invertoryItems_OnItemSelectedDoor(object sender, ScriptableObjectsController itemSO)
     {
+        destroyPrefab();
         Debug.Log(itemSO);
         itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000.80f), Quaternion.identity);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
@@ -63,18 +69,41 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         });
     }
 
+    public void invertoryItems_OnItemSelectedFloor(object sender, ScriptableObjectsController itemSO)
+    {
+        destroyPrefab();
+        Debug.Log(itemSO);
+        itemPrefabNotMovable = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000.80f), Quaternion.identity);
+        description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
+
+        this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
+
+            
+            itemViewer.SetActive(false);
+            destroyPrefab();
+        });
+    }
+
     public void destroyPrefab() {
 
 
         if(itemPrefab != null)
         {
             Destroy(itemPrefab.gameObject);
+
+        }else if(itemPrefabNotMovable!=null)
+        {
+            Destroy(itemPrefabNotMovable.gameObject);
         }
+
         
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        itemPrefab.transform.eulerAngles += new Vector3(0,-eventData.delta.x, 0);
+        if (itemPrefab != null)
+        {
+            itemPrefab.transform.eulerAngles += new Vector3(0, -eventData.delta.x, 0);
+        }
     }
 }

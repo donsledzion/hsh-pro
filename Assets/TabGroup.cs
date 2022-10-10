@@ -11,7 +11,7 @@ public class TabGroup : MonoBehaviour
     public Color tabActive;
     public TabButtonGallery selectedTab;
     public List<GameObject> objectsToSwap;
-    private Object[] textures;
+    public GameObject fullDescriptionWindow;
     //private AddressablesController addressablesController;
 
     public void Subscribe(TabButtonGallery button)
@@ -41,6 +41,7 @@ public class TabGroup : MonoBehaviour
     {
         selectedTab = button;
         ResetTabs();
+        fullDescriptionWindow.SetActive(false);
         button.background.color = tabActive;
         int index = button.transform.GetSiblingIndex();
         for (int i = 0; i < objectsToSwap.Count; i++)
