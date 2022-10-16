@@ -26,19 +26,22 @@ public class ModeController : MonoBehaviour
     public List<GameObject> listOf2DObjects = new List<GameObject>();
     public List<GameObject> listOf3DObjects = new List<GameObject>();
     public List<GameObject> listOfMenuObjects = new List<GameObject>();
+    public List<GameObject> listOfDecorationObjects = new List<GameObject>();
+    public List<GameObject> MenuOftFurnitureController = new List<GameObject>();
 
-    public SimpleCameraController _cameraController;
-    public GameObject _builder3D;
+
+    public SimpleCameraController cameraController;
+    public GameObject builder3D;
+    public GameObject galeryItemsWindow;
     Builder3D refToScript;
 
     public void Mode2D() {
 
         ResetAllListObjects();
-        foreach(GameObject objects2D in listOf2DObjects)
+        cameraController.enabled = false;
+        foreach (GameObject objects2D in listOf2DObjects)
         {
             objects2D.SetActive(true);
-
-            _cameraController.enabled = false;
 
             switch (objects2D.name)
             {
@@ -64,16 +67,13 @@ public class ModeController : MonoBehaviour
     {
         ResetAllListObjects();
 
-        _cameraController.enabled = true;
-        refToScript = _builder3D.GetComponent<Builder3D>();
-        refToScript.GenerateBuilding();
-        
-        
+        cameraController.enabled = true;
+        refToScript = builder3D.GetComponent<Builder3D>();
+        refToScript.GenerateBuilding();        
 
         foreach (GameObject objects3D in listOf3DObjects)
         {
             objects3D.SetActive(true);
- 
         }
             
     }
@@ -86,7 +86,7 @@ public class ModeController : MonoBehaviour
         {
             objectsMenu.SetActive(true);
 
-            _cameraController.enabled = false;
+            cameraController.enabled = false;
 
             switch (objectsMenu.name)
             {
@@ -108,8 +108,74 @@ public class ModeController : MonoBehaviour
         }
     }
 
+    public void DeocorationMode() {
+
+        ResetAllListObjects();
+
+        cameraController.enabled = true;
+        refToScript = builder3D.GetComponent<Builder3D>();
+        refToScript.GenerateBuilding();
+
+        foreach (GameObject objects3D in listOfDecorationObjects)
+        {
+            objects3D.SetActive(true);
+        }
+    }
+
+    public void MenuOfSoftFurniture_On()
+    {
+        foreach (GameObject furnitureTab in MenuOftFurnitureController)
+        {
+            switch (furnitureTab.name)
+            {
+                case "Main Tab Area":
+
+                    furnitureTab.SetActive(false);
+                    furnitureTab.GetComponent<TabGroup>().selectedTab = null;
+                    break;
+
+                case "Furniture Tab Area":
+
+                    furnitureTab.SetActive(true);
+                    furnitureTab.GetComponent<TabGroup>().selectedTab = null;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void MainMenuOfFurniture_On()
+    {
+
+        foreach (GameObject furnitureTab in MenuOftFurnitureController)
+        {
+            switch (furnitureTab.name)
+            {
+
+                case "Main Tab Area":
+
+                    furnitureTab.SetActive(true);
+
+                    break;
+
+                case "Furniture Tab Area":
+
+                    furnitureTab.SetActive(false);
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
     private void ResetAllListObjects()
     {
+        galeryItemsWindow.SetActive(false);
+        
         foreach (GameObject objects2D in listOf2DObjects)
         {
             objects2D.SetActive(false);
@@ -138,5 +204,11 @@ public class ModeController : MonoBehaviour
         {
             objects3D.SetActive(false);
         }
+
+        foreach (GameObject objects3D in listOfDecorationObjects)
+        {
+            objects3D.SetActive(false);
+        }
+
     }
 }

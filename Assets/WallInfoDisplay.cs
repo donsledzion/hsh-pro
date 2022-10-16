@@ -13,11 +13,12 @@ public class WallInfoDisplay : MonoBehaviour
         //wallType.text = Drawing2DController.ins.
     }
 
-    public void UpdateWallType()
+    public void UpdateWallType(string typeName)
     {
         WallType wallType = 
         Drawing2DController.ins.CurrentWallType;
-        _wallType.text = "Type: " + wallType.ToString();
+        //    _wallType.text = "Type: " + wallType.ToString();
+       //_wallType.text = "Wybrano: " + typeName;
     }
 
     public void UpdateWallWidth()
