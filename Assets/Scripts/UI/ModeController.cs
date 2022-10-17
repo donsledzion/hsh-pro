@@ -27,7 +27,7 @@ public class ModeController : MonoBehaviour
     public List<GameObject> listOf3DObjects = new List<GameObject>();
     public List<GameObject> listOfMenuObjects = new List<GameObject>();
     public List<GameObject> listOfDecorationObjects = new List<GameObject>();
-    public List<GameObject> MenuOftFurnitureController = new List<GameObject>();
+    public List<GameObject> MenuOfFurnitureController = new List<GameObject>();
 
 
     public SimpleCameraController cameraController;
@@ -122,52 +122,48 @@ public class ModeController : MonoBehaviour
         }
     }
 
-    public void MenuOfSoftFurniture_On()
+    public void MainMenuOfFurniture_On()
     {
-        foreach (GameObject furnitureTab in MenuOftFurnitureController)
+        ResetFurnitureTabs();
+        foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
-            switch (furnitureTab.name)
-            {
-                case "Main Tab Area":
-
-                    furnitureTab.SetActive(false);
-                    furnitureTab.GetComponent<TabGroup>().selectedTab = null;
-                    break;
-
-                case "Furniture Tab Area":
-
-                    furnitureTab.SetActive(true);
-                    furnitureTab.GetComponent<TabGroup>().selectedTab = null;
-                    break;
-
-                default:
-                    break;
-            }
+            if (furnitureTab.name == "Main Tab Area") furnitureTab.SetActive(true);
         }
     }
 
-    public void MainMenuOfFurniture_On()
+    public void MenuOfSoftFurniture_On()
     {
-
-        foreach (GameObject furnitureTab in MenuOftFurnitureController)
+        ResetFurnitureTabs();
+        foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
-            switch (furnitureTab.name)
+            if (furnitureTab.name == "Furniture Tab Area") furnitureTab.SetActive(true);
+        }
+    }
+
+    public void MenuOfSofaFurniture_On()
+    {
+        ResetFurnitureTabs();
+        foreach (GameObject furnitureTab in MenuOfFurnitureController)
+        {
+            if (furnitureTab.name == "Sofa Furniture Tab Area") furnitureTab.SetActive(true);
+        }
+    }
+
+    public void ResetFurnitureTabs() {
+
+        foreach (GameObject furnitureTab in MenuOfFurnitureController)
+        {
+            
+            furnitureTab.SetActive(false);
+
+            if (furnitureTab.GetComponent<TabGroup>()) {
+
+                furnitureTab.GetComponent<TabGroup>().selectedTab = null;
+                Debug.Log(furnitureTab.name);
+
+            }else if(furnitureTab.GetComponent<ToolsTabGroup>())
             {
-
-                case "Main Tab Area":
-
-                    furnitureTab.SetActive(true);
-
-                    break;
-
-                case "Furniture Tab Area":
-
-                    furnitureTab.SetActive(false);
-
-                    break;
-
-                default:
-                    break;
+                furnitureTab.GetComponent<ToolsTabGroup>().selectedTab = null;
             }
         }
     }
@@ -205,10 +201,10 @@ public class ModeController : MonoBehaviour
             objects3D.SetActive(false);
         }
 
-        foreach (GameObject objects3D in listOfDecorationObjects)
+        foreach (GameObject decorationObject in listOfDecorationObjects)
         {
-            objects3D.SetActive(false);
-        }
+            decorationObject.SetActive(false);
+        }    
 
     }
 }

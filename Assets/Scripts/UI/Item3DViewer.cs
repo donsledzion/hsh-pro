@@ -14,7 +14,9 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     [SerializeField] private DoorAssetController invertoryDoor;
     [SerializeField] private WindowAssetController invertoryWindow;
     [SerializeField] private FloorAssetController invertoryFloor;
-    [SerializeField] private SoftFurnitureAssetController invertorySoftFurniture;
+    [SerializeField] private SofaFurnitureController invertorySofaFurniture;
+    [SerializeField] private CornersFurnitureController invertoryCornersFurniture;
+    [SerializeField] private ArmchairFurnitureController invertoryArmchairFurniture;
 
 
     [SerializeField] private GameObject itemViewer;
@@ -27,15 +29,15 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
 
     private void Awake()
     {
-        
-        //invertoryItems.OnItemChoosen += PrefabToFit;
         invertoryDoor.OnItemSelected += invertoryItems_OnItemSelectedDoor;
         invertoryWindow.OnItemSelected += invertoryItems_OnItemSelectedWindow;
         invertoryFloor.OnItemSelected += invertoryItems_OnItemSelectedFloor;
-        invertorySoftFurniture.OnItemSelected += invertoryItems_OnItemSelectedSoftFurniture;
+        invertorySofaFurniture.OnItemSelected += invertoryItems_OnItemSelectedSofaFurniture;
+        invertoryCornersFurniture.OnItemSelected += invertoryItems_OnItemSelectedSofaFurniture;
+        invertoryArmchairFurniture.OnItemSelected += invertoryItems_OnItemSelectedSofaFurniture;
     }
 
-    private void invertoryItems_OnItemSelectedSoftFurniture(object sender, ScriptableObjectsController itemSO)
+    private void invertoryItems_OnItemSelectedSofaFurniture(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
         itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.6f, 10003), Quaternion.identity);
