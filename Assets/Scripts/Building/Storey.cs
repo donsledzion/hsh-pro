@@ -6,6 +6,7 @@ public class Storey
 {
     List<Wall> _walls = new List<Wall>();
     List<Ceiling> _ceilings = new List<Ceiling>();
+    List<FloorSection2D> _floors= new List<FloorSection2D>();
     uint _number;
     string _name;
     float _elevation;
@@ -38,6 +39,12 @@ public class Storey
     {
         get { return _ceilings; }
         set { _ceilings = value; }
+    }
+
+    public List<FloorSection2D> Floors
+    {
+        get { return _floors; }
+        set { _floors = value; }
     }
 
     public uint Number
@@ -105,6 +112,22 @@ public class Storey
         return false;
     }
 
+    public FloorSection2D AddNewFloorSection(FloorSection2D floorSection)
+    {
+        _floors.Add(floorSection);
+        return floorSection;
+    }
+
+    public bool RemoveFloorSection(FloorSection2D floorSection)
+    {
+        if(_floors.Contains(floorSection))
+        {
+            _floors.Remove(floorSection);
+            return true;
+        }
+        return false;
+
+    }
     public override string ToString()
     {
         string basic = "Storey (" + _number + ") name: " + _name + ", Elevation: " + _elevation + "[m] , Height: " + _height + "[m].";

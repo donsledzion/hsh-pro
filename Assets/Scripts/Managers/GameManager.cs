@@ -68,6 +68,12 @@ public class GameManager : MonoBehaviour
         currentStorey.AddNewCeiling(new Ceiling(DefaultSettings.ins.CeilingThickness, currentStorey.Elevation + currentStorey.Height, points));
     }
 
+    internal void AddFloorSectionToCurrentStorey(Vector2[] points, int order)
+    {
+        Storey currentStorey = ins.Building.CurrentStorey;
+        currentStorey.AddNewFloorSection(new FloorSection2D(order ,currentStorey.Elevation, points));
+    }
+
     public bool ToggleAngleSnap()
     {
         AngleSnap = !AngleSnap;

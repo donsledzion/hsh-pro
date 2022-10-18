@@ -13,6 +13,7 @@ public class StoreyCreator : MonoBehaviour
     [SerializeField] GameObject _drawWindow;
     [SerializeField] GameObject _pointSnap;
     [SerializeField] GameObject _sectionSnap;
+    [SerializeField] GameObject _drawFloor;
 
 
     public static StoreyCreator ins { get; private set; }
@@ -42,7 +43,6 @@ public class StoreyCreator : MonoBehaviour
 
     public void DrawArcs()
     {
-
         SwitchOffAll();
         _drawArcs.SetActive(true);
     }
@@ -77,6 +77,12 @@ public class StoreyCreator : MonoBehaviour
         _drawWindow.SetActive(true);
     }
 
+    public void DrawFloorTool()
+    {
+        SwitchOffAll();
+        _drawFloor.SetActive(true);
+    }
+
     public void SwitchOffAll()
     {
         _wallTypeSelector.SetActive(false);
@@ -89,5 +95,6 @@ public class StoreyCreator : MonoBehaviour
         _drawWindow.SetActive(false);
         _pointSnap.SetActive(false);
         _sectionSnap.SetActive(false);
+        _drawFloor.SetActive(false);
     }
 }

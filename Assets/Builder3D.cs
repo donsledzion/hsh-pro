@@ -9,6 +9,7 @@ public class Builder3D : MonoBehaviour
     [SerializeField] GameObject _sectionDoorjambPrefab;
     [SerializeField] GameObject _sectionWindowjambPrefab;
     [SerializeField] GameObject _ceilingSectionPrefab;
+    [SerializeField] GameObject _floorSectionPrefab;
     
     void GenerateStorey(Storey storey)
     {
@@ -67,6 +68,20 @@ public class Builder3D : MonoBehaviour
                 band.SetParameters(ceiling);
                 band.Spatialize();
             }            
+        }
+
+        Debug.Log("Spatializing floors...");
+        foreach(FloorSection2D floor in storey.Floors)
+        {
+            GameObject floorObject = Instantiate(_floorSectionPrefab);
+            floorObject.transform.SetParent(gameObject.transform);
+            FloorSection floorSection = floorObject.GetComponent<FloorSection>();
+            Debug.Log("Spatializing planes...");
+            foreach (FloorPlane plane in floorSection.FloorPlanes)
+            {
+                plane.SetParameters(floor);
+                plane.Spatialize();
+            }
         }
     }
 
