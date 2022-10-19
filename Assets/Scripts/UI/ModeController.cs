@@ -29,11 +29,13 @@ public class ModeController : MonoBehaviour
     public List<GameObject> listOfDecorationObjects = new List<GameObject>();
     public List<GameObject> MenuOfFurnitureController = new List<GameObject>();
 
-
     public SimpleCameraController cameraController;
     public GameObject builder3D;
     public GameObject galeryItemsWindow;
     Builder3D refToScript;
+    public GameObject settingsWindowOfMainMenu;
+    public GameObject exitWindowOfMainMenu;
+
 
     public void Mode2D() {
 
@@ -171,6 +173,8 @@ public class ModeController : MonoBehaviour
     private void ResetAllListObjects()
     {
         galeryItemsWindow.SetActive(false);
+        settingsWindowOfMainMenu.SetActive(false);
+        exitWindowOfMainMenu.SetActive(false);
         
         foreach (GameObject objects2D in listOf2DObjects)
         {
