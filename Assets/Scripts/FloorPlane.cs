@@ -31,7 +31,7 @@ public class FloorPlane : MonoBehaviour
             UpdateUV();
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Debug.Log("Generating mesh...");
+            Debug.Log("Generating mesh...(Update key called)");
             MakeMeshPlane();
             Debug.Log("Mesh generated");
 
@@ -76,6 +76,31 @@ public class FloorPlane : MonoBehaviour
         return outScale;
     }
 
+
+    public static Vector2[] PlaneRange(Vector2[] points)
+    {
+        Vector2[] outVectors = { new Vector2() };
+
+        if (points.Length == 0) return outVectors;
+     
+        float minX = points[0].x;
+        float minY = points[0].y;
+        float maxX = points[0].x;
+        float maxY = points[0].y;
+
+        foreach (Vector2 point in points)
+        {
+            if (point.x < minX) minX = point.x;
+            if (point.y < minY) minY = point.y;
+            if (point.x > maxX) maxX = point.x;
+            if (point.y > maxY) maxY = point.y;
+        }
+
+        Vector2[] newOutVectors = { new Vector2(minX,maxY)/*, new Vector2(maxX, maxY), new Vector2(maxX, minY), new Vector2(minX, minY)*/};
+
+        return newOutVectors;
+    }
+
     public static Vector2[] RotateArray(Vector2[] points, bool reverse=false)
     {
         Vector2[] outPoints = new Vector2[points.Length];
@@ -99,8 +124,7 @@ public class FloorPlane : MonoBehaviour
         
         Debug.Log("00-GeneratinMeshPlane");
         int[] triangles;
-        string message;
-        Vector2[] uv;
+        string message;        
         Debug.Log("01-Basic variables set");
         PolygonHelper.Triangulate(_floor.Points, out triangles, out message);
         Debug.Log("02-Polygon Triangulated");
@@ -116,10 +140,14 @@ public class FloorPlane : MonoBehaviour
             Debug.Log("03-Spatializing Points");
             mesh.vertices = SpatializePoints(_floor.Points, _floor.TopLevel + _overlappingOffset);
             Debug.Log("04-Spatialized");
-            uv = _floor.Points;
+            Vector2[] uv = { new Vector2() };
+            //uv = _floor.Points;
+            // EXPERIMENTAL!!!!
+            uv = PlaneRange(_floor.Points);
             Array.Reverse(_floor.Points);
             Debug.Log("05-Array reversed");
-            mesh.uv = uv;//FlatternSpatialPoints(SpatializePoints(_floor.Points, _floor.TopLevel));
+            
+            mesh.uv = FlatternSpatialPoints(SpatializePoints(_floor.Points, _floor.TopLevel));
             mesh.triangles = triangles;
             Debug.Log("06-Arrays assigned to mesh");
         }
