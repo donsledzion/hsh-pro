@@ -23,19 +23,20 @@ public class ModeController : MonoBehaviour
         }
     }
 
-    public List<GameObject> listOf2DObjects = new List<GameObject>();
-    public List<GameObject> listOf3DObjects = new List<GameObject>();
-    public List<GameObject> listOfMenuObjects = new List<GameObject>();
-    public List<GameObject> listOfDecorationObjects = new List<GameObject>();
-    public List<GameObject> MenuOfFurnitureController = new List<GameObject>();
+    [SerializeField] List<GameObject> listOf2DObjects = new List<GameObject>();
+    [SerializeField] List<GameObject> listOf3DObjects = new List<GameObject>();
+    [SerializeField] List<GameObject> listOfMenuObjects = new List<GameObject>();
+    [SerializeField] List<GameObject> listOfDecorationObjects = new List<GameObject>();
+    [SerializeField] List<GameObject> MenuOfFurnitureController = new List<GameObject>();
 
-    public SimpleCameraController cameraController;
-    public GameObject builder3D;
-    public GameObject galeryItemsWindow;
+    [SerializeField] SimpleCameraController cameraController;
+    [SerializeField] GameObject builder3D;
+    [SerializeField] GameObject galeryItemsWindow;
     Builder3D refToScript;
-    public GameObject settingsWindowOfMainMenu;
-    public GameObject exitWindowOfMainMenu;
-
+    Item3DViewer item3DViewer;
+    [SerializeField] GameObject settingsWindowOfMainMenu;
+    [SerializeField] GameObject exitWindowOfMainMenu;
+    [SerializeField] GameObject itemDescriptionWindow;
 
     public void Mode2D() {
 
@@ -113,7 +114,7 @@ public class ModeController : MonoBehaviour
     public void DeocorationMode() {
 
         ResetAllListObjects();
-
+        ResetFurnitureTabs();
         cameraController.enabled = true;
         refToScript = builder3D.GetComponent<Builder3D>();
         refToScript.GenerateBuilding();
@@ -138,17 +139,23 @@ public class ModeController : MonoBehaviour
         ResetFurnitureTabs();
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
-            if (furnitureTab.name == "Furniture Tab Area") furnitureTab.SetActive(true);
+            if (furnitureTab.name == "Soft Furniture Tab Area") furnitureTab.SetActive(true);
         }
     }
 
-    public void MenuOfSofaFurniture_On()
+    public void MenuOfFurniture_On()
     {
         ResetFurnitureTabs();
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
-            if (furnitureTab.name == "Sofa Furniture Tab Area") furnitureTab.SetActive(true);
+            if (furnitureTab.name == "Furniture Tab Area") furnitureTab.SetActive(true);
         }
+    }
+
+    public void FurnituresTabs()
+    {   
+        itemDescriptionWindow.SetActive(false);
+        galeryItemsWindow.SetActive(true);
     }
 
     public void ResetFurnitureTabs() {
@@ -175,6 +182,7 @@ public class ModeController : MonoBehaviour
         galeryItemsWindow.SetActive(false);
         settingsWindowOfMainMenu.SetActive(false);
         exitWindowOfMainMenu.SetActive(false);
+        itemDescriptionWindow.SetActive(false);
         
         foreach (GameObject objects2D in listOf2DObjects)
         {
