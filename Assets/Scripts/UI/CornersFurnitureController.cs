@@ -28,6 +28,7 @@ public class CornersFurnitureController : MonoBehaviour
         FetchFurniture();
         InstantiateList();
         inputField.onValueChanged.AddListener(OnInputValueChange);
+        
     }
 
     private void InstantiateList()

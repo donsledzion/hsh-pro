@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityTemplateProjects;
-
+using UnityEngine.EventSystems;
+ 
 
 public class ModeController : MonoBehaviour
 {
@@ -139,8 +140,11 @@ public class ModeController : MonoBehaviour
         ResetFurnitureTabs();
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
-            if (furnitureTab.name == "Soft Furniture Tab Area") furnitureTab.SetActive(true);
+            if (furnitureTab.name == "Soft Furniture Tab Area") {
+                furnitureTab.SetActive(true);
+            }
         }
+
     }
 
     public void MenuOfFurniture_On()
