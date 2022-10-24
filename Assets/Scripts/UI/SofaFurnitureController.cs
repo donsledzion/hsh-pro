@@ -11,7 +11,7 @@ public class SofaFurnitureController : MonoBehaviour
 
 
     private List<ScriptableObjectsController> itemList = new List<ScriptableObjectsController>();
-    private AssetBundle furnitureAsset;
+    private AssetBundle furnitureAsset = null;
     [SerializeField] GameObject templateFurniturePrefab;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
@@ -20,6 +20,7 @@ public class SofaFurnitureController : MonoBehaviour
 
     private void Awake()
     {
+        
         Init();
     }
 
@@ -70,6 +71,8 @@ public class SofaFurnitureController : MonoBehaviour
     private void FetchFurniture()
     {
         Debug.Log("Failed to load");
+
+
         furnitureAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/furniture_bundle_sofas");
 
         if (furnitureAsset) Debug.Log("Loaded successfuly");
