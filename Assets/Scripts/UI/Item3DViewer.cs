@@ -201,7 +201,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
 
         if (furniturePrefab != null)
         {
-            furniturePrefab.transform.eulerAngles += new Vector3(eventData.delta.y, -eventData.delta.x);
+            furniturePrefab.transform.eulerAngles += new Vector3(0, -eventData.delta.x, 0); //new Vector3(eventData.delta.y, -eventData.delta.x);
         }
 
     }

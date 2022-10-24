@@ -8,11 +8,20 @@ public class btnHover : MonoBehaviour
     public AudioClip hoverFX;
     public AudioClip clickFX;
 
-    public void HoverSound(){
+    [Range(0f, 1f)]
+    [SerializeField] float hoverVolume = 1f;
+    [Range(0f, 1f)]
+    [SerializeField] float clickVolume = 1f;
+
+    public void HoverSound()
+    {
+        myFx.volume = hoverVolume;
         myFx.PlayOneShot(hoverFX);
     }
 
-    public void ClickSound(){
+    public void ClickSound()
+    {
+        myFx.volume = clickVolume;
         myFx.PlayOneShot(clickFX);
         
     }
