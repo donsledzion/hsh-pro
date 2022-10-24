@@ -70,17 +70,19 @@ public class Builder3D : MonoBehaviour
             }            
         }
 
-        Debug.Log("Spatializing floors...");
+        Debug.Log("Spatializing floors...( " + storey.Floors.Count + " )");
         foreach(FloorSection2D floor in storey.Floors)
         {
             GameObject floorObject = Instantiate(_floorSectionPrefab);
             floorObject.transform.SetParent(gameObject.transform);
             FloorSection floorSection = floorObject.GetComponent<FloorSection>();
-            Debug.Log("Spatializing planes...");
+            Debug.Log("Spatializing floor planes - (" + floorSection.FloorPlanes.Count + ")");
             foreach (FloorPlane plane in floorSection.FloorPlanes)
             {
                 plane.SetParameters(floor);
+                Debug.Log("Parameters set");
                 plane.Spatialize();
+                Debug.Log("Spatialized!!!");
             }
         }
     }

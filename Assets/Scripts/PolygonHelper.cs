@@ -74,11 +74,14 @@ public static class PolygonHelper
 
         triangles = new int[totalTriangleIndexCount];
         int triangleIndexCount = 0;
-
-        while(indexList.Count > 3)
+        int counter = 0;
+        while(indexList.Count > 3 && counter <= 1000)
         {
+            counter++;
+            Debug.Log("Triangulating mesh. indexList.Count = " + indexList.Count);
             for(int i = 0; i < indexList.Count; i++)
             {
+                Debug.Log("Triangulating mesh. For loop i = " + i);
                 int a = indexList[i];
                 int b = MathHelpers.GetItem(indexList,i-1);
                 int c = MathHelpers.GetItem(indexList,i+ 1);
