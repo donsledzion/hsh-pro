@@ -7,7 +7,9 @@ public class FloorPlane : MonoBehaviour
 {
     FloorSection2D _floor;
     [SerializeField] MeshFilter meshFilter;
-
+    int[] _triangles;
+    string _message;
+    bool _triangulated = false;
     [SerializeField] float _overlappingOffset = 0.01f;
     Mesh mesh;
     Material _material;
@@ -120,20 +122,22 @@ public class FloorPlane : MonoBehaviour
     }
 
     private void MakeMeshPlane(bool upsideDown=false)
-    {
-        
+    {        
         Debug.Log("00-GeneratinMeshPlane");
-        int[] triangles;
-        string message;        
-        Debug.Log("01-Basic variables set");
-        PolygonHelper.Triangulate(_floor.Points, out triangles, out message);
+        
+        if(!_triangulated)
+        {
+            PolygonHelper.Triangulate(_floor.Points, out _triangles, out _message);
+            _triangulated = true;
+        }
+        
         Debug.Log("02-Polygon Triangulated");
         if (upsideDown)
         {
             mesh.vertices = SpatializePoints(_floor.Points, _floor.TopLevel);
             mesh.uv = _floor.Points;//FlatternSpatialPoints(SpatializePoints(_floor.Points, _floor.TopLevel));
-            Array.Reverse(triangles);
-            mesh.triangles = triangles;
+            Array.Reverse(_triangles);
+            mesh.triangles = _triangles;
         }
         else
         {
@@ -148,7 +152,7 @@ public class FloorPlane : MonoBehaviour
             Debug.Log("05-Array reversed");
             
             mesh.uv = FlatternSpatialPoints(SpatializePoints(_floor.Points, _floor.TopLevel));
-            mesh.triangles = triangles;
+            mesh.triangles = _triangles;
             Debug.Log("06-Arrays assigned to mesh");
         }
         Debug.Log("07-Recalculations...");
