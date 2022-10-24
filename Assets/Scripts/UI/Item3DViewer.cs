@@ -48,7 +48,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     {
         destroyPrefab();
         furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.6f, 10003), Quaternion.identity);
-        furniturePrefab.transform.localScale = new Vector3(0.5f, 1, 0.5f);
+        furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
         previewCamera.orthographicSize = 1.5f;
 
