@@ -82,6 +82,7 @@ public class Builder3D : MonoBehaviour
                 plane.SetParameters(floor);
                 Debug.Log("Parameters set");
                 plane.Spatialize();
+                plane.gameObject.AddComponent<MeshCollider>();
                 Debug.Log("Spatialized!!!");
             }
         }
