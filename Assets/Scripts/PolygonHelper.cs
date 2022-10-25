@@ -58,7 +58,7 @@ public static class PolygonHelper
             return false;
         }
 
-        if (windingOrder is WindingOrder.CounterClockwise)
+        if (windingOrder is WindingOrder.CounterClockwise)  
         {
             Array.Reverse(vertices);
         }*/

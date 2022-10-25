@@ -31,13 +31,13 @@ public class FloorPlane : MonoBehaviour
         _material.mainTextureScale = new Vector2(1/_scaleX,1/_scaleY);//new Vector2(transform.lossyScale.x / _scaleX, transform.lossyScale.z / _scaleY);
         if (Input.GetKeyDown(KeyCode.R))
             UpdateUV();
-        if (Input.GetKeyDown(KeyCode.L))
+        /*if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("Generating mesh...(Update key called)");
             MakeMeshPlane();
             Debug.Log("Mesh generated");
 
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -136,7 +136,6 @@ public class FloorPlane : MonoBehaviour
         {
             mesh.vertices = SpatializePoints(_floor.Points, _floor.TopLevel);
             mesh.uv = _floor.Points;//FlatternSpatialPoints(SpatializePoints(_floor.Points, _floor.TopLevel));
-            Array.Reverse(_triangles);
             mesh.triangles = _triangles;
         }
         else
@@ -146,9 +145,7 @@ public class FloorPlane : MonoBehaviour
             Debug.Log("04-Spatialized");
             Vector2[] uv = { new Vector2() };
             //uv = _floor.Points;
-            // EXPERIMENTAL!!!!
-            uv = PlaneRange(_floor.Points);
-            Array.Reverse(_floor.Points);
+            uv = _floor.Points;
             Debug.Log("05-Array reversed");
             
             mesh.uv = FlatternSpatialPoints(SpatializePoints(_floor.Points, _floor.TopLevel));
@@ -156,8 +153,8 @@ public class FloorPlane : MonoBehaviour
             Debug.Log("06-Arrays assigned to mesh");
         }
         Debug.Log("07-Recalculations...");
-        mesh.RecalculateTangents();
-        mesh.RecalculateNormals();
+        /*mesh.RecalculateTangents();
+        mesh.RecalculateNormals();*/
         Debug.Log("08-...Done (finising)");
     }
 
