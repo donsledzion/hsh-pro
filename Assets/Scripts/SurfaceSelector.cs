@@ -38,6 +38,7 @@ public class SurfaceSelector : MonoBehaviour
             _originalMaterial = _selection.GetComponent<MeshRenderer>().material;
             _selection.GetComponent<MeshRenderer>().material = _selectionMaterial;
             Debug.Log("Selection: " + _selection.gameObject.name);
+            SetTiling();
         }
 
         if (_selection != null)
