@@ -13,6 +13,7 @@ public class CouchiesAssetController : MonoBehaviour
     private List<ScriptableObjectsController> itemList = new List<ScriptableObjectsController>();
     private AssetBundle furnitureAsset = null;
     [SerializeField] GameObject templateFurniturePrefab;
+    [SerializeField] GameObject inspectionCamera;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
     GameObject itemPrefab;
@@ -57,6 +58,7 @@ public class CouchiesAssetController : MonoBehaviour
 
         g.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
         {
+            inspectionCamera.SetActive(true);
             GetFurniturePrefab(item);
         });
     }

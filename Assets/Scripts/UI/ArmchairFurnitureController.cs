@@ -13,6 +13,7 @@ public class ArmchairFurnitureController : MonoBehaviour
     private List<ScriptableObjectsController> itemList = new List<ScriptableObjectsController>();
     private AssetBundle furnitureAsset;
     [SerializeField] GameObject templateFurniturePrefab;
+    [SerializeField] GameObject inspectionCamera;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
     GameObject itemPrefab;
@@ -56,6 +57,8 @@ public class ArmchairFurnitureController : MonoBehaviour
 
         g.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
         {
+            inspectionCamera.GetComponent<Camera>().orthographicSize = 1.5f;
+            inspectionCamera.SetActive(true);
             GetFurniturePrefab(item);
         });
     }

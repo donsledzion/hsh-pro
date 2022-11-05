@@ -12,6 +12,7 @@ public class TextureAssetController : MonoBehaviour
     private List<ScriptableObjectsController> itemList = new List<ScriptableObjectsController>();
     private AssetBundle textureAsset;
     [SerializeField] GameObject templateWindowPrefab;
+    [SerializeField] GameObject inspectionCamera;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
     GameObject itemPrefab;
@@ -54,7 +55,8 @@ public class TextureAssetController : MonoBehaviour
         });
 
         g.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
-        {
+        {;
+            inspectionCamera.SetActive(true);
             GetTexture(item);
         });
     }
