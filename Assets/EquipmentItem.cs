@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
 public class EquipmentItem : MonoBehaviour
 {
     [SerializeField] Vector3 _thumbScale = new Vector3(1f, 1f, 1f);
