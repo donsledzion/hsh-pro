@@ -18,6 +18,15 @@ public class EquipmentInsertionMode : MonoBehaviour
     [SerializeField] LayerMask _layerMask;
     [SerializeField] LayerMask _collisionLayerMask;
     protected Transform _selection;
+/*
+    [SerializeField] Vector3 _equipmentBox;
+    [SerializeField] Vector3 _equipmentBoxCenter;*/
+
+    public GameObject EquipmentPrefab
+    {
+        get { return _equipmentPrefab; }
+        set { _equipmentPrefab = value; }
+    }
 
     RaycastHit _hit;
     private void OnEnable()
@@ -60,7 +69,12 @@ public class EquipmentInsertionMode : MonoBehaviour
         if(_selection != null)
         {
             if(_equipmentInstance == null)
+            {
                 _equipmentInstance = Instantiate(_equipmentPrefab,_selection);
+                /*_equipmentBox = _equipmentInstance.GetComponent<BoxCollider>().bounds.size;
+                _equipmentBoxCenter = _equipmentInstance.GetComponent<BoxCollider>().bounds.center;
+                _equipmentInstance.transform.position = new Vector3(_equipmentInstance.transform.position.x, _equipmentInstance.transform.position.y+_equipmentBox.y, _equipmentInstance.transform.position.z);*/
+            }
         }
         else if(_equipmentInstance != null)
         {
@@ -75,6 +89,7 @@ public class EquipmentInsertionMode : MonoBehaviour
             GameObject insertedItem = Instantiate(_equipmentPrefab, _selection);
             insertedItem.transform.position = _equipmentInstance.transform.position;
             insertedItem.transform.rotation = _equipmentInstance.transform.rotation;
+            //insertedItem.transform.Translate(Vector3.up * (_equipmentBox.y/2 - _equipmentBoxCenter.y));
         }
             
     }
