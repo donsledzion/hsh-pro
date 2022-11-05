@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
-    [SerializeField] Camera prefabCamera;
+    [SerializeField] public Camera prefabCamera;
     [SerializeField] private float zoomLerpSpeed = 10;
     float targetZoom;
     float zoomFactor = 3f;
