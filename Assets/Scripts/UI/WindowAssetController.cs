@@ -16,7 +16,6 @@ public class WindowAssetController : MonoBehaviour
     [SerializeField] GameObject inspectionCamera;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
-    GameObject itemPrefab;
     public TMP_InputField inputField;
 
     private void Awake()

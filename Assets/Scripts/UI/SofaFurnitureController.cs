@@ -16,8 +16,9 @@ public class SofaFurnitureController : MonoBehaviour
     [SerializeField] GameObject inspectionCamera;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
-    GameObject itemPrefab;
+    [SerializeField] GameObject prefabToFitController;
     public TMP_InputField inputField;
+
 
     private void Awake()
     {
@@ -65,7 +66,9 @@ public class SofaFurnitureController : MonoBehaviour
 
     private void FurniturePrefabToFit(ScriptableObjectsController item)
     {
-        //CurrentPrefabController.ins.Window3DSelector.ItemPrefab = item.prefab;
+        
+        prefabToFitController.SetActive(true);
+        prefabToFitController.GetComponent<EquipmentInsertionMode>().EquipmentPrefab = item.prefab;
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
     }

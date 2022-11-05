@@ -38,6 +38,7 @@ public class ModeController : MonoBehaviour
     [SerializeField] GameObject settingsWindowOfMainMenu;
     [SerializeField] GameObject exitWindowOfMainMenu;
     [SerializeField] GameObject itemDescriptionWindow;
+    [SerializeField] GameObject prefatToFit;
 
     public void Mode2D() {
 
@@ -160,6 +161,7 @@ public class ModeController : MonoBehaviour
     {   
         itemDescriptionWindow.SetActive(false);
         galeryItemsWindow.SetActive(true);
+        prefatToFit.SetActive(false);
     }
 
     public void ResetFurnitureTabs() {
@@ -187,6 +189,7 @@ public class ModeController : MonoBehaviour
         settingsWindowOfMainMenu.SetActive(false);
         exitWindowOfMainMenu.SetActive(false);
         itemDescriptionWindow.SetActive(false);
+        prefatToFit.SetActive(false);
         
         foreach (GameObject objects2D in listOf2DObjects)
         {

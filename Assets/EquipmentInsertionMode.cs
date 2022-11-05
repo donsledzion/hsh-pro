@@ -18,9 +18,9 @@ public class EquipmentInsertionMode : MonoBehaviour
     [SerializeField] LayerMask _layerMask;
     [SerializeField] LayerMask _collisionLayerMask;
     protected Transform _selection;
-/*
-    [SerializeField] Vector3 _equipmentBox;
-    [SerializeField] Vector3 _equipmentBoxCenter;*/
+    /*
+        [SerializeField] Vector3 _equipmentBox;
+        [SerializeField] Vector3 _equipmentBoxCenter;*/
 
     public GameObject EquipmentPrefab
     {
