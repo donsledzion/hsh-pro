@@ -40,12 +40,13 @@ public class ModeController : MonoBehaviour
     [SerializeField] GameObject exitWindowOfMainMenu;
     [SerializeField] GameObject itemDescriptionWindow;
     [SerializeField] GameObject prefatToFit;
+    [SerializeField] GameObject mainCamera;
 
     public void VRMode()
     {
 
         ResetAllListObjects();
-        cameraController.enabled = false;
+        mainCamera.SetActive(false);
         refToScript = builder3D.GetComponent<Builder3D>();
         refToScript.GenerateBuilding();
 
@@ -206,6 +207,7 @@ public class ModeController : MonoBehaviour
         exitWindowOfMainMenu.SetActive(false);
         itemDescriptionWindow.SetActive(false);
         prefatToFit.SetActive(false);
+        mainCamera.SetActive(true);
         
         foreach (GameObject objects2D in listOf2DObjects)
         {
