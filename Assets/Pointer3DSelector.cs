@@ -9,6 +9,8 @@ public class Pointer3DSelector : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject _itemPrefab;
 
+    [SerializeField] Camera _drawingModeCamera;
+
     public GameObject ItemPrefab {
         get
         {
@@ -26,7 +28,7 @@ public class Pointer3DSelector : MonoBehaviour
         {
             _selection = null;
         }
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var ray = GameManager.ins.CurrentCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {

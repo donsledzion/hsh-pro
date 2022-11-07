@@ -8,7 +8,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager ins { get; private set; }
-
+    
     private void Awake()
     {
         if (ins != null && ins != this)
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public Vector2 SnappedEndPoint = new Vector2(0f,0f);
     public Vector2 SnappedClosePoint = new Vector2(0f,0f);
     public Building Building;
-
+    public Camera CurrentCamera { get; set; }
 
     //here should be (for now at least) all bools that represents buttons and togglers status
 
