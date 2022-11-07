@@ -778,7 +778,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142222158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -37.8, z: 5.9}
+  m_LocalPosition: {x: 0, y: 0, z: 5.9}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 1652935253}
@@ -799,6 +799,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2793531736459382744}
+  - component: {fileID: 2793531736459382745}
+  - component: {fileID: 2793531736139545471}
   m_Layer: 0
   m_Name: Vouge - ES
   m_TagString: Untagged
@@ -821,3 +823,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2793531736459382745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793531736459382750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 83.415344, y: 78.75867, z: 76.72801}
+  m_Center: {x: 0, y: 39.34413, z: 5.480049}
+--- !u!114 &2793531736139545471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793531736459382750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thumbScale: {x: 2.254688, y: 1.8375, z: 1.748906}
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _collisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
