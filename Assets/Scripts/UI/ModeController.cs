@@ -29,6 +29,7 @@ public class ModeController : MonoBehaviour
     [SerializeField] List<GameObject> listOfMenuObjects = new List<GameObject>();
     [SerializeField] List<GameObject> listOfDecorationObjects = new List<GameObject>();
     [SerializeField] List<GameObject> MenuOfFurnitureController = new List<GameObject>();
+    [SerializeField] List<GameObject> VRMOde = new List<GameObject>();
 
     [SerializeField] SimpleCameraController cameraController;
     [SerializeField] GameObject builder3D;
@@ -39,6 +40,20 @@ public class ModeController : MonoBehaviour
     [SerializeField] GameObject exitWindowOfMainMenu;
     [SerializeField] GameObject itemDescriptionWindow;
     [SerializeField] GameObject prefatToFit;
+
+    public void VRMode()
+    {
+
+        ResetAllListObjects();
+        cameraController.enabled = false;
+        refToScript = builder3D.GetComponent<Builder3D>();
+        refToScript.GenerateBuilding();
+
+        foreach (GameObject VrObjects in VRMOde)
+        {
+            VrObjects.SetActive(true);
+        }
+    }
 
     public void Mode2D() {
 
@@ -185,6 +200,7 @@ public class ModeController : MonoBehaviour
 
     private void ResetAllListObjects()
     {
+
         galeryItemsWindow.SetActive(false);
         settingsWindowOfMainMenu.SetActive(false);
         exitWindowOfMainMenu.SetActive(false);
@@ -223,7 +239,12 @@ public class ModeController : MonoBehaviour
         foreach (GameObject decorationObject in listOfDecorationObjects)
         {
             decorationObject.SetActive(false);
-        }    
+        }
+
+        foreach (GameObject VrObjects in VRMOde)
+        {
+             VrObjects.SetActive(false);
+        }
 
     }
 }
