@@ -68,7 +68,7 @@ public class SofaFurnitureController : MonoBehaviour
     {
         
         prefabToFitController.SetActive(true);
-        prefabToFitController.GetComponent<EquipmentInsertionMode>().EquipmentPrefab = item.prefab;
+        prefabToFitController.GetComponent<EquipmentInsertionMode>().SwapPrefab(item.prefab);
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
     }

@@ -18,7 +18,7 @@ public class EquipmentItem : MonoBehaviour
     public Vector3 ThumbScale { get { return _thumbScale; } }
 
     public bool IsColliding { get { return _isColliding; }}
-    
+
 
     private void OnTriggerEnter(Collider other)
     {

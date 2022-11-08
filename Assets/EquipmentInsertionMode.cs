@@ -18,6 +18,7 @@ public class EquipmentInsertionMode : MonoBehaviour
     [SerializeField] LayerMask _layerMask;
     [SerializeField] LayerMask _collisionLayerMask;
     protected Transform _selection;
+    bool _inserting = true;
     /*
         [SerializeField] Vector3 _equipmentBox;
         [SerializeField] Vector3 _equipmentBoxCenter;*/
@@ -34,8 +35,27 @@ public class EquipmentInsertionMode : MonoBehaviour
         AssignPrefabLayerMask();
     }
 
+    public void SwapPrefab(GameObject prefab)
+    {
+        _equipmentPrefab = prefab;
+        Destroy(_equipmentInstance);
+        _equipmentInstance = null;
+        _inserting = true;
+    }
+
     void Update()
     {
+        if (!_inserting) return;
+
+        _selection = null;
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //RaycastHit hit;
+        if (Physics.Raycast(ray, out _hit, Mathf.Infinity, _layerMask))
+        {
+            _selection = _hit.transform;
+            //Debug.Log("Selection: " + _selection.gameObject.name);
+        }
+
         if (_equipmentInstance != null)
         {
             if(_hit.point != null)
@@ -56,15 +76,13 @@ public class EquipmentInsertionMode : MonoBehaviour
             {
                 RedrawMaterials(_equipmentInstance.transform, _materialGood);
             }
+
+            if (Input.GetKeyDown(KeyCode.C))
+                AbortInsertion();
+                  
+
         }
-            
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //RaycastHit hit;
-        if (Physics.Raycast(ray, out _hit, Mathf.Infinity, _layerMask))
-        {
-            _selection = _hit.transform;
-            //Debug.Log("Selection: " + _selection.gameObject.name);
-        }
+        
 
         if(_selection != null)
         {
@@ -82,6 +100,15 @@ public class EquipmentInsertionMode : MonoBehaviour
         }
     }
 
+    private void AbortInsertion()
+    {
+        _inserting = false;
+        _selection = null;
+        Destroy(_equipmentInstance);
+        _equipmentInstance = null;
+        gameObject.SetActive(false);
+    }
+
     private void InsertItem()
     {
         if(!_equipmentInstance.GetComponent<EquipmentItem>().IsColliding)
@@ -89,9 +116,8 @@ public class EquipmentInsertionMode : MonoBehaviour
             GameObject insertedItem = Instantiate(_equipmentPrefab, _selection);
             insertedItem.transform.position = _equipmentInstance.transform.position;
             insertedItem.transform.rotation = _equipmentInstance.transform.rotation;
-            //insertedItem.transform.Translate(Vector3.up * (_equipmentBox.y/2 - _equipmentBoxCenter.y));
-        }
-            
+            insertedItem.transform.rotation = _equipmentInstance.transform.rotation;
+        }            
     }
 
     private void RotateItem()
@@ -101,8 +127,10 @@ public class EquipmentInsertionMode : MonoBehaviour
 
     void DisposeOfEquipmentInstance()
     {
+        _selection = null;
         Destroy(_equipmentInstance);
-        _layerMask = new LayerMask();
+        _equipmentInstance = null;
+        //_layerMask = new LayerMask();
     }
 
     [ContextMenu("Assign Prefab Layer Mask")]
