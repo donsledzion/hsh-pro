@@ -29,6 +29,7 @@ public class ModeController : MonoBehaviour
     [SerializeField] List<GameObject> listOfMenuObjects = new List<GameObject>();
     [SerializeField] List<GameObject> listOfDecorationObjects = new List<GameObject>();
     [SerializeField] List<GameObject> MenuOfFurnitureController = new List<GameObject>();
+    [SerializeField] List<GameObject> listOfFinishingObjects = new List<GameObject>();
     [SerializeField] List<GameObject> VRMOde = new List<GameObject>();
 
     [SerializeField] SimpleCameraController cameraController;
@@ -47,8 +48,8 @@ public class ModeController : MonoBehaviour
 
         ResetAllListObjects();
         mainCamera.SetActive(false);
-        refToScript = builder3D.GetComponent<Builder3D>();
-        refToScript.GenerateBuilding();
+//        refToScript = builder3D.GetComponent<Builder3D>();
+//        refToScript.GenerateBuilding();
 
         foreach (GameObject VrObjects in VRMOde)
         {
@@ -99,6 +100,15 @@ public class ModeController : MonoBehaviour
             
     }
 
+    public void FinishingMode() {
+
+        ResetAllListObjects();
+        foreach (GameObject objects3D in listOfFinishingObjects)
+        {
+            objects3D.SetActive(true);
+        }
+    }
+
     public void ModeMenu() {
 
         ResetAllListObjects();
@@ -134,8 +144,8 @@ public class ModeController : MonoBehaviour
         ResetAllListObjects();
         ResetFurnitureTabs();
         cameraController.enabled = true;
-        refToScript = builder3D.GetComponent<Builder3D>();
-        refToScript.GenerateBuilding();
+//        refToScript = builder3D.GetComponent<Builder3D>();
+//        refToScript.GenerateBuilding();
 
         foreach (GameObject objects3D in listOfDecorationObjects)
         {
@@ -248,5 +258,9 @@ public class ModeController : MonoBehaviour
              VrObjects.SetActive(false);
         }
 
+        foreach (GameObject objects3D in listOfFinishingObjects)
+        {
+            objects3D.SetActive(false);
+        }
     }
 }
