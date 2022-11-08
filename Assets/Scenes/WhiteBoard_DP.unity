@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.24647538, g: 0.28234535, b: 0.3457032, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -580,8 +580,6 @@ MonoBehaviour:
   - {fileID: 2045661412}
   listOf3DObjects:
   - {fileID: 622058765}
-  - {fileID: 2045661412}
-  - {fileID: 613629965}
   listOfMenuObjects:
   - {fileID: 2045661412}
   - {fileID: 622058765}
@@ -595,6 +593,13 @@ MonoBehaviour:
   - {fileID: 2028033219}
   - {fileID: 658316624}
   - {fileID: 1980743077}
+  listOfFinishingObjects:
+  - {fileID: 622058765}
+  - {fileID: 2045661412}
+  - {fileID: 613629965}
+  VRMOde:
+  - {fileID: 1077441470}
+  - {fileID: 622058765}
   cameraController: {fileID: 1072276136}
   builder3D: {fileID: 311015806}
   galeryItemsWindow: {fileID: 592946653}
@@ -602,6 +607,7 @@ MonoBehaviour:
   exitWindowOfMainMenu: {fileID: 1101568942}
   itemDescriptionWindow: {fileID: 1318162439}
   prefatToFit: {fileID: 585099602}
+  mainCamera: {fileID: 1931699938}
 --- !u!1 &374718307
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +834,10 @@ PrefabInstance:
     - target: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 133480, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 429506, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1558,7 +1568,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2129458862423332191, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
   m_PrefabInstance: {fileID: 69505079}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1931699938}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be76e5f14cfee674cb30b491fb72b09b, type: 3}
@@ -2487,6 +2497,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1931699938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8048049651243689300, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
+  m_PrefabInstance: {fileID: 69505079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1933196141 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6949287380631818053, guid: 90470979de85e6745afd364e1ae1c131, type: 3}
@@ -3285,6 +3300,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1933196141}
+    - target: {fileID: 1306525387, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 370844842}
     - target: {fileID: 1307968781, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -3505,6 +3524,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1933196141}
+    - target: {fileID: 2108949211, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 370844842}
     - target: {fileID: 134541318937761018, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
