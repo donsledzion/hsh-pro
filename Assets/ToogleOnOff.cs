@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.Events;
 
-public class ToggleOnOff : MonoBehaviour
+public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
 {
 
     public delegate void ValueChanged(bool value);
@@ -14,7 +14,16 @@ public class ToggleOnOff : MonoBehaviour
     UnityEvent onToggle;
 
     [SerializeField]
+    GameObject equipmentSelection;
+
+    [SerializeField]
+    private Image backgroundImage;
+
+    [SerializeField]
     private bool _isOn = false;
+
+    private bool _gameObjectIsOn;
+
     public bool isOn
     {
         get
@@ -25,7 +34,6 @@ public class ToggleOnOff : MonoBehaviour
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("hejehejeh");
         Toggle(!isOn);
     }
 
@@ -36,6 +44,8 @@ public class ToggleOnOff : MonoBehaviour
             _isOn = value;
 
             ToggleColor(isOn);
+
+            //ToggleObject(isOn);
 
         }
 
@@ -48,10 +58,30 @@ public class ToggleOnOff : MonoBehaviour
     }
     private void ToggleColor(bool value)
     {
-       /* if (value)
-            backgroundImage.DOColor(onColor, tweenTime);
+        if (value)
+            backgroundImage.enabled = true;
         else
-            backgroundImage.DOColor(offColor, tweenTime);*/
+            backgroundImage.enabled = false;
+    }
+
+    public void ToggleObject()
+    {
+        if (_gameObjectIsOn)
+        {
+            _gameObjectIsOn = false;
+        }
+        else
+        {
+            _gameObjectIsOn = true;
+        }
+    }
+
+    private void ToggleObject(bool value)
+    {
+        if (value)
+            equipmentSelection.SetActive(true);
+        else
+            equipmentSelection.SetActive(false);
     }
 
 }

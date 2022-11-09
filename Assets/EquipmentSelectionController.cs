@@ -9,7 +9,9 @@ public class EquipmentSelectionController : MonoBehaviour
     [SerializeField] GameObject _selectedItemPrefab;
     protected Transform _selection;
     [SerializeField] Material _selectedMaterial;
-    [SerializeField] LayerMask _layerMask;    
+    [SerializeField] LayerMask _layerMask;
+
+    private bool _objectIsOn;
 
     RaycastHit _hit;
     private void Update()
@@ -100,5 +102,7 @@ public class EquipmentSelectionController : MonoBehaviour
     {
         UnselectAll();
     }
+
+
 
 }

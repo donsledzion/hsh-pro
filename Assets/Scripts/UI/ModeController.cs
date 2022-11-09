@@ -42,6 +42,13 @@ public class ModeController : MonoBehaviour
     [SerializeField] GameObject itemDescriptionWindow;
     [SerializeField] GameObject prefatToFit;
     [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject furnitureSelection;
+
+
+    public void SelectionMode() {
+
+        furnitureSelection.SetActive(true);
+    }
 
     public void VRMode()
     {
@@ -218,6 +225,7 @@ public class ModeController : MonoBehaviour
         itemDescriptionWindow.SetActive(false);
         prefatToFit.SetActive(false);
         mainCamera.SetActive(true);
+        furnitureSelection.SetActive(false);
         
         foreach (GameObject objects2D in listOf2DObjects)
         {
@@ -251,6 +259,12 @@ public class ModeController : MonoBehaviour
         foreach (GameObject decorationObject in listOfDecorationObjects)
         {
             decorationObject.SetActive(false);
+
+            if (decorationObject.name == "Furniture Tools") {
+
+                decorationObject.transform.GetChild(1).GetChild(0).GetComponent<Image>().enabled = false;
+            
+            }
         }
 
         foreach (GameObject VrObjects in VRMOde)
