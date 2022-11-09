@@ -53,16 +53,13 @@ public class DoorAssetController : MonoBehaviour
 
         g.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
         {
-            DoorPrefabToFit(item);
-        
+            DoorPrefabToFit(item);        
         });
 
         g.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
-        {
-            
+        {            
             inspectionCamera.SetActive(true);
             GetDoorPrefab(item);
-
         });
  
     }

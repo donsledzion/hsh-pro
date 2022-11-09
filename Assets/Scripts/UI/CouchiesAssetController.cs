@@ -65,7 +65,7 @@ public class CouchiesAssetController : MonoBehaviour
 
     private void FurniturePrefabToFit(ScriptableObjectsController item)
     {
-        prefabToFitController.GetComponent<EquipmentInsertionMode>().EquipmentPrefab = item.prefab;
+        prefabToFitController.GetComponent<EquipmentInsertionMode>().SwapPrefab(item.prefab);
         prefabToFitController.SetActive(true);
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
