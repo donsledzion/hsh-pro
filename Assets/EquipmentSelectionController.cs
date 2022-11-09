@@ -49,16 +49,7 @@ public class EquipmentSelectionController : MonoBehaviour
         selectedItem.SelectedGameObject = item.gameObject;
         item.gameObject.SetActive(false);
         _selectedItems2.Add(selectedItem);
-
     }
-
-    /*public void SelectItem(EquipmentItem item)
-    {
-        if (_selectedItems.Contains(item))
-            UnselectItem(item);
-        else
-            _selectedItems.Add(item);
-    }*/
 
     public void UnselectItem(SelectedItem item)
     {
@@ -67,31 +58,29 @@ public class EquipmentSelectionController : MonoBehaviour
         _selectedItems2.Remove(item);
     }
 
+    [ContextMenu("UnselectAll")]
     public void UnselectAll()
     {
-        _selectedItems.Clear();
+        foreach(SelectedItem item in _selectedItems2)
+        {
+            item.SelectedGameObject.SetActive(true);
+            Destroy(item.Phantom);
+        }
+        _selectedItems2.Clear();
     }
 
 
     [ContextMenu("Delete Selected")]
-    public void DeletedSelected()
+    public void DeleteSelected()
     {
         foreach (SelectedItem item in _selectedItems2)
         {
-            UnselectItem(item);
-            Destroy(item.gameObject);
+            item.SelectedGameObject.SetActive(true);
+            Destroy(item.Phantom);
+            Destroy(item.SelectedGameObject);
         }
+        _selectedItems2.Clear();
     }
-
-    //[ContextMenu("Delete Selected")]
-    /*public void DeletedSelected()
-    {
-        foreach(EquipmentItem item in _selectedItems)
-        {
-            UnselectItem(item);
-            Destroy(item.gameObject);            
-        }
-    }*/
 
     void RedrawMaterials(Transform _trasform, Material material)
     {
@@ -99,6 +88,17 @@ public class EquipmentSelectionController : MonoBehaviour
         {
             renderer.material = material;
         }
+    }
+
+    public void Toggle()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
+
+
+    private void OnDisable()
+    {
+        UnselectAll();
     }
 
 }
