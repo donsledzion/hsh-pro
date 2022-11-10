@@ -17,6 +17,11 @@ public class FloorPlane : MonoBehaviour
     [SerializeField] float _scaleX = 1f;
     [SerializeField] float _scaleY = 1f;
 
+    
+    [SerializeField] float shaderTiling = 1f;
+
+
+
     [SerializeField] Material _spareMaterial;
 
     private void Awake()
@@ -27,10 +32,12 @@ public class FloorPlane : MonoBehaviour
 
     private void Update()
     {
+        
         Vector2 someScale = AdjustScale(_floor.Points);
         _material.mainTextureScale = new Vector2(1/_scaleX,1/_scaleY);//new Vector2(transform.lossyScale.x / _scaleX, transform.lossyScale.z / _scaleY);
-        if (Input.GetKeyDown(KeyCode.R))
-            UpdateUV();
+        //_material.SetFloat("_Tiling",shaderTiling);
+       /* if (Input.GetKeyDown(KeyCode.R))
+            UpdateUV();*/
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("Generating mesh...(Update key called)");
