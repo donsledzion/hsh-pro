@@ -26,4 +26,10 @@ public class InteractionsAdder : MonoBehaviour
             //rb.mass = 500;
         }            
     }
+
+    public void InteracTheScene()
+    {
+        CollectAllItems();
+        MakeItemsInteractable();
+    }
 }

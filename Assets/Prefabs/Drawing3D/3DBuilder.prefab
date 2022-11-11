@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 389612657073832361}
   - component: {fileID: 389612657073832360}
   - component: {fileID: 311015809}
+  - component: {fileID: 6662133772295853417}
   m_Layer: 0
   m_Name: 3DBuilder
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   _sectionWindowjambPrefab: {fileID: 8435642805451370783, guid: 26403aac1fdb08742bfaaf0b5fa836f0, type: 3}
   _ceilingSectionPrefab: {fileID: 2650401843508665412, guid: e439666e97e7cf24294668f736cc5b45, type: 3}
   _floorSectionPrefab: {fileID: 2650401843508665412, guid: 30408ff4ea285f148ba19b352a8ec499, type: 3}
+  _playerTransform: {fileID: 0}
 --- !u!114 &311015809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,3 +65,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 10
   shouldRotate: 0
+--- !u!114 &6662133772295853417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389612657073832342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93162a28a675b6a44989c08a2f5b6857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalScale: {x: 1, y: 1, z: 1}
+  targetScale: {x: 0.01, y: 0.01, z: 0.01}
