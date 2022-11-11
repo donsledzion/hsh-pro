@@ -47,9 +47,12 @@ public class Pointer3DSelector : MonoBehaviour
     private void FitItemIntoJamb()
     {
         _selection.GetComponent<MeshRenderer>().enabled = false;
+        _selection.GetComponent<BoxCollider>().enabled = false;
+        
         GameObject doorInstance = Instantiate(_itemPrefab, _selection.GetComponentInParent<WallSectionAlt>().transform);
         Vector3 prefabSize = doorInstance.GetComponent<BoxCollider>().size;
         Vector3 jambSize = _selection.GetComponent<BoxCollider>().size;
+        doorInstance.GetComponent<BoxCollider>().enabled = false;
 
         Vector3 scaleFactor = _selection.GetComponentInParent<PhantomScaler>().transform.localScale;
         Debug.Log("Scale factor.z: " + scaleFactor.z + " | jambSize.z: " + jambSize.z + " | prefabSize.z: " + prefabSize.z);
