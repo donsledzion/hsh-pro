@@ -18,6 +18,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     [SerializeField] private CornersFurnitureController invertoryCornersFurniture;
     [SerializeField] private ArmchairFurnitureController invertoryArmchairFurniture;
     [SerializeField] private CouchiesAssetController invertoryCoachiesFurniture;
+    [SerializeField] private GameObject surfaceSelector;
     [SerializeField] private Camera previewCamera;
 
 
@@ -135,6 +136,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
             CurrentPrefabController.ins.Door3DSelector.ItemPrefab = itemSO.prefab;
+            surfaceSelector.GetComponent<FittingModeSwitcher>().WindowsFittingMode();
             itemViewer.SetActive(false);
             destroyPrefab();
 
@@ -153,6 +155,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
             CurrentPrefabController.ins.Door3DSelector.ItemPrefab = itemSO.prefab;
+            surfaceSelector.GetComponent<FittingModeSwitcher>().DoorFittingMode();
             itemViewer.SetActive(false);
             destroyPrefab();
         });

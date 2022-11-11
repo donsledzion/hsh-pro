@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TextureAssetController : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class TextureAssetController : MonoBehaviour
     [SerializeField] GameObject inspectionCamera;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
+    [SerializeField] GameObject surfaceSelector;
+
+
+
     GameObject itemPrefab;
     public TMP_InputField inputField;
 
@@ -22,6 +27,18 @@ public class TextureAssetController : MonoBehaviour
     {
         Init();
     }
+
+/*    private void Update()
+    {
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log("Its over UI elements");
+        }
+        else
+        {
+            Debug.Log("Its NOT over UI elements");
+        }
+    }*/
 
     private void Init()
     {
@@ -52,6 +69,7 @@ public class TextureAssetController : MonoBehaviour
         {
             TextureToApply(item);
 
+
         });
 
         g.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
@@ -63,7 +81,9 @@ public class TextureAssetController : MonoBehaviour
 
     private void TextureToApply(ScriptableObjectsController item)
     {
-        
+
+        surfaceSelector.GetComponent<FittingModeSwitcher>().WallsPaintingMode();
+
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
         CurrentMaterialController.ins.SurfaceSelector.SelectionMaterial = item.material;

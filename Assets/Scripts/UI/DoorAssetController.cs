@@ -17,6 +17,7 @@ public class DoorAssetController : MonoBehaviour
     [SerializeField] GameObject inspectionCamera;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
+    [SerializeField] GameObject surfaceSelector;
     GameObject itemPrefab;
     public TMP_InputField inputField;
 
@@ -66,8 +67,8 @@ public class DoorAssetController : MonoBehaviour
 
     private void DoorPrefabToFit(ScriptableObjectsController item)
     {
-        //item3DViewer.SetActive(true);
-        
+        surfaceSelector.GetComponent<FittingModeSwitcher>().DoorFittingMode();
+
         CurrentPrefabController.ins.Door3DSelector.ItemPrefab = item.prefab;
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);

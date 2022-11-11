@@ -31,6 +31,7 @@ public class ModeController : MonoBehaviour
     [SerializeField] List<GameObject> MenuOfFurnitureController = new List<GameObject>();
     [SerializeField] List<GameObject> listOfFinishingObjects = new List<GameObject>();
     [SerializeField] List<GameObject> VRMOde = new List<GameObject>();
+    [SerializeField] List<GameObject> surfaceSelectionMode = new List<GameObject>();
 
     [SerializeField] SimpleCameraController cameraController;
     [SerializeField] GameObject builder3D;
@@ -42,12 +43,16 @@ public class ModeController : MonoBehaviour
     [SerializeField] GameObject itemDescriptionWindow;
     [SerializeField] GameObject prefatToFit;
     [SerializeField] GameObject mainCamera;
-    [SerializeField] GameObject furnitureSelection;
 
 
-    public void SelectionMode() {
 
-        furnitureSelection.SetActive(true);
+    public void FurnitureSelectionMode() {
+
+        foreach (GameObject surface in surfaceSelectionMode)
+        {
+            if(surface.name == "EquipmentSelectionController")
+            surface.SetActive(true);
+        }
     }
 
     public void VRMode()
@@ -225,9 +230,15 @@ public class ModeController : MonoBehaviour
         itemDescriptionWindow.SetActive(false);
         prefatToFit.SetActive(false);
         mainCamera.SetActive(true);
-        furnitureSelection.SetActive(false);
-        
-        foreach (GameObject objects2D in listOf2DObjects)
+
+        foreach (GameObject surface in surfaceSelectionMode)
+        {
+
+            surface.SetActive(false);
+
+        }
+
+            foreach (GameObject objects2D in listOf2DObjects)
         {
             objects2D.SetActive(false);
             switch (objects2D.name)

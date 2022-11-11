@@ -5,9 +5,9 @@ using UnityEngine;
 public class FittingModeSwitcher : MonoBehaviour
 {
 
-    [SerializeField] GameObject _fittingDoorTool;
-    [SerializeField] GameObject _fittingWindowsTool;
-    [SerializeField] GameObject _surfaceSelector;
+    [SerializeField] public GameObject _fittingDoorTool;
+    [SerializeField] public GameObject _fittingWindowsTool;
+    [SerializeField] public GameObject _surfaceSelector;
 
     public void DoorFittingMode()
     {

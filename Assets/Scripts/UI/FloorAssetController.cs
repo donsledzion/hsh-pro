@@ -16,6 +16,7 @@ public class FloorAssetController : MonoBehaviour
     [SerializeField] GameObject inspectionCamera;
     [SerializeField] GameObject item3DViewer;
     [SerializeField] GameObject itemsGallery;
+    [SerializeField] GameObject surfaceSelector;
     GameObject itemPrefab;
     public TMP_InputField inputField;
 
@@ -64,6 +65,8 @@ public class FloorAssetController : MonoBehaviour
 
     private void FloorPrefabToFit(ScriptableObjectsController item)
     {
+        //Not ready yet :D
+        //surfaceSelector.GetComponent<FittingModeSwitcher>().FloorFittingMode();
         CurrentPrefabController.ins.Window3DSelector.ItemPrefab = item.prefab;
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
