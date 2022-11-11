@@ -180,10 +180,6 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1870348592}
-    - target: {fileID: 2129458862423332191, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8048049651243689289, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -231,14 +227,6 @@ PrefabInstance:
     - target: {fileID: 8048049651243689300, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
       propertyPath: m_Name
       value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 8048049651243689300, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8048049651243689302, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
@@ -680,8 +668,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 10
+  m_Color: {r: 0.9245283, g: 0.8086963, b: 0.49279103, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1356,18 +1344,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1440946266, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4649979536745330257, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
       propertyPath: _pcCamera
       value: 
       objectReference: {fileID: 69505080}
-    - target: {fileID: 4649979536745330259, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4649979536844877778, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -1420,10 +1400,6 @@ PrefabInstance:
       propertyPath: _pcCamera
       value: 
       objectReference: {fileID: 69505080}
-    - target: {fileID: 4649979537190472715, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
 --- !u!1 &961645712 stripped
@@ -2222,7 +2198,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763186570}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2959,7 +2935,7 @@ PrefabInstance:
     - target: {fileID: 3081492150457886745, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
       propertyPath: surfaceSelector
       value: 
-      objectReference: {fileID: 1667602147}
+      objectReference: {fileID: 1125644730}
     - target: {fileID: 3081492150457886745, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
       propertyPath: inspectionCamera
       value: 
