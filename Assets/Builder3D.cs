@@ -11,6 +11,7 @@ public class Builder3D : MonoBehaviour
     [SerializeField] GameObject _ceilingSectionPrefab;
     [SerializeField] GameObject _floorSectionPrefab;
     [SerializeField] Transform _playerTransform;
+    [SerializeField] Transform _enviornmentTransform;
     
     void GenerateStorey(Storey storey)
     {
@@ -109,7 +110,7 @@ public class Builder3D : MonoBehaviour
         Debug.Log("ERASING DRAWINGS...");
         foreach (Transform _transform in gameObject.GetComponentsInChildren<Transform>())
         {
-            if(_transform != transform && _transform.parent == transform && _transform != _playerTransform)
+            if(_transform != transform && _transform.parent == transform && _transform != _playerTransform && _transform != _enviornmentTransform)
             {
                 Destroy(_transform.gameObject);
             }
