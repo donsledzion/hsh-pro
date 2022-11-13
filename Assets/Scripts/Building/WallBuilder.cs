@@ -37,7 +37,7 @@ public class WallBuilder : DrawWithLines
         _drawing2DController.ClearLiveLine();
         Wall wall = _drawing2DController.ApplyWallToBuilding();
         _drawing2DController.StoreWall(wall);
-        CheckForLinesToBreak();
+        //CheckForLinesToBreak();
         _drawing2DController.ClearCurrentLine();
         
     }
