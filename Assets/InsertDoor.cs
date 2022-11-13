@@ -10,6 +10,11 @@ public class InsertDoor : Selector2D
 
     Vector2 _snappedPoint;
 
+    public float DoorWidth => float.Parse(_doorWidthInput.text, System.Globalization.NumberStyles.Float);
+    public float DoorHeight => float.Parse(_doorHeightInput.text, System.Globalization.NumberStyles.Float);
+
+    [SerializeField] TMPro.TMP_InputField _doorHeightInput;
+    [SerializeField] TMPro.TMP_InputField _doorWidthInput;
     protected override void Update()
     {
         Vector2 mouseOverCanvas = CanvasController.ScreenPointToCanvasCoords(Input.mousePosition);
@@ -48,7 +53,9 @@ public class InsertDoor : Selector2D
     void TryFitDoors(WallSection wallSection, Vector2 position)
     {
         Doorjamb jamb = new Doorjamb();
-        jamb.SetAnchors(wallSection, position);
+
+        jamb.SetDoorJambParameters(DoorHeight, DoorWidth);
+        jamb.SetAnchors(wallSection, position, DoorWidth);
         Wall newWall = wallSection.Wall.InsertJambIntoSection(wallSection, jamb);
         WallSectionDeleter.DeleteSection(wallSection);
         GameManager.ins.Building.CurrentStorey.AddNewWall(newWall);

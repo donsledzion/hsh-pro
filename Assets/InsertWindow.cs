@@ -79,7 +79,7 @@ public class InsertWindow : Selector2D
         
         jamb.SetWindowJambParameters(WindowHeight, WindowWidth, WindowsillElevation);
         Debug.Log("New Windowjamb.height :" + jamb.Height);
-        jamb.SetAnchors(wallSection, position);
+        jamb.SetAnchors(wallSection, position, WindowWidth);
         Wall newWall = wallSection.Wall.InsertJambIntoSection(wallSection, jamb);
         WallSectionDeleter.DeleteSection(wallSection);
         GameManager.ins.Building.CurrentStorey.AddNewWall(newWall);

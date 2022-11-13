@@ -15,6 +15,12 @@ namespace Walls2D
             _endPoint = new BasePoint();
         }
 
+        public void SetDoorJambParameters(float height, float width)
+        {
+            _width = width;
+            _height = height;
+        }
+
         public override WallSection Clone()
         {
             return new Doorjamb(_width,_height,_startPoint.Position,_endPoint.Position);
