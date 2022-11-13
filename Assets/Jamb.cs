@@ -15,7 +15,7 @@ public abstract class Jamb : WallSection
     public void SetAnchors(WallSection wallSection, Vector2 position)
     {
         Vector2 wallVersor = (wallSection.EndPoint.Position - wallSection.StartPoint.Position).normalized;
-        StartPoint.Position = position - wallVersor * _height / 4f;
-        EndPoint.Position = position + wallVersor * _height / 4f;
+        StartPoint.Position = position - wallVersor * InsertWindow.Instance.WindowWidth/2f;
+        EndPoint.Position = position + wallVersor * InsertWindow.Instance.WindowWidth / 2f;
     }
 }

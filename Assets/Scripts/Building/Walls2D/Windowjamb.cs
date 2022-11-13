@@ -18,6 +18,13 @@ namespace Walls2D
             _endPoint = new BasePoint();
         }
 
+        public void SetWindowJambParameters(float height, float width, float windowsill)
+        {
+            _width = width;
+            _height = height;
+            _windowsill = windowsill;
+        }
+
         public override WallSection Clone()
         {
             return new Windowjamb(_width,_height,_windowsill,_startPoint.Position,_endPoint.Position);
