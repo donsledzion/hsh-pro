@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 928901701
+CRC: 4162738639
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 75af0766c4629938576a1340f5ef42ac
+    Hash: 7419e62c436140dee60b3afdfc7a7c53
   TypeTreeHash:
     serializedVersion: 2
-    Hash: da921d4c80b0bd6d1343e8acb0bc0432
+    Hash: 34b391515a1a73cf1070e7c641968b7b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -34,12 +34,24 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: cb7b2c855306a0c4f962de709fb177ee, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: b93b6a877adcbf94c89a9d6e0c0e844d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ffefbea063cab884ca33e5a449e5c22c, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
-SerializeReferenceClassIdentifiers: []
+SerializeReferenceClassIdentifiers:
+- AssemblyName: SteamVR
+  ClassName: Valve.VR.InteractionSystem.HandEvent
+- AssemblyName: SteamVR
+  ClassName: Valve.VR.SteamVR_ActionSet
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent
 Assets:
 - Assets/Prefabs/Furniture/Soft/Couchies/Ania 3K/GaleryScriptableObjects.asset
 Dependencies: []

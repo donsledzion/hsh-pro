@@ -18,6 +18,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     [SerializeField] private CornersFurnitureController invertoryCornersFurniture;
     [SerializeField] private ArmchairFurnitureController invertoryArmchairFurniture;
     [SerializeField] private CouchiesAssetController invertoryCoachiesFurniture;
+    [SerializeField] private BedsAssetController invertoryBedsFurniture;
     [SerializeField] private GameObject surfaceSelector;
     [SerializeField] private Camera previewCamera;
 
@@ -42,10 +43,27 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         invertorySofaFurniture.OnItemSelected += invertoryItems_OnItemSelectedSofaFurniture;
         invertoryCornersFurniture.OnItemSelected += invertoryItems_OnItemSelectedCornersFurniture;
         invertoryArmchairFurniture.OnItemSelected += invertoryItems_OnItemSelectedArmchairsFurniture;
-        invertoryCoachiesFurniture.OnItemSelected += invertoryItems_OnItemCoachiesSofaFurniture;
+        invertoryCoachiesFurniture.OnItemSelected += invertoryItems_OnItemCoachiesFurniture;
+        invertoryBedsFurniture.OnItemSelected += invertoryItems_OnItemBedsFurniture;
     }
 
-    private void invertoryItems_OnItemCoachiesSofaFurniture(object sender, ScriptableObjectsController itemSO)
+    private void invertoryItems_OnItemBedsFurniture(object sender, ScriptableObjectsController itemSO)
+    {
+        destroyPrefab();
+        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
+        furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
+        description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
+        previewCamera.orthographicSize = 1.5f;
+
+        this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
+
+            itemViewer.SetActive(false);
+            destroyPrefab();
+
+        });
+    }
+
+    private void invertoryItems_OnItemCoachiesFurniture(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
         furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
@@ -64,7 +82,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     private void invertoryItems_OnItemSelectedArmchairsFurniture(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
-        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.6f, 10003), Quaternion.identity);
+        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
         furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.5f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
         previewCamera.orthographicSize = 1.5f;
