@@ -20,7 +20,7 @@ public class EquipmentItem : MonoBehaviour
     public bool IsColliding { get { return _isColliding; }}
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         Debug.Log("Some collision entered");
         if (_collisionLayer == (_collisionLayer | (1 << other.gameObject.layer)))
