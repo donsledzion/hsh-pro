@@ -2916,6 +2916,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8464ee590dad9744a4e5114b0f4aea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showSunConfigMenu:
+    actionPath: /actions/default/in/Right_B
+    needsReinit: 0
+  inputSource: 2
+  _configSpotTransform: {fileID: 218651886339583306}
 --- !u!1001 &6478270558954330093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2931,9 +2936,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: SunlightConfigSpot
       objectReference: {fileID: 0}
+    - target: {fileID: 6552665420214925988, guid: 097220112df4ef84ba6f0e06c7ec2960, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6552665420214925991, guid: 097220112df4ef84ba6f0e06c7ec2960, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552665420214925991, guid: 097220112df4ef84ba6f0e06c7ec2960, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552665420214925991, guid: 097220112df4ef84ba6f0e06c7ec2960, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552665420214925991, guid: 097220112df4ef84ba6f0e06c7ec2960, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6552665420214925991, guid: 097220112df4ef84ba6f0e06c7ec2960, type: 3}
       propertyPath: m_LocalPosition.x
