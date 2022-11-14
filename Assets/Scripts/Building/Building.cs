@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.InteropServices.ComTypes;
+using System.Xml.Serialization;
 using UnityEngine;
 using Walls2D;
 
@@ -8,7 +11,8 @@ public class Building
     string _name;
     List<Storey> _storeys = new List<Storey>();
     List<Stairs> _stairs = new List<Stairs>();
-    
+
+    [XmlIgnore]
     public Storey CurrentStorey { get; private set; }
 
     public List<Storey> Storeys { get { return _storeys; } }
@@ -68,5 +72,27 @@ public class Building
         foreach (Stairs stair in _stairs)
             stairs += stair.ToString() + "\n";
         return basics + stairs ;
+    }
+        
+    public void SerializeToXML()
+    {
+        using (var stream = new FileStream(@"D:\Serialization\YourFile.xml", FileMode.Create))
+        {
+            var XML = new XmlSerializer(typeof(Building));
+
+            XML.Serialize(stream, this);
+        }
+        foreach (Storey storey in _storeys)
+        {
+            //storey.SerializeToXML();
+
+        }
+
+        
+
+        foreach (Stairs stairs in _stairs)
+        {
+            //stairs.SerlializeToXML();
+        }
     }
 }

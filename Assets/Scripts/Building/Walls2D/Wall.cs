@@ -144,19 +144,6 @@ namespace Walls2D
             _wallSections = sections.ToArray();
         }
 
-        public static XElement Serialize(Wall wall)
-        {
-            return new XElement("wall",
-                new XAttribute("type", wall.WallType),
-                new XElement("sections"),
-                from section in wall.WallSections
-                select new XElement("section",
-                    new XElement("start", section.StartPoint),
-                    new XElement("end", section.EndPoint)
-                    )
-                );
-        }
-
         public override string ToString()
         {
             string strSections = "Sections: ";

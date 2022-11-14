@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class BuildingSerializer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [ContextMenu("Serialize Building")]
+    void SerializeBuilding()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager.ins.Building.SerializeToXML();
     }
 }

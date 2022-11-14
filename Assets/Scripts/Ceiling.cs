@@ -1,7 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using Walls2D;
+
+[XmlType("ceiling-section")]
+[Serializable]
 public class Ceiling
 {
     float _thickness;
@@ -9,9 +14,28 @@ public class Ceiling
     Vector2[] _points;
 
 
-    public float Thickness { get { return _thickness; } }
-    public float TopLevel { get { return _topLevel; } }
-    public Vector2[] Points { get { return _points; } }
+    public float Thickness { get { return _thickness; }
+        set
+        {
+            _thickness = value;
+        } }
+    public float TopLevel { get { return _topLevel; }
+        set
+        {
+            _topLevel = value;
+        } }
+    public Vector2[] Points { get { return _points; }
+        set
+        {
+            _points = value;
+        } }
+
+    public Ceiling()
+    {
+        _thickness = 30f;
+        _topLevel = 0f;
+
+    }
 
     public Ceiling(float thickness = 30f, float topLevel = 0f)
     {

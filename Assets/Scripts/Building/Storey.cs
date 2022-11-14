@@ -1,5 +1,7 @@
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using Walls2D;
 public class Storey
@@ -50,13 +52,13 @@ public class Storey
     public uint Number
     {
         get { return _number; }
-        private set { _number = value; }
+        set { _number = value; }
     }
 
     public string Name
     {
         get { return _name; }
-        private set { _name = value; }
+        set { _name = value; }
     }
 
     public float Elevation
@@ -143,5 +145,12 @@ public class Storey
                 ceilings += ceiling.ToString();
         }
         return basic + walls + ceilings;
+    }
+
+    public XmlSerializer SerializeToXML()
+    {
+        var XML = new XmlSerializer(typeof(Storey));
+
+        return XML;
     }
 }
