@@ -170,7 +170,7 @@ public class ModeController : MonoBehaviour
         ResetFurnitureTabs();
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
-            if (furnitureTab.name == "Main Tab Area") furnitureTab.SetActive(true);
+            if (furnitureTab.name == "Menu Main Tab Area") furnitureTab.SetActive(true);
         }
     }
 
@@ -179,7 +179,7 @@ public class ModeController : MonoBehaviour
         ResetFurnitureTabs();
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
-            if (furnitureTab.name == "Soft Furniture Tab Area") {
+            if (furnitureTab.name == "Menu Soft Furniture Tab Area" || furnitureTab.name == "Galery Soft Furniture") {
                 furnitureTab.SetActive(true);
             }
         }
@@ -191,8 +191,21 @@ public class ModeController : MonoBehaviour
         ResetFurnitureTabs();
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
-            if (furnitureTab.name == "Furniture Tab Area") furnitureTab.SetActive(true);
+            if (furnitureTab.name == "Menu Furniture Tab Area") furnitureTab.SetActive(true);
         }
+    }
+
+    public void MenuOfBoardFurniture_On()
+    {
+        ResetFurnitureTabs();
+        foreach (GameObject furnitureTab in MenuOfFurnitureController)
+        {
+            if (furnitureTab.name == "Menu Board Furniture" || furnitureTab.name == "Gaalery Board Furniture")
+            {
+                furnitureTab.SetActive(true);
+            }
+        }
+
     }
 
     public void FurnituresTabs()
