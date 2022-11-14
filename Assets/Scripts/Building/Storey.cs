@@ -70,7 +70,7 @@ public class Storey
     public float Height
     {
         get { return _height; }
-        set { _elevation = value; }
+        set { _height = value; }
     }
 
     public Wall AddNewWall()

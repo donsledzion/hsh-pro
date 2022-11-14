@@ -19,8 +19,6 @@ public class Building
     public Building()
     {
         _name = "Default building";
-        _storeys.Add(new Storey());
-        SetCurrentStorey(_storeys[0]);
     }
     public Building(string buildingName, string storeyName = "Default floor", float elevation = 0f, float height = 320f)
     {
@@ -50,6 +48,7 @@ public class Building
         
     public void AddStoreySimple(bool seAsCurrent = true)
     {
+        Debug.Log("Adding simple storey");
         string name = "Storey_" + (_storeys.Count + 1);
         float elevation = _storeys[_storeys.Count - 1].Elevation + _storeys[_storeys.Count - 1].Height;
         float height = _storeys[_storeys.Count - 1].Height;
@@ -74,25 +73,26 @@ public class Building
         return basics + stairs ;
     }
         
-    public void SerializeToXML()
+    public void SerializeToXML(string path)
     {
-        using (var stream = new FileStream(@"D:\Serialization\YourFile.xml", FileMode.Create))
+        using (var stream = new FileStream(path, FileMode.Create))
         {
             var XML = new XmlSerializer(typeof(Building));
 
             XML.Serialize(stream, this);
         }
-        foreach (Storey storey in _storeys)
-        {
-            //storey.SerializeToXML();
+    }
 
-        }
+    public static Building DeserializeFromXML(string path)
+    {
+        Building building = null;            
 
-        
+        XmlSerializer serializer = new XmlSerializer(typeof(Building));
 
-        foreach (Stairs stairs in _stairs)
-        {
-            //stairs.SerlializeToXML();
-        }
+        StreamReader reader = new StreamReader(path);
+        building = (Building)serializer.Deserialize(reader);
+        Debug.Log(building.ToString());
+        building.SetCurrentStorey(building.Storeys[0]);
+        return building;
     }
 }

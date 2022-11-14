@@ -11,6 +11,9 @@ using UnityEngine.UIElements;
 namespace Walls2D
 {
     [XmlInclude(typeof(SectionStraight))]
+    [XmlInclude(typeof(Jamb))]
+    [XmlInclude(typeof(Doorjamb))]
+    [XmlInclude(typeof(Windowjamb))]
     [XmlType("wall-section")]
     [Serializable]
     public abstract class WallSection
