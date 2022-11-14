@@ -53,18 +53,21 @@ public class CanvasController : MonoBehaviour
         return new Vector2(outCoords.x + GameManager.ins.DrawingCanvasBackgroundLBCorner.x, outCoords.y + GameManager.ins.DrawingCanvasBackgroundLBCorner.y);
     }
 
+    [ContextMenu("Reset Canvas")]
     public void ResetCanvas()
     {
         ResetCanvasPosition();
         ResetCanvasScale();
     }
 
+    [ContextMenu("Reset Canvas Position")]
     public void ResetCanvasPosition()
     {
         RectTransform mainRect = mainCanvas.GetComponent<RectTransform>();
         drawingCanvas.transform.position = new Vector3(mainRect.rect.width / 2, mainRect.rect.height / 2, 0);
     }
 
+    [ContextMenu("Reset Canvas Scale")]
     public void ResetCanvasScale()
     {
         GameManager.ins.Zoom = 1f;

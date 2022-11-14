@@ -6,6 +6,20 @@ using TMPro;
 
 public class WhiteboardController : MonoBehaviour
 {
+    public static WhiteboardController Instance;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     [SerializeField]
     private GameObject _backGroundWhiteboard;
 

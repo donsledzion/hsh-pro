@@ -577,14 +577,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
@@ -857,14 +857,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
@@ -1647,7 +1647,7 @@ GameObject:
   - component: {fileID: 3678063056304448964}
   - component: {fileID: 3678063056304448965}
   m_Layer: 5
-  m_Name: Name Of Storey
+  m_Name: Name Of Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1983,6 +1983,7 @@ GameObject:
   - component: {fileID: 3678063056390168841}
   - component: {fileID: 3678063056390168846}
   - component: {fileID: 3678063056390168847}
+  - component: {fileID: 4735483708330300050}
   m_Layer: 5
   m_Name: Modal Window Box
   m_TagString: Untagged
@@ -2110,6 +2111,21 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &4735483708330300050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678063056390168845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db92659d9f9143c4c9f6f2455cf3488e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputBuildingName: {fileID: 3678063056304448965}
+  _inputSheetWidth: {fileID: 3678063055472855542}
+  _inputSheetHeight: {fileID: 3678063055640659083}
 --- !u!1 &3678063056410142959
 GameObject:
   m_ObjectHideFlags: 0

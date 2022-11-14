@@ -1,9 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class BuildingCreator : MonoBehaviour
 {
+    public static BuildingCreator Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     [SerializeField] Building _building;
 
     void Start()
@@ -12,7 +27,7 @@ public class BuildingCreator : MonoBehaviour
     }
 
     [ContextMenu("Create New Building")]
-    void CreateNewBuilding()
+    public void CreateNewBuilding()
     {
         if(_building == null)
         {
