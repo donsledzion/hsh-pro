@@ -601,6 +601,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93162a28a675b6a44989c08a2f5b6857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &352809852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 352809852, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+  m_PrefabInstance: {fileID: 1165672499423667748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &356092363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,6 +1879,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1972357464308984572, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
   m_PrefabInstance: {fileID: 1165672499423667748}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1068347855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1068347855, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+  m_PrefabInstance: {fileID: 1165672499423667748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1068347857 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1068347857, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+  m_PrefabInstance: {fileID: 1165672499423667748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068347855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16bfe8d653683cc49b882f6c9cf9901a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1072276136 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2129458862423332191, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}
@@ -3329,6 +3350,18 @@ PrefabInstance:
       propertyPath: inspectionCamera
       value: 
       objectReference: {fileID: 1826868301}
+    - target: {fileID: 1068347857, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+      propertyPath: item3DViewer
+      value: 
+      objectReference: {fileID: 1318162439}
+    - target: {fileID: 1068347857, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+      propertyPath: inspectionCamera
+      value: 
+      objectReference: {fileID: 1826868301}
+    - target: {fileID: 1068347857, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+      propertyPath: prefabToFitController
+      value: 
+      objectReference: {fileID: 585099602}
     - target: {fileID: 1153907043, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
       propertyPath: item3DViewer
       value: 
@@ -3642,6 +3675,10 @@ PrefabInstance:
       propertyPath: invertoryCoachiesFurniture
       value: 
       objectReference: {fileID: 428621980}
+    - target: {fileID: 1961267070160392063, guid: f3e785f783c21864883973449dc35288, type: 3}
+      propertyPath: invertoryLivingRoomFurniture
+      value: 
+      objectReference: {fileID: 1068347857}
     - target: {fileID: 1961267070304113088, guid: f3e785f783c21864883973449dc35288, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3931,7 +3968,11 @@ PrefabInstance:
     - target: {fileID: 1000064857, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1153907041}
+      objectReference: {fileID: 1068347855}
+    - target: {fileID: 1000064857, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 370844842}
     - target: {fileID: 1000064857, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -3952,6 +3993,10 @@ PrefabInstance:
       propertyPath: objectsToSwap.Array.data[0]
       value: 
       objectReference: {fileID: 1675916538}
+    - target: {fileID: 1147433247, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: objectsToSwap.Array.data[1]
+      value: 
+      objectReference: {fileID: 352809852}
     - target: {fileID: 1260336646, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
