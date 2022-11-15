@@ -34,10 +34,8 @@ public class FloorPlane : MonoBehaviour
     {
         
         Vector2 someScale = AdjustScale(_floor.Points);
-        _material.mainTextureScale = new Vector2(1/_scaleX,1/_scaleY);//new Vector2(transform.lossyScale.x / _scaleX, transform.lossyScale.z / _scaleY);
-        //_material.SetFloat("_Tiling",shaderTiling);
-       /* if (Input.GetKeyDown(KeyCode.R))
-            UpdateUV();*/
+        _material.mainTextureScale = new Vector2(1/_scaleX,1/_scaleY);
+        
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("Generating mesh...(Update key called)");

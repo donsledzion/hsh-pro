@@ -19,10 +19,7 @@ public class EquipmentInsertionMode : MonoBehaviour
     [SerializeField] LayerMask _collisionLayerMask;
     protected Transform _selection;
     bool _inserting = true;
-    /*
-        [SerializeField] Vector3 _equipmentBox;
-        [SerializeField] Vector3 _equipmentBoxCenter;*/
-
+    
     public GameObject EquipmentPrefab
     {
         get { return _equipmentPrefab; }
@@ -49,11 +46,9 @@ public class EquipmentInsertionMode : MonoBehaviour
 
         _selection = null;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //RaycastHit hit;
         if (Physics.Raycast(ray, out _hit, Mathf.Infinity, _layerMask))
         {
             _selection = _hit.transform;
-            //Debug.Log("Selection: " + _selection.gameObject.name);
         }
 
         if (_equipmentInstance != null)
@@ -64,10 +59,6 @@ public class EquipmentInsertionMode : MonoBehaviour
                     _hit.point.x,
                     GameManager.ins.Building.CurrentStorey.Elevation ,
                     _hit.point.z);
-            if (Input.GetKeyDown(KeyCode.R))
-                RotateItem();
-            if (Input.GetMouseButtonDown(0))
-                InsertItem();
             if(_equipmentInstance.GetComponent<EquipmentItem>().IsColliding)
             {                
                 RedrawMaterials(_equipmentInstance.transform, _materialBad);
@@ -79,6 +70,10 @@ public class EquipmentInsertionMode : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.C))
                 AbortInsertion();
+            if (Input.GetKeyDown(KeyCode.R))
+                RotateItem();
+            if (Input.GetMouseButtonDown(0))
+                InsertItem();
                   
 
         }
@@ -89,9 +84,9 @@ public class EquipmentInsertionMode : MonoBehaviour
             if(_equipmentInstance == null)
             {
                 _equipmentInstance = Instantiate(_equipmentPrefab,_selection);
-                /*_equipmentBox = _equipmentInstance.GetComponent<BoxCollider>().bounds.size;
-                _equipmentBoxCenter = _equipmentInstance.GetComponent<BoxCollider>().bounds.center;
-                _equipmentInstance.transform.position = new Vector3(_equipmentInstance.transform.position.x, _equipmentInstance.transform.position.y+_equipmentBox.y, _equipmentInstance.transform.position.z);*/
+                WallEquipmentItem item = _equipmentInstance.GetComponent<WallEquipmentItem>();
+                if (item != null)
+                    item.enabled = true;
             }
         }
         else if(_equipmentInstance != null)
@@ -111,13 +106,27 @@ public class EquipmentInsertionMode : MonoBehaviour
 
     private void InsertItem()
     {
-        if(!_equipmentInstance.GetComponent<EquipmentItem>().IsColliding)
+
+        if (_equipmentInstance.GetComponent<EquipmentItem>().GetType() == typeof(WallEquipmentItem))
+        {
+            WallEquipmentItem item = _equipmentInstance.GetComponent<WallEquipmentItem>();
+            if (!item.IsColliding)
+            {
+                GameObject insertedItem = Instantiate(_equipmentPrefab, _selection);                
+                insertedItem.GetComponent<WallEquipmentItem>().enabled = false;
+                insertedItem.transform.position = item.MountTransform.position;
+                insertedItem.transform.rotation = item.MountTransform.rotation;                
+            }
+
+            Destroy(item.gameObject);
+        }
+        else if(!_equipmentInstance.GetComponent<EquipmentItem>().IsColliding)
         {
             GameObject insertedItem = Instantiate(_equipmentPrefab, _selection);
             insertedItem.transform.position = _equipmentInstance.transform.position;
             insertedItem.transform.rotation = _equipmentInstance.transform.rotation;
-            insertedItem.transform.rotation = _equipmentInstance.transform.rotation;
-        }            
+        }
+        DisposeOfEquipmentInstance();
     }
 
     private void RotateItem()

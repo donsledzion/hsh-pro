@@ -10,7 +10,7 @@ public class EquipmentItem : MonoBehaviour
     [SerializeField] LayerMask _targetLayer;
     [SerializeField] LayerMask _collisionLayer;
 
-    bool _isColliding = false;  
+    protected bool _isColliding = false;  
 
     public LayerMask TargetLayer { get { return _targetLayer; } }
     public LayerMask CollisionLayer { get { return _collisionLayer; } }
