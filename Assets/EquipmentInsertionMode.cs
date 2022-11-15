@@ -127,6 +127,7 @@ public class EquipmentInsertionMode : MonoBehaviour
             insertedItem.transform.rotation = _equipmentInstance.transform.rotation;
         }
         DisposeOfEquipmentInstance();
+        gameObject.SetActive(false);
     }
 
     private void RotateItem()

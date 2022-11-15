@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1261424323835945964}
   - component: {fileID: 762438161675435411}
-  - component: {fileID: 762438161675435410}
-  m_Layer: 0
+  - component: {fileID: 502988940643184532}
+  m_Layer: 12
   m_Name: Entertainment Unit 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 184.69849, y: 125.3308, z: 53.004562}
   m_Center: {x: 0, y: 62.873257, z: -23.497719}
---- !u!114 &762438161675435410
+--- !u!114 &502988940643184532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1118279525598259635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _thumbScale: {x: 0.01, y: 0.013, z: 0.01}
@@ -64,7 +64,12 @@ MonoBehaviour:
     m_Bits: 1024
   _collisionLayer:
     serializedVersion: 2
-    m_Bits: 4992
+    m_Bits: 9088
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &1214830125076582449
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8179911713870626814}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 5836d5dd2aa14c29a482c9966515dc07.fbx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5632873658047823776}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube.000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +143,7 @@ GameObject:
   - component: {fileID: 8456091532693709480}
   - component: {fileID: 8593436032874505265}
   - component: {fileID: 4660402170432735065}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube.003_Player & Decor_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +224,7 @@ GameObject:
   - component: {fileID: 9140454263269293738}
   - component: {fileID: 6757874467173303083}
   - component: {fileID: 572690551224783084}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube.003_Screen_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 154630900507795474}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +339,7 @@ GameObject:
   - component: {fileID: 8403128765036140097}
   - component: {fileID: 1688229463441298959}
   - component: {fileID: 6831233401123658624}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube.003_TV & Cables_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 462545603961147383}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sketchfab_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1547155324341695900}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RootNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +483,7 @@ GameObject:
   - component: {fileID: 1396742287392058262}
   - component: {fileID: 6818268072026972219}
   - component: {fileID: 893031772410769976}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube.003_Stand_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +564,7 @@ GameObject:
   - component: {fileID: 1561603366877997956}
   - component: {fileID: 4411155493445169834}
   - component: {fileID: 6847302736467776243}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube.000_TV & Cables_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

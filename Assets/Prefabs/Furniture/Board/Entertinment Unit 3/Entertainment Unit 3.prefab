@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6517811826953608848}
   - component: {fileID: 3372141410567235669}
-  - component: {fileID: 6820143005215988025}
-  m_Layer: 0
+  - component: {fileID: 5229828531368457189}
+  m_Layer: 12
   m_Name: Entertainment Unit 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 150.63867, y: 145.28938, z: 39.976078}
   m_Center: {x: 0.19036865, y: 72.52192, z: -20.433676}
---- !u!114 &6820143005215988025
+--- !u!114 &5229828531368457189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 507032931261269786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _thumbScale: {x: 0.01, y: 0.013, z: 0.01}
@@ -64,7 +64,12 @@ MonoBehaviour:
     m_Bits: 1024
   _collisionLayer:
     serializedVersion: 2
-    m_Bits: 4992
+    m_Bits: 9088
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &4512623249715582315
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1036873252286527903}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: modern_tv_shelf.obj.cleaner.materialmerger.gles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3738946685871966452}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sketchfab_model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +143,7 @@ GameObject:
   - component: {fileID: 1079977308931900695}
   - component: {fileID: 7699049766915687862}
   - component: {fileID: 4888381876243653263}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
