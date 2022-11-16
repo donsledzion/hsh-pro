@@ -120,6 +120,19 @@ public class StoreyPointsCollector : MonoBehaviour
             sections = new List<WallSection>();
             sections.Add(wallPoint.wallSection);
         }
+
+        public float ThickestWallThickness()
+        {
+            foreach(WallSection section in sections)
+            {
+                if (section.Wall.WallType == WallType.LoadBearing)
+                    return DefaultSettings.ins.LoadBareringWallWidth;
+                else if (section.Wall.WallType == WallType.Partition)
+                    return DefaultSettings.ins.PartialWallWidth;
+            }
+
+            return 30f;
+        }
     }
 
     public class WallPoint
