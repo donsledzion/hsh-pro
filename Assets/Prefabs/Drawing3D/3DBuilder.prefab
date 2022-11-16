@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 389612657073832360}
   - component: {fileID: 311015809}
   - component: {fileID: 6662133772295853417}
+  - component: {fileID: 1537409728847533342}
   m_Layer: 0
   m_Name: 3DBuilder
   m_TagString: Untagged
@@ -53,6 +54,7 @@ MonoBehaviour:
   _floorSectionPrefab: {fileID: 2650401843508665412, guid: 30408ff4ea285f148ba19b352a8ec499, type: 3}
   _playerTransform: {fileID: 0}
   _enviornmentTransform: {fileID: 2064805437599457404}
+  cornerFinishingPointPrefab: {fileID: 931828562360523493, guid: a5715d0e4f38f2641b13d900ef18d565, type: 3}
 --- !u!114 &311015809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +83,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalScale: {x: 1, y: 1, z: 1}
   targetScale: {x: 0.01, y: 0.01, z: 0.01}
+--- !u!114 &1537409728847533342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389612657073832342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f4c900da911244faaa68fd9e1d3fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3450549678567806209
 GameObject:
   m_ObjectHideFlags: 0

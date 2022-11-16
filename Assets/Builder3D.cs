@@ -12,7 +12,14 @@ public class Builder3D : MonoBehaviour
     [SerializeField] GameObject _floorSectionPrefab;
     [SerializeField] Transform _playerTransform;
     [SerializeField] Transform _enviornmentTransform;
-    
+    [SerializeField] GameObject cornerFinishingPointPrefab;
+    StoreyPointsCollector _storeyPointsCollector;
+
+    private void Start()
+    {
+        _storeyPointsCollector = GetComponent<StoreyPointsCollector>();
+    }
+
     void GenerateStorey(Storey storey)
     {
         /*
@@ -87,6 +94,14 @@ public class Builder3D : MonoBehaviour
                 plane.gameObject.AddComponent<MeshCollider>();
                 Debug.Log("Spatialized!!!");
             }
+        }
+        foreach(StoreyPointsCollector.ConnectorPoint connectorPoint in _storeyPointsCollector.ListConnectorPoints())
+        {
+            GameObject corner = Instantiate(cornerFinishingPointPrefab);
+            corner.transform.SetParent(gameObject.transform);
+            corner.transform.localScale = new Vector3(30, storey.Height, 30);
+            corner.transform.localPosition = new Vector3(connectorPoint.Point.x,storey.Elevation,connectorPoint.Point.y) - transform.localPosition;
+            //corner.GetComponentInChildren<WallsConnector>().adjuster.enabled = true;
         }
     }
 

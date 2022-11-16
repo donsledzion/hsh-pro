@@ -135,6 +135,7 @@ public class Drawing2DController : MonoBehaviour
         DrawLabels();
     }
 
+    [ContextMenu("Draw Labels")]
     void DrawLabels()
     {
         foreach(Wall wall in currentStorey.StoreyReference.Walls)

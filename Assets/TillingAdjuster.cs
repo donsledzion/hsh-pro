@@ -17,6 +17,12 @@ public class TillingAdjuster : MonoBehaviour
         SetTilling(new Vector2(_horizontalTilling, _verticalTilling));
     }
 
+    [ContextMenu("Set Tilling")]
+    public void SetTilling()
+    {
+        SetTilling(new Vector2(_horizontalTilling, _verticalTilling));
+    }
+
     public void SetTilling(Vector2 textureScale)
     {
         _renderer.material.mainTextureScale = textureScale / _baseSize;
