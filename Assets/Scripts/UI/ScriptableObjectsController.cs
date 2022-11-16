@@ -6,10 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GaleryScriptableObjects", menuName = "ScriptableObjects/Gallery-Item")]
 public class ScriptableObjectsController : ScriptableObject
 {
-    public Sprite imagePreview;
-    public GameObject prefab;
-    public Material material;
-    public TextAsset Description;
-    public string name;
-    public string collectionName;
+    [SerializeField] public Sprite imagePreview;
+    [SerializeField] public GameObject prefab;
+    [SerializeField] public Material material;
+    [SerializeField] public TextAsset Description;
+    [SerializeField] public string name;
+    [SerializeField] public string collectionName;
+    [SerializeField] public float tiling_x;
+    [SerializeField] public float tiling_y;
 }
