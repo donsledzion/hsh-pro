@@ -9,11 +9,12 @@ public class TillingAdjuster : MonoBehaviour
 
     [SerializeField] float _baseSize = 300f;
 
-    [SerializeField] MeshRenderer _renderer;
+    MeshRenderer _renderer;
 
     private void OnEnable()
     {
         _renderer = gameObject.GetComponent<MeshRenderer>();
+        SetTilling(new Vector2(_horizontalTilling, _verticalTilling));
     }
 
     public void SetTilling(Vector2 textureScale)
