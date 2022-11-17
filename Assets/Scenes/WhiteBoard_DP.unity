@@ -169,6 +169,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &63787371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5416174011556429458, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+  m_PrefabInstance: {fileID: 1165672499423667748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &63787373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2374563369323339577, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+  m_PrefabInstance: {fileID: 1165672499423667748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63787371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16bfe8d653683cc49b882f6c9cf9901a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &69505079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2383,6 +2399,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1477353433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7274123952532800274, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+  m_PrefabInstance: {fileID: 1165672499423667748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1491090873
 GameObject:
   m_ObjectHideFlags: 0
@@ -3564,6 +3585,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2374563369323339577, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+      propertyPath: item3DViewer
+      value: 
+      objectReference: {fileID: 1318162439}
+    - target: {fileID: 2374563369323339577, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+      propertyPath: inspectionCamera
+      value: 
+      objectReference: {fileID: 1826868301}
+    - target: {fileID: 2374563369323339577, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+      propertyPath: prefabToFitController
+      value: 
+      objectReference: {fileID: 585099602}
     - target: {fileID: 3081492150457886745, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
       propertyPath: item3DViewer
       value: 
@@ -3738,6 +3771,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 428621980}
     - target: {fileID: 1961267070160392063, guid: f3e785f783c21864883973449dc35288, type: 3}
+      propertyPath: invertoryDiningRoomFurniture
+      value: 
+      objectReference: {fileID: 63787373}
+    - target: {fileID: 1961267070160392063, guid: f3e785f783c21864883973449dc35288, type: 3}
       propertyPath: invertoryLivingRoomFurniture
       value: 
       objectReference: {fileID: 1068347857}
@@ -3825,6 +3862,14 @@ PrefabInstance:
       objectReference: {fileID: 585099602}
     - target: {fileID: 137176099, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
       propertyPath: onToggle.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 370844842}
+    - target: {fileID: 137857000, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 63787371}
+    - target: {fileID: 137857000, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 370844842}
     - target: {fileID: 137857000, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
@@ -4063,6 +4108,10 @@ PrefabInstance:
       propertyPath: objectsToSwap.Array.data[1]
       value: 
       objectReference: {fileID: 352809852}
+    - target: {fileID: 1147433247, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
+      propertyPath: objectsToSwap.Array.data[2]
+      value: 
+      objectReference: {fileID: 1477353433}
     - target: {fileID: 1260336646, guid: 64dab91d9117d5548a372ffb676618f0, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
