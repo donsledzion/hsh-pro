@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SurfaceSelector : MonoBehaviour
+public abstract class SurfaceSelector : MonoBehaviour
 {
     protected Transform _selection;
     [SerializeField] LayerMask layerMask;
-    [SerializeField] Material _selectionMaterial;
-    [SerializeField] Material _originalMaterial;
+    [SerializeField] protected Material _selectionMaterial;
+    [SerializeField] protected Material _originalMaterial;
 
     public Material SelectionMaterial
     {
@@ -22,11 +22,14 @@ public class SurfaceSelector : MonoBehaviour
         }
     }
 
+
+
+
     protected virtual void Update()
     {
         if (_selection != null)
         {
-            _selection.GetComponent<MeshRenderer>().material = _originalMaterial;
+            RestoreMaterial();            
             SetTiling();
             _selection = null;
         }
@@ -35,9 +38,7 @@ public class SurfaceSelector : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             _selection = hit.transform;
-            _originalMaterial = _selection.GetComponent<MeshRenderer>().material;
-            _selection.GetComponent<MeshRenderer>().material = _selectionMaterial;
-            Debug.Log("Selection: " + _selection.gameObject.name);
+            TryMaterial();
             SetTiling();
         }
 
@@ -50,18 +51,9 @@ public class SurfaceSelector : MonoBehaviour
         }
     }
 
-    private void ApplyMaterial()
-    {
-        _originalMaterial = _selectionMaterial;
-        SetTiling();
-    }
+    protected abstract void TryMaterial();
+    protected abstract void RestoreMaterial();
+    protected abstract void ApplyMaterial();
+    protected abstract void SetTiling();
 
-    private void SetTiling()
-    {
-        Transform scalerTransform = _selection.GetComponentInParent<ScallableSection>().transform;        
-        Vector2 textureSize = new Vector2(scalerTransform.localScale.x, scalerTransform.localScale.y);
-        Debug.Log("Texture size: " + textureSize);
-        _selection.GetComponent<TillingAdjuster>().SetTilling(textureSize);
-
-    }
 }

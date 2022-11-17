@@ -34,7 +34,7 @@ public class FloorPlane : MonoBehaviour
     {
         
         Vector2 someScale = AdjustScale(_floor.Points);
-        _material.mainTextureScale = new Vector2(1/_scaleX,1/_scaleY);
+        //_material.mainTextureScale = new Vector2(1/_scaleX,1/_scaleY);
         
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -52,10 +52,20 @@ public class FloorPlane : MonoBehaviour
             
     }
 
+    public void SetTilling(Vector2 tiling = new Vector2())
+    {
+        _material.mainTextureScale = new Vector2(1 / tiling.x, 1 / tiling.y);
+    }
+
     private void InjectSpareMaterial()
     {
-        GetComponent<MeshRenderer>().material = _spareMaterial;
-        _material = GetComponent<MeshRenderer>().material;
+        GetComponent<MeshRenderer>().material = _spareMaterial;                
+    }
+
+    public void InjectMaterial(Material material)
+    {
+        GetComponent<MeshRenderer>().material = _material;
+        _material = material;
     }
 
     public static Vector2 AdjustScale(Vector2[] points)
@@ -103,7 +113,7 @@ public class FloorPlane : MonoBehaviour
             if (point.y > maxY) maxY = point.y;
         }
 
-        Vector2[] newOutVectors = { new Vector2(minX,maxY)/*, new Vector2(maxX, maxY), new Vector2(maxX, minY), new Vector2(minX, minY)*/};
+        Vector2[] newOutVectors = { new Vector2(minX,maxY)};
 
         return newOutVectors;
     }

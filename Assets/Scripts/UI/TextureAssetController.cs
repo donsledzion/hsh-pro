@@ -81,12 +81,11 @@ public class TextureAssetController : MonoBehaviour
 
     private void TextureToApply(ScriptableObjectsController item)
     {
-
         surfaceSelector.GetComponent<FittingModeSwitcher>().WallsPaintingMode();
 
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
-        CurrentMaterialController.ins.SurfaceSelector.SelectionMaterial = item.material;
+        CurrentMaterialController.ins.WallSurfaceSelector.SelectionMaterial = item.material;
     }
 
     private void FetchTextures()

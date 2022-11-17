@@ -66,8 +66,11 @@ public class FloorAssetController : MonoBehaviour
     private void FloorPrefabToFit(ScriptableObjectsController item)
     {
         //Not ready yet :D
-        //surfaceSelector.GetComponent<FittingModeSwitcher>().FloorFittingMode();
-        CurrentPrefabController.ins.Window3DSelector.ItemPrefab = item.prefab;
+        surfaceSelector.GetComponent<FittingModeSwitcher>().FloorFinishingMode();
+        CurrentMaterialController.ins.FloorSurfaceSelector.SelectionMaterial = item.material;
+        Debug.Log("Tilling: " + item.tiling_x + " , " + item.tiling_y);
+        CurrentMaterialController.ins.FloorSurfaceSelector.FloorTiling = new Vector2(item.tiling_x,item.tiling_y);        
+        
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
     }

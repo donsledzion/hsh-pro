@@ -327,7 +327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5436eee31696514cabd5a0c05607241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _surfaceSelector: {fileID: 1000565434}
+  _wallSurfaceSelector: {fileID: 1667602148}
+  _floorSurfaceSelector: {fileID: 959864612}
+  _floorMaterialTilling: {x: 100, y: 100}
 --- !u!1 &176158894 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 176158894, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
@@ -1690,18 +1692,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1440946266, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 4207806407113898562, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
+      propertyPath: _selectionMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 607f3c0c7b39ba74dae7acb29ebb7f2e, type: 2}
     - target: {fileID: 4649979536745330257, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
       propertyPath: _pcCamera
       value: 
       objectReference: {fileID: 69505080}
-    - target: {fileID: 4649979536745330259, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4649979536844877778, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -1754,12 +1752,19 @@ PrefabInstance:
       propertyPath: _pcCamera
       value: 
       objectReference: {fileID: 69505080}
-    - target: {fileID: 4649979537190472715, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
+--- !u!114 &959864612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5183759259032878116, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
+  m_PrefabInstance: {fileID: 959864610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e278f701f2c76840aba6d0853cf90ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &961645712 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7762519151379455931, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
@@ -1785,17 +1790,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e63164a79b1a0344782b3a8ae20e9a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1000565434 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1440946268, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
-  m_PrefabInstance: {fileID: 959864610}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667602147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d9415c9eecac042885bb8d182521a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1008646776
@@ -2572,6 +2566,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1440946266, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
   m_PrefabInstance: {fileID: 959864610}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1667602148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4207806407113898562, guid: 526aaf805ebc3174ca3b4c45496bf370, type: 3}
+  m_PrefabInstance: {fileID: 959864610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667602147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6fbc69bc725694c8aad465097a71cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1675916538 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1675916538, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
@@ -3408,6 +3413,10 @@ PrefabInstance:
       propertyPath: item3DViewer
       value: 
       objectReference: {fileID: 1318162439}
+    - target: {fileID: 961645714, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
+      propertyPath: surfaceSelector
+      value: 
+      objectReference: {fileID: 1125644730}
     - target: {fileID: 961645714, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
       propertyPath: inspectionCamera
       value: 

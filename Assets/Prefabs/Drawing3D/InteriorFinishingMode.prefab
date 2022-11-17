@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1440946267}
-  - component: {fileID: 1440946268}
+  - component: {fileID: 4207806407113898562}
   m_Layer: 0
-  m_Name: SurfaceSelector
+  m_Name: WallSurfaceSelector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 4649979536844877778}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1440946268
+--- !u!114 &4207806407113898562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,13 +40,61 @@ MonoBehaviour:
   m_GameObject: {fileID: 1440946266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d9415c9eecac042885bb8d182521a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6fbc69bc725694c8aad465097a71cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  _selectionMaterial: {fileID: 2100000, guid: cc8e0f36e32fcf640b1e733f755715d2, type: 2}
+  _selectionMaterial: {fileID: 2100000, guid: 417346b8bc82ddd4689c3e82990deed4, type: 2}
+  _originalMaterial: {fileID: 0}
+--- !u!1 &3472801138502001338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1792606105445047962}
+  - component: {fileID: 5183759259032878116}
+  m_Layer: 0
+  m_Name: FloorSurfaceSelector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1792606105445047962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472801138502001338}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4649979536844877778}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5183759259032878116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472801138502001338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e278f701f2c76840aba6d0853cf90ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  _selectionMaterial: {fileID: 2100000, guid: 417346b8bc82ddd4689c3e82990deed4, type: 2}
   _originalMaterial: {fileID: 0}
 --- !u!1 &4649979536745330259
 GameObject:
@@ -128,6 +176,7 @@ Transform:
   - {fileID: 4649979537190472714}
   - {fileID: 4649979536745330258}
   - {fileID: 1440946267}
+  - {fileID: 1792606105445047962}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -159,7 +208,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fittingDoorTool: {fileID: 4649979537190472715}
   _fittingWindowsTool: {fileID: 4649979536745330259}
-  _surfaceSelector: {fileID: 1440946266}
+  _floorSurfaceSelector: {fileID: 3472801138502001338}
+  _wallSurfaceSelector: {fileID: 1440946266}
 --- !u!1 &4649979537190472715
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,8 +61,9 @@ public class ModeController : MonoBehaviour
 
         ResetAllListObjects();
         mainCamera.SetActive(false);
-//        refToScript = builder3D.GetComponent<Builder3D>();
-//        refToScript.GenerateBuilding();
+        canvas.GetComponent<Canvas>().enabled = false;
+        //        refToScript = builder3D.GetComponent<Builder3D>();
+        //        refToScript.GenerateBuilding();
 
         foreach (GameObject VrObjects in VRMOde)
         {

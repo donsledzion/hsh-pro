@@ -6,9 +6,16 @@ public class CurrentMaterialController : MonoBehaviour
 {
     public static CurrentMaterialController ins { get; private set; }
 
-    [SerializeField] SurfaceSelector _surfaceSelector;
+    [SerializeField] WallSurfaceSelector _wallSurfaceSelector;
+    [SerializeField] FloorSurfaceSelector _floorSurfaceSelector;
+    [SerializeField] Vector2 _floorMaterialTilling = new Vector2(100f,100f);
 
-    public SurfaceSelector SurfaceSelector { get { return _surfaceSelector; } }
+
+    public FloorSurfaceSelector FloorSurfaceSelector { get { return _floorSurfaceSelector; } }
+    public WallSurfaceSelector WallSurfaceSelector { get { return _wallSurfaceSelector; } }
+
+    public Vector2 FloorMaterialTilling { get { return _floorMaterialTilling; } set { _floorMaterialTilling = value; } }
+
 
     private void Awake()
     {
