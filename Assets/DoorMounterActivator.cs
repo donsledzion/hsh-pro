@@ -13,6 +13,6 @@ public class DoorMounterActivator : MonoBehaviour
 
     private void OnDisable()
     {
-        _drawTool.SetActive(false);
+        _drawTool?.SetActive(false);
     }
 }
