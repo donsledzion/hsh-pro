@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Walls2D;
+using static StoreyPointsCollector;
 
 public class StoreyPointsCollector : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class StoreyPointsCollector : MonoBehaviour
     [ContextMenu("List connector points")]
     public List<ConnectorPoint> ListConnectorPoints(Storey storey)
     {
-        List<ConnectorPoint> points = OnlyWallSectionConnectorPoints(FindConnectorPoints(CollectAllPoints(storey)));        
+        List<ConnectorPoint> points = MinimumConnections(OnlyWallSectionConnectorPoints(FindConnectorPoints(CollectAllPoints(storey))),2);
         return points;
     }
 
@@ -65,6 +66,20 @@ public class StoreyPointsCollector : MonoBehaviour
 
         return wallSectionPoints;
     }
+
+    List<ConnectorPoint> MinimumConnections(List<ConnectorPoint> allPoints, int minCount)
+    {
+        List<ConnectorPoint> wallSectionPoints = new List<ConnectorPoint>();
+
+        foreach (ConnectorPoint point in allPoints)
+        {
+            if (point.sections.Count >= minCount)
+                wallSectionPoints.Add(point);
+        }
+
+        return wallSectionPoints;
+    }
+
 
     bool ConnectorPointContainsJambSection(ConnectorPoint connectorPoint)
     {
