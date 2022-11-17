@@ -21,6 +21,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     [SerializeField] private BedsAssetController invertoryBedsFurniture;
     [SerializeField] private KitchenAssetController invertoryKitchenFurniture;
     [SerializeField] private AssetController invertoryLivingRoomFurniture;
+    [SerializeField] private AssetController invertoryDiningRoomFurniture;
     [SerializeField] private GameObject surfaceSelector;
     [SerializeField] private Camera previewCamera;
 
@@ -49,6 +50,8 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         invertoryBedsFurniture.OnItemSelected += invertoryItems_OnItemBedsFurniture;
         invertoryKitchenFurniture.OnItemSelected += invertoryItems_OnItemKitchenFurniture;
         invertoryLivingRoomFurniture.OnItemSelected += invertoryItems_OnItemLivingRoomFurniture;
+        invertoryDiningRoomFurniture.OnItemSelected += invertoryItems_OnItemLivingRoomFurniture;
+
     }
 
     private void invertoryItems_OnItemLivingRoomFurniture(object sender, ScriptableObjectsController itemSO)
