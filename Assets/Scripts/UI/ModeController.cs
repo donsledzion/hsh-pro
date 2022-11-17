@@ -102,7 +102,7 @@ public class ModeController : MonoBehaviour
     public void Mode3D()
     {
         ResetAllListObjects();
-        //canvas.GetComponent<Canvas>().enabled = false;
+        canvas.GetComponent<Canvas>().enabled = false;
         cameraController.enabled = true;
         refToScript = builder3D.GetComponent<Builder3D>();
         refToScript.GenerateBuilding();        
