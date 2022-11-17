@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Walls2D;
 using static Selector2D;
 
@@ -12,6 +13,10 @@ public class Storey2D : MonoBehaviour
     [SerializeField] List<Wall2D> _walls2D = new List<Wall2D>();
     [SerializeField] Transform _labelsContainer;
 
+    /*[Range(0f,1f)]
+    [SerializeField] float _opacity = 1;*/
+    [SerializeField] bool _firstStoreyForever = false;
+    public bool FirstStoreyForever { get { return _firstStoreyForever; } }
     public Storey StoreyReference
     {
         get { return _storeyReference; }
@@ -61,6 +66,8 @@ public class Storey2D : MonoBehaviour
         wall2D.DrawOnCanvas(wall);
     }
 
+
+
     public void SetThickness(float thickness)
     {
         foreach (WallOnCanvas wall in _wallsOnCanvas)
@@ -94,5 +101,24 @@ public class Storey2D : MonoBehaviour
         ClearWallsOnCanvas();
         ClearWalls2D();
         ClearLabels();
+    }
+
+    public List<Image> CollectAllImages()
+    {
+        return new List<Image>(GetComponentsInChildren<Image>());
+    }
+
+    //TO DELETE!!!!
+    /*private void Update()
+    {
+        SetOpacity(_opacity);
+    }*/
+
+    public void SetOpacity(float opacity)
+    {
+        foreach (Image image in CollectAllImages())
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, opacity);   
+        }
     }
 }

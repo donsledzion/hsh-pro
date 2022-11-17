@@ -51,9 +51,9 @@ public class StoreyPointsCollector : MonoBehaviour
     public List<ConnectorPoint> ListConnectorPoints()
     {
         List<ConnectorPoint> points = OnlyWallSectionConnectorPoints(FindConnectorPoints(CollectAllPoints()));
-        Debug.Log("Found " + points.Count + " connection points");
+        /*Debug.Log("Found " + points.Count + " connection points");
         foreach(ConnectorPoint connectorPoint in points)
-            Debug.Log(connectorPoint.Point + " Sections: " +connectorPoint.sections.Count);
+            Debug.Log(connectorPoint.Point + " Sections: " +connectorPoint.sections.Count);*/
         return points;
     }
 

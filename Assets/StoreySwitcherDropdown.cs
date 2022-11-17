@@ -24,4 +24,9 @@ public class StoreySwitcherDropdown : MonoBehaviour
     {
         Drawing2DController.ins.SwitchToStorey(GameManager.ins.Building.Storeys[_dropdown.value]);
     }
+
+    private void Update()
+    {
+        UpdateDropdown();
+    }
 }

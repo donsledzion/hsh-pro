@@ -1829,6 +1829,8 @@ MonoBehaviour:
   storey2DPrefab: {fileID: 2761374197951724073, guid: 42c382875e38e034298151cfae869545, type: 3}
   wallOnCanvasPrefab: {fileID: 4262989346007349834, guid: d43f662cda6a91b4bb7b2f06b81977b6, type: 3}
   _dynamicInputController: {fileID: 0}
+  visibleStoreyOpacity: 1
+  invisibleStoreyOpacity: 0.3
   drawingsContainer: {fileID: 8808361923962096038}
   _storeys2D: []
   currentStorey: {fileID: 5753314162258517148}
@@ -2168,6 +2170,10 @@ PrefabInstance:
     - target: {fileID: 2761374198317380490, guid: 42c382875e38e034298151cfae869545, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3885047644646827587, guid: 42c382875e38e034298151cfae869545, type: 3}
+      propertyPath: _firstStoreyForever
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42c382875e38e034298151cfae869545, type: 3}

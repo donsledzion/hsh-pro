@@ -19,6 +19,11 @@ public class Drawing2DController : MonoBehaviour
 
     [SerializeField] DynamicInputController _dynamicInputController;
 
+    [Range(0f,1f)]
+    [SerializeField] float visibleStoreyOpacity = 1f;
+    [Range(0f, 1f)]
+    [SerializeField] float invisibleStoreyOpacity = 0f;
+
     //[SerializeField] public Transform labelsContainer;
     [SerializeField] public Transform drawingsContainer;
 
@@ -66,11 +71,25 @@ public class Drawing2DController : MonoBehaviour
     private void OnEnable()
     {
         gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);
-        _storeys2D.Add(currentStorey);
+        if(!_storeys2D.Contains(currentStorey))
+            _storeys2D.Add(currentStorey);
+    }
+
+    public void EraseStoreys()
+    {
+        foreach (Storey2D storey2d in _storeys2D)
+        {
+            ClearStorey(storey2d);
+            if(!storey2d.FirstStoreyForever)
+                Destroy(storey2d.gameObject);
+        }
+            
+        Debug.Log("Erasing storeys");
+        _storeys2D.Clear();
     }
 
     public void InitializeFirstStorey(Storey storey)
-    {
+    {        
         currentStorey.StoreyReference = storey;
     }
     public void SwitchToStorey(Storey storey)
@@ -84,6 +103,7 @@ public class Drawing2DController : MonoBehaviour
                 return;
             }
         }
+        Debug.Log("Storey not " + storey.Name + " found!");
         GameObject newStorey = Instantiate(storey2DPrefab, drawingsContainer);
         newStorey.name = storey.Name;
         newStorey.transform.SetParent(drawingsContainer);
@@ -98,10 +118,27 @@ public class Drawing2DController : MonoBehaviour
         foreach (Storey2D storey in _storeys2D)
         {
             if (storey == currentStorey)
-                storey.SetThickness(visibleStoreyThickness);
+            {
+                storey.SetOpacity(visibleStoreyOpacity);
+                //storey.SetThickness(visibleStoreyThickness);
+            }
             else
-                storey.SetThickness(invisibleStoreyThickness);
+            {
+                storey.SetOpacity(invisibleStoreyOpacity);
+                //storey.SetThickness(invisibleStoreyThickness);
+            }
         }
+    }
+
+    [ContextMenu("RegenerateBuildingDrawing")]
+    public void RegenerateBuildingDrawing()
+    {
+        EraseStoreys();
+        foreach(Storey storey in GameManager.ins.Building.Storeys)
+        {
+            SwitchToStorey(storey);
+        }
+        SetStoreysVisibility();
     }
 
 
