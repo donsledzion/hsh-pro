@@ -18,15 +18,14 @@ public class StoreySwitcherDropdown : MonoBehaviour
             _dropdown.options.Add(option);
         }
         _dropdown.RefreshShownValue();
+        _dropdown.value = _dropdown.options.Count;
+
     }
 
     public void SwitchToSelectedStorey()
     {
         Drawing2DController.ins.SwitchToStorey(GameManager.ins.Building.Storeys[_dropdown.value]);
+         
     }
 
-    private void Update()
-    {
-        UpdateDropdown();
-    }
 }

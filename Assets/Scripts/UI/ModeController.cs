@@ -43,6 +43,7 @@ public class ModeController : MonoBehaviour
     [SerializeField] GameObject itemDescriptionWindow;
     [SerializeField] GameObject prefatToFit;
     [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject canvas;
 
 
 
@@ -73,6 +74,7 @@ public class ModeController : MonoBehaviour
 
         ResetAllListObjects();
         cameraController.enabled = false;
+        
         foreach (GameObject objects2D in listOf2DObjects)
         {
             objects2D.SetActive(true);
@@ -100,7 +102,7 @@ public class ModeController : MonoBehaviour
     public void Mode3D()
     {
         ResetAllListObjects();
-
+        //canvas.GetComponent<Canvas>().enabled = false;
         cameraController.enabled = true;
         refToScript = builder3D.GetComponent<Builder3D>();
         refToScript.GenerateBuilding();        
@@ -115,6 +117,7 @@ public class ModeController : MonoBehaviour
     public void FinishingMode() {
 
         ResetAllListObjects();
+        canvas.GetComponent<Canvas>().enabled = false;
         foreach (GameObject objects3D in listOfFinishingObjects)
         {
             objects3D.SetActive(true);
@@ -155,6 +158,7 @@ public class ModeController : MonoBehaviour
 
         ResetAllListObjects();
         ResetFurnitureTabs();
+        canvas.GetComponent<Canvas>().enabled = false;
         cameraController.enabled = true;
 //        refToScript = builder3D.GetComponent<Builder3D>();
 //        refToScript.GenerateBuilding();
@@ -243,7 +247,8 @@ public class ModeController : MonoBehaviour
         itemDescriptionWindow.SetActive(false);
         prefatToFit.SetActive(false);
         mainCamera.SetActive(true);
-
+        canvas.GetComponent<Canvas>().enabled = true;
+        
         foreach (GameObject surface in surfaceSelectionMode)
         {
 
