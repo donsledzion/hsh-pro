@@ -13,8 +13,6 @@ public class Storey2D : MonoBehaviour
     [SerializeField] List<Wall2D> _walls2D = new List<Wall2D>();
     [SerializeField] Transform _labelsContainer;
 
-    /*[Range(0f,1f)]
-    [SerializeField] float _opacity = 1;*/
     [SerializeField] bool _firstStoreyForever = false;
     public bool FirstStoreyForever { get { return _firstStoreyForever; } }
     public Storey StoreyReference
@@ -107,12 +105,6 @@ public class Storey2D : MonoBehaviour
     {
         return new List<Image>(GetComponentsInChildren<Image>());
     }
-
-    //TO DELETE!!!!
-    /*private void Update()
-    {
-        SetOpacity(_opacity);
-    }*/
 
     public void SetOpacity(float opacity)
     {

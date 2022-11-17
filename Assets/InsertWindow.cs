@@ -52,6 +52,8 @@ public class InsertWindow : Selector2D
                 _windowInstance.transform.localPosition = _snappedPoint;
                 _windowInstance.transform.rotation = Quaternion.identity;
                 _windowInstance.transform.Rotate(Vector3.forward, -MathHelpers.VectorAzimuthDeg((_hoveredSection.EndPoint.Position - _hoveredSection.StartPoint.Position)));
+                float windowSectionThickness = (_hoveredSection.Wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth);
+                _windowInstance.transform.localScale = new Vector3(DrawingParametersController.ins.WindowWidth/100f, 1.5f*windowSectionThickness/30f, _windowInstance.transform.localScale.z);
             }
         }
         else

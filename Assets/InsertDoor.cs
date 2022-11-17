@@ -32,6 +32,8 @@ public class InsertDoor : Selector2D
                 _doorInstance.transform.localPosition = _snappedPoint;
                 _doorInstance.transform.rotation = Quaternion.identity;
                 _doorInstance.transform.Rotate(Vector3.forward,-MathHelpers.VectorAzimuthDeg((_hoveredSection.EndPoint.Position-_hoveredSection.StartPoint.Position)));
+                float doorSectionThickness = (_hoveredSection.Wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth);
+                _doorInstance.transform.localScale = new Vector3(DrawingParametersController.ins.DoorWidth / 100f, 1.5f * doorSectionThickness / 30f, 1);
             }
         }
         else
