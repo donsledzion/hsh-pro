@@ -12,7 +12,10 @@ public class WallSectionDoorjamb : WallSectionAlt
         _scallableChild.localScale = new Vector3(parameters.Length, parameters.WallHeight - parameters.Height, parameters.Width);
         _phantomTransform.localScale = new Vector3(parameters.Length, parameters.Height, parameters.Width);
         transform.position = parameters.Position;
-        _phantomTransform.position = new Vector3(parameters.Position.x,parameters.Height, parameters.Position.z);
+        _phantomTransform.localPosition = new Vector3(
+            _scallableChild.localPosition.x,
+            - (parameters.WallHeight - parameters.Height), 
+            _scallableChild.localPosition.x);
 
         SetTilling();
     }

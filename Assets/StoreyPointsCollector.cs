@@ -9,10 +9,10 @@ public class StoreyPointsCollector : MonoBehaviour
 
 
     [ContextMenu("Collect All Points")]
-    public List<WallPoint> CollectAllPoints()
+    public List<WallPoint> CollectAllPoints(Storey storey)
     {
         List<WallPoint> allPoints = new List<WallPoint>();
-        Storey storey = GameManager.ins.Building.CurrentStorey;
+        //Storey storey = GameManager.ins.Building.CurrentStorey;
 
         foreach(Wall wall in storey.Walls)
         {
@@ -48,9 +48,9 @@ public class StoreyPointsCollector : MonoBehaviour
     }
 
     [ContextMenu("List connector points")]
-    public List<ConnectorPoint> ListConnectorPoints()
+    public List<ConnectorPoint> ListConnectorPoints(Storey storey)
     {
-        List<ConnectorPoint> points = OnlyWallSectionConnectorPoints(FindConnectorPoints(CollectAllPoints()));
+        List<ConnectorPoint> points = OnlyWallSectionConnectorPoints(FindConnectorPoints(CollectAllPoints(storey)));
         /*Debug.Log("Found " + points.Count + " connection points");
         foreach(ConnectorPoint connectorPoint in points)
             Debug.Log(connectorPoint.Point + " Sections: " +connectorPoint.sections.Count);*/

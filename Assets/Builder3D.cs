@@ -95,7 +95,7 @@ public class Builder3D : MonoBehaviour
                 Debug.Log("Spatialized!!!");
             }
         }
-        foreach(StoreyPointsCollector.ConnectorPoint connectorPoint in _storeyPointsCollector.ListConnectorPoints())
+        foreach(StoreyPointsCollector.ConnectorPoint connectorPoint in _storeyPointsCollector.ListConnectorPoints(storey))
         {
             GameObject corner = Instantiate(cornerFinishingPointPrefab);
             corner.transform.SetParent(gameObject.transform);

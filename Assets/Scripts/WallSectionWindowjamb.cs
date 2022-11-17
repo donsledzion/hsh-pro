@@ -17,7 +17,10 @@ public class WallSectionWindowjamb : WallSectionAlt
         _phantomTransform.localScale = new Vector3(parameters.Length, parameters.Height, parameters.Width);
 
         _scallableBottomChild.localPosition = new Vector3(_scallableBottomChild.localPosition.x, -parameters.WallHeight , _scallableBottomChild.localPosition.z);
-        _phantomTransform.localPosition = new Vector3(_scallableBottomChild.localPosition.x, -parameters.WallHeight + parameters.Windowsill, _scallableBottomChild.localPosition.z);
+        _phantomTransform.localPosition = new Vector3(
+            _scallableBottomChild.localPosition.x,
+            -parameters.WallHeight + parameters.Windowsill, 
+            _scallableBottomChild.localPosition.z);
 
         transform.position = parameters.Position;
 
