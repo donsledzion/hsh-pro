@@ -5,9 +5,11 @@ using UnityEngine;
 
 public static class PolygonHelper
 {
+    
     enum WindingOrder
     {
-
+        Clockwise,
+        CounterClockwise
     }
 
     public static float FindPolygonArea(Vector2[] vertices)
@@ -57,11 +59,14 @@ public static class PolygonHelper
             errorMessage = "The vertices list does not contain a valid polygon";
             return false;
         }
+        */
+
+        WindingOrder windingOrder = CheckWindingOrder(vertices);
 
         if (windingOrder is WindingOrder.CounterClockwise)  
         {
             Array.Reverse(vertices);
-        }*/
+        }
 
         List<int> indexList = new List<int>();
         for(int i = 0; i < vertices.Length; i++)
@@ -129,6 +134,18 @@ public static class PolygonHelper
 
 
         return true;
+    }
+
+    private static WindingOrder CheckWindingOrder(Vector2[] vertices)
+    {
+        float sum = 0;
+        for(int i = 0; i < vertices.Length-1; i++)
+        {
+            sum += (vertices[i + 1].x - vertices[i].x) * (vertices[i + 1].y + vertices[i].y);
+        }
+        sum += (vertices[0].x - vertices[vertices.Length-1].x) * (vertices[0].y + vertices[vertices.Length - 1].y);
+
+        return (sum < 0 ? WindingOrder.CounterClockwise : WindingOrder.Clockwise);
     }
 
     private static bool PointInTriangle(Vector2 p, Vector2 a, Vector2 b, Vector2 c)
