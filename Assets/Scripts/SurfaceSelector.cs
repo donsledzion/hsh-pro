@@ -38,8 +38,7 @@ public abstract class SurfaceSelector : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             _selection = hit.transform;
-            TryMaterial();
-            SetTiling();
+            TryMaterial();            
         }
 
         if (_selection != null)
@@ -54,6 +53,6 @@ public abstract class SurfaceSelector : MonoBehaviour
     protected abstract void TryMaterial();
     protected abstract void RestoreMaterial();
     protected abstract void ApplyMaterial();
-    protected abstract void SetTiling();
+    protected abstract void SetTiling(Vector2 tilling = new Vector2());
 
 }

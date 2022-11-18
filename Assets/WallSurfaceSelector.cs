@@ -10,7 +10,7 @@ public class WallSurfaceSelector : SurfaceSelector
         SetTiling();
     }
 
-    protected override void SetTiling()
+    protected override void SetTiling(Vector2 tilling = new Vector2())
     {
         Transform scalerTransform = _selection.GetComponentInParent<ScallableSection>().transform;
         Vector2 textureSize = new Vector2(scalerTransform.localScale.x, scalerTransform.localScale.y);
@@ -22,6 +22,7 @@ public class WallSurfaceSelector : SurfaceSelector
     {
         _originalMaterial = _selection.GetComponent<MeshRenderer>().material;
         _selection.GetComponent<MeshRenderer>().material = _selectionMaterial;
+        SetTiling();
     }
 
     protected override void RestoreMaterial()

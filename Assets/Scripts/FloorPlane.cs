@@ -12,60 +12,28 @@ public class FloorPlane : MonoBehaviour
     bool _triangulated = false;
     [SerializeField] float _overlappingOffset = 0.01f;
     Mesh mesh;
-    Material _material;
+    //Material _material;
+    MeshRenderer _renderer;
 
     [SerializeField] float _scaleX = 1f;
     [SerializeField] float _scaleY = 1f;
 
-    
-    [SerializeField] float shaderTiling = 1f;
-
-
-
-    [SerializeField] Material _spareMaterial;
-
     private void Awake()
     {
         mesh = meshFilter.mesh;
-        _material= GetComponent<MeshRenderer>().material;
-    }
-
-    private void Update()
-    {
-        
-        Vector2 someScale = AdjustScale(_floor.Points);
-        //_material.mainTextureScale = new Vector2(1/_scaleX,1/_scaleY);
-        
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Debug.Log("Generating mesh...(Update key called)");
-            MakeMeshPlane();
-            Debug.Log("Mesh generated");
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            InjectSpareMaterial();
-            Debug.Log("Material injected");
-        }
-            
+        _renderer = GetComponent<MeshRenderer>();
+        SetTilling(new Vector2(_scaleX,_scaleY));
     }
 
     public void SetTilling(Vector2 tiling = new Vector2())
     {
-        _material.mainTextureScale = new Vector2(1 / tiling.x, 1 / tiling.y);
-    }
-
-    private void InjectSpareMaterial()
-    {
-        GetComponent<MeshRenderer>().material = _spareMaterial;                
+        _renderer.material.mainTextureScale = new Vector2(1 / tiling.x, 1 / tiling.y);
     }
 
     public void InjectMaterial(Material material)
     {
-        GetComponent<MeshRenderer>().material = _material;
-        _material = material;
+        _renderer.material = material;
+        //_material = material;
     }
 
     public static Vector2 AdjustScale(Vector2[] points)
@@ -199,7 +167,6 @@ public class FloorPlane : MonoBehaviour
     public void Spatialize()
     {
         MakeMeshPlane();
-        //MakeMeshPlane(true);
     }
 
 

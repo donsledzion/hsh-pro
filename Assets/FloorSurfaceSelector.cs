@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FloorSurfaceSelector : SurfaceSelector
 {
-    Vector2 floorTiling = new Vector2(100f,100f); 
-
+    Vector2 floorTiling = new Vector2(100f,100f);
+    Vector2 originalTilling = new Vector2();
     public Vector2 FloorTiling
     {
         get { return floorTiling; }
@@ -18,19 +18,28 @@ public class FloorSurfaceSelector : SurfaceSelector
         _selection.GetComponent<FloorPlane>().InjectMaterial(_selectionMaterial);
     }
 
-    protected override void SetTiling()
+    protected override void SetTiling(Vector2 tilling = new Vector2())
     {
         _selection.GetComponent<FloorPlane>().SetTilling(FloorTiling);
     }
 
     protected override void TryMaterial()
     {
-        _originalMaterial = _selection.GetComponent<MeshRenderer>().material;
+        Material originalMaterial = _selection.GetComponent<MeshRenderer>().material;
+        originalTilling = 100f * originalMaterial.mainTextureScale;
+        _originalMaterial = originalMaterial;
         _selection.GetComponent<MeshRenderer>().material = _selectionMaterial;
+
+
+        SetTiling();
     }
 
     protected override void RestoreMaterial()
     {
+        Debug.Log("Restoring material");
+        FloorPlane plane = _selection.GetComponent<FloorPlane>();
         _selection.GetComponent<MeshRenderer>().material = _originalMaterial;
+        plane.SetTilling(originalTilling);
+        
     }
 }
