@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 
 public static class PolygonHelper
@@ -83,10 +84,8 @@ public static class PolygonHelper
         while(indexList.Count > 3 && counter <= 1000)
         {
             counter++;
-            Debug.Log("Triangulating mesh. indexList.Count = " + indexList.Count);
             for(int i = 0; i < indexList.Count; i++)
             {
-                Debug.Log("Triangulating mesh. For loop i = " + i);
                 int a = indexList[i];
                 int b = MathHelpers.GetItem(indexList,i-1);
                 int c = MathHelpers.GetItem(indexList,i+ 1);
@@ -181,4 +180,68 @@ public static class PolygonHelper
     {
         throw new NotImplementedException();
     }*/
+
+
+
+    public static Vector2[] PlaneRange(Vector2[] points)
+    {
+        Vector2[] outVectors = { new Vector2() };
+
+        if (points.Length == 0) return outVectors;
+
+        float minX = points[0].x;
+        float minY = points[0].y;
+        float maxX = points[0].x;
+        float maxY = points[0].y;
+
+        foreach (Vector2 point in points)
+        {
+            if (point.x < minX) minX = point.x;
+            if (point.y < minY) minY = point.y;
+            if (point.x > maxX) maxX = point.x;
+            if (point.y > maxY) maxY = point.y;
+        }
+
+        Vector2[] newOutVectors = { new Vector2(minX, minY), new Vector2(maxX,maxY) };
+        Debug.Log("Min:" + newOutVectors[0] + " | Max: " + newOutVectors[1]);
+        return newOutVectors;
+    }
+
+
+    public static Vector2[] RangeToRect(Vector2[] range, float offset=0f)
+    {
+        Vector2[] rect ={
+            new Vector2(range[0].x - offset,range[0].y - offset),
+            new Vector2(range[0].x - offset,range[1].y + offset),
+            new Vector2(range[1].x + offset,range[1].y + offset),
+            new Vector2(range[1].x + offset,range[0].y - offset)
+        };
+        return rect;
+    }
+
+
+    public static Vector2 AdjustScale(Vector2[] points)
+    {
+        if (points.Length == 0) return new Vector2(0, 0);
+
+
+        Vector2 outScale = points[0];
+        float minX = outScale.x;
+        float minY = outScale.y;
+        float maxX = outScale.x;
+        float maxY = outScale.y;
+
+        foreach (Vector2 point in points)
+        {
+            if (point.x < minX) minX = point.x;
+            if (point.y < minY) minY = point.y;
+            if (point.x > maxX) maxX = point.x;
+            if (point.y > maxY) maxY = point.y;
+        }
+        outScale.x = Mathf.Abs(maxX - minX);
+        outScale.y = Mathf.Abs(maxY - minY);
+
+
+        return outScale;
+    }
 }

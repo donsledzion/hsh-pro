@@ -22,10 +22,17 @@ public class StoreyPointsCollector : MonoBehaviour
                 allPoints.Add(new WallPoint(wall, section, section.EndPoint));                
             }
         }
-        Debug.Log("Found total: " + allPoints.Count + " points");
         return allPoints;
     }
 
+
+    public Vector2[] WallPointsListToVectorArray(List<WallPoint> wallPointsList)
+    {
+        List<Vector2> vectorList = new List<Vector2>();
+        foreach (WallPoint wallPoint in wallPointsList)
+            vectorList.Add(wallPoint.point);
+        return vectorList.ToArray();
+    }
 
     public List<ConnectorPoint> FindConnectorPoints(List<WallPoint> wallPoints)
     {

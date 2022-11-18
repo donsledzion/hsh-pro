@@ -26,16 +26,14 @@ public class Builder3D : MonoBehaviour
          * TODO:
          * create wall and ceiling sections in separate transforms depending on the storey they belong to
          */
-        Debug.Log("GENERATING STOREY!");
+        //Generating walls (wall may contain several wall sections
         foreach (Wall wall in storey.Walls)
         {
-            Debug.Log("Spatializing walls...");
+            //Generating wall sections depending on wall section type
             foreach (WallSection section in wall.WallSections)
             {
-                Debug.Log("Spatializing sections...");
                 if (section is SectionStraight)
                 {
-                    Debug.Log("Spatializing STRAIGHT sections...");
                     GameObject sectionObject = Instantiate(_sectionStraightPrefab, gameObject.transform);
                     WallSectionAlt sectionAlt = sectionObject.GetComponent<WallSectionAlt>();
                     sectionAlt.SetParameters(storey, wall, section);
@@ -43,7 +41,6 @@ public class Builder3D : MonoBehaviour
                 }
                 else if(section is Doorjamb)
                 {
-                    Debug.Log("Spatializing JAMB sections...");
                     GameObject sectionObject = Instantiate(_sectionDoorjambPrefab, gameObject.transform);
                     WallSectionDoorjamb sectionJamb = sectionObject.GetComponent<WallSectionDoorjamb>();
                     sectionJamb.SetParameters(storey, wall, (Doorjamb)section);
@@ -51,7 +48,6 @@ public class Builder3D : MonoBehaviour
                 }
                 else if(section is Windowjamb)
                 {
-                    Debug.Log("Spatializing JAMB sections...");
                     GameObject sectionObject = Instantiate(_sectionWindowjambPrefab, gameObject.transform);
                     WallSectionWindowjamb sectionJamb = sectionObject.GetComponent<WallSectionWindowjamb>();
                     sectionJamb.SetParameters(storey, wall, (Windowjamb)section);
@@ -59,42 +55,37 @@ public class Builder3D : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Spatializing ceilings...");
+        //Generating inter-storey ceilings
         foreach(Ceiling ceiling in storey.Ceilings)
         {
             GameObject ceilingObject = Instantiate(_ceilingSectionPrefab);
             ceilingObject.transform.SetParent(gameObject.transform);
             CeilingSection ceilingSection = ceilingObject.GetComponent<CeilingSection>();
-            Debug.Log("Spatializing planes...");
             foreach (CeilingPlane plane in ceilingSection.CeilingPlanes)
             {
                 plane.SetParameters(ceiling);
                 plane.Spatialize();
             }
-            Debug.Log("spatializing bands...");
             foreach (CeilingBand band in ceilingSection.CeilingBands)
             {
                 band.SetParameters(ceiling);
                 band.Spatialize();
             }            
         }
-
-        Debug.Log("Spatializing floors...( " + storey.Floors.Count + " )");
+        // Inserting floor planes
         foreach(FloorSection2D floor in storey.Floors)
         {
             GameObject floorObject = Instantiate(_floorSectionPrefab);
             floorObject.transform.SetParent(gameObject.transform);
             FloorSection floorSection = floorObject.GetComponent<FloorSection>();
-            Debug.Log("Spatializing floor planes - (" + floorSection.FloorPlanes.Count + ")");
             foreach (FloorPlane plane in floorSection.FloorPlanes)
             {
                 plane.SetParameters(floor);
-                Debug.Log("Parameters set");
                 plane.Spatialize();
                 plane.gameObject.AddComponent<MeshCollider>();
-                Debug.Log("Spatialized!!!");
             }
         }
+        // Inserting "corners" (rounded so far) on wall connections
         foreach(StoreyPointsCollector.ConnectorPoint connectorPoint in _storeyPointsCollector.ListConnectorPoints(storey))
         {
             GameObject corner = Instantiate(cornerFinishingPointPrefab);
@@ -103,6 +94,23 @@ public class Builder3D : MonoBehaviour
             corner.transform.localScale = new Vector3(size, storey.Height, size);
             corner.transform.localPosition = new Vector3(connectorPoint.Point.x,storey.Elevation,connectorPoint.Point.y) - transform.localPosition;            
         }
+        //Inserting flooring under first floor (independand to floor secions)
+        // So far only solution is to generate rectangular flooring covering whole building
+        Vector2[] flooringPoints = PolygonHelper.RangeToRect(
+            PolygonHelper.PlaneRange(
+                _storeyPointsCollector.WallPointsListToVectorArray(
+                    _storeyPointsCollector.CollectAllPoints(
+                        GameManager.ins.Building.Storeys[0]))),50f);
+        GameObject flooringObject = Instantiate(_ceilingSectionPrefab);
+        flooringObject.transform.SetParent(gameObject.transform);
+        CeilingSection flooringSection = flooringObject.GetComponent<CeilingSection>();
+        Ceiling flooring = new Ceiling(10f,0f,flooringPoints);
+        CeilingPlane flooringPlane = flooringSection.CeilingPlanes[0];
+        flooringPlane.SetParameters(flooring);
+        flooringPlane.Spatialize();
+        
+
+
     }
 
     [ContextMenu("Generate Current Storey")]
@@ -115,14 +123,12 @@ public class Builder3D : MonoBehaviour
     {
         EraseStoreyDrawings();
         Building building = GameManager.ins.Building;
-        Debug.Log("BUILDING COMPLETED, GENERATING STOREYS");
         foreach (Storey storey in building.Storeys)
             GenerateStorey(storey);
     }
 
     void EraseStoreyDrawings()
     {
-        Debug.Log("ERASING DRAWINGS...");
         foreach (Transform _transform in gameObject.GetComponentsInChildren<Transform>())
         {
             if(_transform != transform && _transform.parent == transform && _transform != _playerTransform && _transform != _enviornmentTransform)
@@ -130,6 +136,5 @@ public class Builder3D : MonoBehaviour
                 Destroy(_transform.gameObject);
             }
         }
-        Debug.Log("ERASING DRAWINGS COMPLETED");
     }
 }

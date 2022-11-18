@@ -70,4 +70,14 @@ public abstract class DrawWithLines : DrawOnCanvas
         Debug.Log("NewPoints.Count: " + newPoints.Length);
         return isFiltered ? newPoints : sourcePoints;
     }
+    protected Vector2[] EnsureLineIsClosed(Vector2[] points, float tollerance)
+    {
+        if ((points[0] - points[points.Length - 1]).magnitude > tollerance)
+        {
+            List<Vector2> newPoints = new List<Vector2>(points);
+            newPoints.Add(points[0]);
+            points = newPoints.ToArray();
+        }
+        return points;
+    }
 }
