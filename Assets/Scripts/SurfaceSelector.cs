@@ -9,17 +9,19 @@ public abstract class SurfaceSelector : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] protected Material _selectionMaterial;
     [SerializeField] protected Material _originalMaterial;
+    string _materialName;
+
 
     public Material SelectionMaterial
+    { 
+        get { return _selectionMaterial; }
+        set {_selectionMaterial = value; }
+    }
+
+    public String MaterialName
     {
-        get
-        {
-            return _selectionMaterial;
-        }
-        set
-        {
-            _selectionMaterial = value;
-        }
+        get { return _materialName; }
+        set { _materialName = value; }
     }
 
 

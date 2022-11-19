@@ -10,7 +10,6 @@ public class CurrentMaterialController : MonoBehaviour
     [SerializeField] FloorSurfaceSelector _floorSurfaceSelector;
     [SerializeField] Vector2 _floorMaterialTilling = new Vector2(100f,100f);
 
-
     public FloorSurfaceSelector FloorSurfaceSelector { get { return _floorSurfaceSelector; } }
     public WallSurfaceSelector WallSurfaceSelector { get { return _wallSurfaceSelector; } }
 

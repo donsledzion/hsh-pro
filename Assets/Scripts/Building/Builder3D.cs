@@ -98,18 +98,21 @@ public class Builder3D : MonoBehaviour
         }
         //Inserting flooring under first floor (independand to floor secions)
         // So far only solution is to generate rectangular flooring covering whole building
-        Vector2[] flooringPoints = PolygonHelper.RangeToRect(
-            PolygonHelper.PlaneRange(
-                _storeyPointsCollector.WallPointsListToVectorArray(
-                    _storeyPointsCollector.CollectAllPoints(
-                        GameManager.ins.Building.Storeys[0]))),50f);
-        GameObject flooringObject = Instantiate(_ceilingSectionPrefab);
-        flooringObject.transform.SetParent(gameObject.transform);
-        CeilingSection flooringSection = flooringObject.GetComponent<CeilingSection>();
-        Ceiling flooring = new Ceiling(10f,0f,flooringPoints);
-        CeilingPlane flooringPlane = flooringSection.CeilingPlanes[0];
-        flooringPlane.SetParameters(flooring);
-        flooringPlane.Spatialize();
+        if(storey.Walls.Count > 0)
+        {
+            Vector2[] flooringPoints = PolygonHelper.RangeToRect(
+                PolygonHelper.PlaneRange(
+                    _storeyPointsCollector.WallPointsListToVectorArray(
+                        _storeyPointsCollector.CollectAllPoints(
+                            GameManager.ins.Building.Storeys[0]))),50f);
+            GameObject flooringObject = Instantiate(_ceilingSectionPrefab);
+            flooringObject.transform.SetParent(gameObject.transform);
+            CeilingSection flooringSection = flooringObject.GetComponent<CeilingSection>();
+            Ceiling flooring = new Ceiling(10f,0f,flooringPoints);
+            CeilingPlane flooringPlane = flooringSection.CeilingPlanes[0];
+            flooringPlane.SetParameters(flooring);
+            flooringPlane.Spatialize();
+        }
         
 
 

@@ -8,6 +8,7 @@ public class WallSurfaceSelector : SurfaceSelector
     {
         _originalMaterial = _selectionMaterial;
         SetTiling();
+        _selection.GetComponentInParent<WallSectionAlt>().Section.PaintingSetup.AssignMaterial(_selection.gameObject.name, MaterialName);
     }
 
     protected override void SetTiling(Vector2 tilling = new Vector2())

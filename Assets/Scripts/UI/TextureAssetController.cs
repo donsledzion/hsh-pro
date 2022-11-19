@@ -52,6 +52,7 @@ public class TextureAssetController : MonoBehaviour
 
         foreach (ScriptableObjectsController item in itemList)
         {
+            Debug.Log(item);
             SetupInstance(item);
         }
     }
@@ -86,15 +87,12 @@ public class TextureAssetController : MonoBehaviour
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
         CurrentMaterialController.ins.WallSurfaceSelector.SelectionMaterial = item.material;
+        CurrentMaterialController.ins.WallSurfaceSelector.MaterialName = AssetBundleHelper.ExtractName(item);
     }
 
     private void FetchTextures()
     {
-        textureAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/texture_bundle");
-
-        if (textureAsset) Debug.Log("Loaded successfuly");
-        else Debug.Log("Failed to load");
-
+        textureAsset = AssetBundleLoader.ins.WallSurfacesBundle.LoadBundle();
         itemList.AddRange(textureAsset.LoadAllAssets<ScriptableObjectsController>());
     }
 

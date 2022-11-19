@@ -19,10 +19,12 @@ namespace Walls2D
     public abstract class WallSection
     {
         protected Wall _wallReference;
-        [XmlAttribute]
+        //[XmlAttribute]
         protected BasePoint _startPoint;
-        [XmlAttribute]
+        //[XmlAttribute]
         protected BasePoint _endPoint;
+        //[XmlAttribute]
+        protected WallSectionPaintingSetup _paintingSetup;
 
         public BasePoint StartPoint
         {
@@ -34,6 +36,11 @@ namespace Walls2D
         {
             get { return _endPoint; }
             set { _endPoint = value; }
+        }
+        public WallSectionPaintingSetup PaintingSetup
+        {
+            get { return _paintingSetup; }
+            set { _paintingSetup = value; }
         }
 
         public float AzimuthRad
@@ -71,8 +78,6 @@ namespace Walls2D
         }
         public void SplitSection(Vector2 point)
         {
-            //Debug.Log("WallSectionStartPoint: " + StartPoint.Position + " | point: " + point);
-            //Debug.Log("Trying to split points...");
             if (PointBelongsToSection(point))
             {
                 WallSection sectionA;
@@ -136,7 +141,4 @@ namespace Walls2D
             return new XElement("wall-section", wallSection);
         }
     }
-
-
-    
 }
