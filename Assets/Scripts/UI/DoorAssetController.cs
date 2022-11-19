@@ -70,7 +70,6 @@ public class DoorAssetController : MonoBehaviour
         surfaceSelector.GetComponent<FittingModeSwitcher>().DoorFittingMode();
 
         CurrentPrefabController.ins.Door3DSelector.ItemPrefab = item.prefab;
-        CurrentPrefabController.ins.Door3DSelector.BundlePath = "AssetBundles/StandaloneWindows/door_bundle";
         CurrentPrefabController.ins.Door3DSelector.BundleItemName = AssetBundleHelper.ExtractName(item);
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);

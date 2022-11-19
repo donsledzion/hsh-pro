@@ -10,6 +10,7 @@ public class AssetBundleLoader : MonoBehaviour
 
     public BundleLoadStatus DoorBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/door_bundle");
     public BundleLoadStatus WindowsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/windowassets");
+    public BundleLoadStatus WallSurfacesBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/texture_bundle");
 
 
 

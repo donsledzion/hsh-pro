@@ -66,7 +66,6 @@ public class WindowAssetController : MonoBehaviour
     {
         surfaceSelector.GetComponent<FittingModeSwitcher>().WindowsFittingMode();
         CurrentPrefabController.ins.Window3DSelector.ItemPrefab = item.prefab;
-        CurrentPrefabController.ins.Window3DSelector.BundlePath = "AssetBundles/StandaloneWindows/windowassets";
         CurrentPrefabController.ins.Window3DSelector.BundleItemName = AssetBundleHelper.ExtractName(item);
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);

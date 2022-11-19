@@ -6,7 +6,7 @@ public class WallSectionJamb : WallSectionAlt
 {
 
     [SerializeField] protected PhantomScaler _phantomScaler;
-    protected GameObject FitPrefabIntoJamb(string bundlePath, string itemName, AssetBundle bundle)
+    protected GameObject FitPrefabIntoJamb(string itemName, AssetBundle bundle)
     {
         if (bundle != null)
         {
@@ -40,9 +40,8 @@ public class WallSectionJamb : WallSectionAlt
             return;
         }
         Jamb jamb = Section as Jamb;
-        string bundlePath = jamb.JoineryBundle;
         string itemName = jamb.JoineryName;
-        if (bundlePath != "" && itemName != "" && itemName != null)
+        if (itemName != "" && itemName != null)
         {
             AssetBundle bundle;
             if (this.GetType() == typeof(WallSectionDoorjamb))
@@ -51,7 +50,7 @@ public class WallSectionJamb : WallSectionAlt
                 bundle = AssetBundleLoader.ins.WindowsBundle.LoadBundle();
             else
                 return;
-            FitPrefabIntoJamb(bundlePath, itemName, bundle);
+            FitPrefabIntoJamb(itemName, bundle);
         }
     }
 }

@@ -10,18 +10,11 @@ public class Pointer3DSelector : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject _itemPrefab;
     [SerializeField] Camera _pcCamera;
-    [SerializeField] string _bundlePath="";
     [SerializeField] string _bundleItemName="";
     public GameObject ItemPrefab
     {
         get { return _itemPrefab; } 
         set { _itemPrefab = value;}
-    }
-
-    public string BundlePath
-    {
-        get { return _bundlePath; }
-        set { _bundlePath = value; }
     }
 
     public string BundleItemName
@@ -83,7 +76,7 @@ public class Pointer3DSelector : MonoBehaviour
         if (jamb != null)
         { 
             Debug.Log("Found Jamb");
-            jamb.AssignJoinery(BundlePath, BundleItemName);
+            jamb.AssignJoinery(BundleItemName);
         }
         else
         {
