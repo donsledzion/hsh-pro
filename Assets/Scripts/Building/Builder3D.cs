@@ -38,6 +38,7 @@ public class Builder3D : MonoBehaviour
                     WallSectionAlt sectionAlt = sectionObject.GetComponent<WallSectionAlt>();
                     sectionAlt.SetParameters(storey, wall, section);
                     sectionAlt.Spatialize(section);
+                    sectionAlt.ApplyPaintings();
                 }
                 else if(section is Doorjamb)
                 {

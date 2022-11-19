@@ -538,7 +538,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scallableChild: {fileID: 1310470723}
-  _phantomTransform: {fileID: 0}
   tillingAdjustersTop:
   - {fileID: 585488441}
   - {fileID: 1697418915}
@@ -2284,7 +2283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scallableChild: {fileID: 1496220438}
-  _phantomTransform: {fileID: 0}
   tillingAdjustersTop:
   - {fileID: 1512351861}
   - {fileID: 159196546}
@@ -3253,8 +3251,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436eea8ab333b7f47b64da6b385eb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetDirectory: AssetBundles/StandaloneWindows/door_bundle
-  assetName: JJ_Door_5
+  DoorBundle:
+    BundlePath: AssetBundles/StandaloneWindows/door_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  WindowsBundle:
+    BundlePath: AssetBundles/StandaloneWindows/windowassets
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  WallSurfacesBundle:
+    BundlePath: AssetBundles/StandaloneWindows/texture_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
 --- !u!4 &1402110200
 Transform:
   m_ObjectHideFlags: 0
@@ -4547,6 +4555,51 @@ MonoBehaviour:
   _whiteboardBackground: {fileID: 0}
   _gridController: {fileID: 374718309}
   _canvasController: {fileID: 0}
+--- !u!1 &1825435937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1825435939}
+  - component: {fileID: 1825435938}
+  m_Layer: 0
+  m_Name: LoadAsset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1825435938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825435937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dffff4aae6cbff48804502abc0ec8ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: GaleryScriptableObjects
+  _loadedMaterial: {fileID: 0}
+--- !u!4 &1825435939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825435937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 433.6255, y: 199.76385, z: 209.6127}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1825916792
 GameObject:
   m_ObjectHideFlags: 0
@@ -5594,7 +5647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scallableChild: {fileID: 6333189717356673732}
-  _phantomTransform: {fileID: 0}
   tillingAdjustersTop:
   - {fileID: 9006735191112866873}
   - {fileID: 9006735190446411332}
@@ -6921,6 +6973,7 @@ MonoBehaviour:
     m_Bits: 128
   _itemPrefab: {fileID: 1015707552984288, guid: 3865dab15f85624439f27d11cc132971, type: 3}
   _pcCamera: {fileID: 8048049651178452321}
+  _bundleItemName: 
 --- !u!4 &4649979537529975024
 Transform:
   m_ObjectHideFlags: 0
@@ -7018,6 +7071,7 @@ MonoBehaviour:
     m_Bits: 256
   _itemPrefab: {fileID: 1464866569059386703, guid: 8179a63c4d95a3c4a93d892cd3e9bb11, type: 3}
   _pcCamera: {fileID: 8048049651178452321}
+  _bundleItemName: 
 --- !u!1 &4740316025358647910
 GameObject:
   m_ObjectHideFlags: 0

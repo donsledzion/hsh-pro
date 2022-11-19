@@ -10,10 +10,10 @@ namespace Walls2D
     {
         string _aFacePainting;
         string _bFacePainting;
-        string _aHeadPaintginA;
-        string _aHeadPaintginB;
-        string _bHeadPaintginA;
-        string _bHeadPaintginB;
+        string _aHeadPaintingA;
+        string _aHeadPaintingB;
+        string _bHeadPaintingA;
+        string _bHeadPaintingB;
 
 
 
@@ -21,10 +21,10 @@ namespace Walls2D
         {
             _aFacePainting = "";
             _bFacePainting = "";
-            _aHeadPaintginA = "";
-            _aHeadPaintginB = "";
-            _bHeadPaintginA = "";
-            _bHeadPaintginB = "";
+            _aHeadPaintingA = "";
+            _aHeadPaintingB = "";
+            _bHeadPaintingA = "";
+            _bHeadPaintingB = "";
         }
 
         public string AFacePainting
@@ -39,27 +39,27 @@ namespace Walls2D
             set {_bFacePainting = value; }
         }
 
-        public string AHeadPaintginA
+        public string AHeadPaintingA
         {
-            get { return _aHeadPaintginA; }
-            set {_aHeadPaintginA = value; }
+            get { return _aHeadPaintingA; }
+            set {_aHeadPaintingA = value; }
         }
-        public string AHeadPaintginB
+        public string AHeadPaintingB
         {
-            get { return _aHeadPaintginB; }
-            set {_aHeadPaintginB = value; }
+            get { return _aHeadPaintingB; }
+            set {_aHeadPaintingB = value; }
         }
 
-        public string BHeadPaintginA
+        public string BHeadPaintingA
         {
-            get { return _bHeadPaintginA; }
-            set {_bHeadPaintginA = value; }
+            get { return _bHeadPaintingA; }
+            set {_bHeadPaintingA = value; }
         }
 
         public string BHeadPaintingB
         {
-            get { return _bHeadPaintginB; }
-            set {_bHeadPaintginB = value; }
+            get { return _bHeadPaintingB; }
+            set {_bHeadPaintingB = value; }
         }
 
         public override void AssignMaterial(string planeName, string materialName)
@@ -67,16 +67,16 @@ namespace Walls2D
             switch(planeName)
             {
                 case "PlaneHeadStartLeft":
-                    _aHeadPaintginA = materialName;
+                    _aHeadPaintingA = materialName;
                     break;
                 case "PlaneHeadStartRight":
-                    _aHeadPaintginB = materialName;
+                    _aHeadPaintingB = materialName;
                     break;
                 case "PlaneHeadEndLeft":
-                    _bHeadPaintginA = materialName;
+                    _bHeadPaintingA = materialName;
                     break;
                 case "PlaneHeadEndRight":
-                    _bHeadPaintginB = materialName;
+                    _bHeadPaintingB = materialName;
                     break;
                 case "PlaneFaceLeft":
                     _aFacePainting = materialName;
