@@ -203,7 +203,6 @@ public static class PolygonHelper
         }
 
         Vector2[] newOutVectors = { new Vector2(minX, minY), new Vector2(maxX,maxY) };
-        Debug.Log("Min:" + newOutVectors[0] + " | Max: " + newOutVectors[1]);
         return newOutVectors;
     }
 

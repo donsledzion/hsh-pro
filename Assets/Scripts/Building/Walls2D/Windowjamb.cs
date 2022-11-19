@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Walls2D
 {
+    [Serializable]
     public class Windowjamb : Jamb
     {
         float _windowsill;
 
-        public float WindowSill { get { return _windowsill; }}
+        public float WindowSill
+        { 
+            get { return _windowsill; }
+            set { _windowsill = value;}
+        }
         public Windowjamb()
         {
             _width = 160f;

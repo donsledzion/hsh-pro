@@ -82,9 +82,7 @@ public class Drawing2DController : MonoBehaviour
             ClearStorey(storey2d);
             if(!storey2d.FirstStoreyForever)
                 Destroy(storey2d.gameObject);
-        }
-            
-        Debug.Log("Erasing storeys");
+        }            
         _storeys2D.Clear();
     }
 
@@ -102,8 +100,7 @@ public class Drawing2DController : MonoBehaviour
                 SetStoreysVisibility();
                 return;
             }
-        }
-        Debug.Log("Storey not " + storey.Name + " found!");
+        }        
         GameObject newStorey = Instantiate(storey2DPrefab, drawingsContainer);
         newStorey.name = storey.Name;
         newStorey.transform.SetParent(drawingsContainer);

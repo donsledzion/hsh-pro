@@ -11,6 +11,7 @@ public class Pointer3DSelector : MonoBehaviour
     [SerializeField] GameObject _itemPrefab;
     [SerializeField] Camera _pcCamera;
     [SerializeField] string _bundlePath="";
+    [SerializeField] string _bundleItemName="";
     public GameObject ItemPrefab
     {
         get { return _itemPrefab; } 
@@ -21,6 +22,12 @@ public class Pointer3DSelector : MonoBehaviour
     {
         get { return _bundlePath; }
         set { _bundlePath = value; }
+    }
+
+    public string BundleItemName
+    {
+        get { return _bundleItemName; }
+        set { _bundleItemName = value;}
     }
 
 
@@ -76,7 +83,7 @@ public class Pointer3DSelector : MonoBehaviour
         if (jamb != null)
         { 
             Debug.Log("Found Jamb");
-            jamb.AssignJoinery(BundlePath);
+            jamb.AssignJoinery(BundlePath, BundleItemName);
         }
         else
         {

@@ -8,7 +8,6 @@ public class WallSectionAlt : MonoBehaviour
     protected WallParameters parameters = new WallParameters();
     WallSection _section;
     [SerializeField] protected Transform _scallableChild;
-    [SerializeField] protected Transform _phantomTransform;
     [SerializeField] List<TillingAdjuster> tillingAdjustersTop = new List<TillingAdjuster>();
     [SerializeField] List<TillingAdjuster> tillingAdjustersHead = new List<TillingAdjuster>();
     [SerializeField] List<TillingAdjuster> tillingAdjustersFace = new List<TillingAdjuster>();
@@ -25,7 +24,7 @@ public class WallSectionAlt : MonoBehaviour
         SetTilling();
     }
 
-    public void SetParameters(Storey storey, Wall wall, WallSection wallSection)
+    public virtual void SetParameters(Storey storey, Wall wall, WallSection wallSection)
     {
         parameters.SetParameters(storey, wall, wallSection);
         Section = wallSection;
@@ -49,4 +48,6 @@ public class WallSectionAlt : MonoBehaviour
             adjuster.SetTilling(textureScale);
         }
     }
+
+    
 }

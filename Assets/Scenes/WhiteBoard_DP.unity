@@ -619,6 +619,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93162a28a675b6a44989c08a2f5b6857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &319413803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 319413805}
+  - component: {fileID: 319413804}
+  m_Layer: 0
+  m_Name: BundleLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &319413804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319413803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436eea8ab333b7f47b64da6b385eb118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoorBundle:
+    BundlePath: AssetBundles/StandaloneWindows/door_bundle
+    IsLoaded: 0
+  WindowsBundle:
+    BundlePath: AssetBundles/StandaloneWindows/windowassets
+    IsLoaded: 0
+--- !u!4 &319413805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319413803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 281.92862, y: 206.69771, z: 113.451866}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352809852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 352809852, guid: c16ca77f11220d643a07d32b47f67154, type: 3}
@@ -2684,7 +2733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1763186571
 Transform:
   m_ObjectHideFlags: 0

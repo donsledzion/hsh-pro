@@ -45,6 +45,7 @@ public class Builder3D : MonoBehaviour
                     WallSectionDoorjamb sectionJamb = sectionObject.GetComponent<WallSectionDoorjamb>();
                     sectionJamb.SetParameters(storey, wall, (Doorjamb)section);
                     sectionJamb.Spatialize((Doorjamb)section);
+                    sectionJamb.InsertJoinery();
                 }
                 else if(section is Windowjamb)
                 {
@@ -52,6 +53,7 @@ public class Builder3D : MonoBehaviour
                     WallSectionWindowjamb sectionJamb = sectionObject.GetComponent<WallSectionWindowjamb>();
                     sectionJamb.SetParameters(storey, wall, (Windowjamb)section);
                     sectionJamb.Spatialize((Windowjamb)section);
+                    sectionJamb.InsertJoinery();
                 }
             }
         }
