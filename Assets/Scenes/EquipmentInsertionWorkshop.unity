@@ -188,7 +188,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &4809298
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -477,7 +476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5436eee31696514cabd5a0c05607241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _surfaceSelector: {fileID: 1825916798}
+  _wallSurfaceSelector: {fileID: 0}
+  _floorSurfaceSelector: {fileID: 0}
+  _floorMaterialTilling: {x: 100, y: 100}
 --- !u!64 &119561872
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -598,7 +599,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &159196547
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -805,7 +805,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &269777241
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -918,7 +917,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &272349365
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1160,7 +1158,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &377390354
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1496,7 +1493,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &423162454
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1609,7 +1605,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &449108730
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1774,7 +1769,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &585488442
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2135,7 +2129,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &783476056
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2353,7 +2346,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &940971422
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2479,7 +2471,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &1065041939
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2606,7 +2597,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &1085450632
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2844,7 +2834,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &1144653503
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2957,7 +2946,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &1193093771
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3236,6 +3224,51 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 4096
+--- !u!1 &1402110198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1402110200}
+  - component: {fileID: 1402110199}
+  m_Layer: 0
+  m_Name: AssetbundleLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1402110199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402110198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436eea8ab333b7f47b64da6b385eb118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetDirectory: AssetBundles/StandaloneWindows/door_bundle
+  assetName: JJ_Door_5
+--- !u!4 &1402110200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402110198}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 347.4, y: 82.4, z: 185.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422869807
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,7 +3489,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &1466112159
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3757,7 +3789,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &1512351862
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3922,7 +3953,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &1605917227
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4083,7 +4113,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &1697418916
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4196,7 +4225,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &1745049831
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4562,11 +4590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d9415c9eecac042885bb8d182521a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  _selectionMaterial: {fileID: 2100000, guid: cc8e0f36e32fcf640b1e733f755715d2, type: 2}
-  _originalMaterial: {fileID: 0}
 --- !u!1 &1870348591
 GameObject:
   m_ObjectHideFlags: 0
@@ -4922,7 +4945,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!64 &2009320033
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5158,7 +5180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fittingDoorTool: {fileID: 4649979537309078313}
   _fittingWindowsTool: {fileID: 4649979537704888689}
-  _surfaceSelector: {fileID: 1825916792}
+  _floorSurfaceSelector: {fileID: 0}
+  _wallSurfaceSelector: {fileID: 0}
 --- !u!114 &2105144580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5316,7 +5339,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!4 &389612656831002836
 Transform:
   m_ObjectHideFlags: 0
@@ -5355,6 +5377,7 @@ MonoBehaviour:
   _floorSectionPrefab: {fileID: 2650401843508665412, guid: 30408ff4ea285f148ba19b352a8ec499, type: 3}
   _playerTransform: {fileID: 0}
   _enviornmentTransform: {fileID: 2064805437842168065}
+  cornerFinishingPointPrefab: {fileID: 0}
 --- !u!1 &389612656831002859
 GameObject:
   m_ObjectHideFlags: 0
@@ -5398,6 +5421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3f986ac13dfd247ad2b7fc8b3a98dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _firstToLastPointTollerance: 0.2
   _floorPrefab: {fileID: 8143197018092923727, guid: 9ed7d5e665207de43b82a7f6ff1ed50c, type: 3}
 --- !u!1 &514179758003637185
 GameObject:
@@ -5949,7 +5973,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!1 &2016214500350819144
 GameObject:
   m_ObjectHideFlags: 0
@@ -6103,7 +6126,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!114 &2610438134929860680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6349,6 +6371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ceilingPrefab: {fileID: 8143197018092923727, guid: dff04959fac55c148af51e75dacbc67e, type: 3}
+  _firstToLastPointTollerance: 0.2
 --- !u!4 &3540409414779155824
 Transform:
   m_ObjectHideFlags: 0
@@ -6395,7 +6418,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!1 &3793638526913530468
 GameObject:
   m_ObjectHideFlags: 0
@@ -7998,6 +8020,8 @@ MonoBehaviour:
   storey2DPrefab: {fileID: 2761374197951724073, guid: 42c382875e38e034298151cfae869545, type: 3}
   wallOnCanvasPrefab: {fileID: 4262989346007349834, guid: d43f662cda6a91b4bb7b2f06b81977b6, type: 3}
   _dynamicInputController: {fileID: 0}
+  visibleStoreyOpacity: 1
+  invisibleStoreyOpacity: 0
   drawingsContainer: {fileID: 8808361923671772504}
   _storeys2D: []
   currentStorey: {fileID: 703738338}
@@ -8447,8 +8471,6 @@ MonoBehaviour:
   _overlappingOffset: 0.01
   _scaleX: 100
   _scaleY: 100
-  shaderTiling: 6.04
-  _spareMaterial: {fileID: 2100000, guid: c8c8f0802a081b54fa1e3edf21279b1f, type: 2}
 --- !u!114 &9006735190446411332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8464,7 +8486,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!4 &9006735190446411336
 Transform:
   m_ObjectHideFlags: 0
@@ -8640,7 +8661,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!1 &9006735190719322506
 GameObject:
   m_ObjectHideFlags: 0
@@ -8700,7 +8720,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!1 &9006735191112866876
 GameObject:
   m_ObjectHideFlags: 0
@@ -8868,7 +8887,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!1 &9006735191175528674
 GameObject:
   m_ObjectHideFlags: 0
@@ -8980,7 +8998,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!1 &9006735191399393005
 GameObject:
   m_ObjectHideFlags: 0
@@ -9065,7 +9082,6 @@ MonoBehaviour:
   _verticalTilling: 1
   _horizontalTilling: 1
   _baseSize: 300
-  _renderer: {fileID: 0}
 --- !u!1 &9006735191991793672
 GameObject:
   m_ObjectHideFlags: 0

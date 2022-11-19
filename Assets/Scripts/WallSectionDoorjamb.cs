@@ -24,5 +24,6 @@ public class WallSectionDoorjamb : WallSectionAlt
     public void SetParameters(Storey storey, Wall wall, Doorjamb jamb)
     {
         parameters.SetParameters(storey, wall, jamb);
+        Section = jamb;
     }
 }

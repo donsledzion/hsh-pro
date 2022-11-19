@@ -31,5 +31,6 @@ public class WallSectionWindowjamb : WallSectionAlt
     public void SetParameters(Storey storey, Wall wall, Windowjamb jamb)
     {
         parameters.SetParameters(storey, wall, jamb);
+        Section = jamb;
     }
 }

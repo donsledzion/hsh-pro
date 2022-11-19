@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Walls2D
 {
+    [Serializable]
     public class Doorjamb : Jamb
     {
 

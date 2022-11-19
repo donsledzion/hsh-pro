@@ -8,6 +8,7 @@ public class CurrentPrefabController : MonoBehaviour
 
     [SerializeField] Pointer3DSelector _door3DSelector;
     [SerializeField] Pointer3DSelector _window3DSelector;
+
     public Pointer3DSelector Door3DSelector { get { return _door3DSelector; } }
     public Pointer3DSelector Window3DSelector { get { return _window3DSelector; } }
 

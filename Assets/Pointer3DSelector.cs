@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Walls2D;
 
 public class Pointer3DSelector : MonoBehaviour
 {
@@ -9,17 +10,21 @@ public class Pointer3DSelector : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject _itemPrefab;
     [SerializeField] Camera _pcCamera;
-
-    public GameObject ItemPrefab {
-        get
-        {
-            return _itemPrefab;
-        } 
-        set
-        {
-            _itemPrefab = value;
-        }
+    [SerializeField] string _bundlePath="";
+    public GameObject ItemPrefab
+    {
+        get { return _itemPrefab; } 
+        set { _itemPrefab = value;}
     }
+
+    public string BundlePath
+    {
+        get { return _bundlePath; }
+        set { _bundlePath = value; }
+    }
+
+
+
 
     protected virtual void Update()
     {
@@ -48,8 +53,10 @@ public class Pointer3DSelector : MonoBehaviour
     {
         _selection.GetComponent<MeshRenderer>().enabled = false;
         _selection.GetComponent<BoxCollider>().enabled = false;
-        
-        GameObject doorInstance = Instantiate(_itemPrefab, _selection.GetComponentInParent<WallSectionAlt>().transform);
+
+        WallSectionAlt section3D = _selection.GetComponentInParent<WallSectionAlt>();
+
+        GameObject doorInstance = Instantiate(_itemPrefab, section3D.transform);
         Vector3 prefabSize = doorInstance.GetComponent<BoxCollider>().size;
         Vector3 jambSize = _selection.GetComponent<BoxCollider>().size;
         doorInstance.GetComponent<BoxCollider>().enabled = false;
@@ -65,6 +72,15 @@ public class Pointer3DSelector : MonoBehaviour
         doorInstance.transform.SetParent(_selection);
         doorInstance.transform.localPosition = Vector3.zero;
         doorInstance.transform.localRotation = Quaternion.identity;
-
+        Jamb jamb = section3D.Section as Jamb;
+        if (jamb != null)
+        { 
+            Debug.Log("Found Jamb");
+            jamb.AssignJoinery(BundlePath);
+        }
+        else
+        {
+            Debug.Log("Couldn't load Jamb!");
+        }
     }
 }
