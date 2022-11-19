@@ -42,7 +42,7 @@ public class WallSectionJamb : WallSectionAlt
         Jamb jamb = Section as Jamb;
         string bundlePath = jamb.JoineryBundle;
         string itemName = jamb.JoineryName;
-        if (bundlePath != "" && itemName != "")
+        if (bundlePath != "" && itemName != "" && itemName != null)
         {
             AssetBundle bundle;
             if (this.GetType() == typeof(WallSectionDoorjamb))
