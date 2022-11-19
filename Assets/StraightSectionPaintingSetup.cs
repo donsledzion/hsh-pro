@@ -15,8 +15,6 @@ namespace Walls2D
         string _bHeadPaintingA;
         string _bHeadPaintingB;
 
-
-
         public StraightSectionPaintingSetup()
         {
             _aFacePainting = "";

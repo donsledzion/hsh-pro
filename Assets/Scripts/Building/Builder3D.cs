@@ -39,6 +39,7 @@ public class Builder3D : MonoBehaviour
                     sectionAlt.SetParameters(storey, wall, section);
                     sectionAlt.Spatialize(section);
                     sectionAlt.ApplyPaintings();
+                    sectionAlt.SetTilling();
                 }
                 else if(section is Doorjamb)
                 {
@@ -47,6 +48,8 @@ public class Builder3D : MonoBehaviour
                     sectionJamb.SetParameters(storey, wall, (Doorjamb)section);
                     sectionJamb.Spatialize((Doorjamb)section);
                     sectionJamb.InsertJoinery();
+                    sectionJamb.ApplyPaintings();
+                    sectionJamb.SetTilling();
                 }
                 else if(section is Windowjamb)
                 {
@@ -55,6 +58,8 @@ public class Builder3D : MonoBehaviour
                     sectionJamb.SetParameters(storey, wall, (Windowjamb)section);
                     sectionJamb.Spatialize((Windowjamb)section);
                     sectionJamb.InsertJoinery();
+                    sectionJamb.ApplyPaintings();
+                    sectionJamb.SetTilling();
                 }
             }
         }

@@ -15,8 +15,17 @@ namespace Walls2D
             _height = 200f;
             _startPoint = new BasePoint();
             _endPoint = new BasePoint();
+            _paintingSetup = new DoorjambSectionPaintingSetup();
         }
 
+        public Doorjamb(float width, float height, Vector2 startPoint, Vector2 endPoint)
+        {
+            _width = width;
+            _height = height;
+            _startPoint.Position = startPoint;
+            _endPoint.Position = endPoint;
+            _paintingSetup = new DoorjambSectionPaintingSetup();
+        }
         public void SetDoorJambParameters(float height, float width)
         {
             _width = width;
@@ -28,12 +37,5 @@ namespace Walls2D
             return new Doorjamb(_width,_height,_startPoint.Position,_endPoint.Position);
         }
 
-        public Doorjamb(float width, float height, Vector2 startPoint, Vector2 endPoint)
-        {
-            _width = width;
-            _height = height;
-            _startPoint.Position = startPoint;
-            _endPoint.Position = endPoint;
-        }
     }
 }

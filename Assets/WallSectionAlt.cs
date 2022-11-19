@@ -58,12 +58,40 @@ public class WallSectionAlt : MonoBehaviour
             if (assignedMaterial != null)
                 plane.GetComponent<MeshRenderer>().material = assignedMaterial;
         }
+        foreach(TillingAdjuster plane in tillingAdjustersTop)
+        {
+            Material assignedMaterial = PlaneNameToMaterial(Section, plane.gameObject.name);
+            if (assignedMaterial != null)
+                plane.GetComponent<MeshRenderer>().material = assignedMaterial;
+        }
         foreach(TillingAdjuster plane in tillingAdjustersFace)
         {
             Material assignedMaterial = PlaneNameToMaterial(Section, plane.gameObject.name);
             if (assignedMaterial != null)
                 plane.GetComponent<MeshRenderer>().material = assignedMaterial;
         }
+    }
+
+    protected Material GetMaterialByAssetName(string assetName, string planeName)
+    {
+        if (assetName == "wrong-plane-name")
+        {
+            Debug.LogWarning("Material not loaded! Can't find proper plane by name! Plane name: " + planeName);
+            return null;
+        }
+        if (assetName == "" || assetName == null)
+        {
+            Debug.LogWarning("Material not loaded! Plane name null or empty: " + planeName);
+            return null;
+        }
+        AssetBundle bundle = AssetBundleLoader.ins.WallSurfacesBundle.LoadBundle();
+        if (bundle == null)
+        {
+            Debug.LogError("Bundle not loaded! Can't assign wall material! Plane name: " + planeName);
+            return null;
+        }
+        ScriptableObjectsController item = bundle.LoadAsset(assetName) as ScriptableObjectsController;
+        return item.material;
     }
 
     protected virtual Material PlaneNameToMaterial(WallSection section, string planeName)
@@ -95,25 +123,7 @@ public class WallSectionAlt : MonoBehaviour
                 assetName = "wrong-plane-name";
                 break;
         }
-        if(assetName == "wrong-plane-name")
-        {
-            Debug.LogWarning("Material not loaded! Can't find proper plane by name! Plane name: " + planeName);
-            return null;
-        }
-        if(assetName == "" || assetName == null)
-        {
-            Debug.LogWarning("Material not loaded! Plane name null or empty: " + planeName);
-            return null;
-        }
-        AssetBundle bundle = AssetBundleLoader.ins.WallSurfacesBundle.LoadBundle();
-        if (bundle == null)
-        {
-            Debug.LogError("Bundle not loaded! Can't assign wall material! Plane name: " + planeName);
-            return null;
-        }
-        ScriptableObjectsController item = bundle.LoadAsset(assetName) as ScriptableObjectsController;
-        return item.material;
-
+        return GetMaterialByAssetName(assetName, planeName);
     }
     
 }
