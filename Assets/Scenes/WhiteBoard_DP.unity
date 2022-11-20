@@ -619,6 +619,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93162a28a675b6a44989c08a2f5b6857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &311015811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 389612657073832360, guid: f44a31794eaaade4b963ad25fa682cd1, type: 3}
+  m_PrefabInstance: {fileID: 311015805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311015806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b963f0e9aa762347a126cf88ea1067c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &319413803
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +669,10 @@ MonoBehaviour:
     Bundle: {fileID: 0}
   WallSurfacesBundle:
     BundlePath: AssetBundles/StandaloneWindows/texture_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  FloorSurfacesBundle:
+    BundlePath: AssetBundles/StandaloneWindows/floor_bundle
     IsLoaded: 0
     Bundle: {fileID: 0}
 --- !u!4 &319413805
@@ -3089,6 +3104,7 @@ GameObject:
   - component: {fileID: 1917991475}
   - component: {fileID: 1917991474}
   - component: {fileID: 1917991476}
+  - component: {fileID: 1917991477}
   m_Layer: 0
   m_Name: BuildingCreator
   m_TagString: Untagged
@@ -3134,6 +3150,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5155c0cbf3583479ab0397ba96e544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1917991477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917991473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36c538576a50e94890ffd1951e6d01a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  builder3D: {fileID: 311015811}
 --- !u!1 &1931699938 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8048049651243689300, guid: 8ecbce8fe1ef89847ad8856833514c81, type: 3}

@@ -57,6 +57,9 @@ public class Storey2D : MonoBehaviour
 
     public void AddWallToStorey(Wall wall)
     {
+        Debug.Log("wall2DPrefab: " + _wall2DPrefab.name);
+        Debug.Log("GO.transform: " + gameObject.transform.position.ToString());
+
         GameObject wallObject = Instantiate(_wall2DPrefab, gameObject.transform);
         
         Wall2D wall2D = wallObject.GetComponent<Wall2D>();

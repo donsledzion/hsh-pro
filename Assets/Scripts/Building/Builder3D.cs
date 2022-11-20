@@ -143,7 +143,7 @@ public class Builder3D : MonoBehaviour
         }
     }
 
-    void EraseStoreyDrawings()
+    public void EraseStoreyDrawings()
     {
         foreach (Transform _transform in gameObject.GetComponentsInChildren<Transform>())
         {
