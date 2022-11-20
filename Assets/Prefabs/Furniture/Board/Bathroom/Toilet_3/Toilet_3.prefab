@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2872428869386620186}
   - component: {fileID: 5998346108509282588}
   - component: {fileID: 954824837016654222}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,8 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7374988216620524565}
   - component: {fileID: 3264609895837063676}
-  - component: {fileID: 4166929122386618000}
-  m_Layer: 0
+  - component: {fileID: 2982745145731287709}
+  m_Layer: 12
   m_Name: Toilet_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,18 +125,18 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4166929122386618000
+  m_Size: {x: 47.214233, y: 81.76199, z: 76.53964}
+  m_Center: {x: 0.000061035156, y: 41.121536, z: -38.542038}
+--- !u!114 &2982745145731287709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3082160191575530844}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _thumbScale: {x: 1, y: 1, z: 1}
@@ -145,7 +145,12 @@ MonoBehaviour:
     m_Bits: 1024
   _collisionLayer:
     serializedVersion: 2
-    m_Bits: 4992
+    m_Bits: 12672
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &7972059417522490230
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 200358480217479072}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 4007_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6320408497579757112}
   - component: {fileID: 7686433708850574102}
   - component: {fileID: 3901741678020257360}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arco open pan_Plastic seat_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,8 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3461692474689645694}
   - component: {fileID: 7154285056305861140}
-  - component: {fileID: 7611611560190019124}
-  m_Layer: 0
+  - component: {fileID: 4664500861549429392}
+  m_Layer: 12
   m_Name: Toilet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,25 +127,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 45.765778, y: 85.7444, z: 80.3635}
   m_Center: {x: 0.000015258789, y: 42.898552, z: -40.67564}
---- !u!114 &7611611560190019124
+--- !u!114 &4664500861549429392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5108429107953488198}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _thumbScale: {x: 1, y: 1, z: 1}
   _targetLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   _collisionLayer:
     serializedVersion: 2
-    m_Bits: 5504
+    m_Bits: 12672
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &6056459004138170192
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +162,7 @@ GameObject:
   - component: {fileID: 1192710990435996096}
   - component: {fileID: 3058358015970226128}
   - component: {fileID: 1966393516537569412}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arco open pan_Ceramics_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8311997043481829052}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arco open pan (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +276,7 @@ GameObject:
   - component: {fileID: 4236339453315999782}
   - component: {fileID: 5141865032207490360}
   - component: {fileID: 7574172001294554643}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Arco open pan_Chrome_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

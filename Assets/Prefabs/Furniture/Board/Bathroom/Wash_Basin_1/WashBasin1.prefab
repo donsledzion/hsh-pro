@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3782317243710236754}
   - component: {fileID: 8364416555259825653}
   - component: {fileID: 2634077695576210117}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Washbasin-Stand_Washbasin-Stand_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,8 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2894078410904956730}
   - component: {fileID: 54739895359278093}
-  - component: {fileID: 1504261693754321766}
-  m_Layer: 0
+  - component: {fileID: 5825853526196763676}
+  m_Layer: 12
   m_Name: WashBasin1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,18 +125,18 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1504261693754321766
+  m_Size: {x: 72.19795, y: 94.523834, z: 69.87671}
+  m_Center: {x: 0.0000076293945, y: 46.968597, z: -35.27339}
+--- !u!114 &5825853526196763676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2425657682268457693}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _thumbScale: {x: 1, y: 1, z: 1}
@@ -145,7 +145,12 @@ MonoBehaviour:
     m_Bits: 1024
   _collisionLayer:
     serializedVersion: 2
-    m_Bits: 4992
+    m_Bits: 12672
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &4517622295627059527
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1617931106163384662}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Washbasin-Stand-Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +193,7 @@ GameObject:
   - component: {fileID: 1341620613174338761}
   - component: {fileID: 8099278281235116141}
   - component: {fileID: 1817437369138049249}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Washbasin-Stand-Door_Washbasin-Stand_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 137081082903133862}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Washbasin-Stand (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

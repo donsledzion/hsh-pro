@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6217843957550963801}
   - component: {fileID: 3384331832213002646}
   - component: {fileID: 5915161724041969328}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,8 +91,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8106523153236116842}
   - component: {fileID: 5324297060325472409}
-  - component: {fileID: 8644403779084749170}
-  m_Layer: 0
+  - component: {fileID: -9142822263908964996}
+  m_Layer: 12
   m_Name: WashBasin2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,18 +125,18 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8644403779084749170
+  m_Size: {x: 55.109467, y: 95.19903, z: 46.069653}
+  m_Center: {x: -0.9825897, y: 48.146793, z: -23.189066}
+--- !u!114 &-9142822263908964996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2294301417954815792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _thumbScale: {x: 1, y: 1, z: 1}
@@ -145,7 +145,12 @@ MonoBehaviour:
     m_Bits: 1024
   _collisionLayer:
     serializedVersion: 2
-    m_Bits: 4992
+    m_Bits: 12672
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &4020697291764861810
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3352406909065529193}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sink Washbasin.obj.cleaner.materialmerger.gles (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +195,7 @@ GameObject:
   - component: {fileID: 8055250307285875750}
   - component: {fileID: 5066015377613854084}
   - component: {fileID: 127531118304430258}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +276,7 @@ GameObject:
   - component: {fileID: 6545987862064110390}
   - component: {fileID: 2395436773412651278}
   - component: {fileID: 6035834301261096500}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
