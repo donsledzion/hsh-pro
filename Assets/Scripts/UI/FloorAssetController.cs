@@ -69,19 +69,16 @@ public class FloorAssetController : MonoBehaviour
         surfaceSelector.GetComponent<FittingModeSwitcher>().FloorFinishingMode();
         CurrentMaterialController.ins.FloorSurfaceSelector.SelectionMaterial = item.material;
         Debug.Log("Tilling: " + item.tiling_x + " , " + item.tiling_y);
-        CurrentMaterialController.ins.FloorSurfaceSelector.FloorTiling = new Vector2(item.tiling_x,item.tiling_y);        
-        
+        CurrentMaterialController.ins.FloorSurfaceSelector.FloorTiling = new Vector2(item.tiling_x,item.tiling_y);
+        CurrentMaterialController.ins.FloorSurfaceSelector.MaterialName = AssetBundleHelper.ExtractName(item);
+
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
     }
 
     private void FetchFloor()
     {
-        floorAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/floor_bundle");
-
-        if (floorAsset) Debug.Log("Loaded successfuly");
-        else Debug.Log("Failed to load");
-
+        floorAsset = AssetBundleLoader.ins.FloorSurfacesBundle.LoadBundle();
         itemList.AddRange(floorAsset.LoadAllAssets<ScriptableObjectsController>());
     }
 

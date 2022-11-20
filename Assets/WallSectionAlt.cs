@@ -35,7 +35,7 @@ public class WallSectionAlt : MonoBehaviour
     {
         foreach(TillingAdjuster adjuster in tillingAdjustersTop)
         {
-            Vector2 textureScale = new Vector2(_scallableChild.localScale.x* parameters.Azimuth,parameters.Length);
+            Vector2 textureScale = new Vector2(_scallableChild.localScale.x, _scallableChild.localScale.z);
             adjuster.SetTilling(textureScale);
         }
         foreach(TillingAdjuster adjuster in tillingAdjustersHead)

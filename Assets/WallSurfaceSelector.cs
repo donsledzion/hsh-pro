@@ -8,15 +8,16 @@ public class WallSurfaceSelector : SurfaceSelector
     {
         _originalMaterial = _selectionMaterial;
         SetTiling();
-        _selection.GetComponentInParent<WallSectionAlt>().Section.PaintingSetup
-            .AssignMaterial(_selection.gameObject.name, MaterialName);
+        WallSectionAlt wallSection = _selection.GetComponentInParent<WallSectionAlt>();
+        if(wallSection != null)
+            wallSection.Section.PaintingSetup.AssignMaterial(_selection.gameObject.name, MaterialName);
     }
 
     protected override void SetTiling(Vector2 tilling = new Vector2())
     {
         Transform scalerTransform = _selection.GetComponentInParent<ScallableSection>().transform;
         Vector2 textureSize = new Vector2(scalerTransform.localScale.x, scalerTransform.localScale.y);
-        Debug.Log("Texture size: " + textureSize);
+        //Debug.Log("Texture size: " + textureSize);
         _selection.GetComponent<TillingAdjuster>().SetTilling(textureSize);
     }
 

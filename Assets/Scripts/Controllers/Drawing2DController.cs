@@ -75,6 +75,7 @@ public class Drawing2DController : MonoBehaviour
             _storeys2D.Add(currentStorey);
     }
 
+    [ContextMenu("Erase Storeys")]
     public void EraseStoreys()
     {
         foreach (Storey2D storey2d in _storeys2D)
@@ -84,10 +85,13 @@ public class Drawing2DController : MonoBehaviour
                 Destroy(storey2d.gameObject);
         }            
         _storeys2D.Clear();
+        Storey2D newCurrentStorey = drawingsContainer.GetComponentInChildren<Storey2D>();
+        _storeys2D.Add(newCurrentStorey);
+        currentStorey = newCurrentStorey;
     }
 
     public void InitializeFirstStorey(Storey storey)
-    {        
+    {
         currentStorey.StoreyReference = storey;
     }
     public void SwitchToStorey(Storey storey)
@@ -168,6 +172,8 @@ public class Drawing2DController : MonoBehaviour
         DrawStorey(GameManager.ins.Building.CurrentStorey);
         DrawLabels();
     }
+    
+    
 
     [ContextMenu("Draw Labels")]
     void DrawLabels()

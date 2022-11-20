@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using Walls2D;
 
 public class Builder3D : MonoBehaviour
@@ -90,6 +91,7 @@ public class Builder3D : MonoBehaviour
             {
                 plane.SetParameters(floor);
                 plane.Spatialize();
+                plane.DrawMaterial();
                 plane.gameObject.AddComponent<MeshCollider>();
             }
         }
@@ -104,24 +106,7 @@ public class Builder3D : MonoBehaviour
         }
         //Inserting flooring under first floor (independand to floor secions)
         // So far only solution is to generate rectangular flooring covering whole building
-        if(storey.Walls.Count > 0)
-        {
-            Vector2[] flooringPoints = PolygonHelper.RangeToRect(
-                PolygonHelper.PlaneRange(
-                    _storeyPointsCollector.WallPointsListToVectorArray(
-                        _storeyPointsCollector.CollectAllPoints(
-                            GameManager.ins.Building.Storeys[0]))),50f);
-            GameObject flooringObject = Instantiate(_ceilingSectionPrefab);
-            flooringObject.transform.SetParent(gameObject.transform);
-            CeilingSection flooringSection = flooringObject.GetComponent<CeilingSection>();
-            Ceiling flooring = new Ceiling(10f,0f,flooringPoints);
-            CeilingPlane flooringPlane = flooringSection.CeilingPlanes[0];
-            flooringPlane.SetParameters(flooring);
-            flooringPlane.Spatialize();
-        }
         
-
-
     }
 
     [ContextMenu("Generate Current Storey")]
@@ -136,9 +121,29 @@ public class Builder3D : MonoBehaviour
         Building building = GameManager.ins.Building;
         foreach (Storey storey in building.Storeys)
             GenerateStorey(storey);
+        GenerateFlooring();
     }
 
-    void EraseStoreyDrawings()
+    void GenerateFlooring()
+    {
+        if (GameManager.ins.Building.Storeys[0].Walls.Count > 0)
+        {
+            Vector2[] flooringPoints = PolygonHelper.RangeToRect(
+                PolygonHelper.PlaneRange(
+                    _storeyPointsCollector.WallPointsListToVectorArray(
+                        _storeyPointsCollector.CollectAllPoints(
+                            GameManager.ins.Building.Storeys[0]))), 50f);
+            GameObject flooringObject = Instantiate(_ceilingSectionPrefab);
+            flooringObject.transform.SetParent(gameObject.transform);
+            CeilingSection flooringSection = flooringObject.GetComponent<CeilingSection>();
+            Ceiling flooring = new Ceiling(10f, 0f, flooringPoints);
+            CeilingPlane flooringPlane = flooringSection.CeilingPlanes[0];
+            flooringPlane.SetParameters(flooring);
+            flooringPlane.Spatialize();
+        }
+    }
+
+    public void EraseStoreyDrawings()
     {
         foreach (Transform _transform in gameObject.GetComponentsInChildren<Transform>())
         {

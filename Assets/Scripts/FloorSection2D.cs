@@ -14,16 +14,19 @@ public class FloorSection2D
     int _order;
     float _topLevel;
     Vector2[] _points;
+    string _materialName;
 
     public int Order { get { return _order; } set { _order = value; } }
     public float TopLevel { get { return _topLevel; } set { _topLevel = value; } }
     public Vector2[] Points { get { return _points; } set { _points = value; } }
+    public string MaterialName { get { return _materialName; } set { _materialName = value; } }
 
     public FloorSection2D()
     {
         _order = 0;
         _topLevel = 0;
         _points = new Vector2[0];
+        _materialName = "";
     }
 
 
@@ -32,6 +35,7 @@ public class FloorSection2D
         _order = order;
         _topLevel = topLevel;
         _points = new Vector2[0];
+        _materialName = "";
     }
 
     public FloorSection2D(int order, float topLevel, Vector2[] points)
@@ -39,6 +43,7 @@ public class FloorSection2D
         _order = order;
         _topLevel = topLevel;
         _points = points;
+        _materialName = "";
     }
 
     public XmlSerializer SerializeToXML()

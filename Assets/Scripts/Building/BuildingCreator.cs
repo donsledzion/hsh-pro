@@ -21,9 +21,16 @@ public class BuildingCreator : MonoBehaviour
 
     [SerializeField] Building _building;
 
+    
+
     void Start()
     {
         CreateNewBuilding();       
+    }
+
+    public void RemoveBuilding()
+    {
+        _building = null;
     }
 
     [ContextMenu("Create New Building")]
