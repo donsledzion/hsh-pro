@@ -101,11 +101,13 @@ public class Builder3D : MonoBehaviour
             GameObject corner = Instantiate(cornerFinishingPointPrefab);
             corner.transform.SetParent(gameObject.transform);
             float size = connectorPoint.ThickestWallThickness();
+            WallsConnector connector = corner.GetComponent<WallsConnector>();
+            connector.Sections = connectorPoint.sections;
             corner.transform.localScale = new Vector3(size, storey.Height, size);
-            corner.transform.localPosition = new Vector3(connectorPoint.Point.x,storey.Elevation,connectorPoint.Point.y) - transform.localPosition;            
+            corner.transform.localPosition = new Vector3(connectorPoint.Point.x,storey.Elevation,connectorPoint.Point.y) - transform.localPosition;
+            //connector.adjuster.GetComponent<MeshRenderer>().material = connector.GetOutterPlaneMaterial();
+            connector.DelayedMaterialAssigning();
         }
-        //Inserting flooring under first floor (independand to floor secions)
-        // So far only solution is to generate rectangular flooring covering whole building
         
     }
 
