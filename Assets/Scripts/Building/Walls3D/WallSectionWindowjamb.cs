@@ -33,4 +33,43 @@ public class WallSectionWindowjamb : WallSectionJamb
         parameters.SetParameters(storey, wall, jamb);
         Section = jamb;
     }
+
+    protected override Material PlaneNameToMaterial(WallSection section, string planeName)
+    {
+        Debug.Log("Looking for plane named: " + planeName);
+        string assetName = "";
+        WindowjambSectionPaintingSetup paintingSetup = section.PaintingSetup as WindowjambSectionPaintingSetup;
+
+        switch (planeName)
+        {
+            case "UpperPlaneFaceLeft":
+                assetName = paintingSetup.AUpperFacing;
+                break;
+            case "UpperPlaneFaceRight":
+                assetName = paintingSetup.BUpperFacing;
+                break;
+            case "UpperPlaneBottomLeft":
+                assetName = paintingSetup.AUpperBottom;
+                break;
+            case "UpperPlaneBottomRight":
+                assetName = paintingSetup.BUpperBottom;
+                break;
+            case "LowerPlaneFaceLeft":
+                assetName = paintingSetup.ALowerFacing;
+                break;
+            case "LowerPlaneFaceRight":
+                assetName = paintingSetup.BLowerFacing;
+                break;
+            case "LowerPlaneTopLeft":
+                assetName = paintingSetup.ALowerTop;
+                break;
+            case "LowerPlaneTopRight":
+                assetName = paintingSetup.BLowerTop;
+                break;
+            default:
+                assetName = "wrong-plane-name";
+                break;
+        }
+        return GetMaterialByAssetName(assetName, planeName);
+    }
 }

@@ -50,5 +50,80 @@ public class WallSectionAlt : MonoBehaviour
         }
     }
 
+    public void ApplyPaintings()
+    {
+        foreach(TillingAdjuster plane in tillingAdjustersHead)
+        {
+            Material assignedMaterial = PlaneNameToMaterial(Section, plane.gameObject.name);
+            if (assignedMaterial != null)
+                plane.GetComponent<MeshRenderer>().material = assignedMaterial;
+        }
+        foreach(TillingAdjuster plane in tillingAdjustersTop)
+        {
+            Material assignedMaterial = PlaneNameToMaterial(Section, plane.gameObject.name);
+            if (assignedMaterial != null)
+                plane.GetComponent<MeshRenderer>().material = assignedMaterial;
+        }
+        foreach(TillingAdjuster plane in tillingAdjustersFace)
+        {
+            Material assignedMaterial = PlaneNameToMaterial(Section, plane.gameObject.name);
+            if (assignedMaterial != null)
+                plane.GetComponent<MeshRenderer>().material = assignedMaterial;
+        }
+    }
+
+    protected Material GetMaterialByAssetName(string assetName, string planeName)
+    {
+        if (assetName == "wrong-plane-name")
+        {
+            Debug.LogWarning("Material not loaded! Can't find proper plane by name! Plane name: " + planeName);
+            return null;
+        }
+        if (assetName == "" || assetName == null)
+        {
+            Debug.LogWarning("Material not loaded! Plane name null or empty: " + planeName);
+            return null;
+        }
+        AssetBundle bundle = AssetBundleLoader.ins.WallSurfacesBundle.LoadBundle();
+        if (bundle == null)
+        {
+            Debug.LogError("Bundle not loaded! Can't assign wall material! Plane name: " + planeName);
+            return null;
+        }
+        ScriptableObjectsController item = bundle.LoadAsset(assetName) as ScriptableObjectsController;
+        return item.material;
+    }
+
+    protected virtual Material PlaneNameToMaterial(WallSection section, string planeName)
+    {
+        Debug.Log("Looking for plane named: " + planeName);
+        string assetName = "";
+        StraightSectionPaintingSetup paintingSetup = section.PaintingSetup as StraightSectionPaintingSetup;
+        switch (planeName)
+        {            
+            case "PlaneHeadStartLeft":
+                assetName = paintingSetup.AHeadPaintingA;
+                break;
+            case "PlaneHeadStartRight":
+                assetName = paintingSetup.AHeadPaintingB;
+                break;
+            case "PlaneHeadEndLeft":
+                assetName = paintingSetup.BHeadPaintingA;
+                break;
+            case "PlaneHeadEndRight":
+                assetName = paintingSetup.BHeadPaintingB;
+                break;
+            case "PlaneFaceLeft":
+                assetName = paintingSetup.AFacePainting;
+                break;
+            case "PlaneFaceRight":
+                assetName = paintingSetup.BFacePainting;
+                break;
+            default:
+                assetName = "wrong-plane-name";
+                break;
+        }
+        return GetMaterialByAssetName(assetName, planeName);
+    }
     
 }

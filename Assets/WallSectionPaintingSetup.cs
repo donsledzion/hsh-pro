@@ -8,9 +8,10 @@ namespace Walls2D
 {
     [Serializable]
     [XmlInclude(typeof(StraightSectionPaintingSetup))]
+    [XmlInclude(typeof(WindowjambSectionPaintingSetup))]
+    [XmlInclude(typeof(DoorjambSectionPaintingSetup))]
     public abstract class WallSectionPaintingSetup
     {
         public abstract void AssignMaterial(string planeName, string materialName);
     }
-
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 213544056}
   - component: {fileID: 213544059}
   m_Layer: 0
-  m_Name: PlaneHeadStart
+  m_Name: UpperPlaneHeadStart
   m_TagString: WallSectionHeadPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 1489079798}
   - component: {fileID: 1489079801}
   m_Layer: 0
-  m_Name: PlaneHeadEnd
+  m_Name: UpperPlaneHeadEnd
   m_TagString: WallSectionHeadPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 1751692579}
   - component: {fileID: 205924625600123722}
   m_Layer: 9
-  m_Name: PlaneFaceRigth
+  m_Name: UpperPlaneFaceRight
   m_TagString: WallSnapSurface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 1966166806}
   - component: {fileID: 3073696553451262842}
   m_Layer: 9
-  m_Name: PlaneFaceLeft
+  m_Name: UpperPlaneFaceLeft
   m_TagString: WallSnapSurface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1242,7 +1242,7 @@ GameObject:
   - component: {fileID: 8653188996358976554}
   - component: {fileID: 5744630418792024053}
   m_Layer: 9
-  m_Name: PlaneTopLeft
+  m_Name: LowerPlaneTopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1450,7 +1450,7 @@ GameObject:
   - component: {fileID: 1078147505702650843}
   - component: {fileID: 5445994818281089429}
   m_Layer: 9
-  m_Name: PlaneFaceRigth
+  m_Name: LowerPlaneFaceRight
   m_TagString: WallSnapSurface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1575,7 +1575,7 @@ GameObject:
   - component: {fileID: 4229179584557328432}
   - component: {fileID: 748059584646296527}
   m_Layer: 9
-  m_Name: PlaneFaceLeft
+  m_Name: LowerPlaneFaceLeft
   m_TagString: WallSnapSurface
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1855,7 +1855,7 @@ GameObject:
   - component: {fileID: 7138110343630792480}
   - component: {fileID: 1355035315907424117}
   m_Layer: 9
-  m_Name: PlaneBottomRight
+  m_Name: UpperPlaneBottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1967,7 +1967,7 @@ GameObject:
   - component: {fileID: 2322586390084935825}
   - component: {fileID: 6958263725012271514}
   m_Layer: 9
-  m_Name: PlaneTopRight
+  m_Name: LowerPlaneTopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2112,8 +2112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scallableChild: {fileID: 3105895575218605880}
-  _phantomTransform: {fileID: 1056319306542699452}
-  _phantomScaler: {fileID: 1059488781074671448}
   tillingAdjustersTop:
   - {fileID: 1680173509}
   - {fileID: 8181386943265476534}
@@ -2131,6 +2129,7 @@ MonoBehaviour:
   - {fileID: 1751692579}
   - {fileID: 4229179584557328432}
   - {fileID: 1078147505702650843}
+  _phantomScaler: {fileID: 1059488781074671448}
   _scallableBottomChild: {fileID: 1401448661916620686}
 --- !u!1 &8435642805908843173
 GameObject:
@@ -2247,7 +2246,7 @@ GameObject:
   - component: {fileID: 1619298453473460230}
   - component: {fileID: 8181386943265476534}
   m_Layer: 9
-  m_Name: PlaneBottomLeft
+  m_Name: UpperPlaneBottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
