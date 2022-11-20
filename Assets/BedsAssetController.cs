@@ -21,7 +21,6 @@ public class BedsAssetController : MonoBehaviour
 
     private void Awake()
     {
-
         Init();
     }
 
@@ -74,10 +73,7 @@ public class BedsAssetController : MonoBehaviour
     private void FetchFurniture()
     {
         Debug.Log("Failed to load");
-
-
-        furnitureAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/furniture_bundle_beds");
-
+        furnitureAsset = AssetBundleLoader.ins.FurnitureBedsBundle.LoadBundle();
         if (furnitureAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");
 

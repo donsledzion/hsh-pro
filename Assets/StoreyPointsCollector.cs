@@ -143,6 +143,7 @@ public class StoreyPointsCollector : MonoBehaviour
         {
             foreach(WallSection section in sections)
             {
+                if (section.Wall == null) return 30f;
                 if (section.Wall.WallType == WallType.LoadBearing)
                     return DefaultSettings.ins.LoadBareringWallWidth;
                 else if (section.Wall.WallType == WallType.Partition)

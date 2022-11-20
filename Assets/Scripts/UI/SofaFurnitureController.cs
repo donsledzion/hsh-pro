@@ -76,9 +76,7 @@ public class SofaFurnitureController : MonoBehaviour
     private void FetchFurniture()
     {
         Debug.Log("Failed to load");
-
-
-        furnitureAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/furniture_bundle_sofas");
+        furnitureAsset = AssetBundleLoader.ins.FurnitureSofasBundle.LoadBundle();
 
         if (furnitureAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");

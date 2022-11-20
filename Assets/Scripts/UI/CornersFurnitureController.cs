@@ -74,7 +74,7 @@ public class CornersFurnitureController : MonoBehaviour
     private void FetchFurniture()
     {
         Debug.Log("Failed to load");
-        furnitureAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/furniture_bundle_corners");
+        furnitureAsset = AssetBundleLoader.ins.FurnitureCornersBundle.LoadBundle();
 
         if (furnitureAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");

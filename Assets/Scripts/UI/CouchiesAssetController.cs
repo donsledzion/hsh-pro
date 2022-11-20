@@ -74,13 +74,9 @@ public class CouchiesAssetController : MonoBehaviour
     private void FetchFurniture()
     {
         Debug.Log("Failed to load");
-
-
-        furnitureAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/furniture_bundle_coachies");
-
+        furnitureAsset = AssetBundleLoader.ins.FurnitureCoachiesBundle.LoadBundle();
         if (furnitureAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");
-
         itemList.AddRange(furnitureAsset.LoadAllAssets<ScriptableObjectsController>());
     }
 

@@ -74,9 +74,7 @@ public class KitchenAssetController : MonoBehaviour
     private void FetchFurniture()
     {
         Debug.Log("Failed to load");
-
-
-        furnitureAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/furniture_bundle_kitchen_base_cabinets");
+        furnitureAsset = AssetBundleLoader.ins.FurnitureKitchenBaseCabinetsRoomBundle.LoadBundle();
 
         if (furnitureAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");
