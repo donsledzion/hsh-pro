@@ -15,7 +15,12 @@ public class FloorSurfaceSelector : SurfaceSelector
     protected override void ApplyMaterial()
     {
         _originalMaterial = _selectionMaterial;
-        _selection.GetComponent<FloorPlane>().InjectMaterial(_selectionMaterial);
+        FloorPlane plane = _selection.GetComponent<FloorPlane>();
+        plane.InjectMaterial(_selectionMaterial);
+        plane.Floor.MaterialName = MaterialName;
+        /*_selection.GetComponentInParent<WallSectionAlt>().Section.PaintingSetup
+            .AssignMaterial(_selection.gameObject.name, MaterialName);*/
+        
     }
 
     protected override void SetTiling(Vector2 tilling = new Vector2())

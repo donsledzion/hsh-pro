@@ -148,7 +148,6 @@ public class StoreyPointsCollector : MonoBehaviour
                 else if (section.Wall.WallType == WallType.Partition)
                     return DefaultSettings.ins.PartialWallWidth;
             }
-
             return 30f;
         }
     }

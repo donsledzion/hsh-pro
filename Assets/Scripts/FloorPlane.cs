@@ -17,6 +17,8 @@ public class FloorPlane : MonoBehaviour
     [SerializeField] float _scaleX = 1f;
     [SerializeField] float _scaleY = 1f;
 
+    public FloorSection2D Floor { get { return _floor; } }
+
     private void Awake()
     {
         mesh = meshFilter.mesh;
@@ -106,5 +108,30 @@ public class FloorPlane : MonoBehaviour
         MakeMeshPlane();
     }
 
-
+    internal void DrawMaterial()
+    {
+        if(Floor.MaterialName != null && Floor.MaterialName != "")
+        {
+            Debug.Log("Found material: " + Floor.MaterialName);
+            AssetBundle bundle = AssetBundleLoader.ins.FloorSurfacesBundle.LoadBundle();
+            if(bundle != null)
+            {
+                ScriptableObjectsController item = bundle.LoadAsset(Floor.MaterialName) as ScriptableObjectsController;
+                Material material = item.material;
+                _renderer.material = material;
+                SetTilling(new Vector2(item.tiling_x,item.tiling_y));
+            }
+            else
+            {
+                Debug.LogWarning("Bundle (floors) not loaded!");
+                return;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Material not assigned");
+            return;
+        }
+        
+    }
 }
