@@ -7,7 +7,7 @@ public class MusicController : MonoBehaviour
 {
     public static MusicController ins { get; private set; }
 
-    List<VideoClip> _audioClips = new List<VideoClip>();
+    [SerializeField] List<VideoClip> _audioClips = new List<VideoClip>();
 
     public List<VideoClip> VideoClips { get { return _audioClips; } }
 
