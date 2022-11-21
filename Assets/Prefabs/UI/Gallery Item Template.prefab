@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 5005003041174033071}
   - component: {fileID: 5005003041174033068}
   m_Layer: 5
-  m_Name: Choose Button
+  m_Name: Select Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,9 +916,9 @@ GameObject:
   - component: {fileID: 5005003042438793613}
   - component: {fileID: 5005003042438793602}
   - component: {fileID: 5005003042438793603}
-  - component: {fileID: 5005003042438793614}
   - component: {fileID: 7743732114722186729}
   - component: {fileID: 809504264104473068}
+  - component: {fileID: 1853084165323630350}
   m_Layer: 5
   m_Name: Gallery Item Template
   m_TagString: Untagged
@@ -984,19 +984,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5005003042438793614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5005003042438793610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6d3cd2c3777f754484e9840fb38de77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modalWindow: {fileID: 5005003042438793610}
 --- !u!114 &7743732114722186729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,6 +1018,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
+--- !u!114 &1853084165323630350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005003042438793610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd6de09284c476449ec81a9f2c52541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thumbnail: {fileID: 1814777185995417736}
+  _layoutElement: {fileID: 7743732114722186729}
+  _itemName: {fileID: 1179674836756162035}
+  _selectButton: {fileID: 5005003041174033068}
+  _previewButton: {fileID: 4995325142346274395}
 --- !u!1 &5853199872069064752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1182,7 @@ GameObject:
   - component: {fileID: 2172208165809965819}
   - component: {fileID: 4995325142346274395}
   m_Layer: 5
-  m_Name: Description Button
+  m_Name: Preview Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

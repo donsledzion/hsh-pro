@@ -1296,6 +1296,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1258509320012285103, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
   m_PrefabInstance: {fileID: 4969373843784404164}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &555772987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5996743408624925767, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
+  m_PrefabInstance: {fileID: 4969373843784404164}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16bfe8d653683cc49b882f6c9cf9901a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &585099602 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8819760680617714245, guid: 008e2616668d73f4388bba9056947c2f, type: 3}
@@ -1976,6 +1987,50 @@ MonoBehaviour:
   vrMenu: {fileID: 0}
   mainMenu: {fileID: 956418043}
   _isOn: 0
+--- !u!1 &1642746716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642746717}
+  - component: {fileID: 1642746718}
+  m_Layer: 0
+  m_Name: InspectionCameraController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1642746717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642746716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2113215542}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1642746718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642746716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6531c759a39e046aba527feafd1117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inspectionCamera: {fileID: 881480411}
 --- !u!1 &1653468301 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9152345653901628616, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
@@ -2260,6 +2315,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2610438134440695704, guid: 01733674689b968499a1ec7db3408f70, type: 3}
   m_PrefabInstance: {fileID: 2610438134586604182}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1826868302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826868301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6531c759a39e046aba527feafd1117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inspectionCamera: {fileID: 0}
 --- !u!4 &1826868305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2610438134440695684, guid: 01733674689b968499a1ec7db3408f70, type: 3}
@@ -2628,6 +2696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e8edbe2a56723479f988e81a8dba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioClips: []
 --- !u!114 &2057495117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2689,6 +2758,7 @@ Transform:
   - {fileID: 105225707}
   - {fileID: 370844841}
   - {fileID: 81567031}
+  - {fileID: 1642746717}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3652,6 +3722,10 @@ PrefabInstance:
       propertyPath: surfaceSelector
       value: 
       objectReference: {fileID: 1125644730}
+    - target: {fileID: 4969373844750113998, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
+      propertyPath: invertorySofaFurniture
+      value: 
+      objectReference: {fileID: 555772987}
     - target: {fileID: 4969373844906410609, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3780,6 +3854,14 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1933196141}
+    - target: {fileID: 5996743408624925767, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
+      propertyPath: inspectionCamera
+      value: 
+      objectReference: {fileID: 1826868301}
+    - target: {fileID: 5996743408624925767, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
+      propertyPath: prefabToFitController
+      value: 
+      objectReference: {fileID: 585099602}
     - target: {fileID: 6053088549116154395, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

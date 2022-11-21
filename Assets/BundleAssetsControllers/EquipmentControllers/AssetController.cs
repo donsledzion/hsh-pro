@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
-public class KitchenAssetController : MonoBehaviour
+public class AssetController : MonoBehaviour
 {
     public System.EventHandler<ScriptableObjectsController> OnItemSelected;
     public System.EventHandler<ScriptableObjectsController> OnItemChoosen;
@@ -13,15 +12,20 @@ public class KitchenAssetController : MonoBehaviour
     private List<ScriptableObjectsController> itemList = new List<ScriptableObjectsController>();
     private AssetBundle furnitureAsset = null;
     [SerializeField] GameObject templateFurniturePrefab;
-    [SerializeField] GameObject inspectionCamera;
-    [SerializeField] GameObject item3DViewer;
-    [SerializeField] GameObject itemsGallery;
-    [SerializeField] GameObject prefabToFitController;
-    public TMP_InputField inputField;
+    GameObject inspectionCamera;
+    GameObject item3DViewer;
+    GameObject itemsGallery;
+    EquipmentInsertionMode prefabToFitController;
+    TMP_InputField inputField;
+    [SerializeField] string nameOffAssetToLoad;
 
     private void Awake()
     {
-
+        inspectionCamera = ReferenceController.ins.ItemInspectionCamera.gameObject;
+        prefabToFitController = ReferenceController.ins.EquipmentInsertionMode;
+        itemsGallery = ReferenceController.ins.GalleryOfItems.gameObject;
+        item3DViewer = ReferenceController.ins.Item3DViewer.gameObject;
+        inputField = ReferenceController.ins.GallerySearchField.GetComponent<TMP_InputField>();
         Init();
     }
 
@@ -34,7 +38,6 @@ public class KitchenAssetController : MonoBehaviour
 
     private void InstantiateList()
     {
-
         foreach (ScriptableObjectsController item in itemList)
         {
             SetupInstance(item);
@@ -46,17 +49,16 @@ public class KitchenAssetController : MonoBehaviour
         GameObject g;
         g = Instantiate(templateFurniturePrefab, transform);
         g.name = item.name;
-        g.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = item.imagePreview;
-        g.transform.GetChild(0).GetChild(1).GetComponent<LayoutElement>().preferredHeight = 300;
-        g.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = item.name;
-
-        g.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() =>
+        GalleryItemTemplate template = g.GetComponent<GalleryItemTemplate>();
+        template.Thumbnail.sprite = item.imagePreview;
+        template.LayoutElement.preferredHeight = 300;
+        template.ItemNameTMPro.text = item.name;
+        template.SelectButton.onClick.AddListener(() =>
         {
             FurniturePrefabToFit(item);
 
         });
-
-        g.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Button>().onClick.AddListener(() =>
+        template.PreviewButton.onClick.AddListener(() =>
         {
             inspectionCamera.SetActive(true);
             GetFurniturePrefab(item);
@@ -65,8 +67,8 @@ public class KitchenAssetController : MonoBehaviour
 
     private void FurniturePrefabToFit(ScriptableObjectsController item)
     {
-        prefabToFitController.GetComponent<EquipmentInsertionMode>().SwapPrefab(item.prefab);
-        prefabToFitController.SetActive(true);
+        prefabToFitController.SwapPrefab(item.prefab);
+        prefabToFitController.gameObject.SetActive(true);
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
     }
@@ -74,7 +76,8 @@ public class KitchenAssetController : MonoBehaviour
     private void FetchFurniture()
     {
         Debug.Log("Failed to load");
-        furnitureAsset = AssetBundleLoader.ins.FurnitureKitchenBaseCabinetsRoomBundle.LoadBundle();
+
+        furnitureAsset = AssetBundleLoader.ins.GetBundleLoadStatusByName(nameOffAssetToLoad)?.Bundle;
 
         if (furnitureAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");
@@ -86,10 +89,8 @@ public class KitchenAssetController : MonoBehaviour
     {
         if (!itemList.Exists(i => i.name == arg0))
         {
-
             DestroyAllPrefabs();
             Debug.Log("name do not exist");
-
             InstantiateList();
         }
         else
@@ -108,19 +109,15 @@ public class KitchenAssetController : MonoBehaviour
 
     private void DestroyAllPrefabs()
     {
-
         foreach (Transform child in this.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
-
     }
 
     public void FindFurniturePrefab(ScriptableObjectsController item)
     {
         DestroyAllPrefabs();
-
         SetupInstance(item);
-
     }
 }

@@ -14,19 +14,20 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     [SerializeField] private DoorAssetController invertoryDoor;
     [SerializeField] private WindowAssetController invertoryWindow;
     [SerializeField] private FloorAssetController invertoryFloor;
-    [SerializeField] private SofaFurnitureController invertorySofaFurniture;
-    [SerializeField] private CornersFurnitureController invertoryCornersFurniture;
-    [SerializeField] private ArmchairFurnitureController invertoryArmchairFurniture;
-    [SerializeField] private CouchiesAssetController invertoryCoachiesFurniture;
-    [SerializeField] private BedsAssetController invertoryBedsFurniture;
-    [SerializeField] private KitchenAssetController invertoryKitchenFurniture;
+    [SerializeField] private AssetController invertorySofaFurniture;
+    [SerializeField] private AssetController invertoryCornersFurniture;
+    [SerializeField] private AssetController invertoryArmchairFurniture;
+    [SerializeField] private AssetController invertoryCoachiesFurniture;
+    [SerializeField] private AssetController invertoryBedsFurniture;
+    [SerializeField] private AssetController invertoryKitchenFurniture;
     [SerializeField] private AssetController invertoryLivingRoomFurniture;
     [SerializeField] private AssetController invertoryDiningRoomFurniture;
     [SerializeField] private GameObject surfaceSelector;
-    [SerializeField] private Camera previewCamera;
+    Camera previewCamera;
 
 
     [SerializeField] private GameObject itemViewer;
+
 
     private GameObject itemPrefab = null;
     private GameObject furniturePrefab = null;
@@ -51,6 +52,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         invertoryKitchenFurniture.OnItemSelected += invertoryItems_OnItemKitchenFurniture;
         invertoryLivingRoomFurniture.OnItemSelected += invertoryItems_OnItemLivingRoomFurniture;
         invertoryDiningRoomFurniture.OnItemSelected += invertoryItems_OnItemLivingRoomFurniture;
+        previewCamera = ReferenceController.ins.ItemInspectionCamera.Camera;
 
     }
 
@@ -60,7 +62,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
         furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
-        previewCamera.orthographicSize = 1.5f;
+        
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
@@ -76,7 +78,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
         furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
-        previewCamera.orthographicSize = 1.5f;
+        
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
@@ -91,8 +93,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         destroyPrefab();
         furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
         furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
-        description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
-        previewCamera.orthographicSize = 1.5f;
+        description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;        
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
@@ -107,8 +108,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         destroyPrefab();
         furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
         furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
-        description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
-        previewCamera.orthographicSize = 1.5f;
+        description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;        
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
@@ -123,8 +123,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         destroyPrefab();
         furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
         furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.5f);
-        description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
-        previewCamera.orthographicSize = 1.5f;
+        description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;        
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
@@ -140,7 +139,6 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.6f, 10003), Quaternion.identity);
         furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.8f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
-        previewCamera.orthographicSize = 1.5f;
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
@@ -163,7 +161,6 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
         furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.8f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
-        previewCamera.orthographicSize = 1.5f;
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 
@@ -207,7 +204,6 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         itemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 10000, 10000.80f), Quaternion.identity);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
         itemPrefab.transform.localScale = new Vector3(0.5f, 1, 0.5f);
-        previewCamera.orthographicSize = 1.2f;
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
 

@@ -9,6 +9,9 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class EquipmentInsertionMode : MonoBehaviour
 {
+    public static EquipmentInsertionMode ins { get; private set; }
+
+
     [SerializeField] GameObject _equipmentPrefab;
     [SerializeField] GameObject _equipmentInstance;
 
@@ -24,6 +27,18 @@ public class EquipmentInsertionMode : MonoBehaviour
     {
         get { return _equipmentPrefab; }
         set { _equipmentPrefab = value; }
+    }
+
+    private void Awake()
+    {
+        if (ins != null && ins != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            ins = this;
+        }
     }
 
     RaycastHit _hit;
