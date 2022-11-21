@@ -9,6 +9,8 @@ public class Storey
     List<Wall> _walls = new List<Wall>();
     List<Ceiling> _ceilings = new List<Ceiling>();
     List<FloorSection2D> _floors= new List<FloorSection2D>();
+    List<Equipment> _equipment = new List<Equipment>();
+
     uint _number;
     string _name;
     float _elevation;
@@ -73,6 +75,12 @@ public class Storey
         set { _height = value; }
     }
 
+    public List<Equipment> Equipment
+    {
+        get { return _equipment; }
+        set { _equipment = value; }
+    }
+
     public Wall AddNewWall()
     {
         foreach(Wall wall in _walls)
@@ -130,6 +138,12 @@ public class Storey
         return false;
 
     }
+
+    public void AddNewEquipment(string assetName, string bundleName, Vector3 position, Vector3 rotation)
+    {
+        _equipment.Add(new Equipment(assetName, bundleName, position, rotation));
+    }
+
     public override string ToString()
     {
         string basic = "Storey (" + _number + ") name: " + _name + ", Elevation: " + _elevation + "[m] , Height: " + _height + "[m].";

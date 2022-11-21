@@ -11,6 +11,8 @@ public class EquipmentInsertionMode : MonoBehaviour
 {
     public static EquipmentInsertionMode ins { get; private set; }
 
+    [SerializeField] string _assetName = "";
+    [SerializeField] string _bundleName = "";
 
     [SerializeField] GameObject _equipmentPrefab;
     [SerializeField] GameObject _equipmentInstance;
@@ -22,7 +24,9 @@ public class EquipmentInsertionMode : MonoBehaviour
     [SerializeField] LayerMask _collisionLayerMask;
     protected Transform _selection;
     bool _inserting = true;
-    
+
+    public string AssetName { get { return _assetName; } set { _assetName = value; } }
+    public string BundleName { get { return _bundleName; } set { _bundleName = value; } }
     public GameObject EquipmentPrefab
     {
         get { return _equipmentPrefab; }
@@ -132,7 +136,6 @@ public class EquipmentInsertionMode : MonoBehaviour
                 insertedItem.transform.position = item.MountTransform.position;
                 insertedItem.transform.rotation = item.MountTransform.rotation;                
             }
-
             Destroy(item.gameObject);
         }
         else if(!_equipmentInstance.GetComponent<EquipmentItem>().IsColliding)
@@ -141,8 +144,19 @@ public class EquipmentInsertionMode : MonoBehaviour
             insertedItem.transform.position = _equipmentInstance.transform.position;
             insertedItem.transform.rotation = _equipmentInstance.transform.rotation;
         }
+        StoreItemIntoModel(_equipmentInstance.transform);
         DisposeOfEquipmentInstance();
         gameObject.SetActive(false);
+    }
+
+    void StoreItemIntoModel(Transform itemTransform)
+    {
+        GameManager.ins.Building.CurrentStorey.AddNewEquipment(
+            AssetName,
+            BundleName,
+            itemTransform.position,
+            itemTransform.eulerAngles
+            );
     }
 
     private void RotateItem()

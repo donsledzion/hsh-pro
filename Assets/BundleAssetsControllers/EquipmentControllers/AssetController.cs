@@ -69,6 +69,7 @@ public class AssetController : MonoBehaviour
     {
         prefabToFitController.SwapPrefab(item.prefab);
         prefabToFitController.gameObject.SetActive(true);
+        AssignNameAndBundleNames(AssetBundleHelper.ExtractName(item), nameOffAssetToLoad);
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
     }
@@ -119,5 +120,11 @@ public class AssetController : MonoBehaviour
     {
         DestroyAllPrefabs();
         SetupInstance(item);
+    }
+
+    void AssignNameAndBundleNames(string item, string bundle)
+    {
+        prefabToFitController.AssetName = item;
+        prefabToFitController.BundleName = bundle;
     }
 }

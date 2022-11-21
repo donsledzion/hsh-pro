@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -108,7 +109,25 @@ public class Builder3D : MonoBehaviour
             //connector.adjuster.GetComponent<MeshRenderer>().material = connector.GetOutterPlaneMaterial();
             connector.DelayedMaterialAssigning();
         }
+
+        foreach(Equipment equipment in storey.Equipment)
+        {
+            SpawnEquipment(equipment);
+        }
         
+    }
+
+    private void SpawnEquipment(Equipment equipment)
+    {
+        if (equipment == null) return;
+        if (equipment.AssetName == null || equipment.AssetName == "") return;
+        if (equipment.BundleName == null || equipment.BundleName== "") return;
+        AssetBundle bundle = AssetBundleLoader.ins.GetBundleLoadStatusByName(equipment.BundleName).Bundle;
+        ScriptableObjectsController item = bundle.LoadAsset(equipment.AssetName) as ScriptableObjectsController;
+        GameObject equipmentInstance = Instantiate(item.prefab);
+        equipmentInstance.transform.SetParent(gameObject.transform);
+        equipmentInstance.transform.position = equipment.Position;
+        equipmentInstance.transform.eulerAngles = equipment.Rotation;
     }
 
     [ContextMenu("Generate Current Storey")]
