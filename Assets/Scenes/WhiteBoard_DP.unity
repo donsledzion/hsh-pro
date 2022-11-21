@@ -776,6 +776,50 @@ MonoBehaviour:
   whiteboard: {fileID: 1230900126}
   gridDotPrefab: {fileID: 5192344911870528310, guid: df9b32bbdcfaaf948ab89d12b7d48040, type: 3}
   dotsContainer: {fileID: 1502280371}
+--- !u!1 &391848841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 391848842}
+  - component: {fileID: 391848843}
+  m_Layer: 0
+  m_Name: VRPlayerStatus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &391848842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391848841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1841997626}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &391848843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391848841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca292b02da6a4304ab791d0d91c417ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vrPlayerTransform: {fileID: 1077441475}
 --- !u!1 &409703016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1208,14 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 2497522381097183278, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: _showController
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3246978359741789204, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: _targetParentTransform
+      value: 
+      objectReference: {fileID: 311015809}
     - target: {fileID: 5628525056998438147, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: _sunTransform
       value: 
@@ -1521,35 +1573,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
   m_PrefabInstance: {fileID: 487559229}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1077441471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077441470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce642a987300a1488d3d2b91b0cbb6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input:
-    actionPath: /actions/default/in/Joystick
-    needsReinit: 0
-  speed: 1.2
---- !u!114 &1077441472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077441470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e596505e9d95947bd6abe1178fb851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showController: 1
 --- !u!143 &1077441473
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1568,11 +1591,10 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.005
   m_Center: {x: 0, y: 0.89, z: 0}
---- !u!114 &1077441474
+--- !u!114 &1077441474 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3246978359741789204, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+  m_PrefabInstance: {fileID: 487559229}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077441470}
   m_Enabled: 1
@@ -1580,38 +1602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3ba36b397de624da90fb6de7c948c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetParentTransform: {fileID: 311015809}
-  _sourceParentTransform: {fileID: 0}
 --- !u!4 &1077441475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
   m_PrefabInstance: {fileID: 487559229}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1077441476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077441470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5530636b0e3ffc84a9aee0026443733b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1077441477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077441470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506de7937689cb848bbae0c765a42938, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equipmentItems: []
 --- !u!1 &1101568942 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4969373843377249314, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
@@ -2311,6 +2306,7 @@ Transform:
   - {fileID: 16781336}
   - {fileID: 1797002549}
   - {fileID: 2057495115}
+  - {fileID: 391848842}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2640,6 +2636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0e64102ce58584aaaed3685fcaf3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _videoClips: []
 --- !u!1 &2113215541
 GameObject:
   m_ObjectHideFlags: 0
@@ -3998,7 +3995,7 @@ PrefabInstance:
     - target: {fileID: 6989627497249938695, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 1077441477}
+      objectReference: {fileID: 0}
     - target: {fileID: 6989627497268624630, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

@@ -7,7 +7,7 @@ public class VideosController : MonoBehaviour
 {
     public static VideosController ins { get; private set; }
 
-    List<VideoClip> _videoClips = new List<VideoClip>();
+    [SerializeField] List<VideoClip> _videoClips = new List<VideoClip>();
 
     public List<VideoClip> VideoClips { get { return _videoClips; } }
 

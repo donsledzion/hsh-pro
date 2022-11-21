@@ -27,10 +27,13 @@ public class DeviceToggler : MonoBehaviour
 
     private void Update()
     {
-        if (_toggleDevice != null && _toggleDevice.GetStateDown(inputSource) && IsHovered)
-            Toggle();
-        if (_swapStation != null && _swapStation.GetStateDown(inputSource) && IsHovered)
-            SwapStation();
+        if(VRPlayerStatusReport.ins.IsActive)
+        {
+            if (_toggleDevice != null && _toggleDevice.GetStateDown(inputSource) && IsHovered)
+                Toggle();
+            if (_swapStation != null && _swapStation.GetStateDown(inputSource) && IsHovered)
+                SwapStation();
+        }
     }
 
     public void Toggle()
@@ -55,8 +58,7 @@ public class DeviceToggler : MonoBehaviour
     public void SwapStation()
     {        
         _player.Stop();
-        LoadNextVideo();
-        _player.clip = _clips[currentStation];
+        LoadNextVideo();        
         _player.Play();
     }
 }
