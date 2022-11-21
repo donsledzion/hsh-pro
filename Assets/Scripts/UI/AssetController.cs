@@ -75,9 +75,7 @@ public class AssetController : MonoBehaviour
     {
         Debug.Log("Failed to load");
 
-
-        //furnitureAsset = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/"+nameOffAssetToLoad);
-        furnitureAsset = AssetBundleLoader.ins.GetBundleLoadStatusByName(nameOffAssetToLoad)?.Bundle;/* LoadFromFile("AssetBundles/StandaloneWindows/"+nameOffAssetToLoad);*/
+        furnitureAsset = AssetBundleLoader.ins.GetBundleLoadStatusByName(nameOffAssetToLoad)?.Bundle;
 
         if (furnitureAsset) Debug.Log("Loaded successfuly");
         else Debug.Log("Failed to load");

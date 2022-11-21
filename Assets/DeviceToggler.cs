@@ -20,6 +20,11 @@ public class DeviceToggler : MonoBehaviour
 
     public bool IsHovered { get; set; } = false;
 
+    private void Start()
+    {
+        LoadNextVideo();
+    }
+
     private void Update()
     {
         if (_toggleDevice != null && _toggleDevice.GetStateDown(inputSource) && IsHovered)
@@ -42,13 +47,15 @@ public class DeviceToggler : MonoBehaviour
         }
     }
 
-    public void SwapStation()
+    void LoadNextVideo()
     {
-        if (_clips.Length <= 1) return;
-        currentStation++;
-        if(currentStation >= _clips.Length)
-            currentStation = 0;
+        _player.clip = VideosController.ins.NextVideo();
+    }
+
+    public void SwapStation()
+    {        
         _player.Stop();
+        LoadNextVideo();
         _player.clip = _clips[currentStation];
         _player.Play();
     }
