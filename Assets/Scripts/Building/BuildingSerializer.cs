@@ -18,6 +18,7 @@ public class BuildingSerializer : MonoBehaviour
     void DeserializeBuilding(string path)
     {
         GameManager.ins.Building = Building.DeserializeFromXML(path);
+        ReferenceController.ins.StoreySwitcherDropdown.UpdateDropdown();
     }
 
     private void Update()
