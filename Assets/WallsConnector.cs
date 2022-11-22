@@ -20,13 +20,6 @@ public class WallsConnector : MonoBehaviour
     Vector3 firstSectionToMe;
     Vector3 secondSectionToMe;
     
-    Vector3 FurtherPoint(WallSection section)
-    {
-        if(section == null) return Vector3.zero;
-        if (section.StartPoint.Position == new Vector2(transform.position.x,transform.position.z))
-            return new Vector3(section.EndPoint.Position.x,transform.position.y,section.EndPoint.Position.y);
-        return new Vector3(section.StartPoint.Position.x, transform.position.y, section.StartPoint.Position.y);
-    }
 
     void HandleSectionsToMeVectors()
     {
@@ -94,6 +87,7 @@ public class WallsConnector : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         adjuster.GetComponent<MeshRenderer>().material =  GetOutterPlaneMaterial();
         adjuster.SetTilling();
+        GoToSleep();
     }
 
     [ContextMenu("Get Outter Plane Material")]
@@ -112,8 +106,9 @@ public class WallsConnector : MonoBehaviour
         return adjuster.GetComponent<MeshRenderer>().material;
     }
 
-    private void OnDrawGizmos()
+    public void GoToSleep()
     {
-        Gizmos.DrawWireSphere(_outterPoint, 20f);
+        GetComponentInChildren<CollidingPlanesDetector>().enabled = false;
+        this.enabled = false;
     }
 }

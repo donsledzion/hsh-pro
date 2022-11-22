@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using Valve.VR.InteractionSystem;
 using Walls2D;
 
 public class Builder3D : MonoBehaviour
@@ -106,7 +107,6 @@ public class Builder3D : MonoBehaviour
             connector.Sections = connectorPoint.sections;
             corner.transform.localScale = new Vector3(size, storey.Height, size);
             corner.transform.localPosition = new Vector3(connectorPoint.Point.x,storey.Elevation,connectorPoint.Point.y) - transform.localPosition;
-            //connector.adjuster.GetComponent<MeshRenderer>().material = connector.GetOutterPlaneMaterial();
             connector.DelayedMaterialAssigning();
         }
 
@@ -128,7 +128,19 @@ public class Builder3D : MonoBehaviour
         equipmentInstance.transform.SetParent(gameObject.transform);
         equipmentInstance.transform.position = equipment.Position;
         equipmentInstance.transform.eulerAngles = equipment.Rotation;
-        equipmentInstance.GetComponent<EquipmentItem>().GUID = equipment.GUID;
+        EquipmentItem equipmentItem = equipmentInstance.GetComponent<EquipmentItem>();
+        equipmentItem.GUID = equipment.GUID;
+        equipmentItem.Equipment = equipment;
+        equipmentItem.enabled = false;
+        Throwable throwable = equipmentItem.GetComponent<Throwable>();
+        if (throwable != null)
+        {
+            throwable.restoreOriginalParent = true;
+            Rigidbody rb = equipmentItem.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.useGravity = true;
+        }
+        //Debug.Log("Equipment item " + equipmentItem.GUID + " has been spawned with equipment model: " + equipment.ToString());
     }
 
     [ContextMenu("Generate Current Storey")]

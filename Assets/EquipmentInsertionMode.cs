@@ -153,14 +153,18 @@ public class EquipmentInsertionMode : MonoBehaviour
 
     void StoreItemIntoModel(Transform itemTransform)
     {
-        itemTransform.GetComponent<EquipmentItem>().GUID=
-            GameManager.ins.Building.CurrentStorey.AddNewEquipment(
+        Equipment equipment = GameManager.ins.Building.CurrentStorey.
+            AddNewEquipment(
             Guid.NewGuid().ToString("N"),
             AssetName,
             BundleName,
             itemTransform.position,
             itemTransform.eulerAngles
-            ).GUID;
+            );
+        EquipmentItem equipmentItem = itemTransform.GetComponent<EquipmentItem>();
+
+        equipmentItem.GUID = equipment.GUID;
+        equipmentItem.Equipment = equipment;
     }
 
     private void RotateItem()

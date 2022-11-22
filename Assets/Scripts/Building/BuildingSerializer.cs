@@ -9,6 +9,9 @@ public class BuildingSerializer : MonoBehaviour
     [ContextMenu("Serialize Building")]
     void SerializeBuilding(string path)
     {
+        Debug.Log("Updating Equipment locations...");
+        int updatedItems = UpdateEquipmentLocation();
+        Debug.Log("...done! Updated for " + updatedItems + " items.");
         GameManager.ins.Building.SerializeToXML(path);
     }
 
@@ -42,9 +45,9 @@ public class BuildingSerializer : MonoBehaviour
         try
         {
             // save datahere
-            string filePath = dataPath + @"/Hsh-quick-save.xml";
-            Debug.Log("Save data to: " + filePath);
+            string filePath = dataPath + @"/Hsh-quick-save.xml";            
             SerializeBuilding(filePath);
+            Debug.Log("Saved data to: " + filePath);
         }
         catch (Exception e)
         {
@@ -78,5 +81,15 @@ public class BuildingSerializer : MonoBehaviour
             Debug.LogError("Failed to load data from: " + dataPath);
             Debug.LogError("Error " + e.Message);
         }
+    }
+
+    private int UpdateEquipmentLocation()
+    {
+        List<EquipmentItem> equipmentItems = new List<EquipmentItem>(FindObjectsOfType<EquipmentItem>());
+        Debug.Log("Found " + equipmentItems.Count + " items (inside UpdateEquipmentLocation() method)");
+        foreach (EquipmentItem item in equipmentItems)
+            item.UpdatePosition();
+
+        return equipmentItems.Count;
     }
 }

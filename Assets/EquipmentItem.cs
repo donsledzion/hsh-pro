@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 //[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(BoxCollider))]
@@ -11,7 +12,9 @@ public class EquipmentItem : MonoBehaviour
     [SerializeField] LayerMask _targetLayer;
     [SerializeField] LayerMask _collisionLayer;
 
-    protected bool _isColliding = false;  
+    protected bool _isColliding = false;
+
+    protected Equipment _equipment;
 
     public string GUID { get { return _guid; } set { _guid = value; } }
     public LayerMask TargetLayer { get { return _targetLayer; } }
@@ -21,6 +24,13 @@ public class EquipmentItem : MonoBehaviour
 
     public bool IsColliding { get { return _isColliding; }}
 
+    public Equipment Equipment { get { return _equipment; } set { _equipment = value; } }
+
+    public void UpdatePosition()
+    {
+        _equipment.Position = transform.position;
+        _equipment.Rotation = transform.eulerAngles;
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -38,4 +48,6 @@ public class EquipmentItem : MonoBehaviour
             _isColliding = false;
         }
     }
+
+
 }
