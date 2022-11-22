@@ -6,12 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class EquipmentItem : MonoBehaviour
 {
+    string _guid;
     [SerializeField] Vector3 _thumbScale = new Vector3(1f, 1f, 1f);
     [SerializeField] LayerMask _targetLayer;
     [SerializeField] LayerMask _collisionLayer;
 
     protected bool _isColliding = false;  
 
+    public string GUID { get { return _guid; } set { _guid = value; } }
     public LayerMask TargetLayer { get { return _targetLayer; } }
     public LayerMask CollisionLayer { get { return _collisionLayer; } }
 

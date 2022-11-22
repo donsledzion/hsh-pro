@@ -78,6 +78,16 @@ public class EquipmentSelectionController : MonoBehaviour
         foreach (SelectedItem item in _selectedItems2)
         {
             item.SelectedGameObject.SetActive(true);
+            string guid = item.SelectedGameObject.GetComponent<EquipmentItem>().GUID;
+            Debug.Log("Trying to remove equipment item with guid: " + guid);
+            if(GameManager.ins.Building.RemoveEquipmentItem(guid))
+            {
+                Debug.Log("Equipment item with guid: " + guid + " removed from model successfuly");
+            }
+            else
+            {
+                Debug.LogWarning("Could not remove equipment with guid: " + guid);
+            }
             Destroy(item.Phantom);
             Destroy(item.SelectedGameObject);
         }

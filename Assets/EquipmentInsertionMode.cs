@@ -126,12 +126,13 @@ public class EquipmentInsertionMode : MonoBehaviour
     private void InsertItem()
     {
 
+        GameObject insertedItem = null;
         if (_equipmentInstance.GetComponent<EquipmentItem>().GetType() == typeof(WallEquipmentItem))
         {
             WallEquipmentItem item = _equipmentInstance.GetComponent<WallEquipmentItem>();
             if (!item.IsColliding)
             {
-                GameObject insertedItem = Instantiate(_equipmentPrefab, _selection);                
+                insertedItem = Instantiate(_equipmentPrefab, _selection);                
                 insertedItem.GetComponent<WallEquipmentItem>().enabled = false;
                 insertedItem.transform.position = item.MountTransform.position;
                 insertedItem.transform.rotation = item.MountTransform.rotation;                
@@ -140,23 +141,26 @@ public class EquipmentInsertionMode : MonoBehaviour
         }
         else if(!_equipmentInstance.GetComponent<EquipmentItem>().IsColliding)
         {
-            GameObject insertedItem = Instantiate(_equipmentPrefab, _selection);
+            insertedItem = Instantiate(_equipmentPrefab, _selection);
             insertedItem.transform.position = _equipmentInstance.transform.position;
             insertedItem.transform.rotation = _equipmentInstance.transform.rotation;
         }
-        StoreItemIntoModel(_equipmentInstance.transform);
+        if (insertedItem == null) return;
+        StoreItemIntoModel(insertedItem.transform);
         DisposeOfEquipmentInstance();
         gameObject.SetActive(false);
     }
 
     void StoreItemIntoModel(Transform itemTransform)
     {
-        GameManager.ins.Building.CurrentStorey.AddNewEquipment(
+        itemTransform.GetComponent<EquipmentItem>().GUID=
+            GameManager.ins.Building.CurrentStorey.AddNewEquipment(
+            Guid.NewGuid().ToString("N"),
             AssetName,
             BundleName,
             itemTransform.position,
             itemTransform.eulerAngles
-            );
+            ).GUID;
     }
 
     private void RotateItem()
@@ -169,7 +173,6 @@ public class EquipmentInsertionMode : MonoBehaviour
         _selection = null;
         Destroy(_equipmentInstance);
         _equipmentInstance = null;
-        //_layerMask = new LayerMask();
     }
 
     [ContextMenu("Assign Prefab Layer Mask")]

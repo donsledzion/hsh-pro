@@ -139,9 +139,25 @@ public class Storey
 
     }
 
-    public void AddNewEquipment(string assetName, string bundleName, Vector3 position, Vector3 rotation)
+    public Equipment AddNewEquipment(string guid, string assetName, string bundleName, Vector3 position, Vector3 rotation)
     {
-        _equipment.Add(new Equipment(assetName, bundleName, position, rotation));
+        Equipment equipment = new Equipment(guid, assetName, bundleName, position, rotation);
+        _equipment.Add(equipment);
+        return equipment;
+    }
+
+    public bool RemoveEquipment(string guid)
+    {
+        foreach(Equipment equipmentItem in Equipment)
+        {
+            if(equipmentItem.GUID == guid)
+            {
+                _equipment.Remove(equipmentItem);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public override string ToString()

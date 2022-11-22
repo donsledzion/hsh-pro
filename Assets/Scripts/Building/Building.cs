@@ -45,6 +45,17 @@ public class Building
     {
         _storeys.Add(new Storey((uint)(_storeys.Count+1), storeyName, elevation, height));
     }
+
+    public bool RemoveEquipmentItem(string guid)
+    {
+        foreach(Storey storey in _storeys)
+        {
+            if (storey.RemoveEquipment(guid))
+                return true;
+        }
+
+        return false;
+    }
         
     public void AddStoreySimple(bool seAsCurrent = true)
     {

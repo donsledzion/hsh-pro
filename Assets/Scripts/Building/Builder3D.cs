@@ -128,6 +128,7 @@ public class Builder3D : MonoBehaviour
         equipmentInstance.transform.SetParent(gameObject.transform);
         equipmentInstance.transform.position = equipment.Position;
         equipmentInstance.transform.eulerAngles = equipment.Rotation;
+        equipmentInstance.GetComponent<EquipmentItem>().GUID = equipment.GUID;
     }
 
     [ContextMenu("Generate Current Storey")]

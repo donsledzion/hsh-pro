@@ -62,7 +62,7 @@ public class Pointer3DSelector : MonoBehaviour
         doorInstance.GetComponent<BoxCollider>().enabled = false;
 
         Vector3 scaleFactor = _selection.GetComponentInParent<PhantomScaler>().transform.localScale;
-        Debug.Log("Scale factor.z: " + scaleFactor.z + " | jambSize.z: " + jambSize.z + " | prefabSize.z: " + prefabSize.z);
+        //Debug.Log("Scale factor.z: " + scaleFactor.z + " | jambSize.z: " + jambSize.z + " | prefabSize.z: " + prefabSize.z);
 
         doorInstance.transform.localScale = new Vector3(
                 scaleFactor.x * jambSize.x / prefabSize.x,
