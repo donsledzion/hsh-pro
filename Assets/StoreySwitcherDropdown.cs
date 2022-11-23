@@ -18,13 +18,23 @@ public class StoreySwitcherDropdown : MonoBehaviour
             _dropdown.options.Add(option);
         }
         _dropdown.RefreshShownValue();
-        _dropdown.value = _dropdown.options.Count;
+        _dropdown.value = CurrentStoreyIndex();
 
+
+    }
+
+    public static int CurrentStoreyIndex()
+    {
+        for (int i = 0; i < GameManager.ins.Building.Storeys.Count; i++)
+            if (GameManager.ins.Building.Storeys[i] == GameManager.ins.Building.CurrentStorey) return i;
+        return -1;
     }
 
     public void SwitchToSelectedStorey()
     {
-        Drawing2DController.ins.SwitchToStorey(GameManager.ins.Building.Storeys[_dropdown.value]);
+        GameManager.ins.Building.SetCurrentStorey(GameManager.ins.Building.Storeys[_dropdown.value]);
+        Drawing2DController.ins.SwitchToStorey(GameManager.ins.Building.CurrentStorey);
+
          
     }
 

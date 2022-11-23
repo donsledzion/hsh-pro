@@ -105,6 +105,8 @@ public class Building
         building = (Building)serializer.Deserialize(reader);
         Debug.Log(building.ToString());
         building.SetCurrentStorey(building.Storeys[0]);
+        Debug.LogWarning("Building deserialized. Current storey of new Building: " + building.CurrentStorey.Name);
+        Debug.LogWarning("Building deserialized. Current storey of GameManager.Building: " + GameManager.ins.Building.CurrentStorey.Name);
         return building;
     }
 }

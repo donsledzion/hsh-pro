@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI.Extensions;
 using Walls2D;
 using static Selector2D;
@@ -36,6 +38,10 @@ public class Drawing2DController : MonoBehaviour
     [SerializeField] float visibleStoreyThickness = 10f;
     [SerializeField] float invisibleStoreyThickness = 2f;
 
+    public Building Building => GameManager.ins.Building;
+    public Storey BuildingCurrentStorey => GameManager.ins.Building.CurrentStorey;
+
+    public List<Storey> BuildingStoreys => GameManager.ins.Building.Storeys;    
 
     public Storey2D CurrentStorey { get { return currentStorey; } }
     public WallType CurrentWallType { get; set; }
@@ -70,28 +76,51 @@ public class Drawing2DController : MonoBehaviour
 
     private void OnEnable()
     {
-        gameObject.GetComponent<RectTransform>().localPosition = new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);
-        if(!_storeys2D.Contains(currentStorey))
-            _storeys2D.Add(currentStorey);
+        gameObject.GetComponent<RectTransform>().localPosition = 
+            new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);        
     }
 
     [ContextMenu("Erase Storeys")]
     public void EraseStoreys()
     {
+        if (_storeys2D.Count < 1) return;
         foreach (Storey2D storey2d in _storeys2D)
         {
-            ClearStorey(storey2d);
-            if(!storey2d.FirstStoreyForever)
-                Destroy(storey2d.gameObject);
+            Destroy(storey2d.gameObject);
         }            
         _storeys2D.Clear();
-        Storey2D newCurrentStorey = drawingsContainer.GetComponentInChildren<Storey2D>();
-        _storeys2D.Add(newCurrentStorey);
-        currentStorey = newCurrentStorey;
+        currentStorey = null;
+    }
+
+    public void LoadBuilding()
+    {
+        EraseStoreys();
+        if (BuildingStoreys.Count <= 1) return;
+
+        InitializeFirstStorey(BuildingStoreys[0]);
+        DrawStorey(BuildingStoreys[0]);
+        for (int i = 0; i < BuildingStoreys.Count; i++)
+        {
+            GameObject newStorey = Instantiate(storey2DPrefab, drawingsContainer);
+            newStorey.name = BuildingStoreys[i].Name;
+            Storey2D storey = newStorey.GetComponent<Storey2D>();
+            storey.StoreyReference = BuildingStoreys[i];
+            Storeys2D.Add(storey);
+            Debug.Log("Initializing storey no. " + i + " named: " + storey.StoreyReference.Name);
+            DrawStorey(BuildingStoreys[i]);
+        }
     }
 
     public void InitializeFirstStorey(Storey storey)
     {
+        if(Storeys2D.Count <= 1)
+        {
+            GameObject firstStorey = Instantiate(storey2DPrefab, drawingsContainer);
+            firstStorey.name = storey.Name;
+            Storeys2D.Add(firstStorey.GetComponent<Storey2D>());            
+        }
+        if (currentStorey == null)
+            currentStorey = Storeys2D[0];
         currentStorey.StoreyReference = storey;
     }
     public void SwitchToStorey(Storey storey)
@@ -134,18 +163,18 @@ public class Drawing2DController : MonoBehaviour
     [ContextMenu("RegenerateBuildingDrawing")]
     public void RegenerateBuildingDrawing()
     {
-        EraseStoreys();
-        foreach(Storey storey in GameManager.ins.Building.Storeys)
+        LoadBuilding();
+        /*foreach(Storey storey in BuildingStoreys)
         {
-            SwitchToStorey(storey);
-        }
+            DrawStorey(storey);
+        }*/
         SetStoreysVisibility();
     }
 
 
     public Wall ApplyWallToBuilding()
     {
-        Wall wall = GameManager.ins.Building.CurrentStorey.AddNewWall();
+        Wall wall = BuildingCurrentStorey.AddNewWall();
         wall.WallSections = new Wall(_uILineRenderer.Points).WallSections;
         wall.AssignSections();
         wall.WallType = CurrentWallType;
@@ -158,10 +187,19 @@ public class Drawing2DController : MonoBehaviour
 
     public void DrawStorey(Storey storey)
     {
-        ClearCurrentStorey();
+        Storey2D storey2D = null;
+        foreach (Storey2D inspectedStorey in Storeys2D)
+        {
+            if(inspectedStorey.StoreyReference == storey)
+            {
+                storey2D=inspectedStorey;
+            }
+        }
+        if (storey2D == null) return;
+        //ClearCurrentStorey();
         foreach(Wall wall in storey.Walls)
         {
-            currentStorey.AddWallToStorey(wall);
+            storey2D.AddWallToStorey(wall);
         }
     }
     
@@ -169,7 +207,7 @@ public class Drawing2DController : MonoBehaviour
     public void RedrawCurrentStorey()
     {
         Debug.Log("Redrawing current storey...");
-        DrawStorey(GameManager.ins.Building.CurrentStorey);
+        DrawStorey(BuildingCurrentStorey);
         DrawLabels();
     }
     

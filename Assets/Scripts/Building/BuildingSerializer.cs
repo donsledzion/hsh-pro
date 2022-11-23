@@ -72,9 +72,8 @@ public class BuildingSerializer : MonoBehaviour
             // load datahere
             string filePath = dataPath + @"/Hsh-quick-save.xml";
             Debug.Log("Save data to: " + filePath);
-            DeserializeBuilding(filePath);
+            DeserializeBuilding(filePath);            
             Drawing2DController.ins.RegenerateBuildingDrawing();
-            Drawing2DController.ins.RedrawCurrentStorey();
         }
         catch (Exception e)
         {

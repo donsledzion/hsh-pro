@@ -29,15 +29,20 @@ public class Builder3D : MonoBehaviour
          * TODO:
          * create wall and ceiling sections in separate transforms depending on the storey they belong to
          */
+        GameObject storeyContainer = new GameObject(storey.Name);
+        storeyContainer.transform.SetParent(gameObject.transform);
+        
+
         //Generating walls (wall may contain several wall sections
         foreach (Wall wall in storey.Walls)
         {
+            
             //Generating wall sections depending on wall section type
             foreach (WallSection section in wall.WallSections)
             {
                 if (section is SectionStraight)
                 {
-                    GameObject sectionObject = Instantiate(_sectionStraightPrefab, gameObject.transform);
+                    GameObject sectionObject = Instantiate(_sectionStraightPrefab, storeyContainer.transform);
                     WallSectionAlt sectionAlt = sectionObject.GetComponent<WallSectionAlt>();
                     sectionAlt.SetParameters(storey, wall, section);
                     sectionAlt.Spatialize(section);
@@ -46,7 +51,7 @@ public class Builder3D : MonoBehaviour
                 }
                 else if(section is Doorjamb)
                 {
-                    GameObject sectionObject = Instantiate(_sectionDoorjambPrefab, gameObject.transform);
+                    GameObject sectionObject = Instantiate(_sectionDoorjambPrefab, storeyContainer.transform);
                     WallSectionDoorjamb sectionJamb = sectionObject.GetComponent<WallSectionDoorjamb>();
                     sectionJamb.SetParameters(storey, wall, (Doorjamb)section);
                     sectionJamb.Spatialize((Doorjamb)section);
@@ -56,7 +61,7 @@ public class Builder3D : MonoBehaviour
                 }
                 else if(section is Windowjamb)
                 {
-                    GameObject sectionObject = Instantiate(_sectionWindowjambPrefab, gameObject.transform);
+                    GameObject sectionObject = Instantiate(_sectionWindowjambPrefab, storeyContainer.transform);
                     WallSectionWindowjamb sectionJamb = sectionObject.GetComponent<WallSectionWindowjamb>();
                     sectionJamb.SetParameters(storey, wall, (Windowjamb)section);
                     sectionJamb.Spatialize((Windowjamb)section);
@@ -70,7 +75,7 @@ public class Builder3D : MonoBehaviour
         foreach(Ceiling ceiling in storey.Ceilings)
         {
             GameObject ceilingObject = Instantiate(_ceilingSectionPrefab);
-            ceilingObject.transform.SetParent(gameObject.transform);
+            ceilingObject.transform.SetParent(storeyContainer.transform);
             CeilingSection ceilingSection = ceilingObject.GetComponent<CeilingSection>();
             foreach (CeilingPlane plane in ceilingSection.CeilingPlanes)
             {
@@ -87,7 +92,7 @@ public class Builder3D : MonoBehaviour
         foreach(FloorSection2D floor in storey.Floors)
         {
             GameObject floorObject = Instantiate(_floorSectionPrefab);
-            floorObject.transform.SetParent(gameObject.transform);
+            floorObject.transform.SetParent(storeyContainer.transform);
             FloorSection floorSection = floorObject.GetComponent<FloorSection>();
             foreach (FloorPlane plane in floorSection.FloorPlanes)
             {
@@ -101,23 +106,23 @@ public class Builder3D : MonoBehaviour
         foreach(StoreyPointsCollector.ConnectorPoint connectorPoint in _storeyPointsCollector.ListConnectorPoints(storey))
         {
             GameObject corner = Instantiate(cornerFinishingPointPrefab);
-            corner.transform.SetParent(gameObject.transform);
+            corner.transform.SetParent(storeyContainer.transform);
             float size = connectorPoint.ThickestWallThickness();
             WallsConnector connector = corner.GetComponent<WallsConnector>();
             connector.Sections = connectorPoint.sections;
             corner.transform.localScale = new Vector3(size, storey.Height, size);
-            corner.transform.localPosition = new Vector3(connectorPoint.Point.x,storey.Elevation,connectorPoint.Point.y) - transform.localPosition;
+            corner.transform.localPosition = new Vector3(connectorPoint.Point.x,storey.Elevation,connectorPoint.Point.y)/* - transform.localPosition*/;
             connector.DelayedMaterialAssigning();
         }
 
         foreach(Equipment equipment in storey.Equipment)
         {
-            SpawnEquipment(equipment);
+            SpawnEquipment(equipment, storeyContainer.transform);
         }
         
     }
 
-    private void SpawnEquipment(Equipment equipment)
+    private void SpawnEquipment(Equipment equipment, Transform newParent)
     {
         if (equipment == null) return;
         if (equipment.AssetName == null || equipment.AssetName == "") return;
@@ -125,7 +130,7 @@ public class Builder3D : MonoBehaviour
         AssetBundle bundle = AssetBundleLoader.ins.GetBundleLoadStatusByName(equipment.BundleName).Bundle;
         ScriptableObjectsController item = bundle.LoadAsset(equipment.AssetName) as ScriptableObjectsController;
         GameObject equipmentInstance = Instantiate(item.prefab);
-        equipmentInstance.transform.SetParent(gameObject.transform);
+        equipmentInstance.transform.SetParent(newParent);
         equipmentInstance.transform.position = equipment.Position;
         equipmentInstance.transform.eulerAngles = equipment.Rotation;
         EquipmentItem equipmentItem = equipmentInstance.GetComponent<EquipmentItem>();
@@ -174,6 +179,7 @@ public class Builder3D : MonoBehaviour
             CeilingPlane flooringPlane = flooringSection.CeilingPlanes[0];
             flooringPlane.SetParameters(flooring);
             flooringPlane.Spatialize();
+            flooringPlane.name = "Flooring";
         }
     }
 

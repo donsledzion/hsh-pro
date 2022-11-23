@@ -44,7 +44,7 @@ public class WallsConnector : MonoBehaviour
             V1 = (A1 - A2).normalized;
             V2 = (A1 - B1).normalized;
         }
-        else/*if ((A2 - B1).magnitude < tollerance)*/
+        else
         {
             V1 = (A2 - A1).normalized;
             V2 = (A2 - B2).normalized;
@@ -93,7 +93,7 @@ public class WallsConnector : MonoBehaviour
     [ContextMenu("Get Outter Plane Material")]
     public Material GetOutterPlaneMaterial()
     {
-        Debug.Log("Looking for material to cover the corner");
+        //Debug.Log("Looking for material to cover the corner");
         foreach(WallPlane plane in planesDetector.Planes)
         {
             if(plane.Plane.GetSide(_outterPoint))
