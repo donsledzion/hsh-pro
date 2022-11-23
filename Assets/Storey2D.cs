@@ -146,7 +146,8 @@ public class Storey2D : MonoBehaviour
 
     void SetFloorsVisibility(bool isVisible)
     {
-
+        foreach(FloorSectionDrawing2D floor in _floors2D)
+            floor.SetVisibility(isVisible);
     }
 
     public void SetVisibiilty(bool isVisible)

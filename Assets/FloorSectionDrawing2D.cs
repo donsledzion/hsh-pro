@@ -6,10 +6,11 @@ using TMPro;
 
 public class FloorSectionDrawing2D : MonoBehaviour
 {
-    [SerializeField] UILineRenderer _lineRenderer;
+    [SerializeField] Transform TMPAreaTransform;
     [SerializeField] TextMeshProUGUI _areaTMP;
+    [SerializeField] Transform LineRendererTransform;
+    [SerializeField] UILineRenderer _lineRenderer;
     [SerializeField] Vector2[] _points;
-
 
     public void DrawOnCanvas(Vector2[] points )
     {
@@ -31,8 +32,10 @@ public class FloorSectionDrawing2D : MonoBehaviour
         DrawOnCanvas(_points);
     }
 
-    public void SetVisibility()
+    public void SetVisibility(bool isVisible)
     {
-        //_lineRenderer.
+        TMPAreaTransform.gameObject.SetActive(isVisible);
+        LineRendererTransform.gameObject.SetActive(isVisible);
+
     }
 }
