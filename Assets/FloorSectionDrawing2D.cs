@@ -6,17 +6,18 @@ using TMPro;
 
 public class FloorSectionDrawing2D : MonoBehaviour
 {
-    [SerializeField] UILineRenderer _lineRenderer;
+    [SerializeField] Transform TMPAreaTransform;
     [SerializeField] TextMeshProUGUI _areaTMP;
+    [SerializeField] Transform LineRendererTransform;
+    [SerializeField] UILineRenderer _lineRenderer;
     [SerializeField] Vector2[] _points;
-
 
     public void DrawOnCanvas(Vector2[] points )
     {
         _points = points;
         _areaTMP.transform.localPosition = PolygonHelper.FindCentroid(new List<Vector2>(_points));
         _areaTMP.text = (PolygonHelper.FindPolygonArea(points)/10000).ToString("0.00") + " m\xB2";
-        _lineRenderer.Points = DrawWithLines.EnsureLineIsClosed(points, Drawing2DController.ins.FirstToLastTollerance);
+        _lineRenderer.Points = DrawWithLines.EnsureLineIsClosed(points, Drawing2DController.ins.FirstToLastTollerance); ;
         _lineRenderer.LineThickness += .1f;
         _lineRenderer.LineThickness -= .1f;
     }
@@ -31,8 +32,10 @@ public class FloorSectionDrawing2D : MonoBehaviour
         DrawOnCanvas(_points);
     }
 
-    public void SetVisibility()
+    public void SetVisibility(bool isVisible)
     {
-        //_lineRenderer.
+        TMPAreaTransform.gameObject.SetActive(isVisible);
+        LineRendererTransform.gameObject.SetActive(isVisible);
+
     }
 }
