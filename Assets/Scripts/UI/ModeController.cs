@@ -32,6 +32,8 @@ public class ModeController : MonoBehaviour
     [SerializeField] List<GameObject> listOfFinishingObjects = new List<GameObject>();
     [SerializeField] List<GameObject> VRMOde = new List<GameObject>();
     [SerializeField] List<GameObject> surfaceSelectionMode = new List<GameObject>();
+    [SerializeField] List<GameObject> DrawingTools = new List<GameObject>();
+
 
     [SerializeField] SimpleCameraController cameraController;
     [SerializeField] GameObject builder3D;
@@ -44,6 +46,9 @@ public class ModeController : MonoBehaviour
     [SerializeField] GameObject prefatToFit;
     [SerializeField] GameObject mainCamera;
     [SerializeField] GameObject canvas;
+    [SerializeField] GameObject saveWindow;
+    [SerializeField] GameObject loadWindow;
+
 
 
 
@@ -75,7 +80,7 @@ public class ModeController : MonoBehaviour
 
         ResetAllListObjects();
         cameraController.enabled = false;
-        
+
         foreach (GameObject objects2D in listOf2DObjects)
         {
             objects2D.SetActive(true);
@@ -249,7 +254,16 @@ public class ModeController : MonoBehaviour
         prefatToFit.SetActive(false);
         mainCamera.SetActive(true);
         canvas.GetComponent<Canvas>().enabled = true;
-        
+        saveWindow.SetActive(false);
+        loadWindow.SetActive(false);
+
+        foreach (GameObject drawingToolsObjects in DrawingTools)
+        {
+
+            drawingToolsObjects.SetActive(false);
+
+        }
+
         foreach (GameObject surface in surfaceSelectionMode)
         {
 
