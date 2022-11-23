@@ -21,8 +21,8 @@ public class ToolTipController : MonoBehaviour
 
     public void Start()
     {
-        Cursor.visible = true;
-        gameObject.SetActive(true);
+/*        Cursor.visible = true;
+        gameObject.SetActive(true);*/
     }
 
     public void Update()
