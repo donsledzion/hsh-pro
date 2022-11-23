@@ -68,9 +68,9 @@ public class GameManager : MonoBehaviour
         currentStorey.AddNewCeiling(new Ceiling(DefaultSettings.ins.CeilingThickness, currentStorey.Elevation + currentStorey.Height, points));
     }
 
-    internal void AddFloorSectionToCurrentStorey(Vector2[] points, int order)
+    internal FloorSection2D AddFloorSectionToCurrentStorey(Vector2[] points, int order)
     {
-        Building.CurrentStorey.AddNewFloorSection(
+        return Building.CurrentStorey.AddNewFloorSection(
             new FloorSection2D(order , Building.CurrentStorey.Elevation, points));
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -21,10 +22,8 @@ public class Drawing2DController : MonoBehaviour
 
     [SerializeField] DynamicInputController _dynamicInputController;
 
-    [Range(0f,1f)]
-    [SerializeField] float visibleStoreyOpacity = 1f;
-    [Range(0f, 1f)]
-    [SerializeField] float invisibleStoreyOpacity = 0f;
+
+    float _firstToLastTollerance = 0.2f;
 
     //[SerializeField] public Transform labelsContainer;
     [SerializeField] public Transform drawingsContainer;
@@ -62,6 +61,8 @@ public class Drawing2DController : MonoBehaviour
     {
         get { return _uILineRenderer.Points.Length; }
     }
+
+    public float FirstToLastTollerance => _firstToLastTollerance;
     private void Awake()
     {
         if (ins != null && ins != this)
@@ -146,13 +147,9 @@ public class Drawing2DController : MonoBehaviour
         foreach (Storey2D storey in _storeys2D)
         {
             if (storey == currentStorey)
-            {
-                storey.SetOpacity(visibleStoreyOpacity);
-            }
+                storey.SetVisibiilty(true);
             else
-            {
-                storey.SetOpacity(invisibleStoreyOpacity);
-            }
+                storey.SetVisibiilty(false);
         }
     }
 
@@ -175,6 +172,11 @@ public class Drawing2DController : MonoBehaviour
     public void StoreWall(Wall wall)
     {
         currentStorey.AddWallToStorey(wall);
+    }
+
+    public void StoreFloor(FloorSection2D floor)
+    {
+        currentStorey.AddFloorToStorey(floor);
     }
 
     public void DrawStorey(Storey storey)
