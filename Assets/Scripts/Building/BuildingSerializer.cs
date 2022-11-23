@@ -33,7 +33,17 @@ public class BuildingSerializer : MonoBehaviour
         }
     }
 
-    public void QuickSave()
+    void QuickSave()
+    {
+        SaveToFile("Hsh-quick-save.xml");
+    }
+
+    void QuickLoad()
+    {
+        LoadFromFile("Hsh-quick-save.xml");
+    }
+
+    public void SaveToFile(string fileName)
     {
         string dataPath = Application.persistentDataPath;
 
@@ -46,19 +56,19 @@ public class BuildingSerializer : MonoBehaviour
         try
         {
             // save datahere
-            string filePath = dataPath + @"/Hsh-quick-save.xml";            
+            string filePath = Path.Combine(dataPath,fileName);
             SerializeBuilding(filePath);
             Debug.Log("Saved data to: " + filePath);
         }
         catch (Exception e)
         {
-            
+
             Debug.LogError("Failed to save data to: " + dataPath);
             Debug.LogError("Error " + e.Message);
         }
     }
 
-    public void QuickLoad()
+    public void LoadFromFile(string fileName)
     {
         string dataPath = Application.persistentDataPath;
 
@@ -66,13 +76,11 @@ public class BuildingSerializer : MonoBehaviour
         {
             Directory.CreateDirectory(Path.GetDirectoryName(dataPath));
         }
-
         try
         {
-            // load datahere
-            string filePath = dataPath + @"/Hsh-quick-save.xml";
+            string filePath = Path.Combine(dataPath, fileName);
             Debug.Log("Save data to: " + filePath);
-            DeserializeBuilding(filePath);            
+            DeserializeBuilding(filePath);
             Drawing2DController.ins.RegenerateBuildingDrawing();
         }
         catch (Exception e)

@@ -33,6 +33,6 @@ public class FloorSectionDrawing2D : MonoBehaviour
 
     public void SetVisibility()
     {
-        _lineRenderer.
+        //_lineRenderer.
     }
 }
