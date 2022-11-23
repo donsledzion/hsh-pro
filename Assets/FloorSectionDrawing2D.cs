@@ -10,23 +10,23 @@ public class FloorSectionDrawing2D : MonoBehaviour
     [SerializeField] TextMeshProUGUI _areaTMP;
     [SerializeField] Vector2[] _points;
     
-    public void Draw(Vector2[] points )
+    public void DrawOnCanvas(Vector2[] points )
     {
         _points = points;
         _areaTMP.transform.localPosition = PolygonHelper.FindCentroid(new List<Vector2>(_points));
         _areaTMP.text = (PolygonHelper.FindPolygonArea(points)/10000).ToString("0.00") + " m\xB2";
-        _lineRenderer.Points = points;
+        _lineRenderer.Points = DrawWithLines.EnsureLineIsClosed(points, Drawing2DController.ins.FirstToLastTollerance); ;
         _lineRenderer.LineThickness += .1f;
         _lineRenderer.LineThickness -= .1f;
     }
 
-    public void Draw(FloorSection2D floor)
+    public void DrawOnCanvas(FloorSection2D floor)
     {
-        Draw(floor.Points);
+        DrawOnCanvas(floor.Points);
     }
 
-    public void Draw()
+    public void DrawOnCanvas()
     {
-        Draw(_points);
+        DrawOnCanvas(_points);
     }
 }
