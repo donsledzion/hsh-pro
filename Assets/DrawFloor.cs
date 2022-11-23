@@ -17,12 +17,10 @@ public class DrawFloor : DrawWithLines
 
         IsDrawing = false;
         _drawing2DController.ClearLiveLine();
-        GameObject floor = Instantiate(_floorPrefab, _drawing2DController.CurrentStorey.gameObject.transform);
-        UILineRenderer lineRenderer = floor.GetComponent<UILineRenderer>();
-        lineRenderer.Points = points;
-        lineRenderer.LineThickness += .1f;
-        lineRenderer.LineThickness -= .1f;
-        GameManager.ins.AddFloorSectionToCurrentStorey(FilterPoints(lineRenderer.Points),1);
+        GameObject floorGO = Instantiate(_floorPrefab, _drawing2DController.CurrentStorey.gameObject.transform);
+        FloorSectionDrawing2D floor = floorGO.GetComponent<FloorSectionDrawing2D>();
+        floor.Draw(points);
+        GameManager.ins.AddFloorSectionToCurrentStorey(FilterPoints(points),1); //TODO - implement assigning displaying order!!!
         _drawing2DController.ClearCurrentLine();
     }
 

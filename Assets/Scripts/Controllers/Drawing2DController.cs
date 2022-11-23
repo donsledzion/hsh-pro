@@ -96,9 +96,6 @@ public class Drawing2DController : MonoBehaviour
     {
         EraseStoreys();
         if (BuildingStoreys.Count <= 1) return;
-
-        InitializeFirstStorey(BuildingStoreys[0]);
-        DrawStorey(BuildingStoreys[0]);
         for (int i = 0; i < BuildingStoreys.Count; i++)
         {
             GameObject newStorey = Instantiate(storey2DPrefab, drawingsContainer);
@@ -109,6 +106,7 @@ public class Drawing2DController : MonoBehaviour
             Debug.Log("Initializing storey no. " + i + " named: " + storey.StoreyReference.Name);
             DrawStorey(BuildingStoreys[i]);
         }
+        currentStorey = Storeys2D[0];
     }
 
     public void InitializeFirstStorey(Storey storey)
@@ -150,12 +148,10 @@ public class Drawing2DController : MonoBehaviour
             if (storey == currentStorey)
             {
                 storey.SetOpacity(visibleStoreyOpacity);
-                //storey.SetThickness(visibleStoreyThickness);
             }
             else
             {
                 storey.SetOpacity(invisibleStoreyOpacity);
-                //storey.SetThickness(invisibleStoreyThickness);
             }
         }
     }
@@ -164,10 +160,6 @@ public class Drawing2DController : MonoBehaviour
     public void RegenerateBuildingDrawing()
     {
         LoadBuilding();
-        /*foreach(Storey storey in BuildingStoreys)
-        {
-            DrawStorey(storey);
-        }*/
         SetStoreysVisibility();
     }
 
@@ -196,16 +188,20 @@ public class Drawing2DController : MonoBehaviour
             }
         }
         if (storey2D == null) return;
-        //ClearCurrentStorey();
         foreach(Wall wall in storey.Walls)
         {
             storey2D.AddWallToStorey(wall);
         }
+        foreach (FloorSection2D floor in storey.Floors)
+        {
+            storey2D.AddFloorToStorey(floor);
+        }
+
     }
     
     [ContextMenu("RedrawCurrentStorey")]
     public void RedrawCurrentStorey()
-    {
+    {   
         Debug.Log("Redrawing current storey...");
         DrawStorey(BuildingCurrentStorey);
         DrawLabels();
@@ -381,8 +377,4 @@ public class Drawing2DController : MonoBehaviour
     {
         return (LinePointsCount < 1) || (LinePointsCount == 1 && LinePoints[0] == Vector2.zero);
     }
-
-    
-
-
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.Build.Pipeline;
 using UnityEngine;
 
 public static class PolygonHelper
@@ -15,7 +14,18 @@ public static class PolygonHelper
 
     public static float FindPolygonArea(Vector2[] vertices)
     {
-        return 0f;
+        float area = 0f;
+        for(int i = 0; i < vertices.Length; i++)
+        {
+            Vector2 va = vertices[i];
+            Vector2 vb = vertices[(i + 1) % vertices.Length];
+
+            float width = vb.x - va.x;
+            float height = (vb.y + va.y) / 2f;
+
+            area += width * height;
+        }
+        return Mathf.Abs(area);
     }
 
     public static bool Triangulate(Vector2[] vertices, out int [] triangles, out string errorMessage)
@@ -181,7 +191,28 @@ public static class PolygonHelper
         throw new NotImplementedException();
     }*/
 
+    public static Vector2 FindCentroid(List<Vector2> pts)
+    {
+        Vector2 off = pts[0];
+        float twicearea = 0;
+        float x = 0;
+        float y = 0;
+        Vector2 p1, p2;
+        float f;
+        for (int i = 0, j = pts.Count - 1; i < pts.Count; j = i++)
+        {
+            p1 = pts[i];
+            p2 = pts[j];
+            f = (p1.x - off.x) * (p2.y - off.y) - (p2.x - off.x) * (p1.y - off.y);
+            twicearea += f;
+            x += (p1.x + p2.x - 2 * off.x) * f;
+            y += (p1.y + p2.y - 2 * off.y) * f;
+        }
 
+        f = twicearea * 3;
+
+        return new Vector2(x / f + off.x, y / f + off.y);
+    }
 
     public static Vector2[] PlaneRange(Vector2[] points)
     {
