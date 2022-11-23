@@ -9,7 +9,8 @@ public class FloorSectionDrawing2D : MonoBehaviour
     [SerializeField] UILineRenderer _lineRenderer;
     [SerializeField] TextMeshProUGUI _areaTMP;
     [SerializeField] Vector2[] _points;
-    
+
+
     public void DrawOnCanvas(Vector2[] points )
     {
         _points = points;
@@ -28,5 +29,10 @@ public class FloorSectionDrawing2D : MonoBehaviour
     public void DrawOnCanvas()
     {
         DrawOnCanvas(_points);
+    }
+
+    public void SetVisibility()
+    {
+        _lineRenderer.
     }
 }

@@ -15,6 +15,11 @@ public class Storey2D : MonoBehaviour
     [SerializeField] List<Wall2D> _walls2D = new List<Wall2D>();
     [SerializeField] List<FloorSectionDrawing2D> _floors2D = new List<FloorSectionDrawing2D>();
     [SerializeField] Transform _labelsContainer;
+
+    [Range(0f, 1f)]
+    [SerializeField] float visibleStoreyOpacity = 1f;
+    [Range(0f, 1f)]
+    [SerializeField] float invisibleStoreyOpacity = 0f;
     public Storey StoreyReference
     {
         get { return _storeyReference; }
@@ -115,17 +120,39 @@ public class Storey2D : MonoBehaviour
         ClearWalls2D();
         ClearLabels();
     }
-
+    
+    /// <summary>
+    /// Returns list containing all Unity.UI.Image components
+    /// nested in game object's transform children
+    /// </summary>
+    /// <returns></returns>
     public List<Image> CollectAllImages()
     {
         return new List<Image>(GetComponentsInChildren<Image>());
     }
 
-    public void SetOpacity(float opacity)
+    /// <summary>
+    /// Set opacity for all Unity.UI.Image components nested in game object's
+    /// transform children in to present it like visible or not
+    /// </summary>
+    /// <param name="opacity"></param>
+    void SetWallsOpacity(float opacity)
     {
         foreach (Image image in CollectAllImages())
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, opacity);   
         }
+    }
+
+    void SetFloorsVisibility(bool isVisible)
+    {
+
+    }
+
+    public void SetVisibiilty(bool isVisible)
+    {        
+        SetWallsOpacity(isVisible ? visibleStoreyOpacity : invisibleStoreyOpacity);
+        SetFloorsVisibility(isVisible);
+
     }
 }

@@ -22,10 +22,6 @@ public class Drawing2DController : MonoBehaviour
 
     [SerializeField] DynamicInputController _dynamicInputController;
 
-    [Range(0f,1f)]
-    [SerializeField] float visibleStoreyOpacity = 1f;
-    [Range(0f, 1f)]
-    [SerializeField] float invisibleStoreyOpacity = 0f;
 
     float _firstToLastTollerance = 0.2f;
 
@@ -151,13 +147,9 @@ public class Drawing2DController : MonoBehaviour
         foreach (Storey2D storey in _storeys2D)
         {
             if (storey == currentStorey)
-            {
-                storey.SetOpacity(visibleStoreyOpacity);
-            }
+                storey.SetVisibiilty(true);
             else
-            {
-                storey.SetOpacity(invisibleStoreyOpacity);
-            }
+                storey.SetVisibiilty(false);
         }
     }
 
