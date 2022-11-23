@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class BuildingSerializer : MonoBehaviour
 {
+    public static BuildingSerializer ins { get; private set; }
+
     [ContextMenu("Serialize Building")]
     void SerializeBuilding(string path)
     {
@@ -14,11 +16,16 @@ public class BuildingSerializer : MonoBehaviour
         Debug.Log("...done! Updated for " + updatedItems + " items.");
         GameManager.ins.Building.SerializeToXML(path);
     }
-
-    void DeserializeBuilding(string path)
+    private void Awake()
     {
-        GameManager.ins.Building = Building.DeserializeFromXML(path);
-        ReferenceController.ins.StoreySwitcherDropdown.UpdateDropdown();
+        if (ins != null && ins != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            ins = this;
+        }
     }
 
     private void Update()
@@ -33,6 +40,11 @@ public class BuildingSerializer : MonoBehaviour
         }
     }
 
+    void DeserializeBuilding(string path)
+    {
+        GameManager.ins.Building = Building.DeserializeFromXML(path);
+        ReferenceController.ins.StoreySwitcherDropdown.UpdateDropdown();
+    }
     void QuickSave()
     {
         SaveToFile("Hsh-quick-save.xml");
