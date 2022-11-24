@@ -5,15 +5,30 @@ using TMPro;
 
 public class CanvasController : MonoBehaviour
 {
+    public static CanvasController ins { get; private set; }
+
     [SerializeField] public GameObject drawingCanvas;
     [SerializeField] TextMeshProUGUI pointerPositionTMPro;
     [SerializeField] TextMeshProUGUI CanvasCoordsTMPro;
-    [SerializeField] public PointerController pointerController;
+    [SerializeField] public ZoomController pointerController;
     [SerializeField] public ClickerController clickerController;
 
     //======================================================================
     Canvas mainCanvas;
     public Vector3 drawingCanvasBackgroundLBCorner;
+
+
+    private void Awake()
+    {
+        if (ins != null && ins != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            ins = this;
+        }
+    }
 
     private void Start()
     {
@@ -41,16 +56,26 @@ public class CanvasController : MonoBehaviour
 
     public static Vector2 ScreenPointToCanvasCoords(Vector2 inputCoords)
     {
-        Vector2 outCoords = inputCoords - new Vector2(GameManager.ins.DrawingCanvasBackgroundLBCorner.x,GameManager.ins.DrawingCanvasBackgroundLBCorner.y);
+        Vector2 outCoords = inputCoords - new Vector2(
+            GameManager.ins.DrawingCanvasBackgroundLBCorner.x,
+            GameManager.ins.DrawingCanvasBackgroundLBCorner.y);
 
-        return new Vector2(outCoords.x/GameManager.ins.ResolutionRatio.x, outCoords.y/GameManager.ins.ResolutionRatio.y)/GameManager.ins.Zoom;
+        return new Vector2(
+            outCoords.x/GameManager.ins.ResolutionRatio.x,
+            outCoords.y/GameManager.ins.ResolutionRatio.y)
+            / GameManager.ins.Zoom;
     }
 
     public static Vector2 CanvasCoordsToScreenPoint(Vector2 canvasCoords)
     {
-        Vector2 outCoords = new Vector2(canvasCoords.x * GameManager.ins.ResolutionRatio.x, canvasCoords.y * GameManager.ins.ResolutionRatio.y) * GameManager.ins.Zoom;
+        Vector2 outCoords = new Vector2(
+            canvasCoords.x * GameManager.ins.ResolutionRatio.x,
+            canvasCoords.y * GameManager.ins.ResolutionRatio.y)
+            * GameManager.ins.Zoom;
 
-        return new Vector2(outCoords.x + GameManager.ins.DrawingCanvasBackgroundLBCorner.x, outCoords.y + GameManager.ins.DrawingCanvasBackgroundLBCorner.y);
+        return new Vector2(
+            outCoords.x + GameManager.ins.DrawingCanvasBackgroundLBCorner.x,
+            outCoords.y + GameManager.ins.DrawingCanvasBackgroundLBCorner.y);
     }
 
     [ContextMenu("Reset Canvas")]
@@ -64,7 +89,9 @@ public class CanvasController : MonoBehaviour
     public void ResetCanvasPosition()
     {
         RectTransform mainRect = mainCanvas.GetComponent<RectTransform>();
-        drawingCanvas.transform.position = new Vector3(mainRect.rect.width / 2, mainRect.rect.height / 2, 0);
+        drawingCanvas.transform.position = new Vector3(
+            mainRect.rect.width / 2,
+            mainRect.rect.height / 2, 0);
     }
 
     [ContextMenu("Reset Canvas Scale")]
@@ -76,7 +103,10 @@ public class CanvasController : MonoBehaviour
 
     public void ClearPointsLabels()
     {
-        foreach (PointLabel label in clickerController.labelsContainer.GetComponentsInChildren<PointLabel>())
-            Destroy(label.gameObject);
+        /*foreach (PointLabel label in clickerController.labelsContainer.GetComponentsInChildren<PointLabel>())
+            Destroy(label.gameObject);*/
+        /*
+         * Needs recreation to display (and destroy) labels for separate storeys
+         */
     }
 }

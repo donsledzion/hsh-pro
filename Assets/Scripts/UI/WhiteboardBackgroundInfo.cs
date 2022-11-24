@@ -10,7 +10,14 @@ public class WhiteboardBackgroundInfo : MonoBehaviour
     [SerializeField] TextMeshProUGUI LBCornerLabel;
 
     private Vector3 referenceResolution = new Vector2(1920f, 1080f);
+    RectTransform myRect;
 
+    public RectTransform MyRect => myRect;
+
+    private void Start()
+    {
+        myRect = GetComponent<RectTransform>();
+    }
     void Update()
     {
         Vector2 resolution = new Vector2(Screen.width,Screen.height);
@@ -18,10 +25,6 @@ public class WhiteboardBackgroundInfo : MonoBehaviour
         //Debug.Log("Resolution ratio: " + resolutionRatio);
         GameManager.ins.ResolutionRatio = resolutionRatio;
         float zoom = GameManager.ins.Zoom;
-        Vector3 whiteboardPos = whiteboardHolder.position;
-
-        RectTransform myRect = GetComponent<RectTransform>();
-
 
         Vector3 lbCornerPos = new Vector3(
             whiteboardHolder.position.x - myRect.rect.width*zoom*resolutionRatio.x/2

@@ -77,8 +77,13 @@ public class Drawing2DController : MonoBehaviour
 
     private void OnEnable()
     {
-        gameObject.GetComponent<RectTransform>().localPosition = 
-            new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);        
+        AdjustCanvasPosition();
+    }
+
+    public void AdjustCanvasPosition()
+    {
+        gameObject.GetComponent<RectTransform>().localPosition =
+            new Vector3(-_whiteboardBackground.rect.width / 2, -_whiteboardBackground.rect.height / 2, 0);
     }
 
     [ContextMenu("Erase Storeys")]
