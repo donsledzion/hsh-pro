@@ -8,7 +8,7 @@ using Walls2D;
 public class AngleSnapController : MonoBehaviour
 {
     [SerializeField] Slider _angleSnapSlider;
-    [SerializeField] Drawing2DController _drawing2DController;
+    Drawing2DController _drawing2DController => Drawing2DController.ins;
 
 
     public static AngleSnapController ins { get; private set; }

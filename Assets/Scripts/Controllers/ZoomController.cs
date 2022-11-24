@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class PointerController : MonoBehaviour
+public class ZoomController : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI zoomIndicator;
     [SerializeField] CanvasController canvasController;

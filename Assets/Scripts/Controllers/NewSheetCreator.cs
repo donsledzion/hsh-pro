@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WhiteboardController : MonoBehaviour
+public class NewSheetCreator: MonoBehaviour
 {
-    public static WhiteboardController Instance;
+    public static NewSheetCreator Instance;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class WhiteboardController : MonoBehaviour
     [SerializeField] TMP_InputField _inputHeight;
     [SerializeField] RectTransform _whiteboardBackground;
     [SerializeField] GridController _gridController;
-    [SerializeField] CanvasController _canvasController;
+    CanvasController _canvasController => CanvasController.ins;
 
 
     public void CreateNewSheet(int width, int height)
@@ -39,8 +39,14 @@ public class WhiteboardController : MonoBehaviour
         _canvasController.ClearPointsLabels();
         _whiteboardBackground.sizeDelta = new Vector2(width, height);
         _canvasController.ResetCanvas();
+        Drawing2DController.ins.AdjustCanvasPosition();
         _backGroundWhiteboard.SetActive(true); // Daniel dopisa³ w³¹cz wy³¹cz background.
         modalController?.Hide();
+    }
+
+    public void CreateNewSheet(Vector2 newSize)
+    {
+        CreateNewSheet((int)newSize.x, (int)newSize.y);
     }
 
     public void NewSheet()

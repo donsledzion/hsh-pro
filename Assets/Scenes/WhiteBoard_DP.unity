@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &207226372
 Transform:
   m_ObjectHideFlags: 0
@@ -1206,6 +1206,7 @@ MonoBehaviour:
   _gallerySearchField: {fileID: 1994013800}
   _modeController: {fileID: 370844842}
   _storeySwitcherDropdown: {fileID: 1013588119}
+  _whiteboardBackgroundInfo: {fileID: 1230900131}
 --- !u!1 &585099602 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2315470058640564835, guid: 8e63f86e4cd687b4b85b7b97a033c1c9, type: 3}
@@ -1508,6 +1509,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4969373844738213723, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
   m_PrefabInstance: {fileID: 4969373843784404164}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1230900131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4969373844738213734, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
+  m_PrefabInstance: {fileID: 4969373843784404164}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230900126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e3ee590dd8ce5458525f8028c696f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1318162439 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4969373844750113987, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
@@ -1585,17 +1597,6 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 4096
---- !u!114 &1384077217 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4969373844551523173, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
-  m_PrefabInstance: {fileID: 4969373843784404164}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44480d61f64e3b141a1f45141e86c07b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1422869807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,7 +1831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1762975457
 Transform:
   m_ObjectHideFlags: 0
@@ -1974,7 +1975,7 @@ GameObject:
   - component: {fileID: 1798047800}
   - component: {fileID: 1798047801}
   m_Layer: 0
-  m_Name: WhiteboardController
+  m_Name: NewSheetCreator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2003,7 +2004,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1798047799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009feeb994680f34ab44ed720793de67, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c8018b57409af84a93b59b414cc75cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _backGroundWhiteboard: {fileID: 1230900126}
@@ -2012,7 +2013,6 @@ MonoBehaviour:
   _inputHeight: {fileID: 1771144646}
   _whiteboardBackground: {fileID: 1230900127}
   _gridController: {fileID: 374718309}
-  _canvasController: {fileID: 504921481}
 --- !u!1 &1826868301 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2315470058904860202, guid: 8e63f86e4cd687b4b85b7b97a033c1c9, type: 3}
@@ -2307,7 +2307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _angleSnapSlider: {fileID: 4118300706725218094}
-  _drawing2DController: {fileID: 1384077217}
 --- !u!1 &2028033219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6989627497434068751, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
@@ -4502,7 +4501,8 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.a
       value: 0.78431374
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4969373844551523168, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
 --- !u!1 &5000951805603128901 stripped
 GameObject:

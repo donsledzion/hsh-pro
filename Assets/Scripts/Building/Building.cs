@@ -12,20 +12,40 @@ public class Building
     string _name;
     List<Storey> _storeys = new List<Storey>();
     List<Stairs> _stairs = new List<Stairs>();
-
+    Vector2 _sheetSize = new Vector2();
     [XmlIgnore]
     public Storey CurrentStorey { get; private set; }
+    public Vector2 SheetSize { get { return _sheetSize; } set { _sheetSize = value; } }
 
     public List<Storey> Storeys { get { return _storeys; } }
+
     public Building()
     {
         _name = "Default building";
+        _sheetSize = new Vector2(1200f, 950f);
     }
     public Building(string buildingName, string storeyName = "Default floor", float elevation = 0f, float height = 320f)
     {
         _name = buildingName;
         _storeys.Add(new Storey(0,storeyName,elevation,height));
+        _sheetSize = new Vector2(1200f, 950f);
         SetCurrentStorey(_storeys[0]);
+    }
+
+    /// <summary>
+    /// Assigns new sheet size to Building object.
+    /// Returns true if there is no validation
+    /// problems for new size
+    /// </summary>
+    /// <param name="newSize"></param>
+    /// <returns></returns>
+    public bool UpdateSheetSize(Vector2 newSize)
+    {
+
+        _sheetSize = newSize;
+        //add validation (new size can't be smaller then 
+        //building's bounds
+        return true;
     }
 
     public void SetCurrentStorey(Storey storey)
@@ -87,6 +107,8 @@ public class Building
         
     public void SerializeToXML(string path)
     {
+        Vector2 newSize = ReferenceController.ins.WhiteboardBackgroundInfo.MyRect.rect.size;
+        UpdateSheetSize(newSize);
         using (var stream = new FileStream(path, FileMode.Create))
         {
             var XML = new XmlSerializer(typeof(Building));

@@ -11,9 +11,7 @@ public class BuildingSerializer : MonoBehaviour
     [ContextMenu("Serialize Building")]
     void SerializeBuilding(string path)
     {
-        Debug.Log("Updating Equipment locations...");
-        int updatedItems = UpdateEquipmentLocation();
-        Debug.Log("...done! Updated for " + updatedItems + " items.");
+        UpdateEquipmentLocation();
         GameManager.ins.Building.SerializeToXML(path);
     }
     private void Awake()
@@ -43,6 +41,7 @@ public class BuildingSerializer : MonoBehaviour
     void DeserializeBuilding(string path)
     {
         GameManager.ins.Building = Building.DeserializeFromXML(path);
+        NewSheetCreator.Instance.CreateNewSheet(GameManager.ins.Building.SheetSize);
         ReferenceController.ins.StoreySwitcherDropdown.UpdateDropdown();
     }
     void QuickSave()

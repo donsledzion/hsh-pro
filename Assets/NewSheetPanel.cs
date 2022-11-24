@@ -11,8 +11,8 @@ public class NewSheetPanel : MonoBehaviour
 
     public void CreateNewSheet()
     {
+        NewSheetCreator.Instance.CreateNewSheet(int.Parse(_inputSheetWidth.text), int.Parse(_inputSheetHeight.text));
         GameManager.ins.Building = null;
         BuildingCreator.Instance.CreateNewBuilding();
-        WhiteboardController.Instance.CreateNewSheet(int.Parse(_inputSheetWidth.text), int.Parse(_inputSheetHeight.text));
     }
 }
