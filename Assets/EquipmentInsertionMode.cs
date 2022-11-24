@@ -191,7 +191,7 @@ public class EquipmentInsertionMode : MonoBehaviour
 
     void RedrawMaterials(Transform _trasform, Material material)
     {
-        foreach(MeshRenderer renderer in _trasform.GetComponentsInChildren<MeshRenderer>())
+        foreach(Renderer renderer in _trasform.GetComponentsInChildren<Renderer>())
         {
             renderer.material = material;
         }
