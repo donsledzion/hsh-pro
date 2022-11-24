@@ -75,7 +75,8 @@ public class AssetBundleLoader : MonoBehaviour
 
     IEnumerator LoadBundleAsync(BundleLoadStatus bundleStatus)
     {
-        var bundleLoadRequest = AssetBundle.LoadFromFileAsync(bundleStatus.BundlePath);
+        string path = System.IO.Path.Combine(Application.streamingAssetsPath, bundleStatus.BundlePath);
+        var bundleLoadRequest = AssetBundle.LoadFromFileAsync(path);
         yield return bundleLoadRequest;
 
         var myLoadedAssetBundle = bundleLoadRequest.assetBundle;
