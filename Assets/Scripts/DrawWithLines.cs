@@ -80,4 +80,9 @@ public abstract class DrawWithLines : DrawOnCanvas
         }
         return points;
     }
+
+    protected virtual void OnDisable()
+    {
+        BreakLine();   
+    }
 }

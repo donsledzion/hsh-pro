@@ -13,9 +13,10 @@ public class WallBuilder : DrawWithLines
         IsDrawing = true;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
         IsDrawing = false;
+        base.OnDisable();
     }
 
     public void AddWallSection()

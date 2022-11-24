@@ -33,9 +33,7 @@ public class StoreySwitcherDropdown : MonoBehaviour
     public void SwitchToSelectedStorey()
     {
         GameManager.ins.Building.SetCurrentStorey(GameManager.ins.Building.Storeys[_dropdown.value]);
-        Drawing2DController.ins.SwitchToStorey(GameManager.ins.Building.CurrentStorey);
-
-         
+        Drawing2DController.ins.SwitchToStorey(GameManager.ins.Building.CurrentStorey); 
     }
 
 }
