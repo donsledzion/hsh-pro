@@ -16,8 +16,10 @@ public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     GameObject equipmentSelection;
 
+    [SerializeField] GameObject selectButton;
+
     [SerializeField]
-    private Image backgroundImage;
+    public Image backgroundImage;
 
     [SerializeField]
     private bool _isOn = false;
@@ -37,7 +39,7 @@ public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
         Toggle(!isOn);
     }
 
-    private void Toggle(bool value)
+    public void Toggle(bool value)
     {
         if (value != isOn)
         {
@@ -45,7 +47,7 @@ public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
 
             ToggleColor(isOn);
 
-            //ToggleObject(isOn);
+            ToggleEquipmentSelection(isOn);
 
         }
 
@@ -56,7 +58,7 @@ public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
 
         onToggle?.Invoke();
     }
-    private void ToggleColor(bool value)
+    public void ToggleColor(bool value)
     {
         if (value)
             backgroundImage.enabled = true;
@@ -76,7 +78,7 @@ public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    private void ToggleObject(bool value)
+    private void ToggleEquipmentSelection(bool value)
     {
         if (value)
             equipmentSelection.SetActive(true);

@@ -92,6 +92,7 @@ public class EquipmentSelectionController : MonoBehaviour
             Destroy(item.SelectedGameObject);
         }
         _selectedItems2.Clear();
+
     }
 
     void RedrawMaterials(Transform _trasform, Material material)
