@@ -130,6 +130,26 @@ namespace Walls2D
             return Mathf.Abs(offset) < 0.01f;
         }
 
+        public bool PointLaysWithinSection(Vector2 point)
+        {
+            float deltaXC = point.x - StartPoint.Position.x;
+            float deltaYC = point.y - StartPoint.Position.y;
+
+            float deltaXL = EndPoint.Position.x - StartPoint.Position.x;
+            float deltaYL = EndPoint.Position.y - StartPoint.Position.y;
+
+            //if ((deltaXC * deltaYL - deltaYC * deltaXL) != 0) return false;
+
+            if (Mathf.Abs(deltaXL) >= Mathf.Abs(deltaYL))
+                return deltaXL > 0 ?
+                    StartPoint.Position.x <= point.x && point.x <= EndPoint.Position.x :
+                    EndPoint.Position.x <= point.x && point.x <= StartPoint.Position.x;
+            else
+                return deltaYL > 0 ?
+                    StartPoint.Position.y <= point.y && point.y <= EndPoint.Position.y :
+                    EndPoint.Position.y <= point.y && point.y <= StartPoint.Position.y;
+        }
+
         public override string ToString()
         {
             return "\nStart: [" + StartPoint.Position.x + " , " + StartPoint.Position.y + " ]\n" +

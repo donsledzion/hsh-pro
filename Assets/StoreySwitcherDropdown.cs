@@ -19,8 +19,6 @@ public class StoreySwitcherDropdown : MonoBehaviour
         }
         _dropdown.RefreshShownValue();
         _dropdown.value = CurrentStoreyIndex();
-
-
     }
 
     public static int CurrentStoreyIndex()
