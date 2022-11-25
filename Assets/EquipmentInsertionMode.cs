@@ -195,5 +195,6 @@ public class EquipmentInsertionMode : MonoBehaviour
         {
             renderer.material = material;
         }
+
     }
 }
