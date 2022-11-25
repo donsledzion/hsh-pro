@@ -21,7 +21,7 @@ public class StoreySwitcher : MonoBehaviour
         Debug.Log("Prze³¹cz na piêtro : " + storeyIndex);
         GameManager.ins.Building.SetCurrentStorey(GameManager.ins.Building.Storeys[storeyIndex]);
         Drawing2DController.ins.SwitchToStorey(GameManager.ins.Building.CurrentStorey);
-        
+        StoreySwitcherDropdown.i
   
     }
 
