@@ -22,6 +22,7 @@ public class Selector2D : Point2DSelector
 
     protected WallSection _hoveredSection;
     protected WallSection _selectedSection;
+    protected JambSectionValidationToggler _validationToggler;
 
 
 
@@ -204,6 +205,19 @@ public class Selector2D : Point2DSelector
     public Vector2 CastedPoint(WallSection section, Vector2 mouseInput)
     {
         return MathHelpers.PointCastOnLine(section.StartPoint.Position, section.EndPoint.Position, mouseInput);
+    }
+
+    protected bool ValidatePosition(Vector2 startEdge, Vector2 endEdge)
+    {
+        bool leftIsGood = _hoveredSection.PointLaysWithinSection(startEdge);
+        bool rightIsGood = _hoveredSection.PointLaysWithinSection(endEdge);
+
+        bool validationPassed = leftIsGood && rightIsGood;
+
+        if (validationPassed && !_validationToggler.IsGood) _validationToggler.BeGood();
+        else if (!validationPassed && _validationToggler.IsGood) _validationToggler.BeBad();
+
+        return validationPassed;
     }
 
     IEnumerator DelayCor()

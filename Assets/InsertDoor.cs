@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Walls2D;
 
 public class InsertDoor : Selector2D
 {
     [SerializeField] GameObject _doorPrefab;
+    [SerializeField] float _minOffsetFromEdge;
     GameObject _doorInstance;
 
     Vector2 _snappedPoint;
@@ -15,6 +14,17 @@ public class InsertDoor : Selector2D
 
     [SerializeField] TMPro.TMP_InputField _doorHeightInput;
     [SerializeField] TMPro.TMP_InputField _doorWidthInput;
+
+    [SerializeField] bool _freeToFitIn = false;
+    Vector3 _startSectionEdge;
+    Vector3 _endSectionEdge;
+
+    private void Start()
+    {
+        if (_minOffsetFromEdge <= 0)
+            _minOffsetFromEdge = DefaultSettings.ins.LoadBareringWallWidth;
+    }
+
     protected override void Update()
     {
         Vector2 mouseOverCanvas = CanvasController.ScreenPointToCanvasCoords(Input.mousePosition);
@@ -26,28 +36,48 @@ public class InsertDoor : Selector2D
             if(_doorInstance == null)
             {
                 _doorInstance = Instantiate(_doorPrefab, transform);
+                _validationToggler = _doorInstance.GetComponent<JambSectionValidationToggler>();
             }
             else
             {
+                float sectionAngle = MathHelpers.VectorAzimuthDeg(
+                    (_hoveredSection.EndPoint.Position
+                    - _hoveredSection.StartPoint.Position));
+
                 _doorInstance.transform.localPosition = _snappedPoint;
                 _doorInstance.transform.rotation = Quaternion.identity;
-                _doorInstance.transform.Rotate(Vector3.forward,-MathHelpers.VectorAzimuthDeg((_hoveredSection.EndPoint.Position-_hoveredSection.StartPoint.Position)));
-                float doorSectionThickness = (_hoveredSection.Wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth);
+                _doorInstance.transform.Rotate(Vector3.forward,-sectionAngle);
+                float doorSectionThickness = (_hoveredSection.Wall.WallType == WallType.LoadBearing 
+                    ? DefaultSettings.ins.LoadBareringWallWidth 
+                    : DefaultSettings.ins.PartialWallWidth);
                 _doorInstance.transform.localScale = new Vector3(DrawingParametersController.ins.DoorWidth / 100f, 1.5f * doorSectionThickness / 30f, 1);
+
+
+                float radAngle = Mathf.PI * sectionAngle / 180f;
+                Vector3 offset = new Vector3(
+                    (DoorWidth + _minOffsetFromEdge) / 2 * Mathf.Cos(-radAngle),
+                    (DoorWidth + _minOffsetFromEdge) / 2 * Mathf.Sin(-radAngle),
+                    0f);
+                _startSectionEdge = new Vector3(_snappedPoint.x + offset.x, _snappedPoint.y + offset.y, 0f);
+                _endSectionEdge = new Vector3(_snappedPoint.x - offset.x, _snappedPoint.y - offset.y, 0f);
+                _freeToFitIn = ValidatePosition(_startSectionEdge, _endSectionEdge);
             }
         }
         else
         {
             if (_doorInstance != null)
+            {
                 Destroy(_doorInstance);
+                _validationToggler = null;
+            }
         }
-
 
         if(_doorInstance!= null)
         {            
             if(Input.GetMouseButtonDown(0))
             {
-                TryFitDoors(_hoveredSection,_snappedPoint);
+                if(_freeToFitIn)
+                    TryFitDoors(_hoveredSection,_snappedPoint);
             }
         }            
     }
