@@ -109,12 +109,16 @@ namespace Walls2D
 
         public bool PointBelongsToSection(Vector2 point, bool includeEdges=false)
         {
+            float offsetTollerance = 0.01f;
+
             if(!includeEdges)
             {
-                Debug.Log("Point does not belong due to containing edges!");
-                if (((point - StartPoint.Position).magnitude < 0.01f)
-                    || ((point - EndPoint.Position).magnitude < 0.01f))
+                if (((point - StartPoint.Position).magnitude < offsetTollerance)
+                    || ((point - EndPoint.Position).magnitude < offsetTollerance))
+                {
+                    Debug.Log("Point does not belong due to containing edges!");
                     return false;
+                }
             }
 
             Vector2 lineFactors = MathHelpers.LineFactors(StartPoint.Position, EndPoint.Position);
@@ -127,7 +131,14 @@ namespace Walls2D
             float offset = equasionLeft - equasionRight;
             Debug.Log(/*"Left: " + equasionLeft +  " | Right: " + equasionRight+  */" | Distance: " + Mathf.Abs(offset));
 
-            return Mathf.Abs(offset) < 0.01f;
+            bool belongsToSection = Mathf.Abs(offset) < offsetTollerance;
+
+            if (belongsToSection == true)
+                Debug.Log("Point belongs to section!");
+            else
+                Debug.Log("Point DOES NOT belong to section!");
+
+            return belongsToSection;
         }
 
         public bool PointLaysWithinSection(Vector2 point)
@@ -138,7 +149,7 @@ namespace Walls2D
             float deltaXL = EndPoint.Position.x - StartPoint.Position.x;
             float deltaYL = EndPoint.Position.y - StartPoint.Position.y;
 
-            //if ((deltaXC * deltaYL - deltaYC * deltaXL) != 0) return false;
+            //if (Mathf.Abs(deltaXC * deltaYL - deltaYC * deltaXL) > 0.05f) return false;
 
             if (Mathf.Abs(deltaXL) >= Mathf.Abs(deltaYL))
                 return deltaXL > 0 ?
@@ -148,6 +159,11 @@ namespace Walls2D
                 return deltaYL > 0 ?
                     StartPoint.Position.y <= point.y && point.y <= EndPoint.Position.y :
                     EndPoint.Position.y <= point.y && point.y <= StartPoint.Position.y;
+        }
+
+        public bool PointAwayFromEdges(Vector2 point, float minDistance = 10f)
+        {
+            return (((point - StartPoint.Position).magnitude > minDistance) && ((point - EndPoint.Position).magnitude > minDistance));
         }
 
         public override string ToString()

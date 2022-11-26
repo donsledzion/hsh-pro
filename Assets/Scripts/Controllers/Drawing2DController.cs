@@ -210,7 +210,6 @@ public class Drawing2DController : MonoBehaviour
     public void RedrawCurrentStorey()
     {
         currentStorey.ClearStorey2D();
-        Debug.Log("Redrawing current storey...");
         DrawStorey(BuildingCurrentStorey);
         DrawLabels();
     }

@@ -7,7 +7,6 @@ public class WallSectionDeleter : MonoBehaviour
 {
     public static void DeleteSection(WallSection section)
     {
-        Debug.Log("Trying to delete section...");
         Wall sectionsWall;
         if(section == null)
         {
@@ -23,7 +22,6 @@ public class WallSectionDeleter : MonoBehaviour
                 if(wallSection == section)
                 {
                     sectionsWall = wall;
-                    Debug.Log("Section found!!! IsOnEdge: " + IsSectionOnWallsEdge(section,sectionsWall));
                     if (IsSectionOnWallsEdge(section, sectionsWall))
                         DeleteEdgeSection(section, sectionsWall);
                     else if (DeleteMidSection(section, sectionsWall)) return;

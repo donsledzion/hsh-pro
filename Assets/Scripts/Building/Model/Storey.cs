@@ -1,3 +1,4 @@
+using System;
 using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
@@ -156,8 +157,52 @@ public class Storey
                 return true;
             }
         }
-
         return false;
+    }
+
+    public List<WallSection> Sections
+    {
+        get
+        {
+            List<WallSection> sections = new List<WallSection>();
+            foreach (Wall wall in Walls)
+            {
+                foreach (WallSection section in wall.WallSections)
+                {
+                    sections.Add(section);
+                }
+            }
+            return sections;
+        }
+    }
+
+    public List<WallSection> SectionsOfType(Type type)
+    {
+        List<WallSection> sections = new List<WallSection>();
+        foreach(WallSection section in this.Sections)
+        {
+            if(section.GetType() == type)
+            {
+                sections.Add(section);
+            }
+        }
+        return sections;
+    }
+
+    public Vector2[] WallSectionPoints
+    {
+        get
+        {
+            List<Vector2> points = new List<Vector2>();  
+            foreach(WallSection section in SectionsOfType(typeof(SectionStraight)))
+            {
+                if(!points.Contains(section.StartPoint.Position))
+                    points.Add(section.StartPoint.Position);
+                if (!points.Contains(section.EndPoint.Position))
+                    points.Add(section.EndPoint.Position);
+            }
+            return points.ToArray();
+        }
     }
 
     public override string ToString()
