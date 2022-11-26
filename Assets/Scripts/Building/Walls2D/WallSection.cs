@@ -112,7 +112,7 @@ namespace Walls2D
 
         public bool PointBelongsToSection(Vector2 point, bool includeEdges=false)
         {
-            float offsetTollerance = 0.1f;
+            float offsetTollerance = 2f;
 
             if(!includeEdges)
             {
@@ -132,7 +132,7 @@ namespace Walls2D
             float equasionLeft = A * point.x + B;
             float equasionRight = point.y;
             float offset = equasionLeft - equasionRight;
-            Debug.Log(/*"Left: " + equasionLeft +  " | Right: " + equasionRight+  */" | Distance: " + Mathf.Abs(offset));
+            Debug.Log(" | Distance: " + Mathf.Abs(offset));
 
             bool belongsToSection = Mathf.Abs(offset) < offsetTollerance;
 
