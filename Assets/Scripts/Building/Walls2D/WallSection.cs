@@ -125,14 +125,28 @@ namespace Walls2D
             }
 
             Vector2 lineFactors = MathHelpers.LineFactors(StartPoint.Position, EndPoint.Position);
-            
+            Debug.Log(" | Line Factors: " + lineFactors);
             float A = lineFactors.x;
             float B = lineFactors.y;
+
+            if ((Mathf.Abs(A) == Mathf.Infinity) || (Mathf.Abs(B) == Mathf.Infinity))
+            {
+                if(StartPoint.Position.x == EndPoint.Position.x)
+                {
+                    if(point.x == StartPoint.Position.x)
+                    {
+                        Debug.Log("Point belongs to section!");
+                        return true;
+                    }
+                }
+            }
 
             float equasionLeft = A * point.x + B;
             float equasionRight = point.y;
             float offset = equasionLeft - equasionRight;
             Debug.Log(" | Distance: " + Mathf.Abs(offset));
+
+            //Debug.Log("Does point belong to section: " + PointBelongsToSection(point).ToString());
 
             bool belongsToSection = Mathf.Abs(offset) < offsetTollerance;
 

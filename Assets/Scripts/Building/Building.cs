@@ -15,8 +15,8 @@ public class Building
     Vector2 _sheetSize = new Vector2();
     [XmlIgnore]
     public Storey CurrentStorey { get; private set; }
+    public string Name { get { return _name; } set { _name = value; } } 
     public Vector2 SheetSize { get { return _sheetSize; } set { _sheetSize = value; } }
-
     public List<Storey> Storeys { get { return _storeys; } }
 
     
@@ -129,8 +129,6 @@ public class Building
         building = (Building)serializer.Deserialize(reader);
         Debug.Log(building.ToString());
         building.SetCurrentStorey(building.Storeys[0]);
-        Debug.LogWarning("Building deserialized. Current storey of new Building: " + building.CurrentStorey.Name);
-        Debug.LogWarning("Building deserialized. Current storey of GameManager.Building: " + GameManager.ins.Building.CurrentStorey.Name);
         return building;
     }
 }

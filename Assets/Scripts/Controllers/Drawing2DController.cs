@@ -100,8 +100,9 @@ public class Drawing2DController : MonoBehaviour
 
     public void LoadBuilding()
     {
+        Debug.Log("Loading building. Storey's count: " + BuildingStoreys.Count);
         EraseStoreys();
-        if (BuildingStoreys.Count <= 1) return;
+        if (BuildingStoreys.Count < 1) return;
         for (int i = 0; i < BuildingStoreys.Count; i++)
         {
             GameObject newStorey = Instantiate(storey2DPrefab, drawingsContainer);

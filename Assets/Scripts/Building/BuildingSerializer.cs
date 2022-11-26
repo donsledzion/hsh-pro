@@ -43,6 +43,7 @@ public class BuildingSerializer : MonoBehaviour
         GameManager.ins.Building = Building.DeserializeFromXML(path);
         NewSheetCreator.Instance.CreateNewSheet(GameManager.ins.Building.SheetSize);
         ReferenceController.ins.StoreySwitcherDropdown.UpdateDropdown();
+        Drawing2DController.ins.RegenerateBuildingDrawing();
     }
     void QuickSave()
     {
@@ -90,9 +91,8 @@ public class BuildingSerializer : MonoBehaviour
         try
         {
             string filePath = Path.Combine(dataPath, fileName);
-            Debug.Log("Save data to: " + filePath);
+            Debug.Log("Load data from: " + filePath);
             DeserializeBuilding(filePath);
-            Drawing2DController.ins.RegenerateBuildingDrawing();
         }
         catch (Exception e)
         {

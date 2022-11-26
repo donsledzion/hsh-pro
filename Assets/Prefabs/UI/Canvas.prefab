@@ -45144,6 +45144,7 @@ GameObject:
   - component: {fileID: 4969373844437760239}
   - component: {fileID: 4969373844437760234}
   - component: {fileID: 4969373844437760233}
+  - component: {fileID: 5620440971883587037}
   m_Layer: 5
   m_Name: ResizeWhiteboardDialog
   m_TagString: Untagged
@@ -45287,6 +45288,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5620440971883587037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969373844437760226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa82a1d3f2bed524fba7de6bb37f786b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _newWidth: {fileID: 4969373844632700031}
+  _newHeight: {fileID: 4969373845270202626}
+  _sheetName: {fileID: 4969373843786442828}
+  _validationErrorDisplay: {fileID: 4969373843422569824}
 --- !u!1 &4969373844462433356
 GameObject:
   m_ObjectHideFlags: 0
@@ -47200,7 +47217,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4969373844719969158}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5620440971883587037}
+        m_TargetAssemblyTypeName: SheetResizer, Assembly-CSharp
+        m_MethodName: ResizeSheet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4969373844734929330
 GameObject:
   m_ObjectHideFlags: 0
