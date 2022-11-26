@@ -63,18 +63,18 @@ public class WallBuilder : DrawWithLines
             {
                 if((ClosestSection(point,10f) == section) && section.PointAwayFromEdges(point))
                 {
-                    /*GameObject dotInstance = Instantiate(_gridDot,transform);
+                    GameObject dotInstance = Instantiate(_gridDot, transform);
                     dotInstance.transform.localPosition = point;
                     dotInstance.transform.localScale = Vector3.one * 5f;
-                    dotInstance.GetComponent<Image>().color = Color.red;*/
+                    dotInstance.GetComponent<Image>().color = Color.red;
                     Debug.Log("Found section to break!");
-                    section.SplitSection(point);
-                    CheckForLinesToBreak();
-                    Drawing2DController.ins.RedrawCurrentStorey();
+                    if(section.SplitSection(point))
+                        CheckForLinesToBreak();
                     return;
                 }
             }
         }
+        Drawing2DController.ins.RedrawCurrentStorey();
     }
 
     protected override void HandleClick()

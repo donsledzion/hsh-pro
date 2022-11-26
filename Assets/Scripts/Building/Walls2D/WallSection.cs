@@ -76,25 +76,27 @@ namespace Walls2D
         {
             _wallReference = wall;
         }
-        public void SplitSection(Vector2 point)
+        public bool SplitSection(Vector2 point)
         {
+            Debug.Log("Trying to split section");
             if (PointBelongsToSection(point))
             {
-                WallSection sectionA;
+                WallSection sectionClone;
                 //WallSection sectionB;
                 Debug.Log("Point belongs to section!");
                 if(this.GetType() == typeof(SectionStraight))
                 {
                     Debug.Log("Splitting section straight");
-                    sectionA = this.Clone();
-                    sectionA.StartPoint.Position = this.StartPoint.Position;
-                    sectionA.EndPoint.Position = point;
-                    sectionA.AssignToWall(this.Wall);
+                    sectionClone = this.Clone();
+                    sectionClone.StartPoint.Position = this.StartPoint.Position;
+                    sectionClone.EndPoint.Position = point;
+                    sectionClone.AssignToWall(this.Wall);
                     this.StartPoint.Position = point;
                     List<WallSection> sections = new List<WallSection>(Wall.WallSections);
-                    sections.Add(sectionA);
+                    sections.Add(sectionClone);
 
                     this.Wall.WallSections = sections.ToArray();
+                    return true;
                 }
                 else
                 {
@@ -104,12 +106,13 @@ namespace Walls2D
             else
             {
                 Debug.Log("Dude: point does not belong to this section!");
-            }                
+            }
+            return false;
         }
 
         public bool PointBelongsToSection(Vector2 point, bool includeEdges=false)
         {
-            float offsetTollerance = 0.01f;
+            float offsetTollerance = 0.1f;
 
             if(!includeEdges)
             {
