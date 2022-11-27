@@ -48,9 +48,8 @@ public class ModeController : MonoBehaviour
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject saveWindow;
     [SerializeField] GameObject loadWindow;
-
-
-
+    [SerializeField] GameObject headerPanel;
+    [SerializeField] ToolsTabButton twoDHeader;
 
     public void FurnitureSelectionMode() {
 
@@ -80,7 +79,7 @@ public class ModeController : MonoBehaviour
 
         ResetAllListObjects();
         cameraController.enabled = false;
-
+        headerPanel.GetComponent<ToolsTabGroup>().onTabSelected(twoDHeader);
         foreach (GameObject objects2D in listOf2DObjects)
         {
             objects2D.SetActive(true);
@@ -262,6 +261,13 @@ public class ModeController : MonoBehaviour
         {
 
             drawingToolsObjects.SetActive(false);
+
+        }
+
+        foreach (GameObject MainMenuObjects in listOfMenuObjects)
+        {
+
+            MainMenuObjects.SetActive(false);
 
         }
 

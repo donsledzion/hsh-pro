@@ -22,16 +22,13 @@ public class InformationWindowController : MonoBehaviour
         }
     }
 
-    /*     public void Start()
-        {
-                    Cursor.visible = true;
-                    gameObject.SetActive(true);
-        }
-
-        public void Update()
-        {
-            transform.position = Input.mousePosition;
-        }*/
+    public void ShowToolTipTimer(string header, string textToDisplay)
+    {
+        gameObject.SetActive(true);
+        headerSection.text = header;
+        textToDisplaySection.text = textToDisplay;
+        Invoke("HideToolTip", 3.0f);
+    }
 
     public void ShowToolTip(string header, string textToDisplay)
     {
