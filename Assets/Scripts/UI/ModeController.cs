@@ -180,6 +180,7 @@ public class ModeController : MonoBehaviour
         ResetFurnitureTabs();
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
+            Debug.Log("Menu Main Tab Area");
             if (furnitureTab.name == "Menu Main Tab Area") furnitureTab.SetActive(true);
         }
     }
@@ -235,7 +236,7 @@ public class ModeController : MonoBehaviour
             if (furnitureTab.GetComponent<TabGroup>()) {
 
                 furnitureTab.GetComponent<TabGroup>().selectedTab = null;
-                Debug.Log(furnitureTab.name);
+                //Debug.Log(furnitureTab.name);
 
             }else if(furnitureTab.GetComponent<ToolsTabGroup>())
             {

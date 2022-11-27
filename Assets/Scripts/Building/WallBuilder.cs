@@ -67,7 +67,7 @@ public class WallBuilder : DrawWithLines
                     dotInstance.transform.localPosition = point;
                     dotInstance.transform.localScale = Vector3.one * 5f;
                     dotInstance.GetComponent<Image>().color = Color.red;*/
-                    if(section.SplitSection(point))
+                    if (section.SplitSection(point))
                         CheckForLinesToBreak();
                     return;
                 }
