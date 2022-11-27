@@ -145,7 +145,6 @@ public class Builder3D : MonoBehaviour
             rb.isKinematic = false;
             rb.useGravity = true;
         }
-        //Debug.Log("Equipment item " + equipmentItem.GUID + " has been spawned with equipment model: " + equipment.ToString());
     }
 
     [ContextMenu("Generate Current Storey")]
@@ -167,7 +166,7 @@ public class Builder3D : MonoBehaviour
     {
         if (GameManager.ins.Building.Storeys[0].Walls.Count > 0)
         {
-            Vector2[] flooringPoints = PolygonHelper.RangeToRect(
+            Vector2[] flooringPoints = PolygonHelper.RangeToRectangle(
                 PolygonHelper.PlaneRange(
                     _storeyPointsCollector.WallPointsListToVectorArray(
                         _storeyPointsCollector.CollectAllPoints(

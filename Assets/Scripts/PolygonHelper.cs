@@ -238,7 +238,7 @@ public static class PolygonHelper
     }
 
 
-    public static Vector2[] RangeToRect(Vector2[] range, float offset=0f)
+    public static Vector2[] RangeToRectangle(Vector2[] range, float offset=0f)
     {
         Vector2[] rect ={
             new Vector2(range[0].x - offset,range[0].y - offset),

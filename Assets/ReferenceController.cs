@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using UnityEngine;
 
 public class ReferenceController : MonoBehaviour
@@ -14,6 +15,7 @@ public class ReferenceController : MonoBehaviour
     [SerializeField] ModeController _modeController;
     [SerializeField] StoreySwitcherDropdown _storeySwitcherDropdown;
     [SerializeField] WhiteboardBackgroundInfo _whiteboardBackgroundInfo;
+    [SerializeField] StoreyPointsCollector _storeyPointsCollector;
     public GalleryOfItems GalleryOfItems => _galleryOfItems;
     public Item3DViewer Item3DViewer => _item3DViewer;
     public EquipmentInsertionMode EquipmentInsertionMode => _equipmentInsertionMode;
@@ -22,6 +24,7 @@ public class ReferenceController : MonoBehaviour
     public ModeController ModeController => _modeController;
     public StoreySwitcherDropdown StoreySwitcherDropdown => _storeySwitcherDropdown;
     public WhiteboardBackgroundInfo WhiteboardBackgroundInfo => _whiteboardBackgroundInfo;
+    public StoreyPointsCollector StoreyPointsCollector => _storeyPointsCollector;
 
     private void Awake()
     {

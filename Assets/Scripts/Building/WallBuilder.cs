@@ -54,9 +54,6 @@ public class WallBuilder : DrawWithLines
     {
         Vector2[] storeyPoints = GameManager.ins.Building.CurrentStorey.WallSectionPoints;
         List<WallSection> sections = GameManager.ins.Building.CurrentStorey.SectionsOfType(typeof(SectionStraight));
-        Debug.Log("Looking for lines to break...");
-        Debug.Log("Breaking line has: " + storeyPoints.Length + " points.");
-        Debug.Log("Found " + sections.Count + "sections to check if are broken.");
         foreach(Vector2 point in storeyPoints)
         {
             foreach(WallSection section in sections)
@@ -67,7 +64,6 @@ public class WallBuilder : DrawWithLines
                     dotInstance.transform.localPosition = point;
                     dotInstance.transform.localScale = Vector3.one * 5f;
                     dotInstance.GetComponent<Image>().color = Color.red;
-                    Debug.Log("Found section to break!");
                     if(section.SplitSection(point))
                         CheckForLinesToBreak();
                     return;

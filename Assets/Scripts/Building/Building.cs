@@ -34,6 +34,19 @@ public class Building
         SetCurrentStorey(_storeys[0]);
     }
 
+    public Vector2[] Points
+    {
+        get
+        {
+            List<Vector2> points = new List<Vector2>();
+            foreach(Storey storey in Storeys)
+            {
+                points.AddRange(storey.WallSectionPoints);
+            }
+            return points.ToArray();
+        }
+    }
+
     /// <summary>
     /// Assigns new sheet size to Building object.
     /// Returns true if there is no validation

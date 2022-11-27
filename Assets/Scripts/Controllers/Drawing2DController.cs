@@ -257,14 +257,14 @@ public class Drawing2DController : MonoBehaviour
         if (tmpLabel == null)
         {
             tmpLabel = Instantiate(pointLabelPrefab, new Vector3(pointerPos.x, pointerPos.y, 0), pointLabelPrefab.transform.rotation);
-            tmpLabel.transform.SetParent(currentStorey.LabelsContainer);
+            tmpLabel.transform.SetParent(_liveUILineRenderer.transform);
         }
         if (tmpEmptyLabel == null)
         {
             tmpEmptyLabel = Instantiate(pointLabelPrefab, new Vector3(pointerPos.x, pointerPos.y, 0), pointLabelPrefab.transform.rotation);
 
             tmpEmptyLabel.GetComponent<PointLabel>().SetLabelText("");
-            tmpEmptyLabel.transform.SetParent(currentStorey.LabelsContainer);
+            tmpEmptyLabel.transform.SetParent(_liveUILineRenderer.transform);
 
         }
         tmpEmptyLabel.transform.position = targetPos;
@@ -340,9 +340,6 @@ public class Drawing2DController : MonoBehaviour
 
     private void AddPointToLineRenderer(Vector3 pointPos, UILineRenderer lineRenderer)
     {
-        /*
-         *  TODO: Hear need to implement breaking line into separate wall sections.
-         */
         lineRenderer.AddPoint(pointPos);
         lineRenderer.LineThickness += 0.1f;
         lineRenderer.LineThickness -= 0.1f;
@@ -361,7 +358,6 @@ public class Drawing2DController : MonoBehaviour
         Vector2 currentVector = CurrentSectionVector(pointerPosition);
         Vector2 newPoint = lastPoint + currentVector.normalized * int.Parse(_dynamicInputController.DynamicInputString);
         AddLinePoint(newPoint, false, false);
-        //AddLinePointWithLabel(newPoint, false);
         _dynamicInputController.ResetDynamicInput();
     }
 
