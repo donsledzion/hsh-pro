@@ -41,7 +41,7 @@ public class BuildingSerializer : MonoBehaviour
     void DeserializeBuilding(string path)
     {
         GameManager.ins.Building = Building.DeserializeFromXML(path);
-        NewSheetCreator.Instance.CreateNewSheet(GameManager.ins.Building.SheetSize);
+        NewSheetCreator.Instance.CreateNewSheet(GameManager.ins.Building);
         ReferenceController.ins.StoreySwitcherDropdown.UpdateDropdown();
         Drawing2DController.ins.RegenerateBuildingDrawing();
     }

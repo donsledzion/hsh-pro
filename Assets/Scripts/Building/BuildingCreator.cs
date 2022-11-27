@@ -34,7 +34,7 @@ public class BuildingCreator : MonoBehaviour
     }
 
     [ContextMenu("Create New Building")]
-    public void CreateNewBuilding()
+    public Building CreateNewBuilding(string name="Default Building")
     {
         if(_building == null)
         {
@@ -47,10 +47,13 @@ public class BuildingCreator : MonoBehaviour
             Drawing2DController.ins.EraseStoreys();
             Drawing2DController.ins.InitializeFirstStorey(GameManager.ins.Building.CurrentStorey);
             Debug.Log(GameManager.ins.Building.ToString());
+            GameManager.ins.Building.Name = name;
+            return GameManager.ins.Building;
         }
         else
         {
             Debug.Log("Building already exist");
+            return null;
         }
         
     }

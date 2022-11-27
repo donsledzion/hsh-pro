@@ -13,6 +13,6 @@ public class BuildingDestroyer : MonoBehaviour
         Drawing2DController.ins.EraseStoreys();
         GameManager.ins.Building = null;
         BuildingCreator.Instance.RemoveBuilding();
-        BuildingCreator.Instance.CreateNewBuilding();
+        //BuildingCreator.Instance.CreateNewBuilding();
     }
 }

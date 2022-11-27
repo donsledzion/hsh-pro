@@ -5,7 +5,9 @@ using UnityEngine.EventSystems;
 
 public class SavingProjectController : MonoBehaviour
 {
-    string _selectedSlot;
+    string _selectedSlotName => _selectedSlot.gameObject.name + ".xml";
+    ProjectSlotButton _selectedSlot;
+
 
     public void SaveToFile(string slotName)
     {
@@ -14,14 +16,17 @@ public class SavingProjectController : MonoBehaviour
 
     public void SelectMe(GameObject go)
     {
-        _selectedSlot = go.name + ".xml";
+        _selectedSlot = go.GetComponent<ProjectSlotButton>();
         Debug.Log("Clicked by: "+ go.name);
     }
 
     public void SaveSelected()
     {
-        if(!string.IsNullOrEmpty(_selectedSlot))
-            SaveToFile(_selectedSlot);
+        if(!string.IsNullOrEmpty(_selectedSlotName))
+        {
+            SaveToFile(_selectedSlotName);
+            _selectedSlot.UpdateName();
+        }
     }
 
     public void DeleteSelected()

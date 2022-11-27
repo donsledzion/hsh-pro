@@ -9,10 +9,17 @@ public class NewSheetPanel : MonoBehaviour
     [SerializeField] TMP_InputField _inputSheetWidth;
     [SerializeField] TMP_InputField _inputSheetHeight;
 
-    public void CreateNewSheet()
+    /*public void CreateNewSheet()
     {
-        NewSheetCreator.Instance.CreateNewSheet(int.Parse(_inputSheetWidth.text), int.Parse(_inputSheetHeight.text));
+        NewSheetCreator.Instance.CreateNewSheet(int.Parse(_inputSheetWidth.text), int.Parse(_inputSheetHeight.text), _inputBuildingName.text);
         GameManager.ins.Building = null;
-        BuildingCreator.Instance.CreateNewBuilding();
-    }
+        Building building = BuildingCreator.Instance.CreateNewBuilding(_inputBuildingName.text);
+        if(building != null)
+        {
+            Debug.Log("Building is not null!");
+            building.Name = _inputBuildingName.text;
+        }
+        else
+            Debug.Log("Building IS NULL!");
+    }*/
 }
