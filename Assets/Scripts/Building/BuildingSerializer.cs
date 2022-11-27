@@ -111,4 +111,55 @@ public class BuildingSerializer : MonoBehaviour
 
         return equipmentItems.Count;
     }
+
+    public SaveFileData GetFileData(string fileName)
+    {
+        string dataPath = Application.persistentDataPath;
+
+        if (!Directory.Exists(Path.GetDirectoryName(dataPath)))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(dataPath));
+        }
+        try
+        {
+            string filePath = Path.Combine(dataPath, fileName);
+            if (!File.Exists(filePath)) return new SaveFileData(null, null,null,"File doesn't exists.");
+            if (!ValidSaveFile()) return new SaveFileData(null,null,null,"This is'n correct project file.") ;
+            Building building = Building.DeserializeFromXML(filePath);
+            FileInfo fileInfo = new FileInfo(filePath);
+            SaveFileData data = new SaveFileData(
+                fileName,
+                building.Name,
+                fileInfo.LastWriteTime.ToShortDateString() + ", " + fileInfo.LastWriteTime.ToShortTimeString(),
+                null);
+            return data;
+        }
+        catch
+        {
+            Debug.LogError("Couldn't read data!");
+            return null;
+        }
+    }
+
+    private bool ValidSaveFile()
+    {
+        //TODO - check if file contains valid project info
+        return true;
+    }
+}
+
+public class SaveFileData
+{
+    public string FileName;
+    public string BuildingName;
+    public string LastModificationTime;
+    public string Message;
+
+    public SaveFileData(string fileName, string buildingName, string lastModificationTime, string message)
+    {
+        FileName = fileName;
+        BuildingName = buildingName;
+        LastModificationTime = lastModificationTime;
+        Message = message;
+    }
 }
