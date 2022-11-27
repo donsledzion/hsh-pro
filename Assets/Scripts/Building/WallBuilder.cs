@@ -10,17 +10,20 @@ public class WallBuilder : DrawWithLines
 {
     List<WallSection> _wallSections = new List<WallSection>();
 
+    [SerializeField] WallSectionSnapClosePoint _wallSectionSnapClosePoint;
     [SerializeField] GameObject _gridDot;
 
     private void OnEnable()
     {
         IsDrawing = true;
+        _wallSectionSnapClosePoint.AllowJambs = false;
     }
 
     protected override void OnDisable()
     {
         IsDrawing = false;
         base.OnDisable();
+        _wallSectionSnapClosePoint.AllowJambs = true;
     }
 
     public void AddWallSection()

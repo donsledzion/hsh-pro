@@ -7,14 +7,25 @@ public class WallSectionSnapClosePoint : Selector2D
 {
     Vector2 _snappedPoint;
 
+    [SerializeField] bool _allowJambs = true;
+
+    public bool AllowJambs { get { return _allowJambs; } set { _allowJambs=value; } }   
+
     protected override void Update()
     {
         Vector2 mouseOverCanvas = CanvasController.ScreenPointToCanvasCoords(Input.mousePosition);
-        _hoveredSection = ClosestSection(mouseOverCanvas);
+        _hoveredSection = ClosestSection(mouseOverCanvas);        
         if (_hoveredSection != null)
-        {            
-            _snappedPoint = CastedPoint(_hoveredSection, mouseOverCanvas);
-            GameManager.ins.SnappedClosePoint = HoverPoint(_snappedPoint, _hoverColor);            
+        {
+            if (!_allowJambs && _hoveredSection.GetType() != typeof(SectionStraight))
+            {
+                _hoveredSection = null;
+            }
+            else
+            {
+                _snappedPoint = CastedPoint(_hoveredSection, mouseOverCanvas);
+                GameManager.ins.SnappedClosePoint = HoverPoint(_snappedPoint, _hoverColor);            
+            }
         }
         else
         {
