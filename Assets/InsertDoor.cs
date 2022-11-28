@@ -35,8 +35,11 @@ public class InsertDoor : Selector2D
             HoverPoint(_snappedPoint,_hoverColor);
             if(_doorInstance == null)
             {
-                _doorInstance = Instantiate(_doorPrefab, transform);
-                _validationToggler = _doorInstance.GetComponent<JambSectionValidationToggler>();
+                if(ValidateInputs())
+                {
+                    _doorInstance = Instantiate(_doorPrefab, transform);
+                    _validationToggler = _doorInstance.GetComponent<JambSectionValidationToggler>();
+                }
             }
             else
             {
@@ -82,7 +85,31 @@ public class InsertDoor : Selector2D
         }            
     }
 
-    void TryFitDoors(WallSection wallSection, Vector2 position)
+    private bool ValidateInputs()
+    {
+        bool valid = true;
+
+        if (DoorWidth < DefaultSettings.ins.MinDoorWidth)
+        {
+            Debug.LogWarning("Door width given by input is less than minimal defined in settings: "
+                + DoorWidth + " < " + DefaultSettings.ins.MinDoorWidth);
+            valid = false;
+        }
+        if (DoorHeight < DefaultSettings.ins.MinDoorHeight)
+        {
+            Debug.LogWarning("Door height given by input is less than minimal defined in settings: "
+                + DoorHeight + " < " + DefaultSettings.ins.MinDoorHeight);
+            valid = false;
+        }
+        if ((DoorHeight) > (GameManager.ins.Building.CurrentStorey.Height - DefaultSettings.ins.CeilingThickness))
+        {
+            Debug.LogWarning("Door height is more than current storey height!");
+            valid = false;
+        }
+        return valid;
+    }
+
+        void TryFitDoors(WallSection wallSection, Vector2 position)
     {
         Doorjamb jamb = new Doorjamb();
 

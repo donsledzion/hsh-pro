@@ -1,3 +1,5 @@
+using Newtonsoft.Json.Schema;
+using System;
 using UnityEngine;
 using Walls2D;
 
@@ -52,8 +54,11 @@ public class InsertWindow : Selector2D
             HoverPoint(_snappedPoint,_hoverColor);
             if (_windowInstance == null)
             {
-                _windowInstance = Instantiate(_windowPrefab, transform);
-                _validationToggler = _windowInstance.GetComponent<JambSectionValidationToggler>();
+                if(ValidateInputs())
+                {
+                    _windowInstance = Instantiate(_windowPrefab, transform);
+                    _validationToggler = _windowInstance.GetComponent<JambSectionValidationToggler>();
+                }
             }
             else
             {
@@ -105,6 +110,31 @@ public class InsertWindow : Selector2D
                     TryFitWindow(_hoveredSection, _snappedPoint);
             }
         }
+    }
+
+    private bool ValidateInputs()
+    {
+        bool valid = true;
+
+        if (WindowWidth < DefaultSettings.ins.MinWindowWidth)
+        {
+            Debug.LogWarning("Window width given by input is less than minimal defined in settings: "
+                + WindowWidth + " < " + DefaultSettings.ins.MinWindowWidth);
+            valid = false;
+        }
+        if(WindowHeight < DefaultSettings.ins.MinWindowHeight)
+        {
+            Debug.LogWarning("Window height given by input is less than minimal defined in settings: "
+                + WindowHeight + " < " + DefaultSettings.ins.MinWindowHeight);
+            valid = false;
+        }
+        if((WindowHeight+WindowsillElevation) > (GameManager.ins.Building.CurrentStorey.Height - DefaultSettings.ins.CeilingThickness ))
+        {
+            Debug.LogWarning("Window height with given elevation is more than current storey height!");
+            valid = false;
+        }
+
+        return valid;
     }
 
     void TryFitWindow(WallSection wallSection, Vector2 position)
