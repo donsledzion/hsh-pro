@@ -5,6 +5,8 @@ using UnityEngine;
 public class DoorOpener : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] string _openState = "jj_door_white_open";
+    [SerializeField] string _closeState = "jj_door_white_close";
     [SerializeField] bool _isOpen = false;
     [SerializeField] bool _isClosed = true;
     [SerializeField] bool _isToggling = false;
@@ -26,7 +28,7 @@ public class DoorOpener : MonoBehaviour
         {
             _isToggling = true;
             animator.enabled = true;                                                        
-            animator.Play("jj_door_white_open");
+            animator.Play(_openState);
         }
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
         _isClosed = false;
@@ -41,7 +43,7 @@ public class DoorOpener : MonoBehaviour
         {
             _isToggling = true;
             animator.enabled = true;
-            animator.Play("jj_door_white_close");
+            animator.Play(_closeState);
         }
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
         _isOpen = false;

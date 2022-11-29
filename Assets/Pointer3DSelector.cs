@@ -67,7 +67,8 @@ public class Pointer3DSelector : MonoBehaviour
         doorInstance.transform.localScale = new Vector3(
                 scaleFactor.x * jambSize.x / prefabSize.x,
                 scaleFactor.y * jambSize.y / prefabSize.y,
-                10 * jambSize.z / prefabSize.z);
+                scaleFactor.x * jambSize.x / prefabSize.x//, 10 * jambSize.z / prefabSize.z
+                );
 
         doorInstance.transform.SetParent(_selection);
         doorInstance.transform.localPosition = Vector3.zero;

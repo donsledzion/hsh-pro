@@ -19,7 +19,7 @@ public class Storey2D : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] float visibleStoreyOpacity = 1f;
     [Range(0f, 1f)]
-    [SerializeField] float invisibleStoreyOpacity = 0f;
+    [SerializeField] float invisibleStoreyOpacity = 0.2f;
     public Storey StoreyReference
     {
         get { return _storeyReference; }

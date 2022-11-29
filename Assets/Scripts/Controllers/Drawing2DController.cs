@@ -268,7 +268,7 @@ public class Drawing2DController : MonoBehaviour
 
         }
         tmpEmptyLabel.transform.position = targetPos;
-        tmpLabel.GetComponent<PointLabel>().SetLabelText("" + Mathf.Round((pointerPos - lastPoint).magnitude) + " [cm] | " + Mathf.Round(angle * 10) / 10f);
+        tmpLabel.GetComponent<PointLabel>().SetLabelText("" + Mathf.Round((pointerPos - lastPoint).magnitude) + " [cm] | " + Mathf.Round(angle * 10) / 10f + "\u00B0");
         tmpLabel.transform.position = targetPos - new Vector3(currentVector.x, currentVector.y, 0) / 2;
         tmpLabel.transform.localEulerAngles = new Vector3(0, 0, -labelAngle);
 
