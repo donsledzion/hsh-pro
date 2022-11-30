@@ -9,6 +9,13 @@ public class DrawFloor : DrawWithLines
     {
         if (_drawing2DController.IsEmptyOrDefault()) return;
         Vector2[] points = _drawing2DController.LinePoints;
+        if (points == null || points.Length < 3)
+        {
+            IsDrawing = false;
+            _drawing2DController.ClearLiveLine();
+            _drawing2DController.ClearCurrentLine();
+            return;
+        }
 
         IsDrawing = false;
         _drawing2DController.ClearLiveLine();
