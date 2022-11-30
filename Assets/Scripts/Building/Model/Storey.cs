@@ -87,12 +87,14 @@ public class Storey
         foreach(Wall wall in _walls)
             if (wall.WallSections.Length < 1) return wall;
         Wall newWall = new Wall();
+        newWall.OrderInStorey = _walls.Count;
         _walls.Add(newWall);
         return newWall;
     }
 
     public Wall AddNewWall(Wall newWall)
     {
+        newWall.OrderInStorey = _walls.Count;
         _walls.Add(newWall);
         return newWall;
     }
@@ -102,6 +104,7 @@ public class Storey
         if (_walls.Contains(wall))
         {
             _walls.Remove(wall);
+            PutWallsInOrder();
             return true;
         }
         return false;            
@@ -173,6 +176,16 @@ public class Storey
                 }
             }
             return sections;
+        }
+    }
+
+    internal void PutWallsInOrder()
+    {
+        int index = 0;
+        foreach (Wall wall in Walls)
+        {
+            wall.OrderInStorey = index;
+            index++;
         }
     }
 

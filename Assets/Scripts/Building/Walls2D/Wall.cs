@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
+using GLTF.Schema;
 
 namespace Walls2D
 {
@@ -14,12 +15,15 @@ namespace Walls2D
     {
         WallSection[] _wallSections;
         WallType _wallType;
+        int _orderInStorey;
 
         public Wall(){}
 
         public Wall(List<WallSection> wallSections)
         {
             _wallSections = wallSections.ToArray();
+            PutSectionsInOrder();
+            _orderInStorey = -1;
         }
 
         public Wall(Vector2[] linePoints)
@@ -33,6 +37,8 @@ namespace Walls2D
                 newSections.Add(new SectionStraight(linePoints[i], linePoints[i + 1]));
             }
             _wallSections = newSections.ToArray();
+            PutSectionsInOrder();
+            _orderInStorey = -1;
         }
 
         public WallSection[] WallSections
@@ -45,6 +51,12 @@ namespace Walls2D
         {
             get { return _wallType; }
             set { _wallType = value; }
+        }
+
+        public int OrderInStorey
+        {
+            get { return _orderInStorey; }
+            set { _orderInStorey = value; }
         }
 
         public Vector2[] Points2D
@@ -62,6 +74,16 @@ namespace Walls2D
                 return points.ToArray();
             }
             
+        }
+
+        internal void PutSectionsInOrder()
+        {
+            int index = 0;
+            foreach(WallSection section in WallSections)
+            {
+                section.OrderInWall = index;
+                index++;
+            }
         }
 
         internal bool RemoveMidSection(WallSection section)
@@ -116,11 +138,10 @@ namespace Walls2D
 
                 duplicateSectionA.EndPoint.Position = closerAnchor;
                 duplicateSectionB.StartPoint.Position = furtherAnchor;
-
                 
                 newSections.Add(duplicateSectionA);
-                newSections.Add(duplicateSectionB);
                 newSections.Add(jamb);
+                newSections.Add(duplicateSectionB);
 
                 Wall newWall = new Wall(newSections);
                 newWall.WallType = this.WallType;
@@ -155,6 +176,31 @@ namespace Walls2D
 
             return "Type: " + _wallType + "\n" + strSections;
                 
+        }
+
+        public bool CheckIntegrity()
+        {
+            foreach(Vector2 point in Points2D)
+            {
+
+            }
+            return true;
+        }
+
+        internal void PutNewSectionAtPosition(WallSection sectionClone, int orderInWall)
+        {
+            sectionClone.AssignToWall(this);
+            List<WallSection> newSections = new List<WallSection>();
+            int index = 0;
+            foreach(WallSection section in _wallSections)
+            {
+                if(index == orderInWall)
+                    newSections.Add(sectionClone);
+                newSections.Add(section);
+                index++;
+            }
+            WallSections = newSections.ToArray();
+            PutSectionsInOrder();
         }
     }
 

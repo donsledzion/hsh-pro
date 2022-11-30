@@ -10,7 +10,7 @@ public class WallSectionDeleter : MonoBehaviour
         Wall sectionsWall;
         if(section == null)
         {
-            Debug.Log("No section to delete");
+            Debug.LogWarning("No section to delete");
             return;
         }
         Storey currentStorey = GameManager.ins.Building.CurrentStorey;
@@ -32,10 +32,8 @@ public class WallSectionDeleter : MonoBehaviour
                 currentStorey.RemoveWall(wall);
                 Drawing2DController.ins.RedrawCurrentStorey();
                 break;
-            }
-                
+            }                
         }
-
     }
 
     public static bool IsSectionOnWallsEdge(WallSection section, Wall wall)
