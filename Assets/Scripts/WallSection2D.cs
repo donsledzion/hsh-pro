@@ -29,12 +29,12 @@ public class WallSection2D : MonoBehaviour
     public virtual void DrawOnCanvas(WallSection section)
     {
         transform.localPosition = WallSection.StartPoint.Position;
-        if (GameManager.ins.DebugMode == true)
-            DrawLabels();
+        if (GameManager.ins.WallOrderDebugMode == true)
+            DrawWallOrderDebugLabels();
         transform.Rotate(-transform.forward, MathHelpers.VectorAzimuthDeg(WallSection.EndPoint.Position - WallSection.StartPoint.Position));
     }
 
-    internal void DrawLabels()
+    internal void DrawWallOrderDebugLabels()
     {
         _orderInWall.transform.localPosition = (_end.localPosition + _start.localPosition) / 2f;
         _orderInWall.text = "-> " + WallSection.Wall.OrderInStorey.ToString() + " - " + WallSection.OrderInWall.ToString();
