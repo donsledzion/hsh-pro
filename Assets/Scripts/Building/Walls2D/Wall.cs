@@ -6,7 +6,6 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
-using GLTF.Schema;
 
 namespace Walls2D
 {
