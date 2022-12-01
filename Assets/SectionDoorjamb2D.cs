@@ -14,15 +14,7 @@ public class SectionDoorjamb2D : WallSection2D
 
         _archImageSpriteLeft.localScale = new Vector3(_archImageRatio*Lenght, _archImageRatio * Lenght, 1f)/100f;
         _end.localPosition = new Vector3(Lenght * _scaleFactor, 0f, 0f);
-        /*//=========================================================================================
-        _orderInWall.transform.localPosition = (_end.localPosition + _start.localPosition) / 2f;
-        _orderInWall.text = WallSection.Wall.OrderInStorey.ToString() + " - " + WallSection.OrderInWall.ToString();
-        //=========================================================================================*/
 
         base.DrawOnCanvas(section);
-
-        /*
-        transform.localPosition = WallSection.StartPoint.Position;
-        transform.Rotate(-transform.forward, MathHelpers.VectorAzimuthDeg(WallSection.EndPoint.Position - WallSection.StartPoint.Position));*/
     }
 }

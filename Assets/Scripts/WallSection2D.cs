@@ -28,7 +28,6 @@ public class WallSection2D : MonoBehaviour
 
     public virtual void DrawOnCanvas(WallSection section)
     {
-        //_wallSection = section;
         transform.localPosition = WallSection.StartPoint.Position;
         if (GameManager.ins.DebugMode == true)
             DrawLabels();
@@ -37,10 +36,8 @@ public class WallSection2D : MonoBehaviour
 
     internal void DrawLabels()
     {
-        //=========================================================================================
         _orderInWall.transform.localPosition = (_end.localPosition + _start.localPosition) / 2f;
         _orderInWall.text = "-> " + WallSection.Wall.OrderInStorey.ToString() + " - " + WallSection.OrderInWall.ToString();
-        //=========================================================================================
     }
 
 
