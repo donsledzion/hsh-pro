@@ -33,6 +33,7 @@ public class ModeController : MonoBehaviour
     [SerializeField] List<GameObject> VRMOde = new List<GameObject>();
     [SerializeField] List<GameObject> surfaceSelectionMode = new List<GameObject>();
     [SerializeField] List<GameObject> DrawingTools = new List<GameObject>();
+    [SerializeField] List<GameObject> LightObjects = new List<GameObject>();
 
 
     [SerializeField] SimpleCameraController cameraController;
@@ -210,7 +211,20 @@ public class ModeController : MonoBehaviour
         ResetFurnitureTabs();
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
-            if (furnitureTab.name == "Menu Board Furniture" || furnitureTab.name == "Gaalery Board Furniture")
+            if (furnitureTab.name == "Menu Board Furniture" || furnitureTab.name == "Galery Board Furniture")
+            {
+                furnitureTab.SetActive(true);
+            }
+        }
+
+    }
+
+    public void MenuOfLights_On()
+    {
+        ResetFurnitureTabs();
+        foreach (GameObject furnitureTab in MenuOfFurnitureController)
+        {
+            if (furnitureTab.name == "Menu Lights" || furnitureTab.name == "Galery Lights")
             {
                 furnitureTab.SetActive(true);
             }

@@ -25,6 +25,11 @@ public class AssetBundleLoader : MonoBehaviour
     public BundleLoadStatus FurnitureSofasBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/furniture_bundle_sofas");
     public BundleLoadStatus WindowsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/windowassets");
     public BundleLoadStatus WallSurfacesBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/texture_bundle");
+    public BundleLoadStatus CeilingLightsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/ceiling_lights_bundle");
+    public BundleLoadStatus FloorLightsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/floor_lights_bundle");
+
+
+
 
     public List<BundleLoadStatus> bundlesPack = new List<BundleLoadStatus>();
 
@@ -60,6 +65,10 @@ public class AssetBundleLoader : MonoBehaviour
             bundlesPack.Add(FurnitureSofasBundle);
             bundlesPack.Add(WindowsBundle);
             bundlesPack.Add(WallSurfacesBundle);
+            bundlesPack.Add(CeilingLightsBundle);
+            bundlesPack.Add(FloorLightsBundle);
+
+
             GetComponent<BundleLoadingPrompt>().ShowLoadingPrompt();
             foreach (BundleLoadStatus bundle in bundlesPack)
                 StartCoroutine(LoadBundleAsync(bundle));
