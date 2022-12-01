@@ -23,6 +23,7 @@ namespace Walls2D
             _startPoint = new BasePoint();
             _endPoint = new BasePoint();
             _paintingSetup = new WindowjambSectionPaintingSetup();
+            _orderInWall = -1;
         }
         public Windowjamb(float width, float height, float windowsill, Vector2 startPoint, Vector2 endPoint)
         {
@@ -32,6 +33,7 @@ namespace Walls2D
             _startPoint.Position = startPoint;
             _endPoint.Position = endPoint;
             _paintingSetup = new WindowjambSectionPaintingSetup();
+            _orderInWall = 1;
         }
 
         public void SetWindowJambParameters(float height, float width, float windowsill)

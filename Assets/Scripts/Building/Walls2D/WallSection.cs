@@ -26,6 +26,8 @@ namespace Walls2D
         //[XmlAttribute]
         protected WallSectionPaintingSetup _paintingSetup;
 
+        protected int _orderInWall;
+
         public BasePoint StartPoint
         {
             get { return _startPoint; }
@@ -41,6 +43,12 @@ namespace Walls2D
         {
             get { return _paintingSetup; }
             set { _paintingSetup = value; }
+        }
+
+        public int OrderInWall
+        {
+            get { return _orderInWall; }
+            set {  _orderInWall = value; }
         }
 
         public float AzimuthRad
@@ -82,7 +90,6 @@ namespace Walls2D
             if (PointBelongsToSection(point))
             {
                 WallSection sectionClone;
-                //WallSection sectionB;
                 Debug.Log("Point belongs to section!");
                 if(this.GetType() == typeof(SectionStraight))
                 {
@@ -90,12 +97,8 @@ namespace Walls2D
                     sectionClone = this.Clone();
                     sectionClone.StartPoint.Position = this.StartPoint.Position;
                     sectionClone.EndPoint.Position = point;
-                    sectionClone.AssignToWall(this.Wall);
                     this.StartPoint.Position = point;
-                    List<WallSection> sections = new List<WallSection>(Wall.WallSections);
-                    sections.Add(sectionClone);
-
-                    this.Wall.WallSections = sections.ToArray();
+                    Wall.PutNewSectionAtPosition(sectionClone, this.OrderInWall);
                     return true;
                 }
                 else

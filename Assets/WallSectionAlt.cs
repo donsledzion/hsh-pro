@@ -8,9 +8,9 @@ public class WallSectionAlt : MonoBehaviour
     protected WallParameters parameters = new WallParameters();
     WallSection _section;
     [SerializeField] protected Transform _scallableChild;
-    [SerializeField] List<TillingAdjuster> tillingAdjustersTop = new List<TillingAdjuster>();
-    [SerializeField] List<TillingAdjuster> tillingAdjustersHead = new List<TillingAdjuster>();
-    [SerializeField] List<TillingAdjuster> tillingAdjustersFace = new List<TillingAdjuster>();
+    [SerializeField] protected List<TillingAdjuster> tillingAdjustersTop = new List<TillingAdjuster>();
+    [SerializeField] protected List<TillingAdjuster> tillingAdjustersHead = new List<TillingAdjuster>();
+    [SerializeField] protected List<TillingAdjuster> tillingAdjustersFace = new List<TillingAdjuster>();
 
 
     public WallSection Section { get { return _section; } set { _section = value; } }
@@ -31,7 +31,7 @@ public class WallSectionAlt : MonoBehaviour
         Section = wallSection;
     }
 
-    public void SetTilling()
+    public virtual void SetTilling()
     {
         foreach(TillingAdjuster adjuster in tillingAdjustersTop)
         {

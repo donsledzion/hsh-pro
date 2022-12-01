@@ -6,6 +6,9 @@ using Walls2D;
 public class WallSectionWindowjamb : WallSectionJamb
 {
     [SerializeField] Transform _scallableBottomChild;
+
+    [SerializeField] protected List<TillingAdjuster> bottomTillingAdjustersFace = new List<TillingAdjuster>();
+
     new WindowParameters parameters = new WindowParameters();
     public void Spatialize(Windowjamb jamb)
     {
@@ -33,6 +36,18 @@ public class WallSectionWindowjamb : WallSectionJamb
         parameters.SetParameters(storey, wall, jamb);
         Section = jamb;
     }
+
+    public override void SetTilling()
+    {
+        base.SetTilling();
+
+        foreach (TillingAdjuster adjuster in bottomTillingAdjustersFace)
+        {
+            Vector2 textureScale = new Vector2(_scallableBottomChild.localScale.x, _scallableBottomChild.localScale.y);
+            adjuster.SetTilling(textureScale);
+        }
+    }
+
 
     protected override Material PlaneNameToMaterial(WallSection section, string planeName)
     {

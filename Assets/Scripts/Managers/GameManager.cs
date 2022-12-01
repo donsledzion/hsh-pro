@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     public bool WallSectionEndSnap = true;
 
     public bool WallSectionCloseSnap = true;
+
+    public bool DebugMode = true;
     public bool ToggleGridSnap()
     {
         GridSnap = !GridSnap;

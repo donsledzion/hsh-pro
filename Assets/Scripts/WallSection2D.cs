@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Walls2D;
 
@@ -9,7 +10,9 @@ public class WallSection2D : MonoBehaviour
     [SerializeField] protected Transform _end;
     [SerializeField] protected Transform _top;
     [SerializeField] protected Transform _bottom;
-
+    //=========================================================================================
+    [SerializeField] protected TextMeshProUGUI _orderInWall;
+    //========================================================================================= 
 
     protected float _scaleFactor = 1f;
 
@@ -25,9 +28,16 @@ public class WallSection2D : MonoBehaviour
 
     public virtual void DrawOnCanvas(WallSection section)
     {
-        _wallSection = section;
         transform.localPosition = WallSection.StartPoint.Position;
+        if (GameManager.ins.DebugMode == true)
+            DrawLabels();
         transform.Rotate(-transform.forward, MathHelpers.VectorAzimuthDeg(WallSection.EndPoint.Position - WallSection.StartPoint.Position));
+    }
+
+    internal void DrawLabels()
+    {
+        _orderInWall.transform.localPosition = (_end.localPosition + _start.localPosition) / 2f;
+        _orderInWall.text = "-> " + WallSection.Wall.OrderInStorey.ToString() + " - " + WallSection.OrderInWall.ToString();
     }
 
 

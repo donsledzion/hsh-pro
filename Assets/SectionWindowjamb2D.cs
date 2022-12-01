@@ -10,7 +10,6 @@ public class SectionWindowjamb2D : SectionStraight2D
     public override void DrawOnCanvas(WallSection section)
     {
         _wallSection = section;
-        transform.localPosition = WallSection.StartPoint.Position;
 
         _start.localScale = new Vector3(1f, Thickness*_scaleFactor, 1f);
         _end.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
@@ -24,6 +23,6 @@ public class SectionWindowjamb2D : SectionStraight2D
 
         _glassWrapper.localScale = new Vector3(Lenght-2*_startLineOffset.localPosition.x,1f,1f);
 
-        transform.Rotate(-transform.forward, MathHelpers.VectorAzimuthDeg(WallSection.EndPoint.Position - WallSection.StartPoint.Position));
+        base.DrawOnCanvas(section);
     }
 }
