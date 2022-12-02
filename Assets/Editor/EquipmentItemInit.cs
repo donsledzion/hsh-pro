@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class EquipmentItemInit : Editor
+/*public class EquipmentItemInit : Editor
 {
     static string 
 
-    [MenuItem("GameObject/CreateEquipmentItem")]
-    public static void CreateEquipmentItem()
-    {
-        GameObject go;
+//    [MenuItem("GameObject/CreateEquipmentItem")]
+//    public static void CreateEquipmentItem()
+//    {
+*//*        GameObject go;
 
         Object prefabRoot = PrefabUtility.GetCorrespondingObjectFromSource(Selection.activeGameObject);
         if (prefabRoot != null)
@@ -34,5 +34,5 @@ public class EquipmentItemInit : Editor
     }
 
     
-
-}
+*//*
+}*/

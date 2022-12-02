@@ -230,6 +230,20 @@ public class ModeController : MonoBehaviour
             }
         }
 
+    }    
+    
+    
+    public void MenuOfAGD_On()
+    {
+        ResetFurnitureTabs();
+        foreach (GameObject furnitureTab in MenuOfFurnitureController)
+        {
+            if (furnitureTab.name == "Menu AGD" || furnitureTab.name == "Galery AGD")
+            {
+                furnitureTab.SetActive(true);
+            }
+        }
+
     }
 
     public void FurnituresTabs()

@@ -27,6 +27,8 @@ public class AssetBundleLoader : MonoBehaviour
     public BundleLoadStatus WallSurfacesBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/texture_bundle");
     public BundleLoadStatus CeilingLightsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/ceiling_lights_bundle");
     public BundleLoadStatus FloorLightsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/floor_lights_bundle");
+    public BundleLoadStatus LargeAGDBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/large_agd_bundle");
+
 
 
 
@@ -67,7 +69,7 @@ public class AssetBundleLoader : MonoBehaviour
             bundlesPack.Add(WallSurfacesBundle);
             bundlesPack.Add(CeilingLightsBundle);
             bundlesPack.Add(FloorLightsBundle);
-
+            bundlesPack.Add(LargeAGDBundle);
 
             GetComponent<BundleLoadingPrompt>().ShowLoadingPrompt();
             foreach (BundleLoadStatus bundle in bundlesPack)
