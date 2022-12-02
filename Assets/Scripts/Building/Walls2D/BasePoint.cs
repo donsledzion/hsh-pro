@@ -11,29 +11,26 @@ namespace Walls2D
     {
         [XmlAttribute]
         Vector2 _position = new Vector2();
+        WallSection _wallSection;
 
+        public WallSection WallSection => _wallSection;
 
-        public BasePoint()
+        public BasePoint(WallSection section)
         {
             _position = new Vector2();
+            _wallSection = section;
         }
 
-        public BasePoint(Vector2 position)
+        public BasePoint(Vector2 position, WallSection section)
         {
             _position = position;
+            _wallSection = section;
         }
 
         public Vector2 Position
         {
             get { return _position; }
             set { _position = value; }
-        }
-
-        List<WallSection> _connectedSections = new List<WallSection>();
-
-        public List<WallSection> ConnectedSections
-        {
-            get { return _connectedSections; }
         }
     }
 }

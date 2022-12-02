@@ -7,6 +7,7 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI.Extensions;
 using Walls2D;
 using static Selector2D;
+using static StoreyPointsCollector;
 
 public class Drawing2DController : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class Drawing2DController : MonoBehaviour
     [SerializeField] GameObject pointLabelPrefab;
     [SerializeField] GameObject storey2DPrefab;
     [SerializeField] GameObject wallOnCanvasPrefab;
-
+    [SerializeField] GameObject cornerDebuggerPrefab;
+    List<WallCornerDebugger> _cornerDebuggers = new List<WallCornerDebugger>();
 
     [SerializeField] DynamicInputController _dynamicInputController;
 
@@ -164,8 +166,9 @@ public class Drawing2DController : MonoBehaviour
     {
         LoadBuilding();
         SetStoreysVisibility();
+        if (GameManager.ins.CornersFinishingDebugMode)
+            HandleConrners(BuildingCurrentStorey);
     }
-
 
     public Wall ApplyWallToBuilding()
     {
@@ -379,5 +382,17 @@ public class Drawing2DController : MonoBehaviour
     public bool IsEmptyOrDefault()
     {
         return (LinePointsCount < 1) || (LinePointsCount == 1 && LinePoints[0] == Vector2.zero);
+    }
+
+    [ContextMenu("Handle Corners")]    
+    public void HandleConrners(Storey storey)
+    {
+        List<ConnectorPoint> connectorPoints =  ReferenceController.ins.StoreyPointsCollector.ListConnectorPoints(storey,1);
+        foreach(ConnectorPoint connectorPoint in connectorPoints)
+        {
+            GameObject cornerDebuggerInstance = Instantiate(cornerDebuggerPrefab, transform);
+            WallCornerDebugger corner =  cornerDebuggerInstance.GetComponent<WallCornerDebugger>();
+            corner.SetDebugger(connectorPoint); 
+        }
     }
 }

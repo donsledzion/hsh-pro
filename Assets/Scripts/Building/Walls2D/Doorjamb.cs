@@ -13,8 +13,8 @@ namespace Walls2D
         {
             _width = 80f;
             _height = 200f;
-            _startPoint = new BasePoint();
-            _endPoint = new BasePoint();
+            _startPoint = new BasePoint(this);
+            _endPoint = new BasePoint(this);
             _paintingSetup = new DoorjambSectionPaintingSetup();
             _orderInWall = -1;
         }

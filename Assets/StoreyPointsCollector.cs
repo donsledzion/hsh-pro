@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,9 +56,9 @@ public class StoreyPointsCollector : MonoBehaviour
     }
 
     [ContextMenu("List connector points")]
-    public List<ConnectorPoint> ListConnectorPoints(Storey storey)
+    public List<ConnectorPoint> ListConnectorPoints(Storey storey, int minConnections = 2)
     {
-        List<ConnectorPoint> points = MinimumConnections(OnlyWallSectionConnectorPoints(FindConnectorPoints(CollectAllPoints(storey))),2);
+        List<ConnectorPoint> points = MinimumConnections(OnlyWallSectionConnectorPoints(FindConnectorPoints(CollectAllPoints(storey))),minConnections);
         return points;
     }
 
@@ -171,5 +172,20 @@ public class StoreyPointsCollector : MonoBehaviour
             this.wallSection = section;
             this.point = point.Position;
         }
+    }
+
+    public List<BasePoint> PointsAtPosition(Vector2 position, Type sectionType)
+    {
+        float tresholdDistnace = 5f;
+        List<BasePoint> points = new List<BasePoint>();
+        Storey currentStorey = GameManager.ins.Building.CurrentStorey;
+        foreach(BasePoint point in currentStorey.BasePoints)
+        {
+            if((point.Position - position).magnitude <= tresholdDistnace)
+            {
+                points.Add(point);
+            }
+        }
+        return points;
     }
 }

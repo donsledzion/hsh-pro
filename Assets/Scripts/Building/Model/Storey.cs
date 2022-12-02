@@ -17,6 +17,22 @@ public class Storey
     float _elevation;
     float _height;
 
+    public List<BasePoint> BasePoints
+    {
+        get
+        {
+            List<BasePoint> points = new List<BasePoint>();
+            foreach (Wall wall in Walls)
+            {
+                foreach(WallSection section in wall.WallSections)
+                {
+                    points.Add(section.StartPoint);
+                    points.Add(section.EndPoint);
+                }
+            }
+            return points;                                  
+        }
+    }
 
     public Storey()
     {

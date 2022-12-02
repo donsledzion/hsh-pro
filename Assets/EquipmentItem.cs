@@ -49,5 +49,15 @@ public class EquipmentItem : MonoBehaviour
         }
     }
 
+    public void SetTargetLayerMask(LayerMask layerMask)
+    {
+        _targetLayer = layerMask;
+    }
+
+    public void SetCollisionLayerMask(LayerMask layerMask)
+    {
+        _collisionLayer = layerMask;
+    }
+
 
 }
