@@ -18,6 +18,7 @@ public class WallSection2D : MonoBehaviour
 
     Vector2 _startPoint;
     Vector2 _endPoint;
+
     protected WallSection _wallSection;
 
     public Vector2 StartPoint { get { return _startPoint; } }

@@ -19,8 +19,6 @@ public class Building
     public Vector2 SheetSize { get { return _sheetSize; } set { _sheetSize = value; } }
     public List<Storey> Storeys { get { return _storeys; } }
 
-    
-
     public Building()
     {
         _name = "Default building";

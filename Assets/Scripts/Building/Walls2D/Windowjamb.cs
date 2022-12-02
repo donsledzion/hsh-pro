@@ -20,8 +20,8 @@ namespace Walls2D
             _width = 160f;
             _height = 140f;
             _windowsill = 80f;
-            _startPoint = new BasePoint();
-            _endPoint = new BasePoint();
+            _startPoint = new BasePoint(this);
+            _endPoint = new BasePoint(this);
             _paintingSetup = new WindowjambSectionPaintingSetup();
             _orderInWall = -1;
         }
@@ -33,7 +33,7 @@ namespace Walls2D
             _startPoint.Position = startPoint;
             _endPoint.Position = endPoint;
             _paintingSetup = new WindowjambSectionPaintingSetup();
-            _orderInWall = 1;
+            _orderInWall = -1;
         }
 
         public void SetWindowJambParameters(float height, float width, float windowsill)
