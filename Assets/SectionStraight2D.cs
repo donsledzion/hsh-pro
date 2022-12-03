@@ -33,12 +33,27 @@ public class SectionStraight2D : WallSection2D
 
     private void HandleStart()
     {
-        _start.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
+        List<BasePoint> pointsAtStartPosition = CurrentStorey.BasePointsAtPosition(StartPoint, typeof(SectionStraight));
+        if (pointsAtStartPosition.Count == 1)
+            _start.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
+        else if(pointsAtStartPosition.Count == 2)
+        {
+
+        }
+
     }
 
     private void HandleEnd()
     {
-        _end.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
-        _end.localPosition = new Vector3(Lenght * _scaleFactor, 0f, 0f);
+        List<BasePoint> pointsAtEndPosition = CurrentStorey.BasePointsAtPosition(EndPoint, typeof(SectionStraight));
+        if(pointsAtEndPosition.Count == 1)
+        {
+            _end.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
+            _end.localPosition = new Vector3(Lenght * _scaleFactor, 0f, 0f);
+        }
+        else if(pointsAtEndPosition.Count == 2)
+        {
+
+        }
     }
 }
