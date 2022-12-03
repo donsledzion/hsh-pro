@@ -11,9 +11,8 @@ namespace Walls2D
     {
         [XmlAttribute]
         Vector2 _position = new Vector2();
-        [XmlIgnore]
+
         WallSection _wallSection;
-        [XmlIgnore]
         public WallSection WallSection => _wallSection;
 
         public BasePoint()

@@ -17,6 +17,7 @@ public class Storey
     float _elevation;
     float _height;
 
+    [XmlIgnore]
     public List<BasePoint> BasePoints
     {
         get
@@ -26,7 +27,14 @@ public class Storey
             {
                 foreach(WallSection section in wall.WallSections)
                 {
+                    Debug.Log("Storey.BasePoints: Checking sections:");
+                    if (section.StartPoint.WallSection == null)
+                        section.StartPoint = new BasePoint(section.StartPoint.Position, section);
+                    Debug.Log("point.start.section: " + section.StartPoint.WallSection.ToString());                    
                     points.Add(section.StartPoint);
+                    if (section.EndPoint.WallSection == null)
+                        section.EndPoint = new BasePoint(section.EndPoint.Position, section);
+                    Debug.Log("point.end.section: " + section.EndPoint.WallSection.ToString());
                     points.Add(section.EndPoint);
                 }
             }

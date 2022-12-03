@@ -8,8 +8,6 @@ public class WallSection2D : MonoBehaviour
 {
     [SerializeField] protected Transform _start;
     [SerializeField] protected Transform _end;
-    [SerializeField] protected Transform _top;
-    [SerializeField] protected Transform _bottom;
     //=========================================================================================
     [SerializeField] protected TextMeshProUGUI _orderInWall;
     //========================================================================================= 
