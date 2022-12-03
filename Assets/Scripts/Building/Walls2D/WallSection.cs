@@ -59,6 +59,9 @@ namespace Walls2D
             }
         }
 
+        public float AzimuthDeg => AzimuthRad * 180f / Mathf.PI;
+        
+
         public Vector3 MidPoint
         {
             get
@@ -77,6 +80,11 @@ namespace Walls2D
 
 
         public Wall Wall { get { return _wallReference; } }
+
+        public float AngleBetweenDeg(WallSection otherSection)
+        {
+            return Mathf.Abs(this.AzimuthDeg - otherSection.AzimuthDeg);
+        }
 
         public abstract WallSection Clone();
 
