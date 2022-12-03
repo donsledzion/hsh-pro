@@ -10,13 +10,13 @@ namespace Walls2D
     [XmlType(TypeName = "section-straight")]
     public class SectionStraight : WallSection
     {
-        /*public SectionStraight()
+        public SectionStraight()
         {
-            _startPoint = new BasePoint();
-            _endPoint = new BasePoint();
+            _startPoint = new BasePoint(this);
+            _endPoint = new BasePoint(this);
             _paintingSetup = new StraightSectionPaintingSetup();
             _orderInWall = -1;
-        }*/
+        }
 
         public SectionStraight(Vector2[] _points)
         {

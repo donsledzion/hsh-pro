@@ -16,10 +16,12 @@ public class WallSection2D : MonoBehaviour
 
     protected float _scaleFactor = 1f;
 
-    Vector2 _startPoint;
-    Vector2 _endPoint;
+    Vector2 _startPoint => _wallSection.StartPoint.Position;
+    Vector2 _endPoint => _wallSection.EndPoint.Position;
 
     protected WallSection _wallSection;
+
+    protected Storey CurrentStorey => GameManager.ins.Building.CurrentStorey;
 
     public Vector2 StartPoint { get { return _startPoint; } }
     public Vector2 EndPoint { get { return _endPoint; } }    

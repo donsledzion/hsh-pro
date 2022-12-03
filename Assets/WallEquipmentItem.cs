@@ -111,4 +111,9 @@ public class WallEquipmentItem : EquipmentItem
     {
         Destroy(Duplicate);
     }
+
+    public void SetWallLayerMask(LayerMask mask)
+    {
+        _wallLayer = mask;
+    }
 }

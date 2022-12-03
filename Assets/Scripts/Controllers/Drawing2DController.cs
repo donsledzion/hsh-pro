@@ -387,12 +387,12 @@ public class Drawing2DController : MonoBehaviour
     [ContextMenu("Handle Corners")]    
     public void HandleConrners(Storey storey)
     {
-        List<ConnectorPoint> connectorPoints =  ReferenceController.ins.StoreyPointsCollector.ListConnectorPoints(storey,1);
+        /*List<ConnectorPoint> connectorPoints =  ReferenceController.ins.StoreyPointsCollector.ListConnectorPoints(storey,1);
         foreach(ConnectorPoint connectorPoint in connectorPoints)
         {
             GameObject cornerDebuggerInstance = Instantiate(cornerDebuggerPrefab, transform);
             WallCornerDebugger corner =  cornerDebuggerInstance.GetComponent<WallCornerDebugger>();
             corner.SetDebugger(connectorPoint); 
-        }
+        }*/
     }
 }

@@ -234,6 +234,24 @@ public class Storey
         }
     }
 
+    public List<BasePoint> BasePointsAtPosition(Vector2 position, Type type, float precission = 1f)
+    {
+        List<BasePoint> basePointsAtPosition = new List<BasePoint>();
+        
+        foreach(BasePoint basePoint in BasePoints)
+        {
+            if (basePoint.WallSection.GetType() == type)
+            { 
+                if((basePoint.Position - position).magnitude <= precission)
+                    basePointsAtPosition.Add(basePoint);
+
+            }
+        }
+
+        return basePointsAtPosition;
+    }
+
+
     public override string ToString()
     {
         string basic = "Storey (" + _number + ") name: " + _name + ", Elevation: " + _elevation + "[m] , Height: " + _height + "[m].";
@@ -251,10 +269,12 @@ public class Storey
         return basic + walls + ceilings;
     }
 
-    public XmlSerializer SerializeToXML()
+
+
+    /*public XmlSerializer SerializeToXML()
     {
         var XML = new XmlSerializer(typeof(Storey));
 
         return XML;
-    }
+    }*/
 }
