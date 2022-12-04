@@ -117,6 +117,11 @@ public class SectionStraight2D : WallSection2D
                 _topMidToStart.localScale = new Vector3(-(Lenght / 2 - topDist), 1f, 1f) * _scaleFactor;
                 _bottomMidToStart.localScale = new Vector3(-(Lenght / 2 - botDist), 1f, 1f) * _scaleFactor;
             }
+            else/* if (Mathf.Abs(angCompDeg - 180f) < 1f || Mathf.Abs(angCompDeg) < 1f)*/
+            {
+                _topMidToStart.localScale = new Vector3(-(Lenght / 2), 1f, 1f) * _scaleFactor;
+                _bottomMidToStart.localScale = new Vector3(-(Lenght / 2), 1f, 1f) * _scaleFactor;
+            }
 
 
             
@@ -145,7 +150,7 @@ public class SectionStraight2D : WallSection2D
                 Debug.LogWarning("Other section is null: exiting!");
                 return;
             }
-            //Debug.Log("Start Section: Angle crossing with other section: " + WallSection.AngleBetweenDeg(otherSection).ToString());
+            Debug.Log("Start Section: Angle crossing with other section: " + WallSection.AngleBetweenDeg(otherSection).ToString());
 
             float angCompDeg = 180f - WallSection.AngleBetweenDeg(otherSection);
             float angCompRad = angCompDeg * Mathf.PI / 180;
@@ -202,12 +207,17 @@ public class SectionStraight2D : WallSection2D
                 _topMidToEnd.localScale = new Vector3(Lenght / 2 + topDist, 1f, 1f) * _scaleFactor;
                 _bottomMidToEnd.localScale = new Vector3(Lenght / 2 + botDist, 1f, 1f) * _scaleFactor;
             }
+            else/* if (Mathf.Abs(angCompDeg - 180f) < 1f || Mathf.Abs(angCompDeg) < 1f)*/
+            {
+                _topMidToEnd.localScale = new Vector3(Lenght / 2, 1f, 1f) * _scaleFactor;
+                _bottomMidToEnd.localScale = new Vector3(Lenght / 2, 1f, 1f) * _scaleFactor;
+            }
         }
         else
         {
 
-            _topMidToEnd.localScale = new Vector3(Lenght / 2, 1f, 1f) * _scaleFactor; //(need to calculate the correct length of this line -> depending on intersection with neighbouring section!
-            _bottomMidToEnd.localScale = new Vector3(Lenght / 2, 1f, 1f) * _scaleFactor; //(need to calculate the correct length of this line -> depending on intersection with neighbouring section!
+            _topMidToEnd.localScale = new Vector3(Lenght / 2, 1f, 1f) * _scaleFactor;
+            _bottomMidToEnd.localScale = new Vector3(Lenght / 2, 1f, 1f) * _scaleFactor;
         }
         
     }

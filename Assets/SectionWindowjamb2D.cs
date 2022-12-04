@@ -27,6 +27,9 @@ public class SectionWindowjamb2D : SectionStraight2D
 
         _glassWrapper.localScale = new Vector3(Lenght-2*_startLineOffset.localPosition.x,1f,1f);
 
-        base.DrawOnCanvas(section);
+        transform.localPosition = WallSection.StartPoint.Position;
+        if (GameManager.ins.WallOrderDebugMode == true)
+            DrawWallOrderDebugLabels();
+        transform.Rotate(-transform.forward, MathHelpers.VectorAzimuthDeg(WallSection.EndPoint.Position - WallSection.StartPoint.Position));
     }
 }
