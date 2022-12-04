@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Walls2D;
 
 public class BuildingSerializer : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class BuildingSerializer : MonoBehaviour
     void DeserializeBuilding(string path)
     {
         GameManager.ins.Building = Building.DeserializeFromXML(path);
+        GameManager.ins.Building.RegenerateSectionsReferences();
         NewSheetCreator.Instance.CreateNewSheet(GameManager.ins.Building);
         ReferenceController.ins.StoreySwitcherDropdown.UpdateDropdown();
         Drawing2DController.ins.RegenerateBuildingDrawing();
