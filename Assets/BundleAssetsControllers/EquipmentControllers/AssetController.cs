@@ -76,8 +76,6 @@ public class AssetController : MonoBehaviour
 
     private void FetchFurniture()
     {
-        Debug.Log("Failed to load");
-
         furnitureAsset = AssetBundleLoader.ins.GetBundleLoadStatusByName(nameOffAssetToLoad)?.Bundle;
 
         if (furnitureAsset) Debug.Log("Loaded successfuly");
