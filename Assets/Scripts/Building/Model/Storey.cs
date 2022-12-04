@@ -241,7 +241,7 @@ public class Storey
         }
     }
 
-    public List<BasePoint> BasePointsAtPosition(Vector2 position, Type type, float precission = 1f)
+    public List<BasePoint> BasePointsAtPosition(Vector2 position, Type type, float precission = 5f)
     {
         List<BasePoint> basePointsAtPosition = new List<BasePoint>();
         
