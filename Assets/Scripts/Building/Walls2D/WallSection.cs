@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System.Runtime.CompilerServices;
 using System.CodeDom;
 using UnityEngine.UIElements;
+using Valve.VR;
 
 namespace Walls2D
 {
@@ -27,6 +28,8 @@ namespace Walls2D
         protected WallSectionPaintingSetup _paintingSetup;
 
         protected int _orderInWall;
+
+        public float Thickness => _wallReference.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth;
 
         public BasePoint StartPoint
         {
@@ -83,7 +86,44 @@ namespace Walls2D
 
         public float AngleBetweenDeg(WallSection otherSection)
         {
-            return Mathf.Abs(this.AzimuthDeg - otherSection.AzimuthDeg);
+            Vector2 V1 = new Vector2();
+            Vector2 V2 = new Vector2();
+            if ((StartPoint.Position - otherSection.StartPoint.Position).magnitude < 1f)
+            {
+                V1 = EndPoint.Position - StartPoint.Position;
+                V2 = otherSection.EndPoint.Position - otherSection.StartPoint.Position;
+            }
+            else if ((StartPoint.Position - otherSection.EndPoint.Position).magnitude < 1f)
+            {
+                V1 = EndPoint.Position - StartPoint.Position;
+                V2 = otherSection.StartPoint.Position - otherSection.EndPoint.Position;
+            }
+            else if ((EndPoint.Position - otherSection.EndPoint.Position).magnitude < 1f)
+            {
+                V1 = StartPoint.Position - EndPoint.Position;   
+                V2 = otherSection.StartPoint.Position - otherSection.EndPoint.Position;   
+            }
+            else if ((EndPoint.Position - otherSection.StartPoint.Position).magnitude < 1f) 
+            {
+                V1 = StartPoint.Position - EndPoint.Position;
+                V2 = otherSection.EndPoint.Position - otherSection.StartPoint.Position;
+            }
+            float V1L = V1.magnitude;
+            float V2L = V2.magnitude;
+
+            float scalar = V1.x * V2.x + V1.y * V2.y;
+
+            float cos = scalar / (V1L * V2L);
+            //Debug.Log("Cosinus: " + cos);
+            float det = V1.x*V2.y - V1.y*V2.x;
+            float rad = det >= 0 ? Mathf.Acos(cos) : Mathf.Acos(cos) + Mathf.PI;
+
+            return rad * 180 / Mathf.PI;
+        }
+
+        public float AngleBetweenRad(WallSection otherSection)
+        {
+            return AngleBetweenDeg(otherSection) * Mathf.PI / 180f;
         }
 
         public abstract WallSection Clone();

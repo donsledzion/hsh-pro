@@ -38,6 +38,7 @@ namespace Walls2D
             _endPoint = new BasePoint(sectionStraight.EndPoint.Position, this);
             _paintingSetup = sectionStraight.PaintingSetup;
             _orderInWall = -1;
+            _wallReference = sectionStraight._wallReference;
         }
 
         public override WallSection Clone()

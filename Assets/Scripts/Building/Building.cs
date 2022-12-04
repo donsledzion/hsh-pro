@@ -117,7 +117,19 @@ public class Building
             stairs += stair.ToString() + "\n";
         return basics + stairs ;
     }
-        
+
+    public void RegenerateSectionsReferences()
+    {
+        foreach (Storey storey in Storeys)
+        {
+            foreach (Wall wall in storey.Walls)
+            {
+                foreach (WallSection section in wall.WallSections)
+                    section.AssignToWall(wall);
+            }
+
+        }
+    }
     public void SerializeToXML(string path)
     {
         Vector2 newSize = ReferenceController.ins.WhiteboardBackgroundInfo.MyRect.rect.size;
