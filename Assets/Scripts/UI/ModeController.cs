@@ -178,6 +178,7 @@ public class ModeController : MonoBehaviour
 
     public void MainMenuOfFurniture_On()
     {
+        
         ResetFurnitureTabs();
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
         {
@@ -271,6 +272,7 @@ public class ModeController : MonoBehaviour
                 furnitureTab.GetComponent<ToolsTabGroup>().selectedTab = null;
             }
         }
+        galeryItemsWindow.SetActive(false);
     }
 
     private void ResetAllListObjects()

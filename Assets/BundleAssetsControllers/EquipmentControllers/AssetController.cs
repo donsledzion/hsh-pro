@@ -10,14 +10,14 @@ public class AssetController : MonoBehaviour
 
 
     private List<ScriptableObjectsController> itemList = new List<ScriptableObjectsController>();
-    private AssetBundle furnitureAsset = null;
-    [SerializeField] GameObject templateFurniturePrefab;
+    private AssetBundle ItemAsset = null;
+    [SerializeField] GameObject templateItemPrefab;
     GameObject inspectionCamera;
     GameObject item3DViewer;
     GameObject itemsGallery;
     EquipmentInsertionMode prefabToFitController;
     TMP_InputField inputField;
-    [SerializeField] string nameOffAssetToLoad;
+    [SerializeField] List<string> assetNamesList = new List<string>();
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class AssetController : MonoBehaviour
 
     private void Init()
     {
-        FetchFurniture();
+        FetchItems();
         InstantiateList();
         inputField.onValueChanged.AddListener(OnInputValueChange);
     }
@@ -47,7 +47,7 @@ public class AssetController : MonoBehaviour
     private void SetupInstance(ScriptableObjectsController item)
     {
         GameObject g;
-        g = Instantiate(templateFurniturePrefab, transform);
+        g = Instantiate(templateItemPrefab, transform);
         g.name = item.name;
         GalleryItemTemplate template = g.GetComponent<GalleryItemTemplate>();
         template.Thumbnail.sprite = item.imagePreview;
@@ -55,35 +55,39 @@ public class AssetController : MonoBehaviour
         template.ItemNameTMPro.text = item.name;
         template.SelectButton.onClick.AddListener(() =>
         {
-            FurniturePrefabToFit(item);
+            ItemPrefabToFit(item);
 
         });
         template.PreviewButton.onClick.AddListener(() =>
         {
             inspectionCamera.SetActive(true);
-            GetFurniturePrefab(item);
+            GetItemPrefab(item);
         });
     }
 
-    private void FurniturePrefabToFit(ScriptableObjectsController item)
+    private void ItemPrefabToFit(ScriptableObjectsController item)
     {
         prefabToFitController.SwapPrefab(item.prefab);
         prefabToFitController.gameObject.SetActive(true);
-        AssignNameAndBundleNames(AssetBundleHelper.ExtractName(item), nameOffAssetToLoad);
+        
+        foreach(string assetName in assetNamesList)
+            AssignNameAndBundleNames(AssetBundleHelper.ExtractName(item),assetName);
+        
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
     }
 
-    private void FetchFurniture()
+    private void FetchItems()
     {
-        Debug.Log("Failed to load");
+        foreach (string assetName in assetNamesList)
+        {
+            ItemAsset = AssetBundleLoader.ins.GetBundleLoadStatusByName(assetName)?.Bundle;
+        
+            if (ItemAsset) Debug.Log("Loaded successfuly " + assetName);
+            else Debug.Log("Failed to load " + assetName);
 
-        furnitureAsset = AssetBundleLoader.ins.GetBundleLoadStatusByName(nameOffAssetToLoad)?.Bundle;
-
-        if (furnitureAsset) Debug.Log("Loaded successfuly");
-        else Debug.Log("Failed to load");
-
-        itemList.AddRange(furnitureAsset.LoadAllAssets<ScriptableObjectsController>());
+            itemList.AddRange(ItemAsset.LoadAllAssets<ScriptableObjectsController>());
+        }        
     }
 
     private void OnInputValueChange(string arg0)
@@ -97,11 +101,11 @@ public class AssetController : MonoBehaviour
         else
         {
             Debug.Log("I have found a name");
-            FindFurniturePrefab(itemList.Find(i => i.name == arg0));
+            FindItemPrefab(itemList.Find(i => i.name == arg0));
         }
     }
 
-    public void GetFurniturePrefab(ScriptableObjectsController item)
+    public void GetItemPrefab(ScriptableObjectsController item)
     {
         item3DViewer.SetActive(true);
         itemsGallery.SetActive(false);
@@ -116,7 +120,7 @@ public class AssetController : MonoBehaviour
         }
     }
 
-    public void FindFurniturePrefab(ScriptableObjectsController item)
+    public void FindItemPrefab(ScriptableObjectsController item)
     {
         DestroyAllPrefabs();
         SetupInstance(item);
