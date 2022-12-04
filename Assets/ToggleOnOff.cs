@@ -78,12 +78,16 @@ public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    private void ToggleEquipmentSelection(bool value)
+    public void ToggleEquipmentSelection(bool value)
     {
         if (value)
             equipmentSelection.SetActive(true);
         else
             equipmentSelection.SetActive(false);
+        ToggleColor(value);
+        _isOn = false;
     }
+
+
 
 }

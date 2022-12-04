@@ -67,8 +67,7 @@ public class ModeController : MonoBehaviour
         ResetAllListObjects();
         mainCamera.SetActive(false);
         canvas.GetComponent<Canvas>().enabled = false;
-        //        refToScript = builder3D.GetComponent<Builder3D>();
-        //        refToScript.GenerateBuilding();
+
         Time.timeScale = 1;
         foreach (GameObject VrObjects in VRMOde)
         {
@@ -173,7 +172,7 @@ public class ModeController : MonoBehaviour
         {
             objects3D.SetActive(true);
         }
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 
     public void MainMenuOfFurniture_On()
