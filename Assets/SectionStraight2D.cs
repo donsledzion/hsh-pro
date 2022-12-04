@@ -188,7 +188,7 @@ public class SectionStraight2D : WallSection2D
             }
             else if (angDeg > 91f && angDeg < 179f)
             {
-                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y,0f);
+                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) - new Vector3(V2.x, V2.y,0f);
                 Debug.Log("Option: Angle: " + angDeg + " + assigning!");
             }
             
