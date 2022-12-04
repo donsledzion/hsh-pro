@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public float SnapCornersDistance = 5f;
+
     public Vector3 DrawingCanvasBackgroundLBCorner;
     public float Zoom;
     public bool PointerOverUI;

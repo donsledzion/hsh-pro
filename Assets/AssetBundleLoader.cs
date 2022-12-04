@@ -74,7 +74,6 @@ public class AssetBundleLoader : MonoBehaviour
             bundlesPack.Add(CookerBundle);
             bundlesPack.Add(SmallAGDBundle);
 
-
             GetComponent<BundleLoadingPrompt>().ShowLoadingPrompt();
             foreach (BundleLoadStatus bundle in bundlesPack)
                 StartCoroutine(LoadBundleAsync(bundle));

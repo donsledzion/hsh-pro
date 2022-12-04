@@ -76,7 +76,7 @@ public class EquipmentInsertionMode : MonoBehaviour
             _equipmentInstance.transform.position = 
                 new Vector3(
                     _hit.point.x,
-                    GameManager.ins.Building.CurrentStorey.Elevation ,
+                    /*GameManager.ins.Building.CurrentStorey.Elevation*/ _hit.point.y,
                     _hit.point.z);
             if(_equipmentInstance.GetComponent<EquipmentItem>().IsColliding)
             {                
