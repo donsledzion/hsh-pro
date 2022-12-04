@@ -28,9 +28,8 @@ public class AssetBundleLoader : MonoBehaviour
     public BundleLoadStatus CeilingLightsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/ceiling_lights_bundle");
     public BundleLoadStatus FloorLightsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/floor_lights_bundle");
     public BundleLoadStatus LargeAGDBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/large_agd_bundle");
-
-
-
+    public BundleLoadStatus CookerBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/cooker_bundle");
+    public BundleLoadStatus OvenBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/ovens_bundle");
 
 
     public List<BundleLoadStatus> bundlesPack = new List<BundleLoadStatus>();
@@ -70,6 +69,8 @@ public class AssetBundleLoader : MonoBehaviour
             bundlesPack.Add(CeilingLightsBundle);
             bundlesPack.Add(FloorLightsBundle);
             bundlesPack.Add(LargeAGDBundle);
+            bundlesPack.Add(OvenBundle);
+            bundlesPack.Add(CookerBundle);
 
             GetComponent<BundleLoadingPrompt>().ShowLoadingPrompt();
             foreach (BundleLoadStatus bundle in bundlesPack)
