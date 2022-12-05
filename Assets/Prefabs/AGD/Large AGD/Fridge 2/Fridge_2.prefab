@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8440382299594220802}
   - component: {fileID: 2565855037983242428}
-  - component: {fileID: 488030610230534921}
-  m_Layer: 0
+  - component: {fileID: 7868866361028686579}
+  m_Layer: 12
   m_Name: Fridge_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,16 +46,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 59.59375, y: 184.3821, z: 77.75092}
   m_Center: {x: -1.1745605, y: 91.97141, z: -37.864895}
---- !u!114 &488030610230534921
+--- !u!114 &7868866361028686579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471322055253651933}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _thumbScale: {x: 1, y: 1, z: 1}
@@ -64,7 +64,12 @@ MonoBehaviour:
     m_Bits: 1024
   _collisionLayer:
     serializedVersion: 2
-    m_Bits: 13184
+    m_Bits: 4480
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &2101022502127399529
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022502127399574}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: handle refrigerator.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +112,7 @@ GameObject:
   - component: {fileID: 2101022502151047098}
   - component: {fileID: 2101022502151047096}
   - component: {fileID: 2101022502151047099}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: refrigerator.001_refrigerator_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022502242543489}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: door refrigerator.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +225,7 @@ GameObject:
   - component: {fileID: 2101022502250712333}
   - component: {fileID: 2101022502250712331}
   - component: {fileID: 2101022502250712330}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.008_glass_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +306,7 @@ GameObject:
   - component: {fileID: 2101022502276583257}
   - component: {fileID: 2101022502276583239}
   - component: {fileID: 2101022502276583238}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: door refrigerator.003_refrigerator_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022502316966216}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: handle refrigerator.000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +418,7 @@ GameObject:
   - component: {fileID: 2101022502318054897}
   - component: {fileID: 2101022502318054911}
   - component: {fileID: 2101022502318054910}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.007_glass_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +499,7 @@ GameObject:
   - component: {fileID: 2101022502493701162}
   - component: {fileID: 2101022502493701160}
   - component: {fileID: 2101022502493701163}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.006_glass_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +580,7 @@ GameObject:
   - component: {fileID: 2101022502511063934}
   - component: {fileID: 2101022502511063932}
   - component: {fileID: 2101022502511063935}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.005_glass_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,7 +661,7 @@ GameObject:
   - component: {fileID: 2101022502523196846}
   - component: {fileID: 2101022502523196844}
   - component: {fileID: 2101022502523196847}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: refrigerator.001_glass_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +742,7 @@ GameObject:
   - component: {fileID: 2101022502683876229}
   - component: {fileID: 2101022502683876227}
   - component: {fileID: 2101022502683876226}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: handle refrigerator.000_refrigerator_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022502746087388}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -847,7 +852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022502746459712}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +883,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022502847020971}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +914,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022502873627876}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: door refrigerator.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -942,7 +947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022502986106624}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: refrigerator.001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -981,7 +986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022503041794542}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1012,7 +1017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101022503201055834}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1045,7 +1050,7 @@ GameObject:
   - component: {fileID: 2101022503239176576}
   - component: {fileID: 2101022503239176590}
   - component: {fileID: 2101022503239176577}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: door refrigerator.002_glass_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1126,7 +1131,7 @@ GameObject:
   - component: {fileID: 2101022503318726749}
   - component: {fileID: 2101022503318726747}
   - component: {fileID: 2101022503318726746}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: box refrigerator.009_glass_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1207,7 +1212,7 @@ GameObject:
   - component: {fileID: 2101022503891063884}
   - component: {fileID: 2101022503891063882}
   - component: {fileID: 2101022503891063885}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: door refrigerator.002_refrigerator_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1293,7 @@ GameObject:
   - component: {fileID: 2101022503948671454}
   - component: {fileID: 2101022503948671452}
   - component: {fileID: 2101022503948671455}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: handle refrigerator.001_refrigerator_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

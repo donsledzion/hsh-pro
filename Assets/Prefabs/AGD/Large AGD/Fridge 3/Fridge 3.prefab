@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5403737833702384972}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Kitchen_Appliances_AEG_AEG-FS-Fridge-Freezer-Bottom-Freezer-Sil.obj.cleaner.materialmerger.gles
     (1)
   m_TagString: Untagged
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4019921236599411269}
   - component: {fileID: 6044335724729766270}
   - component: {fileID: 5008977744371894519}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,8 +124,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2814585369506368092}
   - component: {fileID: 930652896125459821}
-  - component: {fileID: 4909033825744220298}
-  m_Layer: 0
+  - component: {fileID: 3051565915434574128}
+  m_Layer: 12
   m_Name: Fridge 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,16 +160,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 59.51953, y: 185.20325, z: 67.79288}
   m_Center: {x: 0.14770508, y: 92.35118, z: -33.832268}
---- !u!114 &4909033825744220298
+--- !u!114 &3051565915434574128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3172230035633396266}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _thumbScale: {x: 1, y: 1, z: 1}
@@ -178,7 +178,12 @@ MonoBehaviour:
     m_Bits: 1024
   _collisionLayer:
     serializedVersion: 2
-    m_Bits: 13184
+    m_Bits: 4480
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &6296987603155682795
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +195,7 @@ GameObject:
   - component: {fileID: 2057334295342745980}
   - component: {fileID: 9091587188106170643}
   - component: {fileID: 2523086131558893965}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
