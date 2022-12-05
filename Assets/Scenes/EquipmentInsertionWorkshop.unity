@@ -283,6 +283,10 @@ MonoBehaviour:
   LoadBareringWallWidth: 30
   PartialWallWidth: 10
   CeilingThickness: 30
+  MinWindowWidth: 20
+  MinWindowHeight: 20
+  MinDoorHeight: 120
+  MinDoorWidth: 40
 --- !u!4 &16781336
 Transform:
   m_ObjectHideFlags: 0
@@ -295,7 +299,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &20097564
 MonoBehaviour:
@@ -345,6 +349,67 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &46913336
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 457809776842455678, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_Name
+      value: Fireplace_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2524514949205293760, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 444.80325
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 50.000008
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 340.73923
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719795195366039913, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
 --- !u!1 &81567030
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +439,7 @@ Transform:
   m_Children:
   - {fileID: 1323969252}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &82147359
 GameObject:
@@ -406,6 +471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa2906c3b4149c4b8e98703699180b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _wallSectionSnapClosePoint: {fileID: 0}
+  _gridDot: {fileID: 0}
 --- !u!222 &82147362
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -433,6 +500,66 @@ RectTransform:
   m_AnchoredPosition: {x: 874.68896, y: 314.79858}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &102842400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 102842402}
+  - component: {fileID: 102842401}
+  m_Layer: 0
+  m_Name: FireController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &102842401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102842400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585a4b483c803e144bbb9250d4e4d812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomSpawnFireMinBounds: {x: 0, y: 0, z: 0}
+  randomSpawnFireMaxBounds: {x: 0, y: 0, z: 0}
+  spawnOnStart: 0
+  spawnDelayedAutomatically: 0
+  firePrefab: {fileID: 0}
+  firePlaceViews: []
+  currentFireList: []
+  maxFireDistance: 1.4
+  minFireDistance: 0.35
+  timeUntillFireSpread: 15
+  maxFireScale: 0.95
+  onExtinguishionStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onFireDefeated:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &102842402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102842400}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &105225706
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +676,7 @@ MonoBehaviour:
   tillingAdjustersFace:
   - {fileID: 2009320032}
   - {fileID: 940971421}
+  bottomTillingAdjustersFace: []
 --- !u!1 &159196544
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +883,58 @@ MonoBehaviour:
   _dynamicDimensionsButtonLabel: {fileID: 0}
   _angleSnapSlider: {fileID: 0}
   _angleSnapButtonLabel: {fileID: 0}
+--- !u!1 &256841438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1642759641181644905, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+  m_PrefabInstance: {fileID: 46913336}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &256841439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256841438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4153b26428ccf041950b92c057812a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHandHoverBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 269217199}
+        m_TargetAssemblyTypeName: FireView, Assembly-CSharp
+        m_MethodName: ToggleFire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHandHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttachedToHand:
+    m_PersistentCalls:
+      m_Calls: []
+  onDetachedFromHand:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &269217199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8922126478439530002, guid: 97c59f11ec8bb1848b583cd33b0e5159, type: 3}
+  m_PrefabInstance: {fileID: 46913336}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8053a8ebf9156394f9dbad80bd2acf2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &269777238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,7 +1200,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &356092363
 GameObject:
@@ -1051,7 +1231,7 @@ Transform:
   m_Children:
   - {fileID: 1763186571}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &370844841 stripped
 Transform:
@@ -1349,7 +1529,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &409703016
 GameObject:
@@ -1442,7 +1622,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &423162451
 GameObject:
@@ -1711,15 +1891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb1a417d559d3449b222998ae04ade9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  twoDViewButton: {fileID: 0}
-  threeDViewButton: {fileID: 0}
-  buildViewButton: {fileID: 0}
-  finishOfViewButton: {fileID: 0}
-  decorationViewButton: {fileID: 0}
-  elementsCreatorViewButton: {fileID: 0}
-  vrViewButton: {fileID: 0}
-  leftMenuTransform: {fileID: 0}
-  LeftMenuPrefab: {fileID: 4118300707041775824, guid: acb58b10484bcbb4c8da215d5a275108, type: 3}
 --- !u!1 &585488439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,7 +2161,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &655571273
 MonoBehaviour:
@@ -2226,6 +2397,10 @@ MonoBehaviour:
   LoadBareringWallWidth: 30
   PartialWallWidth: 10
   CeilingThickness: 30
+  MinWindowWidth: 20
+  MinWindowHeight: 20
+  MinDoorHeight: 120
+  MinDoorWidth: 40
 --- !u!4 &801959278
 Transform:
   m_ObjectHideFlags: 0
@@ -2239,7 +2414,7 @@ Transform:
   m_Children:
   - {fileID: 8808361923096646133}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &853981644
 GameObject:
@@ -2297,6 +2472,7 @@ MonoBehaviour:
   tillingAdjustersFace:
   - {fileID: 1065041938}
   - {fileID: 377390353}
+  bottomTillingAdjustersFace: []
 --- !u!1 &940971419
 GameObject:
   m_ObjectHideFlags: 0
@@ -3313,6 +3489,34 @@ MonoBehaviour:
     BundlePath: AssetBundles/StandaloneWindows/texture_bundle
     IsLoaded: 0
     Bundle: {fileID: 0}
+  CeilingLightsBundle:
+    BundlePath: AssetBundles/StandaloneWindows/ceiling_lights_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  FloorLightsBundle:
+    BundlePath: AssetBundles/StandaloneWindows/floor_lights_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  LargeAGDBundle:
+    BundlePath: AssetBundles/StandaloneWindows/large_agd_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  CookerBundle:
+    BundlePath: AssetBundles/StandaloneWindows/cooker_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  OvenBundle:
+    BundlePath: AssetBundles/StandaloneWindows/ovens_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  SmallAGDBundle:
+    BundlePath: AssetBundles/StandaloneWindows/small_agd_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  FireplaceBundle:
+    BundlePath: AssetBundles/StandaloneWindows/fireplace_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
   bundlesPack: []
 --- !u!4 &1402110200
 Transform:
@@ -3326,7 +3530,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422869807
 GameObject:
@@ -3392,7 +3596,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &1466065490
 CanvasRenderer:
@@ -3954,15 +4158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c664089fbec2642ab279839c1f6b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  twoDMenu: {fileID: 0}
-  threeDMenu: {fileID: 0}
-  buildMenu: {fileID: 0}
-  finishOfMenu: {fileID: 0}
-  decorationMenu: {fileID: 0}
-  creatorMenu: {fileID: 0}
-  vrMenu: {fileID: 0}
-  mainMenu: {fileID: 0}
-  _isOn: 0
 --- !u!1 &1605917224
 GameObject:
   m_ObjectHideFlags: 0
@@ -4554,7 +4749,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1798047799
 GameObject:
@@ -4599,13 +4794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009feeb994680f34ab44ed720793de67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backGroundWhiteboard: {fileID: 0}
-  modalController: {fileID: 186357581}
-  _inputWidth: {fileID: 0}
-  _inputHeight: {fileID: 0}
-  _whiteboardBackground: {fileID: 0}
-  _gridController: {fileID: 374718309}
-  _canvasController: {fileID: 0}
 --- !u!1 &1825435937
 GameObject:
   m_ObjectHideFlags: 0
@@ -4649,7 +4837,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1825916792
 GameObject:
@@ -4723,6 +4911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fdafb6e8b415b43bfc68e383c6e44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SnapCornersDistance: 5
   DrawingCanvasBackgroundLBCorner: {x: 0, y: 0, z: 0}
   Zoom: 0
   PointerOverUI: 0
@@ -4735,6 +4924,8 @@ MonoBehaviour:
   DynamicDimensions: 0
   WallSectionEndSnap: 1
   WallSectionCloseSnap: 1
+  WallOrderDebugMode: 0
+  CornersFinishingDebugMode: 1
 --- !u!4 &1870348593
 Transform:
   m_ObjectHideFlags: 0
@@ -4829,7 +5020,7 @@ Transform:
   - {fileID: 3797996570140734675}
   - {fileID: 4496936481132479024}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1901018311
 MonoBehaviour:
@@ -4997,7 +5188,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2009320030
 GameObject:
@@ -5407,7 +5598,7 @@ Transform:
   - {fileID: 105225707}
   - {fileID: 370844841}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &173762309311515632
 RectTransform:
@@ -5460,7 +5651,7 @@ Transform:
   - {fileID: 853981645}
   - {fileID: 151186883}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &389612656831002837
 MonoBehaviour:
@@ -5707,6 +5898,7 @@ MonoBehaviour:
   tillingAdjustersFace:
   - {fileID: 9006735191399393002}
   - {fileID: 9006735191175528671}
+  bottomTillingAdjustersFace: []
 --- !u!1 &715849825600242915
 GameObject:
   m_ObjectHideFlags: 0
@@ -6990,7 +7182,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4496936481132479024
 Transform:
@@ -7119,7 +7311,7 @@ Transform:
   - {fileID: 4649979537704888688}
   - {fileID: 1825916793}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4649979537529975025
 GameObject:
@@ -7403,6 +7595,7 @@ MonoBehaviour:
   _lineThickness: 15
   _hoveredUILineRenderer: {fileID: 0}
   _selectedUILineRenderer: {fileID: 0}
+  _allowJambs: 1
 --- !u!1 &5655115791766239520
 GameObject:
   m_ObjectHideFlags: 0
@@ -7477,9 +7670,11 @@ MonoBehaviour:
   _hoveredUILineRenderer: {fileID: 3122084753078438541}
   _selectedUILineRenderer: {fileID: 1616973588436182760}
   _windowPrefab: {fileID: 4143920686646968582, guid: 958f5f7f33e8a9747b64ba536fac76e6, type: 3}
+  _minOffsetFromEdge: 0
   _windowHeightInput: {fileID: 0}
   _windowWidthInput: {fileID: 0}
   _windowsillElevationInput: {fileID: 0}
+  _freeToFitIn: 0
 --- !u!4 &6134573646670601455
 Transform:
   m_ObjectHideFlags: 0
@@ -7573,8 +7768,10 @@ MonoBehaviour:
   _hoveredUILineRenderer: {fileID: 3490898062874304737}
   _selectedUILineRenderer: {fileID: 784939764088158657}
   _doorPrefab: {fileID: 4143920686646968582, guid: d536def7a6735cd4f9fb674d3d7896ce, type: 3}
+  _minOffsetFromEdge: 0
   _doorHeightInput: {fileID: 0}
   _doorWidthInput: {fileID: 0}
+  _freeToFitIn: 0
 --- !u!4 &6842669954839594885
 Transform:
   m_ObjectHideFlags: 0
@@ -8203,6 +8400,7 @@ MonoBehaviour:
   pointLabelPrefab: {fileID: 2382049573047171699, guid: 1ed4d72560d402e458bfc3ca7aea73e6, type: 3}
   storey2DPrefab: {fileID: 2761374197951724073, guid: 42c382875e38e034298151cfae869545, type: 3}
   wallOnCanvasPrefab: {fileID: 4262989346007349834, guid: d43f662cda6a91b4bb7b2f06b81977b6, type: 3}
+  cornerDebuggerPrefab: {fileID: 0}
   _dynamicInputController: {fileID: 0}
   drawingsContainer: {fileID: 8808361923671772504}
   _storeys2D: []
@@ -8221,8 +8419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8355f5dd2c3135e4697a077583e2146a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _drawingsTransform: {fileID: 8808361923671772504}
-  _storeyNamePrefix: Storey_
 --- !u!1 &8808361922914274805
 GameObject:
   m_ObjectHideFlags: 0
