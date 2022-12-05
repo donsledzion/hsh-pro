@@ -575,6 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135054cbeab52a6418e50a3ce27ff1a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collidingPlanes: []
 --- !u!1 &1966166801
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,6 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135054cbeab52a6418e50a3ce27ff1a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collidingPlanes: []
 --- !u!1 &3429499621212252528
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +714,7 @@ GameObject:
   - component: {fileID: 2819279999486157397}
   - component: {fileID: 1042483732472538124}
   - component: {fileID: 8660732252494244872}
+  - component: {fileID: 5288494931314380548}
   m_Layer: 7
   m_Name: PhantomRenderer
   m_TagString: Untagged
@@ -740,7 +743,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3429499621212252528}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -791,10 +794,25 @@ BoxCollider:
   m_GameObject: {fileID: 3429499621212252528}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5288494931314380548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3429499621212252528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b365cbb1b523ce40a168d2510e11ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 2819279999486157397}
+  _collider: {fileID: 8660732252494244872}
+  _joineryType: 1
 --- !u!1 &4032632860194412009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1182,7 @@ MonoBehaviour:
   tillingAdjustersFace:
   - {fileID: 1966166806}
   - {fileID: 1751692579}
+  bottomTillingAdjustersFace: []
   _phantomScaler: {fileID: 6113186822093166473}
 --- !u!1 &8435642805908843173
 GameObject:

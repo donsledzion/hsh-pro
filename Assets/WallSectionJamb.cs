@@ -28,7 +28,7 @@ public class WallSectionJamb : WallSectionAlt
 
             _phantomScaler.RendererTransform.GetComponent<MeshRenderer>().enabled = false;
             _phantomScaler.RendererTransform.GetComponent<BoxCollider>().enabled = false;
-            instance.GetComponent<BoxCollider>().enabled = false;
+            instance.GetComponent<BoxCollider>().isTrigger = true;
         }
         return null;
     }
