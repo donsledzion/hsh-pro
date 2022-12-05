@@ -153,8 +153,8 @@ GameObject:
   m_Component:
   - component: {fileID: 272917455500800893}
   - component: {fileID: 129138080595002873}
-  - component: {fileID: 383829589110073651}
-  m_Layer: 0
+  - component: {fileID: 7768290663735960223}
+  m_Layer: 12
   m_Name: Fridge_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,21 +184,21 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6045662977939775059}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 79.65991, y: 181.7206, z: 71.249}
-  m_Center: {x: 0.07336426, y: 90.79937, z: -35.459568}
---- !u!114 &383829589110073651
+  m_Size: {x: 79.14622, y: 182.11177, z: 70.67438}
+  m_Center: {x: 0.07336044, y: 90.47353, z: -35.7854}
+--- !u!114 &7768290663735960223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6045662977939775059}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d004839176eab004f9b6eb6d118eaa66, type: 3}
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _thumbScale: {x: 1, y: 1, z: 1}
@@ -207,7 +207,12 @@ MonoBehaviour:
     m_Bits: 1024
   _collisionLayer:
     serializedVersion: 2
-    m_Bits: 13184
+    m_Bits: 4480
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &6848787921564117479
 GameObject:
   m_ObjectHideFlags: 0
