@@ -17,6 +17,7 @@ public class ReferenceController : MonoBehaviour
     [SerializeField] WhiteboardBackgroundInfo _whiteboardBackgroundInfo;
     [SerializeField] StoreyPointsCollector _storeyPointsCollector;
     [SerializeField] BuildingDestroyer _buildingDestroyer;
+    [SerializeField] Builder3D _builder3D;
     public GalleryOfItems GalleryOfItems => _galleryOfItems;
     public Item3DViewer Item3DViewer => _item3DViewer;
     public EquipmentInsertionMode EquipmentInsertionMode => _equipmentInsertionMode;
@@ -27,6 +28,7 @@ public class ReferenceController : MonoBehaviour
     public WhiteboardBackgroundInfo WhiteboardBackgroundInfo => _whiteboardBackgroundInfo;
     public StoreyPointsCollector StoreyPointsCollector => _storeyPointsCollector;
     public BuildingDestroyer BuildingDestroyer => _buildingDestroyer;
+    public Builder3D Builder3D => _builder3D;
 
     private void Awake()
     {

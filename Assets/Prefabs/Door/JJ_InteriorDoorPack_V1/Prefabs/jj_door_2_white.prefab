@@ -199,9 +199,10 @@ GameObject:
   - component: {fileID: 23222932183172088}
   - component: {fileID: -5170836328264035042}
   - component: {fileID: 819349064923097753}
-  m_Layer: 0
+  - component: {fileID: -2740950492445983627}
+  m_Layer: 16
   m_Name: jj_door_2_white
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,9 +297,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 9037914367004947671}
+  _openState: jj_door_white_open
+  _closeState: jj_door_white_close
   _isOpen: 0
   _isClosed: 1
   _isToggling: 0
+--- !u!114 &-2740950492445983627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526074303579916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54e46e675694454b91894772d132141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _joineryType: 1
 --- !u!1 &1790329119015780
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentSelectionController : MonoBehaviour
-{
-    [SerializeField] List<EquipmentItem> _selectedItems;
-    [SerializeField] List<SelectedItem> _selectedItems2;
+public class JoinerySelectionController : MonoBehaviour
+{    
+    [SerializeField] List<SelectedItem> _selectedJoinery;
     [SerializeField] GameObject _selectedItemPrefab;
     protected Transform _selection;
     [SerializeField] Material _selectedMaterial;
@@ -23,64 +22,64 @@ public class EquipmentSelectionController : MonoBehaviour
             _selection = _hit.transform;
         }
 
-        if(_selection != null)
+        if (_selection != null)
         {
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                SelectItem(_selection.GetComponent<EquipmentItem>());
+                SelectItem(_selection.GetComponent<Joinery>());
             }
         }
     }
 
-    public void SelectItem(EquipmentItem item)
+    public void SelectItem(Joinery item)
     {
-        foreach(SelectedItem i in _selectedItems2)
+        foreach (SelectedItem i in _selectedJoinery)
         {
             if (i.Phantom == item.gameObject)
             {
                 UnselectItem(i);
                 return;
             }
-        }        
-        GameObject duplicate = Instantiate(item.gameObject,item.transform.parent);
+        }
+        GameObject duplicate = Instantiate(item.gameObject, item.transform.parent);
         RedrawMaterials(duplicate.transform, _selectedMaterial);
 
-        GameObject selectedGameObject = Instantiate(_selectedItemPrefab,item.transform);
+        GameObject selectedGameObject = Instantiate(_selectedItemPrefab, item.transform);
         SelectedItem selectedItem = selectedGameObject.GetComponent<SelectedItem>();
         selectedItem.Phantom = duplicate;
         selectedItem.SelectedGameObject = item.gameObject;
         item.gameObject.SetActive(false);
-        _selectedItems2.Add(selectedItem);
+        _selectedJoinery.Add(selectedItem);
     }
 
     public void UnselectItem(SelectedItem item)
     {
         item.SelectedGameObject.SetActive(true);
         Destroy(item.Phantom);
-        _selectedItems2.Remove(item);
+        _selectedJoinery.Remove(item);
     }
 
     [ContextMenu("UnselectAll")]
     public void UnselectAll()
     {
-        foreach(SelectedItem item in _selectedItems2)
+        foreach (SelectedItem item in _selectedJoinery)
         {
             item.SelectedGameObject.SetActive(true);
             Destroy(item.Phantom);
         }
-        _selectedItems2.Clear();
+        _selectedJoinery.Clear();
     }
 
 
     [ContextMenu("Delete Selected")]
     public void DeleteSelected()
     {
-        foreach (SelectedItem item in _selectedItems2)
+        foreach (SelectedItem item in _selectedJoinery)
         {
-            item.SelectedGameObject.SetActive(true);
-            string guid = item.SelectedGameObject.GetComponent<EquipmentItem>().GUID;
+            /*item.SelectedGameObject.SetActive(true);
+            string guid = item.SelectedGameObject.GetComponent<Joinery>().GUID;
             Debug.Log("Trying to remove equipment item with guid: " + guid);
-            if(GameManager.ins.Building.RemoveEquipmentItem(guid))
+            if (GameManager.ins.Building.RemoveEquipmentItem(guid))
             {
                 Debug.Log("Equipment item with guid: " + guid + " removed from model successfuly");
             }
@@ -89,9 +88,25 @@ public class EquipmentSelectionController : MonoBehaviour
                 Debug.LogWarning("Could not remove equipment with guid: " + guid);
             }
             Destroy(item.Phantom);
+            Destroy(item.SelectedGameObject);*/
+
+            WallSectionAlt section3D = item.GetComponentInParent<WallSectionAlt>();
+            Jamb jamb = section3D.Section as Jamb;
+            if (jamb != null)
+            {
+                Debug.Log("Found Jamb");
+                jamb.RemoveJoinery();
+            }
+            else
+            {
+                Debug.Log("Couldn't find Jamb!");
+            }
+
+            Destroy(item.Phantom);
             Destroy(item.SelectedGameObject);
+
         }
-        _selectedItems2.Clear();
+        _selectedJoinery.Clear();
 
     }
 
