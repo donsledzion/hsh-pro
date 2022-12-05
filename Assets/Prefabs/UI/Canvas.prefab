@@ -31975,7 +31975,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   templateItemPrefab: {fileID: 5005003042438793610, guid: 32a9a47866e4b194db6cf74f2cb5c7d3, type: 3}
-  assetNamesList: []
+  assetNamesList:
+  - small_agd_bundle
 --- !u!1 &3693612667157680212
 GameObject:
   m_ObjectHideFlags: 0
@@ -52762,6 +52763,7 @@ GameObject:
   - component: {fileID: 4969373844301457700}
   - component: {fileID: 6114639080939736837}
   - component: {fileID: 1081491271424073311}
+  - component: {fileID: 592946663}
   m_Layer: 5
   m_Name: Gallery Of Items
   m_TagString: Untagged
@@ -52967,6 +52969,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25eba4e7167047b488c9ef52898814bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &592946663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969373844301457689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95c044a6be8e384bbe57ce01e90a40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4969373844308191550
@@ -61951,15 +61965,15 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 6989627498226010095}
           m_TargetAssemblyTypeName: ToggleOnOff, Assembly-CSharp
-          m_MethodName: ToggleObject
-          m_Mode: 1
+          m_MethodName: ToggleEquipmentSelection
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
   - eventID: 0
     callback:
