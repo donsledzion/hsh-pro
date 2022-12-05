@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436eea8ab333b7f47b64da6b385eb118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadOnStart: 1
+  loadOnStart: 0
   BathroomBundle:
     BundlePath: AssetBundles/StandaloneWindows/bathroom_bundle
     IsLoaded: 0
@@ -99,6 +99,30 @@ MonoBehaviour:
     Bundle: {fileID: 0}
   WallSurfacesBundle:
     BundlePath: AssetBundles/StandaloneWindows/texture_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  CeilingLightsBundle:
+    BundlePath: AssetBundles/StandaloneWindows/ceiling_lights_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  FloorLightsBundle:
+    BundlePath: AssetBundles/StandaloneWindows/floor_lights_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  LargeAGDBundle:
+    BundlePath: AssetBundles/StandaloneWindows/large_agd_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  CookerBundle:
+    BundlePath: AssetBundles/StandaloneWindows/cooker_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  OvenBundle:
+    BundlePath: AssetBundles/StandaloneWindows/ovens_bundle
+    IsLoaded: 0
+    Bundle: {fileID: 0}
+  SmallAGDBundle:
+    BundlePath: AssetBundles/StandaloneWindows/small_agd_bundle
     IsLoaded: 0
     Bundle: {fileID: 0}
   bundlesPack: []
@@ -205,6 +229,10 @@ MonoBehaviour:
   LoadBareringWallWidth: 30
   PartialWallWidth: 10
   CeilingThickness: 30
+  MinWindowWidth: 20
+  MinWindowHeight: 20
+  MinDoorHeight: 120
+  MinDoorWidth: 40
 --- !u!1 &2315470059237226862
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,13 +18,13 @@ namespace Walls2D
             _orderInWall = -1;
         }
 
-        public SectionStraight(Vector2[] _points)
+        /*public SectionStraight(Vector2[] _points)
         {
             _startPoint = new BasePoint(_points[0],this);
             _endPoint = new BasePoint(_points[1],this);
             _paintingSetup = new StraightSectionPaintingSetup();
             _orderInWall = -1;
-        }
+        }*/
         public SectionStraight(Vector2 startPoint, Vector2 endPoint)
         {
             _startPoint = new BasePoint(startPoint,this);
