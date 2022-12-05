@@ -38,6 +38,7 @@ public class EquipmentItemInit : Editor
             collider = go.AddComponent<BoxCollider>();
         collider.enabled = true;
         collider.isTrigger = true;
+        collider.size = new Vector3(100, 100, 100);
 
         return go;
     }
@@ -94,6 +95,8 @@ public class EquipmentItemInit : Editor
             collider = go.AddComponent<BoxCollider>();
         collider.enabled = true;
         collider.isTrigger = true;
+        collider.size = new Vector3(100, 100, 100);
+
         equipmentItem.enabled = false;
 
         return go;
