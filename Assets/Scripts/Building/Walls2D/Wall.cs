@@ -36,6 +36,7 @@ namespace Walls2D
                 newSections.Add(new SectionStraight(linePoints[i], linePoints[i + 1]));
             }
             _wallSections = newSections.ToArray();
+            AssignSections();
             PutSectionsInOrder();
             _orderInStorey = -1;
         }

@@ -11,7 +11,7 @@ public class WallSectionAlt : MonoBehaviour
     [SerializeField] protected List<TillingAdjuster> tillingAdjustersTop = new List<TillingAdjuster>();
     [SerializeField] protected List<TillingAdjuster> tillingAdjustersHead = new List<TillingAdjuster>();
     [SerializeField] protected List<TillingAdjuster> tillingAdjustersFace = new List<TillingAdjuster>();
-
+    [SerializeField] protected List<TillingAdjuster> bottomTillingAdjustersFace = new List<TillingAdjuster>();
 
     public WallSection Section { get { return _section; } set { _section = value; } }
 
@@ -48,6 +48,11 @@ public class WallSectionAlt : MonoBehaviour
             Vector2 textureScale = new Vector2(_scallableChild.localScale.x, _scallableChild.localScale.y);
             adjuster.SetTilling(textureScale);
         }
+        foreach(TillingAdjuster adjuster in bottomTillingAdjustersFace)
+        {
+            Vector2 textureScale = new Vector2(_scallableChild.localScale.x, _scallableChild.localScale.y);
+            adjuster.SetTilling(textureScale);
+        }
     }
 
     public void ApplyPaintings()
@@ -65,6 +70,12 @@ public class WallSectionAlt : MonoBehaviour
                 plane.GetComponent<MeshRenderer>().material = assignedMaterial;
         }
         foreach(TillingAdjuster plane in tillingAdjustersFace)
+        {
+            Material assignedMaterial = PlaneNameToMaterial(Section, plane.gameObject.name);
+            if (assignedMaterial != null)
+                plane.GetComponent<MeshRenderer>().material = assignedMaterial;
+        }
+        foreach(TillingAdjuster plane in bottomTillingAdjustersFace)
         {
             Material assignedMaterial = PlaneNameToMaterial(Section, plane.gameObject.name);
             if (assignedMaterial != null)
