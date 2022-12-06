@@ -46,46 +46,26 @@ public class SectionStraight2D : WallSection2D
 
     private void HandleStartSite()
     {
-        List<BasePoint> pointsAtStartPosition = CurrentStorey.BasePointsAtPosition(StartPoint, typeof(SectionStraight));
-        if (pointsAtStartPosition.Count == 2)
+        List<BasePoint> pointsAtPosition = CurrentStorey.BasePointsAtPosition(StartPoint, typeof(SectionStraight));
+        if (pointsAtPosition.Count == 2)
         {
-            WallSection otherSection = null;
-            foreach (BasePoint point in pointsAtStartPosition)
-            {
-                if (point.WallSection != null && point.WallSection != this.WallSection)
-                    otherSection = point.WallSection;
-            }
+            WallSection otherSection = GetTheOtherSection(pointsAtPosition);
             if (otherSection == null)
             {
                 Debug.LogWarning("Other section is null: exiting!");
                 return;
             }
-            //Debug.Log("Start Section: Angle crossing with other section: " + WallSection.AngleBetweenDeg(otherSection).ToString());
-
+            // ============================================================================================
             float angDeg = WallSection.AngleBetweenDeg(otherSection);
-            float angRad = angDeg * Mathf.PI / 180;
-            float angCompDeg = 180f - angDeg;
-            float angCompRad = angCompDeg * Mathf.PI / 180;
+            float angCompRad = (180f - angDeg) * Mathf.PI / 180;
 
-            Vector2 V1 = new Vector2();
-            Vector2 V2 = new Vector2((otherSection.Thickness / 2f) / Mathf.Sin(angCompRad), 0f);
-
-            if ((otherSection.StartPoint.Position - WallSection.StartPoint.Position).magnitude <= 1f)
-            {                
-                V1 = new Vector2(-(Thickness /2f)*Mathf.Cos(angCompRad)/Mathf.Sin(angCompRad),Thickness/2);
-                if (angDeg > 1 && angDeg < 89)
-                    V1 = new Vector2(-(Thickness / 2f) * Mathf.Sin(angCompRad-Mathf.PI/2) / Mathf.Cos(angCompRad - Mathf.PI / 2), Thickness / 2);
-            }
-            else
-            {
-                V1 = new Vector2(-(Thickness / 2f) * Mathf.Cos(angCompRad) / Mathf.Sin(angCompRad), Thickness / 2);
-                if (angDeg > 1 && angDeg < 89)
-                    V1 = new Vector2(-(Thickness / 2f) * Mathf.Sin(angCompRad - Mathf.PI / 2) / Mathf.Cos(angCompRad - Mathf.PI / 2), Thickness / 2);
-            }
+            Vector2[] Vectors = SetupVectorsForOption2(angDeg, angCompRad, otherSection);
+            Vector2 V1 = Vectors[0];
+            Vector2 V2 = Vectors[1];
 
             GameObject innerCornerDot = Instantiate(_cornerMarkerDotPrefab, transform);
             GameObject outerCornerDot = Instantiate(_cornerMarkerDotPrefab, transform);
-            Debug.Log("Angles: AngCompDeg: " + angCompDeg + " | AngCompRad: " + angCompRad + " | AngDeg: " + angDeg + "),  V1: " + V1 + " | V2: " + V2);
+            Debug.Log("Angles: AngCompRad: " + angCompRad + " | AngDeg: " + angDeg + "),  V1: " + V1 + " | V2: " + V2);
             if (Mathf.Abs(angDeg - 90f) <= 1f)
             {
                 innerCornerDot.transform.localPosition = new Vector3(otherSection.Thickness / 2f, WallSection.Thickness / 2f);
@@ -185,44 +165,56 @@ public class SectionStraight2D : WallSection2D
         }
 
     }
+
+    WallSection GetTheOtherSection(List<BasePoint> pointsAtPosition)
+    {
+        WallSection otherSection = null;
+        foreach (BasePoint point in pointsAtPosition)
+        {
+            if (point.WallSection != null && point.WallSection != this.WallSection)
+                otherSection = point.WallSection;
+        }
+        return otherSection;
+    }
+
+    Vector2[] SetupVectorsForOption2(float angDeg, float angCompRad, WallSection otherSection)
+    {
+        Vector2 V1 = new Vector2();
+        Vector2 V2 = new Vector2((otherSection.Thickness / 2f) / Mathf.Sin(angCompRad), 0f);
+        if ((otherSection.StartPoint.Position - WallSection.EndPoint.Position).magnitude <= 5f)
+        {
+            V1 = new Vector2(-(Thickness / 2f) * Mathf.Cos(angCompRad) / Mathf.Sin(angCompRad), Thickness / 2);
+            if (angDeg > 1 && angDeg < 89)
+                V1 = new Vector2(-(Thickness / 2f) * Mathf.Sin(angCompRad - Mathf.PI / 2) / Mathf.Cos(angCompRad - Mathf.PI / 2), Thickness / 2);
+        }
+        else
+        {
+            V1 = new Vector2(-(Thickness / 2f) * Mathf.Cos(angCompRad) / Mathf.Sin(angCompRad), Thickness / 2);
+            if (angDeg > 1 && angDeg < 89)
+                V1 = new Vector2(-(Thickness / 2f) * Mathf.Sin(angCompRad - Mathf.PI / 2) / Mathf.Cos(angCompRad - Mathf.PI / 2), Thickness / 2);
+        }
+        return new Vector2[2] { V1, V2};
+    }
+
     private void HandleEndSite()
     {
-        List<BasePoint> pointsAtEndPosition = CurrentStorey.BasePointsAtPosition(EndPoint, typeof(SectionStraight));
-        if (pointsAtEndPosition.Count == 2)
+        List<BasePoint> pointsAtPosition = CurrentStorey.BasePointsAtPosition(EndPoint, typeof(SectionStraight));
+        if (pointsAtPosition.Count == 2)
         {
-            //Debug.Log("HandleEndSite 1");
-            WallSection otherSection = null;
-            foreach (BasePoint point in pointsAtEndPosition)
-            {
-                if (point.WallSection != null && point.WallSection != this.WallSection)
-                    otherSection = point.WallSection;
-            }
+            WallSection otherSection = GetTheOtherSection(pointsAtPosition);
             if (otherSection == null)
             {
                 Debug.LogWarning("Other section is null: exiting!");
                 return;
             }
-            //Debug.Log("Start Section: Angle crossing with other section: " + WallSection.AngleBetweenDeg(otherSection).ToString());
-
+            
             float angDeg = WallSection.AngleBetweenDeg(otherSection);
-            float angRad = angDeg * Mathf.PI / 180;
-            float angCompDeg = 180f - angDeg;
-            float angCompRad = angCompDeg * Mathf.PI / 180;
+            float angCompRad = (180f - angDeg) * Mathf.PI / 180;
 
-            Vector2 V1 = new Vector2();
-            Vector2 V2 = new Vector2((otherSection.Thickness / 2f) / Mathf.Sin(angCompRad),0f);
-            if ((otherSection.StartPoint.Position - WallSection.EndPoint.Position).magnitude <= 5f)
-            {
-                V1 = new Vector2(-(Thickness / 2f) * Mathf.Cos(angCompRad) / Mathf.Sin(angCompRad), Thickness / 2);
-                if (angDeg > 1 && angDeg < 89)
-                    V1 = new Vector2(-(Thickness / 2f) * Mathf.Sin(angCompRad - Mathf.PI / 2) / Mathf.Cos(angCompRad - Mathf.PI / 2), Thickness / 2);
-            }
-            else
-            {
-                V1 = new Vector2(-(Thickness / 2f) * Mathf.Cos(angCompRad) / Mathf.Sin(angCompRad), Thickness / 2);
-                if (angDeg > 1 && angDeg < 89)
-                    V1 = new Vector2(-(Thickness / 2f) * Mathf.Sin(angCompRad - Mathf.PI / 2) / Mathf.Cos(angCompRad - Mathf.PI / 2), Thickness / 2);
-            }
+            Vector2[] Vectors = SetupVectorsForOption2(angDeg,angCompRad,otherSection);
+            Vector2 V1 = Vectors[0];
+            Vector2 V2 = Vectors[1];
+
             GameObject innerCornerDot = Instantiate(_cornerMarkerDotPrefab, transform);
             GameObject outerCornerDot = Instantiate(_cornerMarkerDotPrefab, transform);
 
