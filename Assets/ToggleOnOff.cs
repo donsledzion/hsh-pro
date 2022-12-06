@@ -47,7 +47,7 @@ public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
 
             ToggleColor(isOn);
 
-            ToggleEquipmentSelection(isOn);
+            ToggleObject();
 
         }
 
