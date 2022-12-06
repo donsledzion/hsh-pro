@@ -222,37 +222,31 @@ public class SectionStraight2D : WallSection2D
             {
                 innerCornerDot.transform.localPosition = new Vector3(otherSection.Thickness / 2f, WallSection.Thickness / 2f);
                 outerCornerDot.transform.localPosition = new Vector3(-otherSection.Thickness / 2f, -WallSection.Thickness / 2f);
-                Debug.Log("END: Option: Angle: " + angDeg + " + assigning!");
             }
             else if (Mathf.Abs(angDeg - 270f) <= 1f)
             {
                 innerCornerDot.transform.localPosition = new Vector3(otherSection.Thickness / 2f, -WallSection.Thickness / 2f);
                 outerCornerDot.transform.localPosition = new Vector3(-otherSection.Thickness / 2f, WallSection.Thickness / 2f);
-                Debug.Log("END: Option: Angle: " + angDeg + " + assigning!");
             }
             else if (angDeg > 1f && angDeg < 89f)
             {
-                innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f); // done
-                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f); // done
-                Debug.Log("END: Option: Angle: " + angDeg + " + assigning!");
+                innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
+                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
             }
             else if (angDeg > 91f && angDeg < 179f)
             {
                 innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(-V1.x, -V1.y, 0f);
                 outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(V1.x, V1.y, 0f);
-                Debug.Log("END: Option: Angle: " + angDeg + " + assigning!");
             }
-            else if (angDeg > 181f && angDeg < 269f) // ===================== WORKING ON IT =====================================================================
+            else if (angDeg > 181f && angDeg < 269f) 
             {
-                innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f); //
-                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f); //
-                Debug.Log("END: Option: Angle: " + angDeg + " + assigning!");
+                innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
+                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
             }
             else if (angDeg > 271f && angDeg < 359f)
             {
                 innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
                 outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
-                Debug.Log("END: Option: Angle: " + angDeg + " + assigning!");
             }
 
             innerCornerDot.transform.localScale = Vector3.one * .75f;
@@ -324,12 +318,10 @@ public class SectionStraight2D : WallSection2D
     }
 
     private void HandleStart()
-    {
-        
+    {        
         List<BasePoint> pointsAtStartPosition = CurrentStorey.BasePointsAtPosition(StartPoint, typeof(SectionStraight));
         if (pointsAtStartPosition.Count == 1)
             _start.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
-
     }
 
     private void HandleEnd()
@@ -353,7 +345,6 @@ public class SectionStraight2D : WallSection2D
                 Debug.LogWarning("Other section is null: exiting!");
                 return;
             }
-            //Debug.Log("End Section: Angle crossing with other section: " + WallSection.AngleBetweenDeg(otherSection).ToString());
         }
     }
 }
