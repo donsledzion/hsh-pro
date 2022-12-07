@@ -103,6 +103,7 @@ public class EquipmentInsertionMode : MonoBehaviour
             if(_equipmentInstance == null)
             {
                 _equipmentInstance = Instantiate(_equipmentPrefab,_selection);
+                SetCollidersTrigger(_equipmentInstance, true);
                 WallEquipmentItem item = _equipmentInstance.GetComponent<WallEquipmentItem>();
                 if (item != null)
                     item.enabled = true;
@@ -112,6 +113,12 @@ public class EquipmentInsertionMode : MonoBehaviour
         {
             DisposeOfEquipmentInstance();
         }
+    }
+
+    void SetCollidersTrigger(GameObject gameObject, bool state)
+    {
+        foreach(Collider collider in gameObject.GetComponentsInChildren<Collider>())
+            collider.isTrigger = state;
     }
 
     private void AbortInsertion()

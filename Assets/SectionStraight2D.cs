@@ -17,9 +17,21 @@ public class SectionStraight2D : WallSection2D
     Color debugDoubleEndedOuter = Color.blue;
     Color debugDoubleStraight = Color.green;
 
+    bool _startHandled = false;
+    bool _endHandled = false;
+
     public bool hasBeenDrawn = false;
 
     [SerializeField] GameObject _cornerMarkerDotPrefab;
+
+    public void SetStartHandled()
+    {
+        _startHandled = true;
+    }
+    public void SetEndHandled()
+    {
+        _endHandled = true;
+    }
 
     public override void DrawOnCanvas(WallSection section)
     {
@@ -55,6 +67,7 @@ public class SectionStraight2D : WallSection2D
                 Debug.LogWarning("Other section is null: exiting!");
                 return;
             }
+            SetStartHandled();
             // ============================================================================================
             float angDeg = WallSection.AngleBetweenDeg(otherSection);
             float angCompRad = (180f - angDeg) * Mathf.PI / 180;
@@ -207,7 +220,7 @@ public class SectionStraight2D : WallSection2D
                 Debug.LogWarning("Other section is null: exiting!");
                 return;
             }
-            
+            SetEndHandled();
             float angDeg = WallSection.AngleBetweenDeg(otherSection);
             float angCompRad = (180f - angDeg) * Mathf.PI / 180;
 
@@ -320,22 +333,22 @@ public class SectionStraight2D : WallSection2D
     private void HandleStart()
     {        
         List<BasePoint> pointsAtStartPosition = CurrentStorey.BasePointsAtPosition(StartPoint, typeof(SectionStraight));
-        if (pointsAtStartPosition.Count == 1)
+        if (pointsAtStartPosition.Count == 1 || pointsAtStartPosition.Count > 2)
             _start.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
     }
 
     private void HandleEnd()
     {
-        List<BasePoint> pointsAtEndPosition = CurrentStorey.BasePointsAtPosition(EndPoint, typeof(SectionStraight));
-        if(pointsAtEndPosition.Count == 1)
+        List<BasePoint> pointsAtPosition = CurrentStorey.BasePointsAtPosition(EndPoint, typeof(SectionStraight));
+        if (pointsAtPosition.Count == 1 || pointsAtPosition.Count > 2)
         {
             _end.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
             _end.localPosition = new Vector3(Lenght * _scaleFactor, 0f, 0f);
         }
-        else if(pointsAtEndPosition.Count == 2)
+        else if(pointsAtPosition.Count == 2)
         {
             WallSection otherSection = null;
-            foreach (BasePoint point in pointsAtEndPosition)
+            foreach (BasePoint point in pointsAtPosition)
             {
                 if (point.WallSection != null && point.WallSection != this.WallSection)
                     otherSection = point.WallSection;
