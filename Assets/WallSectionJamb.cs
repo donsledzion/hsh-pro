@@ -21,7 +21,8 @@ public class WallSectionJamb : WallSectionAlt
             instance.transform.localScale = new Vector3(
                 scaleFactor.x * jambSize.x / prefabSize.x,
                 scaleFactor.y * jambSize.y / prefabSize.y,
-                10 * jambSize.z / prefabSize.z);
+                scaleFactor.x * jambSize.x / prefabSize.x
+                );
             instance.transform.SetParent(_phantomScaler.RendererTransform);
             instance.transform.localPosition = Vector3.zero;
             instance.transform.localRotation = Quaternion.identity;

@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,8 @@ public class DoorOpener : MonoBehaviour
     [SerializeField] bool _isOpen = false;
     [SerializeField] bool _isClosed = true;
     [SerializeField] bool _isToggling = false;
-
+    [SerializeField] AudioTrigger _openingAudioTrigger;
+    [SerializeField] AudioTrigger _closingAudioTrigger;
 
     [ContextMenu("Toggle")]
     public void Toggle()
@@ -29,6 +31,7 @@ public class DoorOpener : MonoBehaviour
             _isToggling = true;
             animator.enabled = true;                                                        
             animator.Play(_openState);
+            _openingAudioTrigger.PlayAudio();
         }
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
         _isClosed = false;
@@ -44,6 +47,7 @@ public class DoorOpener : MonoBehaviour
             _isToggling = true;
             animator.enabled = true;
             animator.Play(_closeState);
+            _closingAudioTrigger.PlayAudio();
         }
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
         _isOpen = false;

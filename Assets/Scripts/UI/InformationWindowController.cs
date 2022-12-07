@@ -12,6 +12,7 @@ public class InformationWindowController : MonoBehaviour
     public TextMeshProUGUI textToDisplaySection;
 
 
+
    public void Awake()
     {
         if (_instance != null && _instance != this)
@@ -22,20 +23,23 @@ public class InformationWindowController : MonoBehaviour
         }
     }
 
-    public void ShowToolTipTimer(string header, string textToDisplay)
+    public void ShowToolTipTimer(string header, string textToDisplay, Vector2 position)
     {
         gameObject.SetActive(true);
         headerSection.text = header;
         textToDisplaySection.text = textToDisplay;
+        transform.position = new Vector3(position.x, position.y);
         Invoke("HideToolTip", 3.0f);
+
     }
 
-    public void ShowToolTip(string header, string textToDisplay)
+    public void ShowToolTip(string header, string textToDisplay, Vector2 position)
     {
 
         gameObject.SetActive(true);
         headerSection.text = header;
         textToDisplaySection.text = textToDisplay;
+        transform.position = new Vector3(position.x, position.y);
     }
 
     public void HideToolTip()

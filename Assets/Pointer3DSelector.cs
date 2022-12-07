@@ -50,7 +50,6 @@ public class Pointer3DSelector : MonoBehaviour
     {
         _selection.GetComponent<MeshRenderer>().enabled = false;
         _selection.GetComponent<BoxCollider>().enabled = false;
-
         
         WallSectionAlt section3D = _selection.GetComponentInParent<WallSectionAlt>();
 
