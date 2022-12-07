@@ -26,6 +26,20 @@ public class Storey2D : MonoBehaviour
         set { _storeyReference = value; }
     }
 
+
+    public List<WallSection2D> wallSections2D
+    {
+        get
+        {
+            List<WallSection2D> wallSections = new List<WallSection2D>();
+            foreach(Wall2D wall in _walls2D)
+            {
+                wallSections.AddRange(wall.WallSections2D);
+            }
+            return wallSections;
+        }
+    }
+
     public List<WallOnCanvas> WallsOnCanvas { get { return _wallsOnCanvas; } }
 
     public Transform LabelsContainer { get { return _labelsContainer; } }

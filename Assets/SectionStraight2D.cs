@@ -59,7 +59,7 @@ public class SectionStraight2D : WallSection2D
     private void HandleStartSite()
     {
         List<BasePoint> pointsAtPosition = CurrentStorey.BasePointsAtPosition(StartPoint, typeof(SectionStraight));
-        if (pointsAtPosition.Count == 2)
+        if (pointsAtPosition.Count >= 2)
         {
             WallSection otherSection = GetTheOtherSection(pointsAtPosition);
             if (otherSection == null)
@@ -194,25 +194,47 @@ public class SectionStraight2D : WallSection2D
     {
         Vector2 V1 = new Vector2();
         Vector2 V2 = new Vector2((otherSection.Thickness / 2f) / Mathf.Sin(angCompRad), 0f);
+        SectionStraight2D otherSection2D = OtherSection(otherSection);
         if ((otherSection.StartPoint.Position - WallSection.EndPoint.Position).magnitude <= 5f)
         {
             V1 = new Vector2(-(Thickness / 2f) * Mathf.Cos(angCompRad) / Mathf.Sin(angCompRad), Thickness / 2);
             if (angDeg > 1 && angDeg < 89)
                 V1 = new Vector2(-(Thickness / 2f) * Mathf.Sin(angCompRad - Mathf.PI / 2) / Mathf.Cos(angCompRad - Mathf.PI / 2), Thickness / 2);
+            if(otherSection2D != null)
+                otherSection2D.SetStartHandled();
         }
         else
         {
             V1 = new Vector2(-(Thickness / 2f) * Mathf.Cos(angCompRad) / Mathf.Sin(angCompRad), Thickness / 2);
             if (angDeg > 1 && angDeg < 89)
                 V1 = new Vector2(-(Thickness / 2f) * Mathf.Sin(angCompRad - Mathf.PI / 2) / Mathf.Cos(angCompRad - Mathf.PI / 2), Thickness / 2);
+            if (otherSection2D != null)
+                otherSection2D.SetEndHandled();
         }
         return new Vector2[2] { V1, V2};
+    }
+
+    SectionStraight2D OtherSection(WallSection otherSection)
+    {
+        SectionStraight2D other2DSection = null;
+        Storey2D myStorey = GetComponentInParent<Storey2D>();
+        foreach(WallSection2D section in myStorey.wallSections2D)
+        {
+            if(section.GetType() == typeof(SectionStraight2D))
+            {
+                if (section.WallSection == otherSection)
+                    return section as SectionStraight2D;
+            }
+        }
+
+
+        return other2DSection;
     }
 
     private void HandleEndSite()
     {
         List<BasePoint> pointsAtPosition = CurrentStorey.BasePointsAtPosition(EndPoint, typeof(SectionStraight));
-        if (pointsAtPosition.Count == 2)
+        if (pointsAtPosition.Count >= 2)
         {
             WallSection otherSection = GetTheOtherSection(pointsAtPosition);
             if (otherSection == null)
@@ -333,14 +355,14 @@ public class SectionStraight2D : WallSection2D
     private void HandleStart()
     {        
         List<BasePoint> pointsAtStartPosition = CurrentStorey.BasePointsAtPosition(StartPoint, typeof(SectionStraight));
-        if (pointsAtStartPosition.Count == 1 || pointsAtStartPosition.Count > 2)
+        if (pointsAtStartPosition.Count == 1/* || pointsAtStartPosition.Count > 2*/)
             _start.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
     }
 
     private void HandleEnd()
     {
         List<BasePoint> pointsAtPosition = CurrentStorey.BasePointsAtPosition(EndPoint, typeof(SectionStraight));
-        if (pointsAtPosition.Count == 1 || pointsAtPosition.Count > 2)
+        if (pointsAtPosition.Count == 1/* || pointsAtPosition.Count > 2*/)
         {
             _end.localScale = new Vector3(1f, Thickness * _scaleFactor, 1f);
             _end.localPosition = new Vector3(Lenght * _scaleFactor, 0f, 0f);

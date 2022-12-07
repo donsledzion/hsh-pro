@@ -15,8 +15,9 @@ public class Wall2D : MonoBehaviour
 
     Wall _wall;
 
+    List<WallSection2D> _sections = new List<WallSection2D>();
 
-
+    public List<WallSection2D> WallSections2D => _sections;
     public void DrawOnCanvas(Wall wall)
     {
         _wall = wall;
@@ -39,7 +40,8 @@ public class Wall2D : MonoBehaviour
                 sectionInstance = Instantiate(sectionWindowjambPrefab, transform);
             }
             section.AssignToWall(wall);
-            WallSection2D section2D = sectionInstance.GetComponent<WallSection2D>();            
+            WallSection2D section2D = sectionInstance.GetComponent<WallSection2D>();
+            _sections.Add(section2D);
             section2D.DrawOnCanvas(section);
         }
     }
