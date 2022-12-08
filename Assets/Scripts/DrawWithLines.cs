@@ -31,9 +31,8 @@ public abstract class DrawWithLines : DrawOnCanvas
         {
             BreakLine();
         }
-
-
-        _dynamicInputController.DynamicInput();
+        if(GameManager.ins.DynamicDimensions)
+            _dynamicInputController.DynamicInput();
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {

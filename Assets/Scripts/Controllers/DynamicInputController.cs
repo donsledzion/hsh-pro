@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DynamicInputController : MonoBehaviour
 {
     int _dynamicInputLength = 0;
     string _dynamicInputString = "";
+    [SerializeField] GameObject inputLabelPrefab;
+    DynamicInputLabel inputLabelInstance;
 
     public string DynamicInputString
     {
@@ -31,6 +32,14 @@ public class DynamicInputController : MonoBehaviour
         }
     }
 
+    public void DisposeOfLabel()
+    {
+        GameObject labelObject = inputLabelInstance.gameObject;
+        Destroy(inputLabelInstance);
+        Destroy(labelObject);
+        inputLabelInstance = null;
+    }
+
     public void ToggleDynamicInput()
     {
         GameManager.ins.ToggleDynamicDimensions();
@@ -40,11 +49,22 @@ public class DynamicInputController : MonoBehaviour
     {
         _dynamicInputLength = 0;
         _dynamicInputString = "";
+        if(inputLabelInstance == null)
+            inputLabelInstance.SetText(_dynamicInputString);
         Debug.Log("Total: " + _dynamicInputString);
     }
 
     public void DynamicInput()
     {
+        if (!GameManager.ins.DynamicDimensions) return;
+        if (inputLabelInstance == null)
+        {
+            GameObject labelGO = Instantiate(inputLabelPrefab, Drawing2DController.ins.transform);
+            inputLabelInstance = labelGO.GetComponent<DynamicInputLabel>();
+        }
+        if(GameManager.ins.PointerOverUI)
+            inputLabelInstance.transform.position = Input.mousePosition;
+
         if (!GameManager.ins.DynamicDimensions) return;
 
         int typedInt = TryReadDigit();
@@ -53,7 +73,7 @@ public class DynamicInputController : MonoBehaviour
             _dynamicInputLength++;
             _dynamicInputString += typedInt;
         }
-
+        inputLabelInstance.SetText(_dynamicInputString);
         Debug.Log("Total: " + _dynamicInputString);
     }
 

@@ -27,7 +27,7 @@ public class Storey2D : MonoBehaviour
     }
 
 
-    public List<WallSection2D> wallSections2D
+    public List<WallSection2D> WallSections2D
     {
         get
         {
@@ -79,6 +79,7 @@ public class Storey2D : MonoBehaviour
        GameObject wallObject = Instantiate(_wall2DPrefab, gameObject.transform);
         
         Wall2D wall2D = wallObject.GetComponent<Wall2D>();
+        
         _walls2D.Add(wall2D);
         wall2D.DrawOnCanvas(wall);
     }

@@ -90,18 +90,18 @@ public class BuildingSerializer : MonoBehaviour
         {
             Directory.CreateDirectory(Path.GetDirectoryName(dataPath));
         }
-        try
-        {
+        /*try
+        {*/
             string filePath = Path.Combine(dataPath, fileName);
             Debug.Log("Load data from: " + filePath);
-            DeserializeBuilding(filePath);
+            DeserializeBuilding(filePath);/*
         }
         catch (Exception e)
         {
 
             Debug.LogError("Failed to load data from: " + dataPath);
             Debug.LogError("Error " + e.Message);
-        }
+        }*/
     }
 
     private int UpdateEquipmentLocation()

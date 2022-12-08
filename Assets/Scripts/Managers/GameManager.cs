@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
     public bool ToggleDynamicDimensions()
     {
         DynamicDimensions = !DynamicDimensions;
+        if (!DynamicDimensions) DynamicInputController.ins.DisposeOfLabel();
         return DynamicDimensions;
     }
 
