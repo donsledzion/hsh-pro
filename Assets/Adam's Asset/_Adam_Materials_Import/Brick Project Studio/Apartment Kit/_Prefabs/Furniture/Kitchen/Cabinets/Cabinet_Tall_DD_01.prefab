@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 5104765511620201376}
   - component: {fileID: 6981506360187222347}
   - component: {fileID: 706685894}
-  m_Layer: 0
+  - component: {fileID: 3063545259390676629}
+  - component: {fileID: -8784041204307845997}
+  m_Layer: 12
   m_Name: Cabinet_Tall_DD_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +100,43 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3929824370930576943, guid: 2a83511a782a6aa4dafed1f5a2bd3803, type: 3}
+--- !u!65 &3063545259390676629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104018767599127364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100, z: 100}
+  m_Center: {x: 0.00000023841858, y: 1.590898, z: -0.000000834465}
+--- !u!114 &-8784041204307845997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104018767599127364}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thumbScale: {x: 1, y: 1, z: 1}
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  _collisionLayer:
+    serializedVersion: 2
+    m_Bits: 4480
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _snapDistance: 30
+  isDuplicate: 0
 --- !u!1 &2767445178238625031
 GameObject:
   m_ObjectHideFlags: 0
