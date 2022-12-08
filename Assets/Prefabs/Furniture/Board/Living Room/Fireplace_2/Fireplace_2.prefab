@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 6719795195366039913}
   - component: {fileID: -5520956964022850141}
   - component: {fileID: 8837901763651279220}
+  - component: {fileID: 1580707118252487534}
   m_Layer: 12
   m_Name: Fireplace_2
   m_TagString: Untagged
@@ -349,8 +350,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 198.96597, y: 129.75638, z: 36.174118}
-  m_Center: {x: -0.35858154, y: 65.36084, z: -18.645763}
+  m_Size: {x: 198.96597, y: 10.465206, z: 36.174118}
+  m_Center: {x: -0.35858154, y: 5.715254, z: -18.645763}
 --- !u!114 &8837901763651279220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +376,19 @@ MonoBehaviour:
     m_Bits: 512
   _snapDistance: 30
   isDuplicate: 0
+--- !u!65 &1580707118252487534
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457809776842455678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 155.48576, y: 120.343506, z: 23.59846}
+  m_Center: {x: -0.18286896, y: 70.65224, z: -12.868451}
 --- !u!1 &521246914499493161
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,8 +768,8 @@ GameObject:
   - component: {fileID: 7828442064316871369}
   - component: {fileID: 1008094396657335874}
   - component: {fileID: 8418260489178765382}
-  - component: {fileID: 6730970244960292556}
   - component: {fileID: 6102860085635593343}
+  - component: {fileID: 7071526670192444723}
   m_Layer: 0
   m_Name: defaultMaterial
   m_TagString: Untagged
@@ -878,20 +892,6 @@ MonoBehaviour:
   highlightOnHover: 1
   hideHighlight: []
   hoverPriority: 0
---- !u!64 &6730970244960292556
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642759641181644905}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: bc55c40bdce5a4e4f83a2c686c3274d7, type: 2}
 --- !u!114 &6102860085635593343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,6 +928,19 @@ MonoBehaviour:
   onDetachedFromHand:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &7071526670192444723
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642759641181644905}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.98156583, y: 0.807077, z: 0.19892251}
+  m_Center: {x: 0.012787972, y: -0.13090649, z: -0.26354423}
 --- !u!1 &1705287956558653880
 GameObject:
   m_ObjectHideFlags: 0
