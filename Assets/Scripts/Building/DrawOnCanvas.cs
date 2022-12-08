@@ -28,13 +28,13 @@ namespace Walls2D
             pointerPosition = Input.mousePosition;
 
             
-            if (GameManager.ins.WallSectionCloseSnap && snappedClosePointFound)
+            if (GameManager.ins.WallSectionEndSnap && snappedEndPointFound)
+                pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedEndPoint);
+            else if (GameManager.ins.WallSectionCloseSnap && snappedClosePointFound)
             {
                 pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedClosePoint);
                 GameManager.ins.SnappedClosePoint = pointerPosition;
-            }            
-            if (GameManager.ins.WallSectionEndSnap && snappedEndPointFound)
-                pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedEndPoint);
+            }
             
             if (GameManager.ins.GridSnap)
                 pointerPosition = _uIController.GridSnap(pointerPosition);

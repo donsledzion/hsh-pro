@@ -16,13 +16,18 @@ public class SectionStraight2D : WallSection2D
     Color debugDoubleEndedInner = Color.red;
     Color debugDoubleEndedOuter = Color.blue;
     Color debugDoubleStraight = Color.green;
-
+    Storey2D _storey2DReference;
     bool _startHandled = false;
     bool _endHandled = false;
 
     public bool hasBeenDrawn = false;
 
     [SerializeField] GameObject _cornerMarkerDotPrefab;
+
+    public void AssignToStorey(Storey2D storey)
+    {
+        _storey2DReference = storey;
+    }
 
     public void SetStartHandled()
     {
@@ -218,7 +223,7 @@ public class SectionStraight2D : WallSection2D
     {
         SectionStraight2D other2DSection = null;
         Storey2D myStorey = GetComponentInParent<Storey2D>();
-        foreach(WallSection2D section in myStorey.wallSections2D)
+        foreach (WallSection2D section in myStorey.WallSections2D)
         {
             if(section.GetType() == typeof(SectionStraight2D))
             {
@@ -226,7 +231,6 @@ public class SectionStraight2D : WallSection2D
                     return section as SectionStraight2D;
             }
         }
-
 
         return other2DSection;
     }
