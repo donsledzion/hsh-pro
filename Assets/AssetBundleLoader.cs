@@ -38,6 +38,7 @@ public class AssetBundleLoader : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         if (ins != null && ins != this)
         {
             Destroy(this);
@@ -45,41 +46,42 @@ public class AssetBundleLoader : MonoBehaviour
         else
         {
             ins = this;
+            if (loadOnStart)
+            {
+                LoadBundles();
+                loadOnStart = false;
+            }
         }
     }
 
-
-    private void Start()
+    void LoadBundles()
     {
-        if(loadOnStart)
-        {
-            bundlesPack.Clear();
-            bundlesPack.Add(BathroomBundle);
-            bundlesPack.Add(BedroomBundle);
-            bundlesPack.Add(DoorBundle);
-            bundlesPack.Add(FloorSurfacesBundle);
-            bundlesPack.Add(FurnitureArmchairsBundle);
-            bundlesPack.Add(FurnitureBedsBundle);
-            bundlesPack.Add(FurnitureCoachiesBundle);
-            bundlesPack.Add(FurnitureCornersBundle);
-            bundlesPack.Add(FurnitureDiningRoomBundle);
-            bundlesPack.Add(FurnitureKitchenBaseCabinetsRoomBundle);
-            bundlesPack.Add(FurnitureLivingRoomBundle);
-            bundlesPack.Add(FurnitureSofasBundle);
-            bundlesPack.Add(WindowsBundle);
-            bundlesPack.Add(WallSurfacesBundle);
-            bundlesPack.Add(CeilingLightsBundle);
-            bundlesPack.Add(FloorLightsBundle);
-            bundlesPack.Add(LargeAGDBundle);
-            bundlesPack.Add(OvenBundle);
-            bundlesPack.Add(CookerBundle);
-            bundlesPack.Add(SmallAGDBundle);
-            bundlesPack.Add(FireplaceBundle);
+        bundlesPack.Clear();
+        bundlesPack.Add(BathroomBundle);
+        bundlesPack.Add(BedroomBundle);
+        bundlesPack.Add(DoorBundle);
+        bundlesPack.Add(FloorSurfacesBundle);
+        bundlesPack.Add(FurnitureArmchairsBundle);
+        bundlesPack.Add(FurnitureBedsBundle);
+        bundlesPack.Add(FurnitureCoachiesBundle);
+        bundlesPack.Add(FurnitureCornersBundle);
+        bundlesPack.Add(FurnitureDiningRoomBundle);
+        bundlesPack.Add(FurnitureKitchenBaseCabinetsRoomBundle);
+        bundlesPack.Add(FurnitureLivingRoomBundle);
+        bundlesPack.Add(FurnitureSofasBundle);
+        bundlesPack.Add(WindowsBundle);
+        bundlesPack.Add(WallSurfacesBundle);
+        bundlesPack.Add(CeilingLightsBundle);
+        bundlesPack.Add(FloorLightsBundle);
+        bundlesPack.Add(LargeAGDBundle);
+        bundlesPack.Add(OvenBundle);
+        bundlesPack.Add(CookerBundle);
+        bundlesPack.Add(SmallAGDBundle);
+        bundlesPack.Add(FireplaceBundle);
 
-            GetComponent<BundleLoadingPrompt>().ShowLoadingPrompt();
-            foreach (BundleLoadStatus bundle in bundlesPack)
-                StartCoroutine(LoadBundleAsync(bundle));
-        }
+        GetComponent<BundleLoadingPrompt>().ShowLoadingPrompt();
+        foreach (BundleLoadStatus bundle in bundlesPack)
+            StartCoroutine(LoadBundleAsync(bundle));
     }
 
     public bool AreAllBundlesLoaded()
@@ -91,18 +93,22 @@ public class AssetBundleLoader : MonoBehaviour
 
     IEnumerator LoadBundleAsync(BundleLoadStatus bundleStatus)
     {
-        string path = System.IO.Path.Combine(Application.streamingAssetsPath, bundleStatus.BundlePath);
-        var bundleLoadRequest = AssetBundle.LoadFromFileAsync(path);
-        yield return bundleLoadRequest;
-
-        var myLoadedAssetBundle = bundleLoadRequest.assetBundle;
-        if (myLoadedAssetBundle == null)
+        if (bundleStatus.IsLoaded) yield return null;
+        else
         {
-            Debug.Log("Failed to load AssetBundle!");
-            yield break;
-        }        
-        bundleStatus.Bundle = myLoadedAssetBundle;
-        bundleStatus.IsLoaded = true;
+            string path = System.IO.Path.Combine(Application.streamingAssetsPath, bundleStatus.BundlePath);
+            var bundleLoadRequest = AssetBundle.LoadFromFileAsync(path);
+            yield return bundleLoadRequest;
+
+            var myLoadedAssetBundle = bundleLoadRequest.assetBundle;
+            if (myLoadedAssetBundle == null)
+            {
+                Debug.Log("Failed to load AssetBundle!");
+                yield break;
+            }        
+            bundleStatus.Bundle = myLoadedAssetBundle;
+            bundleStatus.IsLoaded = true;
+        }
     }
 
     public BundleLoadStatus GetBundleLoadStatusByName(string name)
