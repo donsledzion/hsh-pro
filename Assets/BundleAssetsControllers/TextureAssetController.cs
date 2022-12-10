@@ -87,6 +87,7 @@ public class TextureAssetController : MonoBehaviour
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
         CurrentMaterialController.ins.WallSurfaceSelector.SelectionMaterial = item.material;
+        CurrentMaterialController.ins.WallSurfaceSelector.WallTilling = new Vector2(item.tiling_x, item.tiling_y);
         CurrentMaterialController.ins.WallSurfaceSelector.MaterialName = AssetBundleHelper.ExtractName(item);
     }
 
