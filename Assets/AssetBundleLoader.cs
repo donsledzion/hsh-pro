@@ -32,6 +32,7 @@ public class AssetBundleLoader : MonoBehaviour
     public BundleLoadStatus OvenBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/ovens_bundle");
     public BundleLoadStatus SmallAGDBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/small_agd_bundle");
     public BundleLoadStatus FireplaceBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/fireplace_bundle");
+    public BundleLoadStatus AccessoriesBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/accessories_bundle");
 
 
     public List<BundleLoadStatus> bundlesPack = new List<BundleLoadStatus>();
@@ -78,6 +79,7 @@ public class AssetBundleLoader : MonoBehaviour
         bundlesPack.Add(CookerBundle);
         bundlesPack.Add(SmallAGDBundle);
         bundlesPack.Add(FireplaceBundle);
+        bundlesPack.Add(AccessoriesBundle);
 
         BundleLoadingPrompt prompt =  GetComponent<BundleLoadingPrompt>();
         if (prompt != null) prompt.ShowLoadingPrompt();
