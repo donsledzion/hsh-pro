@@ -22,6 +22,10 @@ public class EquipmentInsertionMode : MonoBehaviour
 
     [SerializeField] LayerMask _layerMask;
     [SerializeField] LayerMask _collisionLayerMask;
+
+    [SerializeField] bool _smoothRotate = true;
+    [SerializeField] float _rotationSpeed = 5f;
+
     protected Transform _selection;
     bool _inserting = true;
 
@@ -89,10 +93,11 @@ public class EquipmentInsertionMode : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.C))
                 AbortInsertion();
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKey(KeyCode.R))
                 RotateItem();
             if (Input.GetMouseButtonDown(0))
                 InsertItem();
+            //if(Input.GetKey(KeyCode.R))
                   
 
         }
@@ -176,7 +181,14 @@ public class EquipmentInsertionMode : MonoBehaviour
 
     private void RotateItem()
     {
-        _equipmentInstance.transform.Rotate(Vector3.up, 90);
+        if(_smoothRotate)
+        {
+            _equipmentInstance.transform.Rotate(Vector3.up, _rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            _equipmentInstance.transform.Rotate(Vector3.up, 90);
+        }
     }
 
     void DisposeOfEquipmentInstance()

@@ -9,7 +9,7 @@ public abstract class SurfaceSelector : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] protected Material _selectionMaterial;
     [SerializeField] protected Material _originalMaterial;
-    [SerializeField] protected Vector2 _originalTilling;
+    protected Vector2 _originalTilling = Vector2.one * -1f;
     string _materialName;
 
 
