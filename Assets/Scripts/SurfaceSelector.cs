@@ -9,7 +9,16 @@ public abstract class SurfaceSelector : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] protected Material _selectionMaterial;
     [SerializeField] protected Material _originalMaterial;
+    [SerializeField] protected Vector2 _originalTilling;
     string _materialName;
+
+
+    Vector2 _surfaceTilling;
+    public Vector2 SurfaceTilling
+    {
+        get { return _surfaceTilling; }
+        set { _surfaceTilling = value; }
+    }
 
 
     public Material SelectionMaterial
@@ -32,7 +41,7 @@ public abstract class SurfaceSelector : MonoBehaviour
         if (_selection != null)
         {
             RestoreMaterial();            
-            SetTiling();
+            SetTiling(SurfaceTilling);
             _selection = null;
         }
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -55,6 +64,6 @@ public abstract class SurfaceSelector : MonoBehaviour
     protected abstract void TryMaterial();
     protected abstract void RestoreMaterial();
     protected abstract void ApplyMaterial();
-    protected abstract void SetTiling(Vector2 tilling = new Vector2());
+    protected abstract void SetTiling(Vector2 tilling);
 
 }

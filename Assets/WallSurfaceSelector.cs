@@ -7,25 +7,33 @@ public class WallSurfaceSelector : SurfaceSelector
     protected override void ApplyMaterial()
     {
         _originalMaterial = _selectionMaterial;
-        SetTiling();
+        SetTiling(SurfaceTilling);
         WallSectionAlt wallSection = _selection.GetComponentInParent<WallSectionAlt>();
         if(wallSection != null)
             wallSection.Section.PaintingSetup.AssignMaterial(_selection.gameObject.name, MaterialName);
     }
 
-    protected override void SetTiling(Vector2 tilling = new Vector2())
+    protected override void SetTiling(Vector2 tilling)
     {
-        Transform scalerTransform = _selection.GetComponentInParent<ScallableSection>().transform;
-        Vector2 textureSize = new Vector2(scalerTransform.localScale.x, scalerTransform.localScale.y);
-        //Debug.Log("Texture size: " + textureSize);
-        _selection.GetComponent<TillingAdjuster>().SetTilling(textureSize);
+        if(tilling.x <= 0 || tilling.y <= 0)
+        {
+            Debug.Log("<color=green>Texture as photo-wallpaper!</color>");
+        }    
+        else
+        {
+            Debug.Log("<color=red>Tilling is OK: " + tilling + "</color>");
+            Transform scalerTransform = _selection.GetComponentInParent<ScallableSection>().transform;
+            Vector2 textureSize = new Vector2(scalerTransform.localScale.x, scalerTransform.localScale.y);
+            //Debug.Log("Texture size: " + textureSize);
+            _selection.GetComponent<TillingAdjuster>().SetTilling(textureSize);
+        }
     }
 
     protected override void TryMaterial()
     {
         _originalMaterial = _selection.GetComponent<MeshRenderer>().material;
         _selection.GetComponent<MeshRenderer>().material = _selectionMaterial;
-        SetTiling();
+        SetTiling(SurfaceTilling);
     }
 
     protected override void RestoreMaterial()
