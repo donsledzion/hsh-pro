@@ -72,11 +72,13 @@ public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
         {
             _gameObjectIsOn = false;
             ToggleEquipmentSelection(false);
+            _isOn = false;
         }
         else
         {
             _gameObjectIsOn = true;
             ToggleEquipmentSelection(true);
+            _isOn = true;
         }
     }
 
@@ -87,7 +89,7 @@ public class ToggleOnOff : MonoBehaviour, IPointerDownHandler
         else
             equipmentSelection.SetActive(false);
         ToggleColor(value);
-        _isOn = false;
+        //_isOn = false;
     }
 
 
