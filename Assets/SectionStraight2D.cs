@@ -16,6 +16,12 @@ public class SectionStraight2D : WallSection2D
     [SerializeField] private GameObject _startDebugger;
     [SerializeField] private GameObject _endDebugger;
 
+    GameObject innerCornerDotStart;
+    GameObject outerCornerDotStart;
+    GameObject innerCornerDotEnd;
+    GameObject outerCornerDotEnd;
+
+
     Storey2D _storey2DReference;
     bool _startHandled = false;
     bool _endHandled = false;
@@ -285,13 +291,13 @@ public class SectionStraight2D : WallSection2D
             }
             else if (angDeg > 181f && angDeg < 269f) 
             {
-                innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
-                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
+                innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
+                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
             }
             else if (angDeg > 271f && angDeg < 359f)
             {
-                innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
-                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
+                innerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
+                outerCornerDot.transform.localPosition = new Vector3(WallSection.Length,0f,0f) + new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
             }
 
             innerCornerDot.transform.localScale = Vector3.one * .75f;
@@ -334,14 +340,14 @@ public class SectionStraight2D : WallSection2D
             else if (angDeg > 181f && angDeg < 269f)
             {
                 Debug.Log("Option: Angle: " + angDeg + " + drawing!");
-                _topMidToEnd.localScale = new Vector3(topDist - Lenght / 2, 1f, 1f) * _scaleFactor;
-                _bottomMidToEnd.localScale = new Vector3(botDist - Lenght / 2, 1f, 1f) * _scaleFactor;
+                _topMidToEnd.localScale = new Vector3(botDist - Lenght / 2, 1f, 1f) * _scaleFactor;
+                _bottomMidToEnd.localScale = new Vector3(topDist- Lenght / 2, 1f, 1f) * _scaleFactor;
             }
             else if (angDeg > 271f && angDeg < 359f)
             {
                 Debug.Log("Option: Angle: " + angDeg + " + drawing!");
-                _topMidToEnd.localScale = new Vector3(topDist - Lenght / 2, 1f, 1f) * _scaleFactor;
-                _bottomMidToEnd.localScale = new Vector3(botDist - Lenght / 2, 1f, 1f) * _scaleFactor;
+                _topMidToEnd.localScale = new Vector3(botDist - Lenght / 2, 1f, 1f) * _scaleFactor;
+                _bottomMidToEnd.localScale = new Vector3(topDist - Lenght / 2, 1f, 1f) * _scaleFactor;
             }
             else
             {
