@@ -10,46 +10,34 @@ namespace SojaExiles
 
 		public Animator openandclose;
 		public bool open;
-		public Transform Player;
 
 		void Start()
 		{
 			open = false;
 		}
 
-		void OnMouseOver()
+
+
+        [ContextMenu("Toggle")]
+        public void Toggle()
+        {
+            if (open)
+                Close();
+            else
+                Open();
+        }
+        [ContextMenu("Open")]
+		public void Open()
 		{
-			{
-				if (Player)
-				{
-					float dist = Vector3.Distance(Player.position, transform.position);
-					if (dist < 15)
-					{
-						if (open == false)
-						{
-							if (Input.GetMouseButtonDown(0))
-							{
-								StartCoroutine(opening());
-							}
-						}
-						else
-						{
-							if (open == true)
-							{
-								if (Input.GetMouseButtonDown(0))
-								{
-									StartCoroutine(closing());
-								}
-							}
-
-						}
-
-					}
-				}
-
-			}
-
+			StartCoroutine(opening());
 		}
+
+        [ContextMenu("Close")]
+        public void Close()
+		{
+			StartCoroutine(closing());
+		}
+
 
 		IEnumerator opening()
 		{

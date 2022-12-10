@@ -16,9 +16,13 @@ public class BundleLoadingPrompt : MonoBehaviour
 
     IEnumerator ShowLoadingPromptCor()
     {
+        if (_loadingPrompt == null) ;
+        _loadingPrompt = ((LoadingProgres)FindObjectsOfTypeAll(typeof(LoadingProgres))[0]).transform;
         _startTime = Time.time;
         _loadingPrompt.gameObject.SetActive(true);
         yield return new WaitUntil(() => AssetBundleLoader.ins.AreAllBundlesLoaded());
+        if (_loadingPrompt == null) ;
+        _loadingPrompt = ((LoadingProgres)FindObjectsOfTypeAll(typeof(LoadingProgres))[0]).transform;
         _loadingPrompt.gameObject.SetActive(false);
         Debug.Log("Loaded bundles in " + (Time.time - _startTime).ToString());
     }
