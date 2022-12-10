@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace HandMenu
         int _currentOptionIndex;
         GameObject _currentlyHeldObject;
         [SerializeField] AudioSource _changeOptionAudioSource;
+        [SerializeField] AudioTrigger _deleteAudioTrigger;
         bool _changeOptionCooldown = false;
         [SerializeField] LeftHandMenuController _leftHandMenuController;
         private void Update()
@@ -119,7 +121,8 @@ namespace HandMenu
         [ContextMenu("Explode")]
         void Explode()
         {
-            _deleteParticles.Emit(100);
+            _deleteParticles.Emit(1000);
+            _deleteAudioTrigger.PlayAudio();
         }
 
         public void  DestroyObject()
