@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace HandMenu
     {
         [SerializeField] HandMenuOption[] _handMenuOptions;
         [SerializeField] HandMenuOption _selectedOption;
+        [SerializeField] ParticleSystem _deleteParticles;
         UnityEvent _currentActionEvent;
         [SerializeField] string _handToUse = "LeftHand";
         [SerializeField] SteamVR_Action_Vector2 navigate;
@@ -22,6 +24,7 @@ namespace HandMenu
         int _currentOptionIndex;
         GameObject _currentlyHeldObject;
         [SerializeField] AudioSource _changeOptionAudioSource;
+        [SerializeField] AudioTrigger _deleteAudioTrigger;
         bool _changeOptionCooldown = false;
         [SerializeField] LeftHandMenuController _leftHandMenuController;
         private void Update()
@@ -110,7 +113,21 @@ namespace HandMenu
 
         public void DeleteItem()
         {
+            LeanTween.scale(_currentlyHeldObject, Vector3.one * 0.2f,.5f).setOnComplete(DestroyObject);
             
+        }
+
+
+        [ContextMenu("Explode")]
+        void Explode()
+        {
+            _deleteParticles.Emit(1000);
+            _deleteAudioTrigger.PlayAudio();
+        }
+
+        public void  DestroyObject()
+        {
+            Explode();
             Destroy(_currentlyHeldObject);
             _currentlyHeldObject = null;
             _leftHandMenuController.VRPlayerController.enabled = true;
