@@ -231,6 +231,17 @@ public class ModeController : MonoBehaviour
             }
         }
 
+    }    public void MenuOfAccessories_On()
+    {
+        ResetFurnitureTabs();
+        foreach (GameObject furnitureTab in MenuOfFurnitureController)
+        {
+            if (furnitureTab.name == "Menu Accessories" || furnitureTab.name == "Galery Accessories")
+            {
+                furnitureTab.SetActive(true);
+            }
+        }
+
     }    
     
     
