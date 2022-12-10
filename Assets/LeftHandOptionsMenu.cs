@@ -14,6 +14,7 @@ namespace HandMenu
     {
         [SerializeField] HandMenuOption[] _handMenuOptions;
         [SerializeField] HandMenuOption _selectedOption;
+        [SerializeField] ParticleSystem _deleteParticles;
         UnityEvent _currentActionEvent;
         [SerializeField] string _handToUse = "LeftHand";
         [SerializeField] SteamVR_Action_Vector2 navigate;
@@ -110,7 +111,20 @@ namespace HandMenu
 
         public void DeleteItem()
         {
+            LeanTween.scale(_currentlyHeldObject, Vector3.one * 0.2f,.5f).setOnComplete(DestroyObject);
             
+        }
+
+
+        [ContextMenu("Explode")]
+        void Explode()
+        {
+            _deleteParticles.Emit(100);
+        }
+
+        public void  DestroyObject()
+        {
+            Explode();
             Destroy(_currentlyHeldObject);
             _currentlyHeldObject = null;
             _leftHandMenuController.VRPlayerController.enabled = true;
