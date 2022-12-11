@@ -127,9 +127,9 @@ public class Builder3D : MonoBehaviour
         if (equipment == null) return;
         if (equipment.AssetName == null || equipment.AssetName == "") return;
         if (equipment.BundleName == null || equipment.BundleName== "") return;
-        Debug.Log("<color=red>Looking for asset named: " + equipment.AssetName +"</color>");
+        //Debug.Log("<color=red>Looking for asset named: " + equipment.AssetName +"</color>");
         AssetBundle bundle = AssetBundleLoader.ins.GetBundleLoadStatusByName(equipment.BundleName).Bundle;
-        Debug.Log("Bundle loaded:?" + bundle == null ? "true" : "false");
+        //Debug.Log("Bundle loaded:?" + bundle == null ? "true" : "false");
         if(bundle == null)
         {
             Debug.Log("<color=red>Bundle couldn't be loaded - equipment item " + equipment.AssetName + " not found</color>");

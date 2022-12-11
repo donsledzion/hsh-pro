@@ -55,7 +55,7 @@ public class WallSectionAlt : MonoBehaviour
             Vector2 assignedTilling = PlaneNameToTilling(Section, adjuster.gameObject.name);
             if (assignedTilling == Vector2.zero)
             {
-                Debug.Log("<color=green>Found material with tilling: " + assignedTilling + "</color>");
+                //Debug.Log("<color=green>Found material with tilling: " + assignedTilling + "</color>");
                 adjuster.SetTilling(Vector2.one, true);
                 //if (assignedTilling == Vector2.zero)
             }
@@ -70,7 +70,7 @@ public class WallSectionAlt : MonoBehaviour
             Vector2 assignedTilling = PlaneNameToTilling(Section, adjuster.gameObject.name);
             if (assignedTilling == Vector2.zero)
             {
-                Debug.Log("<color=green>Found material with tilling: " + assignedTilling + "</color>");
+                //Debug.Log("<color=green>Found material with tilling: " + assignedTilling + "</color>");
                 adjuster.SetTilling(Vector2.one, true);
                 //if (assignedTilling == Vector2.zero)
             }
@@ -85,7 +85,7 @@ public class WallSectionAlt : MonoBehaviour
             Vector2 assignedTilling = PlaneNameToTilling(Section, adjuster.gameObject.name);
             if (assignedTilling == Vector2.zero)
             {
-                Debug.Log("<color=green>Found material with tilling: " + assignedTilling + "</color>");
+                //Debug.Log("<color=green>Found material with tilling: " + assignedTilling + "</color>");
                 adjuster.SetTilling(Vector2.one, true);
                 //if (assignedTilling == Vector2.zero)
             }
@@ -172,7 +172,7 @@ public class WallSectionAlt : MonoBehaviour
 
     protected virtual Material PlaneNameToMaterial(WallSection section, string planeName)
     {
-        Debug.Log("Looking for plane named: " + planeName);
+        //Debug.Log("Looking for plane named: " + planeName);
         string assetName = "";
         StraightSectionPaintingSetup paintingSetup = section.PaintingSetup as StraightSectionPaintingSetup;
         switch (planeName)
@@ -204,7 +204,7 @@ public class WallSectionAlt : MonoBehaviour
 
     protected virtual Vector2 PlaneNameToTilling(WallSection section, string planeName)
     {
-        Debug.Log("Looking for plane named: " + planeName);
+        //Debug.Log("Looking for plane named: " + planeName);
         string assetName = "";
         StraightSectionPaintingSetup paintingSetup = section.PaintingSetup as StraightSectionPaintingSetup;
         switch (planeName)

@@ -69,7 +69,7 @@ public class FloorAssetController : MonoBehaviour
         surfaceSelector.GetComponent<FittingModeSwitcher>().FloorFinishingMode();
         CurrentMaterialController.ins.FloorSurfaceSelector.SelectionMaterial = item.material;
         Debug.Log("Tilling: " + item.tiling_x + " , " + item.tiling_y);
-        CurrentMaterialController.ins.FloorSurfaceSelector.FloorTiling = new Vector2(item.tiling_x,item.tiling_y);
+        CurrentMaterialController.ins.FloorSurfaceSelector.SurfaceTilling/*FloorTiling */= new Vector2(item.tiling_x,item.tiling_y);
         CurrentMaterialController.ins.FloorSurfaceSelector.MaterialName = AssetBundleHelper.ExtractName(item);
 
         item3DViewer.SetActive(false);
