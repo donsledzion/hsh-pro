@@ -121,7 +121,7 @@ namespace HandMenu
         [ContextMenu("Explode")]
         void Explode()
         {
-            _deleteParticles.Emit(1000);
+            _deleteParticles.Emit(50);
             _deleteAudioTrigger.PlayAudio();
         }
 
