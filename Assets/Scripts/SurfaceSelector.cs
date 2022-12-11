@@ -42,8 +42,10 @@ public abstract class SurfaceSelector : MonoBehaviour
         RaycastHit hit;
         if (_selection != null)
         {
-            RestoreMaterial();            
-            //SetTiling(SurfaceTilling);
+            RestoreMaterial();
+            Debug.Log("<color=red>SurfaceSelector->Update(): SurfaceTilling: " + SurfaceTilling);
+            /*if(SurfaceTilling != Vector2.zero)            
+                SetTiling(SurfaceTilling);*/
             _selection = null;
         }
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))

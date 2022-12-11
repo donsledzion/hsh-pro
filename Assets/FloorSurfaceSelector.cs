@@ -25,7 +25,7 @@ public class FloorSurfaceSelector : SurfaceSelector
 
     protected override void SetTiling(Vector2 tilling = new Vector2())
     {
-        _selection.GetComponent<FloorPlane>().SetTilling(FloorTiling);
+        _selection.GetComponent<FloorPlane>().SetTilling(SurfaceTilling);
     }
 
     protected override void TryMaterial()
@@ -42,9 +42,9 @@ public class FloorSurfaceSelector : SurfaceSelector
     protected override void RestoreMaterial()
     {
         Debug.Log("Restoring material");
-        FloorPlane plane = _selection.GetComponent<FloorPlane>();
+        //FloorPlane plane = _selection.GetComponent<FloorPlane>();
         _selection.GetComponent<MeshRenderer>().material = _originalMaterial;
-        plane.SetTilling(originalTilling);
-        
+        //plane.SetTilling(originalTilling);
+        SetTiling(SurfaceTilling);
     }
 }
