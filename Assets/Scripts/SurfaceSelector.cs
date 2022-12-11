@@ -7,9 +7,9 @@ public abstract class SurfaceSelector : MonoBehaviour
 {
     protected Transform _selection;
     [SerializeField] LayerMask layerMask;
-    [SerializeField] protected Material _selectionMaterial;
-    [SerializeField] protected Material _originalMaterial;
-    protected Vector2 _originalTilling = Vector2.one * -1f;
+    /*[SerializeField] */protected Material _selectionMaterial;
+    /*[SerializeField] */protected Material _originalMaterial;
+    /*[SerializeField] */protected Vector2 _originalTilling = Vector2.one * -1f;
     string _materialName;
 
 
@@ -38,14 +38,14 @@ public abstract class SurfaceSelector : MonoBehaviour
 
     protected virtual void Update()
     {
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
         if (_selection != null)
         {
             RestoreMaterial();            
-            SetTiling(SurfaceTilling);
+            //SetTiling(SurfaceTilling);
             _selection = null;
         }
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             _selection = hit.transform;

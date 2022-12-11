@@ -97,7 +97,6 @@ public class EquipmentInsertionMode : MonoBehaviour
                 RotateItem();
             if (Input.GetMouseButtonDown(0))
                 InsertItem();
-            //if(Input.GetKey(KeyCode.R))
                   
 
         }
