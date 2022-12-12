@@ -53,7 +53,7 @@ public class WallEquipmentItem : EquipmentItem
         if (isDuplicate) return;
         Ray ray = new Ray(transform.position,transform.forward);
         RaycastHit hit;        
-        if (Physics.Raycast(ray, out hit, 200f, WallLayer))
+        if (Physics.Raycast(ray, out hit, _snapDistance, WallLayer))
         {
 #if UNITY_EDITOR
             Debug.DrawRay(transform.position, ray.direction * _snapDistance, Color.green);
