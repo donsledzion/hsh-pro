@@ -113,8 +113,16 @@ namespace HandMenu
 
         public void DeleteItem()
         {
-            LeanTween.scale(_currentlyHeldObject, Vector3.one * 0.2f,.5f).setOnComplete(DestroyObject);
-            
+            LeanTween.scale(_currentlyHeldObject, Vector3.one * 0.2f,.45f);
+            LeanTween.move(_currentlyHeldObject, transform.position,.45f);
+            StartCoroutine(DestroyDelayCor());
+            Explode();
+        }
+
+        IEnumerator DestroyDelayCor()
+        {
+            yield return new WaitForSeconds(.50f);
+            DestroyObject();
         }
 
 
@@ -127,7 +135,6 @@ namespace HandMenu
 
         public void  DestroyObject()
         {
-            Explode();
             Destroy(_currentlyHeldObject);
             _currentlyHeldObject = null;
             _leftHandMenuController.VRPlayerController.enabled = true;
