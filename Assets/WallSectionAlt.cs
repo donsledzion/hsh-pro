@@ -207,29 +207,39 @@ public class WallSectionAlt : MonoBehaviour
         //Debug.Log("Looking for plane named: " + planeName);
         string assetName = "";
         StraightSectionPaintingSetup paintingSetup = section.PaintingSetup as StraightSectionPaintingSetup;
-        switch (planeName)
+        try
         {
-            case "PlaneHeadStartLeft":
-                assetName = paintingSetup.AHeadPaintingA;
-                break;
-            case "PlaneHeadStartRight":
-                assetName = paintingSetup.AHeadPaintingB;
-                break;
-            case "PlaneHeadEndLeft":
-                assetName = paintingSetup.BHeadPaintingA;
-                break;
-            case "PlaneHeadEndRight":
-                assetName = paintingSetup.BHeadPaintingB;
-                break;
-            case "PlaneFaceLeft":
-                assetName = paintingSetup.AFacePainting;
-                break;
-            case "PlaneFaceRight":
-                assetName = paintingSetup.BFacePainting;
-                break;
-            default:
-                assetName = "wrong-plane-name";
-                break;
+            switch (planeName)
+            {
+                case "PlaneHeadStartLeft":
+                    assetName = paintingSetup.AHeadPaintingA;
+                    break;
+                case "PlaneHeadStartRight":
+                    assetName = paintingSetup.AHeadPaintingB;
+                    break;
+                case "PlaneHeadEndLeft":
+                    assetName = paintingSetup.BHeadPaintingA;
+                    break;
+                case "PlaneHeadEndRight":
+                    assetName = paintingSetup.BHeadPaintingB;
+                    break;
+                case "PlaneFaceLeft":
+                    assetName = paintingSetup.AFacePainting;
+                    break;
+                case "PlaneFaceRight":
+                    assetName = paintingSetup.BFacePainting;
+                    break;
+                default:
+                    assetName = "wrong-plane-name";
+                    break;
+            }
+
+        }
+        catch
+        {
+            Debug.LogWarning("<color=red>Error while translating plane name to tilling. Section type: "
+                + section.GetType().ToString() + ", plane name: " + planeName + "</color>");
+            return Vector2.one * -1f;
         }
         return GetTillingByAssetName(assetName, planeName);
     }
