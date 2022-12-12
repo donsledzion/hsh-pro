@@ -49,6 +49,7 @@ public class ModeController : MonoBehaviour
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject saveWindow;
     [SerializeField] GameObject loadWindow;
+    [SerializeField] GameObject authorInfoWindow;
     [SerializeField] GameObject headerPanel;
     [SerializeField] ToolsTabButton twoDHeader;
 
@@ -297,6 +298,7 @@ public class ModeController : MonoBehaviour
         canvas.GetComponent<Canvas>().enabled = true;
         saveWindow.SetActive(false);
         loadWindow.SetActive(false);
+        authorInfoWindow.SetActive(false);
 
         foreach (GameObject drawingToolsObjects in DrawingTools)
         {
