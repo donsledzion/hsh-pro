@@ -14,17 +14,33 @@ public class PhantomRenderer : MonoBehaviour
 
     public void Enable()
     {
-        _renderer.enabled = true;
-        _collider.enabled = true;
+        Debug.Log("<color=green>Enabling phantom renderer!</color>");
+
+        SetToState(true);
+        /*_renderer.enabled = true;
+        _collider.enabled = true;*/
     }
 
     public void Disable()
     {
-        _renderer.enabled = false;
-        _collider.enabled = false;
+        Debug.Log("<color=red>Disablinng phantom renderer!</color>");
+        SetToState(false);
+        /*_renderer.enabled = false;
+        _collider.enabled = false;*/
     }
 
-    
+    public void SetToState(bool state)
+    {
+        _renderer.enabled = state;
+        _collider.enabled = state;
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("<color=red><b>Who dared to disable me?!</b></color>");
+    }
+
+
 
 
 }

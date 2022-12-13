@@ -8,6 +8,9 @@ public class FittingPrefabsController : MonoBehaviour
     [SerializeField] List<DoorPhantomScaler> _doorPhantomScalers = new List<DoorPhantomScaler>();
     [SerializeField] List<WindowPhantomScaler> _windowPhantomScalers = new List<WindowPhantomScaler>();
 
+    public List<DoorPhantomScaler> DoorPhantomScalers => _doorPhantomScalers;
+
+    public List<WindowPhantomScaler> WindowPhantomScalers => _windowPhantomScalers;
 
     private void OnEnable()
     {
@@ -32,23 +35,23 @@ public class FittingPrefabsController : MonoBehaviour
     private void SetDoorScalers(bool active)
     {
         foreach (DoorPhantomScaler scaler in _doorPhantomScalers)
-            scaler.gameObject.SetActive(active);
+            scaler.PhantomRenderer.SetToState(active);// gameObject.SetActive(active);
     }
     private void SetWindowScalers(bool active)
     {
         foreach (WindowPhantomScaler scaler in _windowPhantomScalers)
-            scaler.gameObject.SetActive(active);
+            scaler.PhantomRenderer.SetToState(active);//scaler.PhantomRenderer.gameObject.SetActive(active);
     }
 
     [ContextMenu("Show door scalers")]
     public void ShowDoorScalers()
     {
-        SetDoorScalers(true);
+        //SetDoorScalers(true);
     }
 
     [ContextMenu("Show window scalers")]
     public void ShowWindowScalers()
     {
-        SetWindowScalers(true);
+        //SetWindowScalers(true);
     }
 }
