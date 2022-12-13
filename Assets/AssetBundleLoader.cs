@@ -33,6 +33,9 @@ public class AssetBundleLoader : MonoBehaviour
     public BundleLoadStatus SmallAGDBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/small_agd_bundle");
     public BundleLoadStatus FireplaceBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/fireplace_bundle");
     public BundleLoadStatus AccessoriesBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/accessories_bundle");
+    public BundleLoadStatus NightLampsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/night_lamps_bundle");
+    public BundleLoadStatus Hi_Fi_Bundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/hi-fi_bundle");
+    public BundleLoadStatus Radio_Bundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/radio_bundle");
 
 
     public List<BundleLoadStatus> bundlesPack = new List<BundleLoadStatus>();
@@ -80,6 +83,11 @@ public class AssetBundleLoader : MonoBehaviour
         bundlesPack.Add(SmallAGDBundle);
         bundlesPack.Add(FireplaceBundle);
         bundlesPack.Add(AccessoriesBundle);
+        bundlesPack.Add(NightLampsBundle);
+        bundlesPack.Add(Hi_Fi_Bundle);
+        bundlesPack.Add(Radio_Bundle);
+
+
 
         BundleLoadingPrompt prompt =  GetComponent<BundleLoadingPrompt>();
         if (prompt != null) prompt.ShowLoadingPrompt();
