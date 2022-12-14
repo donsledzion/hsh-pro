@@ -121,6 +121,7 @@ public class AssetBundleLoader : MonoBehaviour
             if (bundle.BundlePath.Contains(name))
                 return bundle;
         }
+        Debug.Log("<color=red>Couldn't find bundle status containing name " + name + "</color");
         return null;
     }
 
