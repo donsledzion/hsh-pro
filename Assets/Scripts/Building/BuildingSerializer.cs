@@ -54,6 +54,7 @@ public class BuildingSerializer : MonoBehaviour
 
     void QuickLoad()
     {
+        ReferenceController.ins.ModeController.Mode2D();
         LoadFromFile("Hsh-quick-save.xml");
     }
 
