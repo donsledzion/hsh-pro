@@ -36,6 +36,7 @@ public class AssetBundleLoader : MonoBehaviour
     public BundleLoadStatus NightLampsBundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/night_lamps_bundle");
     public BundleLoadStatus Hi_Fi_Bundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/hi-fi_bundle");
     public BundleLoadStatus Radio_Bundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/radio_bundle");
+    public BundleLoadStatus Wall_Lamp_Bundle = new BundleLoadStatus("AssetBundles/StandaloneWindows/wall_lamps_bundle");
 
 
     public List<BundleLoadStatus> bundlesPack = new List<BundleLoadStatus>();
@@ -86,6 +87,7 @@ public class AssetBundleLoader : MonoBehaviour
         bundlesPack.Add(NightLampsBundle);
         bundlesPack.Add(Hi_Fi_Bundle);
         bundlesPack.Add(Radio_Bundle);
+        bundlesPack.Add(Wall_Lamp_Bundle);
 
 
 
