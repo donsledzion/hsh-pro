@@ -90,42 +90,42 @@ public class SectionStraight2D : WallSection2D
 
             GameObject innerCornerDot = Instantiate(_cornerMarkerDotPrefab, transform);
             GameObject outerCornerDot = Instantiate(_cornerMarkerDotPrefab, transform);
-            Debug.Log("Angles: AngCompRad: " + angCompRad + " | AngDeg: " + angDeg + "),  V1: " + V1 + " | V2: " + V2);
+            //Debug.Log("Angles: AngCompRad: " + angCompRad + " | AngDeg: " + angDeg + "),  V1: " + V1 + " | V2: " + V2);
             if (Mathf.Abs(angDeg - 90f) <= 1f)
             {
                 innerCornerDot.transform.localPosition = new Vector3(otherSection.Thickness / 2f, WallSection.Thickness / 2f);
                 outerCornerDot.transform.localPosition = new Vector3(-otherSection.Thickness / 2f, -WallSection.Thickness / 2f);
-                Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
+                //Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
             }
             else if (Mathf.Abs(angDeg - 270f) <= 1f)
             {
                 innerCornerDot.transform.localPosition = new Vector3(otherSection.Thickness / 2f, -WallSection.Thickness / 2f);
                 outerCornerDot.transform.localPosition = new Vector3(-otherSection.Thickness / 2f, WallSection.Thickness / 2f);
-                Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
+               //Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
             }
             else if ((angDeg > 0f && angDeg < 89f))
             {
                 innerCornerDot.transform.localPosition = new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
                 outerCornerDot.transform.localPosition = new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
-                Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
+                //Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
             }
             else if ((angDeg > 91f && angDeg < 179f))
             {
                 innerCornerDot.transform.localPosition = new Vector3(-V2.x, V2.y, 0f) + new Vector3(-V1.x, -V1.y, 0f);
                 outerCornerDot.transform.localPosition = new Vector3(V2.x, V2.y, 0f) + new Vector3(V1.x, V1.y, 0f);
-                Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
+                //Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
             }
             else if ((angDeg > 181f && angDeg < 269f))
             {
                 innerCornerDot.transform.localPosition = new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
                 outerCornerDot.transform.localPosition = new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
-                Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
+                //Debug.Log("Start: Option: Angle: " + angDeg + " + assigning!");
             }
             else if ((angDeg > 271f && angDeg < 359f))
             {
                 innerCornerDot.transform.localPosition = new Vector3(V2.x, V2.y, 0f) + new Vector3(-V1.x, V1.y, 0f);
                 outerCornerDot.transform.localPosition = new Vector3(-V2.x, V2.y, 0f) + new Vector3(V1.x, -V1.y, 0f);
-                Debug.Log("START: Option: Angle: " + angDeg + " + assigning!");
+                //Debug.Log("START: Option: Angle: " + angDeg + " + assigning!");
             }
             innerCornerDot.transform.localScale = Vector3.one * .25f;
             innerCornerDot.GetComponent<Image>().color = Color.red;
@@ -140,7 +140,7 @@ public class SectionStraight2D : WallSection2D
 
             float topDist = outerCornerDot.transform.localPosition.x;
             float botDist = innerCornerDot.transform.localPosition.x;
-            Debug.Log("TopDist: " + topDist + " | BotDist: " + botDist);
+            //Debug.Log("TopDist: " + topDist + " | BotDist: " + botDist);
 
             if (Mathf.Abs(angDeg - 90f) <= 1f)
             {
@@ -149,31 +149,31 @@ public class SectionStraight2D : WallSection2D
             }
             else if (Mathf.Abs(angDeg - 270f) <= 1f)
             {
-                Debug.Log("270 - drawing!");
+                //Debug.Log("270 - drawing!");
                 _topMidToStart.localScale = new Vector3(-(Lenght / 2 - topDist), 1f, 1f) * _scaleFactor;
                 _bottomMidToStart.localScale = new Vector3(-(Lenght / 2 - botDist), 1f, 1f) * _scaleFactor;
             }
             else if(angDeg > 1f && angDeg < 89f)
             {
-                Debug.Log("START: Option: Angle: " + angDeg + " + drawing!");
+                //Debug.Log("START: Option: Angle: " + angDeg + " + drawing!");
                 _topMidToStart.localScale = new Vector3(-((Lenght / 2 ) - topDist) , 1f, 1f) * _scaleFactor;
                 _bottomMidToStart.localScale = new Vector3(-((Lenght / 2) - botDist), 1f, 1f) * _scaleFactor;
             }
             else if(angDeg > 91f && angDeg < 179f)
             {
-                Debug.Log("START: Option: Angle: " + angDeg + " + drawing!");
+                //Debug.Log("START: Option: Angle: " + angDeg + " + drawing!");
                 _topMidToStart.localScale = new Vector3(-((Lenght / 2 ) - topDist) , 1f, 1f) * _scaleFactor;
                 _bottomMidToStart.localScale = new Vector3(-((Lenght / 2) - botDist), 1f, 1f) * _scaleFactor;
             }
             else if(angDeg > 181f && angDeg < 269f)
             {
-                Debug.Log("START: Option: Angle: " + angDeg + " + drawing!");
+                //Debug.Log("START: Option: Angle: " + angDeg + " + drawing!");
                 _topMidToStart.localScale = new Vector3(-((Lenght / 2 ) + topDist) , 1f, 1f) * _scaleFactor;
                 _bottomMidToStart.localScale = new Vector3(-((Lenght / 2) + botDist), 1f, 1f) * _scaleFactor;
             }
             else if ((angDeg > 271f && angDeg < 359f))
             {
-                Debug.Log("START: Option: Angle: " + angDeg + " + drawing!");
+                //Debug.Log("START: Option: Angle: " + angDeg + " + drawing!");
                 _topMidToStart.localScale = new Vector3(-((Lenght / 2) + topDist), 1f, 1f) * _scaleFactor;
                 _bottomMidToStart.localScale = new Vector3(-((Lenght / 2) + botDist), 1f, 1f) * _scaleFactor;
             }
@@ -183,10 +183,10 @@ public class SectionStraight2D : WallSection2D
                 _bottomMidToStart.localScale = new Vector3(-Lenght / 2, 1f, 1f) * _scaleFactor;
             }
 
-            _startDebugger = Instantiate(_cornerDebuggerPrefab, transform);
+            /*_startDebugger = Instantiate(_cornerDebuggerPrefab, transform);
             CornersDebugger cornerDebugger = _startDebugger.GetComponent<CornersDebugger>();
             cornerDebugger.SetLeft("SL", angDeg, innerCornerDot.transform.localPosition+Vector3.right*40f+Vector3.up*5f);
-            cornerDebugger.SetRight("SR", 360f - angDeg, outerCornerDot.transform.localPosition+Vector3.right*40f+Vector3.down*5f);
+            cornerDebugger.SetRight("SR", 360f - angDeg, outerCornerDot.transform.localPosition+Vector3.right*40f+Vector3.down*5f);*/
         }
         else
         {
@@ -327,25 +327,25 @@ public class SectionStraight2D : WallSection2D
             }
             else if (angDeg > 1f && angDeg < 89f)
             {
-                Debug.Log("Option: Angle: " + angDeg + " + drawing!");
+                //Debug.Log("Option: Angle: " + angDeg + " + drawing!");
                 _topMidToEnd.localScale = new Vector3(topDist - Lenght / 2, 1f, 1f) * _scaleFactor;
                 _bottomMidToEnd.localScale = new Vector3(botDist - Lenght / 2, 1f, 1f) * _scaleFactor;
             }
             else if (angDeg > 91f && angDeg < 179f)
             {
-                Debug.Log("Option: Angle: " + angDeg + " + drawing!");
+                //Debug.Log("Option: Angle: " + angDeg + " + drawing!");
                 _topMidToEnd.localScale = new Vector3(topDist - Lenght / 2, 1f, 1f) * _scaleFactor;
                 _bottomMidToEnd.localScale = new Vector3(botDist - Lenght / 2, 1f, 1f) * _scaleFactor;
             }
             else if (angDeg > 181f && angDeg < 269f)
             {
-                Debug.Log("Option: Angle: " + angDeg + " + drawing!");
+                //Debug.Log("Option: Angle: " + angDeg + " + drawing!");
                 _topMidToEnd.localScale = new Vector3(botDist - Lenght / 2, 1f, 1f) * _scaleFactor;
                 _bottomMidToEnd.localScale = new Vector3(topDist- Lenght / 2, 1f, 1f) * _scaleFactor;
             }
             else if (angDeg > 271f && angDeg < 359f)
             {
-                Debug.Log("Option: Angle: " + angDeg + " + drawing!");
+                //Debug.Log("Option: Angle: " + angDeg + " + drawing!");
                 _topMidToEnd.localScale = new Vector3(botDist - Lenght / 2, 1f, 1f) * _scaleFactor;
                 _bottomMidToEnd.localScale = new Vector3(topDist - Lenght / 2, 1f, 1f) * _scaleFactor;
             }
@@ -354,10 +354,10 @@ public class SectionStraight2D : WallSection2D
                 _topMidToEnd.localScale = new Vector3(Lenght / 2, 1f, 1f) * _scaleFactor;
                 _bottomMidToEnd.localScale = new Vector3(Lenght / 2, 1f, 1f) * _scaleFactor;
             }
-            _startDebugger = Instantiate(_cornerDebuggerPrefab, transform);
+            /*_startDebugger = Instantiate(_cornerDebuggerPrefab, transform);
             CornersDebugger cornerDebugger = _startDebugger.GetComponent<CornersDebugger>();
             cornerDebugger.SetLeft("EL", angDeg, outerCornerDot.transform.localPosition + Vector3.left * 40f+Vector3.down*5);
-            cornerDebugger.SetRight("ER", 360f - angDeg, innerCornerDot.transform.localPosition + Vector3.left * 40f + Vector3.down * 5);
+            cornerDebugger.SetRight("ER", 360f - angDeg, innerCornerDot.transform.localPosition + Vector3.left * 40f + Vector3.down * 5);*/
 
         }
         else

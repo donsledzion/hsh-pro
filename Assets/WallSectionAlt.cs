@@ -166,7 +166,7 @@ public class WallSectionAlt : MonoBehaviour
             return Vector2.one * -1f;
         }
         ScriptableObjectsController item = bundle.LoadAsset(assetName) as ScriptableObjectsController;
-        Debug.Log("<color=blue>Found tilling for asset: " + assetName + " = " + new Vector2(item.tiling_x, item.tiling_y) + "</color>");
+        //Debug.Log("<color=blue>Found tilling for asset: " + assetName + " = " + new Vector2(item.tiling_x, item.tiling_y) + "</color>");
         return new Vector2(item.tiling_x,item.tiling_y);
     }
 

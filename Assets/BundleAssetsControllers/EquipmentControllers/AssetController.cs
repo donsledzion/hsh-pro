@@ -71,7 +71,17 @@ public class AssetController : MonoBehaviour
         prefabToFitController.gameObject.SetActive(true);
         
         foreach(string assetName in assetNamesList)
-            AssignNameAndBundleNames(AssetBundleHelper.ExtractName(item),assetName);
+        {
+            string itemName = AssetBundleHelper.ExtractName(item);
+            ItemAsset = AssetBundleLoader.ins.GetBundleLoadStatusByName(assetName)?.Bundle;
+            if(ItemAsset!= null)
+            {
+                ScriptableObjectsController itemMatch = ItemAsset.LoadAsset(itemName) as ScriptableObjectsController;
+                if(itemMatch!= null)
+                    AssignNameAndBundleNames(itemName,assetName);
+            }
+
+        }
         
         item3DViewer.SetActive(false);
         itemsGallery.SetActive(false);
@@ -82,7 +92,7 @@ public class AssetController : MonoBehaviour
         foreach (string assetName in assetNamesList)
         {
             ItemAsset = AssetBundleLoader.ins.GetBundleLoadStatusByName(assetName)?.Bundle;
-        
+            
             if (ItemAsset) Debug.Log("Loaded successfuly " + assetName);
             else Debug.Log("Failed to load " + assetName);
 

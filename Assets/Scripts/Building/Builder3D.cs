@@ -117,7 +117,20 @@ public class Builder3D : MonoBehaviour
 
         foreach(Equipment equipment in storey.Equipment)
         {
-            SpawnEquipment(equipment, storeyContainer.transform);
+           /* try
+            {*/
+                Debug.Log("Trying to spawn equipmennt item...");
+                if(equipment != null)
+                    SpawnEquipment(equipment, storeyContainer.transform);
+                else
+                {
+                    Debug.Log("Spawning failed!");
+                }
+            /*}
+            catch
+            {
+                Debug.LogError("An error occured while spawninng equipment item " + equipment.AssetName);
+            }*/
         }
         
     }
@@ -127,32 +140,53 @@ public class Builder3D : MonoBehaviour
         if (equipment == null) return;
         if (equipment.AssetName == null || equipment.AssetName == "") return;
         if (equipment.BundleName == null || equipment.BundleName== "") return;
-        //Debug.Log("<color=red>Looking for asset named: " + equipment.AssetName +"</color>");
-        AssetBundle bundle = AssetBundleLoader.ins.GetBundleLoadStatusByName(equipment.BundleName).Bundle;
-        //Debug.Log("Bundle loaded:?" + bundle == null ? "true" : "false");
-        if(bundle == null)
+        Debug.Log("<color=red>Looking for asset named: " + equipment.AssetName +"</color> from <color=green>Assetbundle named: <b>" + equipment.BundleName + "</b></color>");
+        AssetBundleLoader loader = AssetBundleLoader.ins;
+        if(loader== null)
+        {
+            Debug.Log("<b>Loader is null! Exiting!");
+            return;
+        }
+        BundleLoadStatus loadStatus = AssetBundleLoader.ins.GetBundleLoadStatusByName(equipment.BundleName);
+        if(loadStatus == null)
+        {
+            Debug.Log("Load status is null!, Exiting!");
+            return;
+        }    
+        AssetBundle bundle = loadStatus.Bundle;
+
+        if (bundle == null)
         {
             Debug.Log("<color=red>Bundle couldn't be loaded - equipment item " + equipment.AssetName + " not found</color>");
             return;
         }
+        else
+            Debug.Log("<color=red>Bundle loaded -<color=green>equipment item " + equipment.AssetName + " </color>has been found</color>");
         ScriptableObjectsController item = bundle.LoadAsset(equipment.AssetName) as ScriptableObjectsController;
         
         GameObject equipmentInstance = Instantiate(item.prefab);
-
+        /*if(equipmentInstance != null)
+            Debug.Log("Equipment instantiated");
+        else
+            Debug.Log("Equipment <color=red>NOT</color> instantiated");*/
         equipmentInstance.transform.SetParent(newParent);
         equipmentInstance.transform.position = equipment.Position;
         equipmentInstance.transform.eulerAngles = equipment.Rotation;
         EquipmentItem equipmentItem = equipmentInstance.GetComponent<EquipmentItem>();
+        
         equipmentItem.GUID = equipment.GUID;
         equipmentItem.Equipment = equipment;
         equipmentItem.enabled = false;
+        //Debug.Log("Assigning throwable!");
         Throwable throwable = equipmentItem.GetComponent<Throwable>();
         if (throwable != null)
         {
+            //Debug.Log("THROWABLE ASSIGNED!");
             throwable.restoreOriginalParent = true;
             Rigidbody rb = equipmentItem.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
+            //Debug.Log("THROWABLE CONFIGURED!");
         }
     }
 

@@ -41,7 +41,7 @@ public class WallSectionWindowjamb : WallSectionJamb
 
         foreach (TillingAdjuster adjuster in bottomTillingAdjustersFace)
         {
-            Debug.LogWarning("Trying to paint bottoms window sections");
+            //Debug.LogWarning("Trying to paint bottoms window sections");
             Vector2 textureScale = new Vector2(_scallableBottomChild.localScale.x, _scallableBottomChild.localScale.y);
             adjuster.SetTilling(textureScale);
         }
@@ -50,7 +50,7 @@ public class WallSectionWindowjamb : WallSectionJamb
 
     protected override Material PlaneNameToMaterial(WallSection section, string planeName)
     {
-        Debug.Log("Looking for plane named: " + planeName);
+        //Debug.Log("Looking for plane named: " + planeName);
         string assetName = "";
         WindowjambSectionPaintingSetup paintingSetup = section.PaintingSetup as WindowjambSectionPaintingSetup;
 
