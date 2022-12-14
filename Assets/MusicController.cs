@@ -7,13 +7,13 @@ public class MusicController : MonoBehaviour
 {
     public static MusicController ins { get; private set; }
 
-    [SerializeField] List<VideoClip> _audioClips = new List<VideoClip>();
+    [SerializeField] List<AudioClip> _audioClips = new List<AudioClip>();
 
-    public List<VideoClip> VideoClips { get { return _audioClips; } }
+    public List<AudioClip> VideoClips { get { return _audioClips; } }
 
     int _currentSong = 0;
 
-    public VideoClip NextSong()
+    public AudioClip NextSong()
     {
         if (_audioClips.Count < 1) return null;
         _currentSong++;
