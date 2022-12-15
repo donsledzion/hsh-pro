@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StoreySwitcherDropdown : MonoBehaviour
 {
-    [SerializeField] Dropdown _dropdown;
+    [SerializeField] Dropdown _dropdown; 
+    [SerializeField] TextMeshProUGUI _currentStoreyHeight;
+    [SerializeField] TextMeshProUGUI _currentStoreyElevation;
 
     [ContextMenu("Update Dropdown")]
     public void UpdateDropdown()
@@ -19,6 +22,7 @@ public class StoreySwitcherDropdown : MonoBehaviour
         }
         _dropdown.RefreshShownValue();
         _dropdown.value = CurrentStoreyIndex();
+        UpdateLabels();
     }
 
     public static int CurrentStoreyIndex()
@@ -34,4 +38,9 @@ public class StoreySwitcherDropdown : MonoBehaviour
         Drawing2DController.ins.SwitchToStorey(GameManager.ins.Building.CurrentStorey); 
     }
 
+    void UpdateLabels()
+    {
+        _currentStoreyElevation.text = "Poziom: " + GameManager.ins.Building.CurrentStorey.Elevation.ToString() + " cm";
+        _currentStoreyHeight.text = "Wysokoœæ: " + GameManager.ins.Building.CurrentStorey.Height.ToString() + " cm";
+    }
 }
