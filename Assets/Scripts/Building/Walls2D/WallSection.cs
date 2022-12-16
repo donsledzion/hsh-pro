@@ -29,7 +29,7 @@ namespace Walls2D
 
         protected int _orderInWall;
 
-        public float Thickness => _wallReference.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth;
+        public float Thickness => /*_wallReference.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth*/ _wallReference.Thickness;
 
         public BasePoint StartPoint
         {

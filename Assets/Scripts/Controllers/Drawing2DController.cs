@@ -24,7 +24,6 @@ public class Drawing2DController : MonoBehaviour
 
     [SerializeField] DynamicInputController _dynamicInputController;
 
-
     float _firstToLastTollerance = 0.2f;
 
     //[SerializeField] public Transform labelsContainer;
@@ -45,7 +44,7 @@ public class Drawing2DController : MonoBehaviour
     public List<Storey> BuildingStoreys => GameManager.ins.Building.Storeys;    
 
     public Storey2D CurrentStorey { get { return currentStorey; } }
-    public WallType CurrentWallType { get; set; }
+    public float CurrentWallThickness { get; set; }
 
     public Vector2[] CurrentStoreyPoints => currentStorey.Points;
 
@@ -173,9 +172,9 @@ public class Drawing2DController : MonoBehaviour
     public Wall ApplyWallToBuilding()
     {
         Wall wall = BuildingCurrentStorey.AddNewWall();
-        wall.WallSections = new Wall(_uILineRenderer.Points).WallSections;
+        wall.WallSections = new Wall(_uILineRenderer.Points,CurrentWallThickness).WallSections;
         wall.AssignSections();
-        wall.WallType = CurrentWallType;
+        wall.Thickness= CurrentWallThickness;
         return wall;
     }
     public void StoreWall(Wall wall)

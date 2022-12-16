@@ -13,7 +13,8 @@ namespace Walls2D
     public class Wall
     {
         WallSection[] _wallSections;
-        WallType _wallType;
+        //WallType _wallType;
+        float _thickness;
         int _orderInStorey;
 
         public Wall(){}
@@ -23,10 +24,12 @@ namespace Walls2D
             _wallSections = wallSections.ToArray();
             PutSectionsInOrder();
             _orderInStorey = -1;
+            _thickness = wallSections[0].Thickness;
         }
 
-        public Wall(Vector2[] linePoints)
+        public Wall(Vector2[] linePoints, float thickness)
         {
+            _thickness = thickness;
             if (linePoints.Length < 2) return;
 
             List<WallSection> newSections = new List<WallSection>();
@@ -47,11 +50,18 @@ namespace Walls2D
             set { _wallSections = value; }
         }
 
-        public WallType WallType
+        /*public WallType WallType
         {
             get { return _wallType; }
             set { _wallType = value; }
+        }*/
+
+        public float Thickness
+        {
+            get { return _thickness; }
+            set { _thickness = value; }
         }
+
 
         public int OrderInStorey
         {
@@ -117,8 +127,8 @@ namespace Walls2D
                         sectionSpotted = true;
                 }
             }
-            Wall firstWall = new Wall(firstWallPoints.ToArray());
-            Wall secondWall = new Wall(secondWallPoints.ToArray());
+            Wall firstWall = new Wall(firstWallPoints.ToArray(),section.Thickness);
+            Wall secondWall = new Wall(secondWallPoints.ToArray(),section.Thickness);
             GameManager.ins.Building.CurrentStorey.AddNewWall(firstWall);
             GameManager.ins.Building.CurrentStorey.AddNewWall(secondWall);
             return GameManager.ins.Building.CurrentStorey.RemoveWall(this);            
@@ -144,7 +154,7 @@ namespace Walls2D
                 newSections.Add(duplicateSectionB);
 
                 Wall newWall = new Wall(newSections);
-                newWall.WallType = this.WallType;
+                newWall.Thickness = this.Thickness;
                 newWall.AssignSections();
                 return newWall;
             }
@@ -174,7 +184,7 @@ namespace Walls2D
                 strSections += section.ToString() + "\n";
             }
 
-            return "Type: " + _wallType + "\n" + strSections;
+            return "Thickness: " + _thickness + "\n" + strSections;
                 
         }
 

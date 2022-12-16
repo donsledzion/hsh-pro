@@ -24,7 +24,7 @@ public class WallSection2D : MonoBehaviour
     public Vector2 StartPoint { get { return _startPoint; } }
     public Vector2 EndPoint { get { return _endPoint; } }    
     public WallSection WallSection { get { return _wallSection; } }
-    public float Thickness => (WallSection.Wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth);
+    public float Thickness => _wallSection.Wall.Thickness;
     public float Lenght => (WallSection.EndPoint.Position - WallSection.StartPoint.Position).magnitude;
 
     public virtual void DrawOnCanvas(WallSection section)

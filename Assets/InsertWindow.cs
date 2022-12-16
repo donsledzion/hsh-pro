@@ -70,10 +70,10 @@ public class InsertWindow : Selector2D
                 _windowInstance.transform.Rotate(
                     Vector3.forward,
                     -sectionAngle);
-                float windowSectionThickness = 
-                    (_hoveredSection.Wall.WallType == WallType.LoadBearing
+                float windowSectionThickness = _hoveredSection.Wall.Thickness
+                   /* (_hoveredSection.Wall.WallType == WallType.LoadBearing
                     ? DefaultSettings.ins.LoadBareringWallWidth
-                    : DefaultSettings.ins.PartialWallWidth);
+                    : DefaultSettings.ins.PartialWallWidth)*/;
                 _windowInstance.transform.localScale = 
                     new Vector3(
                         DrawingParametersController.ins.WindowWidth/100f,

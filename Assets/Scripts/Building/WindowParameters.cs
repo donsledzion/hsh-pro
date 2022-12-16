@@ -35,7 +35,7 @@ public class WindowParameters
 
     public void SetParameters(Wall wall)
     {
-        Width = wall.WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth;
+        Width = wall.Thickness/*WallType == WallType.LoadBearing ? DefaultSettings.ins.LoadBareringWallWidth : DefaultSettings.ins.PartialWallWidth*/;
     }
 
     public void SetParameters(Storey storey, Wall wall, Windowjamb jamb)
