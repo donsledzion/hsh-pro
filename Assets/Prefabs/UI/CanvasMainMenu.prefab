@@ -1178,6 +1178,8 @@ MonoBehaviour:
   myFx: {fileID: 4172752926634230853}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
 --- !u!1 &4172752926847032745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1481,8 @@ MonoBehaviour:
   myFx: {fileID: 4172752926634230853}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
 --- !u!1 &4172752926925774300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1499,7 @@ GameObject:
   - component: {fileID: 4172752926925774296}
   - component: {fileID: 4172752926925774297}
   - component: {fileID: 4172752926925774301}
+  - component: {fileID: 8482703347948374122}
   m_Layer: 5
   m_Name: TutorialBtn
   m_TagString: Untagged
@@ -1765,6 +1770,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 8482703347948374122}
+          m_TargetAssemblyTypeName: OpenUrl, Assembly-CSharp
+          m_MethodName: OpenURL
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: https://hsh-vr.sledzislaw.usermd.net/
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &4172752926925774301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1780,6 +1797,21 @@ MonoBehaviour:
   myFx: {fileID: 4172752926634230853}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
+--- !u!114 &8482703347948374122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172752926925774300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf5b8f2557412640b169a795d2be1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _urlToOpen: 
 --- !u!1 &4172752926970422202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,6 +2267,8 @@ MonoBehaviour:
   myFx: {fileID: 4172752926634230853}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
 --- !u!1 &4172752927334582537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,6 +2582,8 @@ MonoBehaviour:
   myFx: {fileID: 4172752926634230853}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
 --- !u!1 &4172752927531815907
 GameObject:
   m_ObjectHideFlags: 0
@@ -3395,6 +3431,8 @@ MonoBehaviour:
   myFx: {fileID: 6140270026724532747}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
 --- !u!114 &6140270026724532751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3668,6 +3706,8 @@ MonoBehaviour:
   myFx: {fileID: 6140270026854481056}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
 --- !u!82 &6140270026854481056
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6108,6 +6148,8 @@ MonoBehaviour:
   myFx: {fileID: 6140270028726815062}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
 --- !u!114 &6140270028726815060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7008,6 +7050,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4998762535034850450, guid: 7f43009af2bf2e54ca5f6f4005aef69c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7f43009af2bf2e54ca5f6f4005aef69c, type: 3}
+--- !u!224 &6140270027525662707 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 631527175264377318, guid: 7f43009af2bf2e54ca5f6f4005aef69c, type: 3}
+  m_PrefabInstance: {fileID: 6770385303573544469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6140270027525662708 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 631527175264377313, guid: 7f43009af2bf2e54ca5f6f4005aef69c, type: 3}
@@ -7022,11 +7069,6 @@ MonoBehaviour:
 --- !u!1 &5666754219259026365 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1392007423063483816, guid: 7f43009af2bf2e54ca5f6f4005aef69c, type: 3}
-  m_PrefabInstance: {fileID: 6770385303573544469}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &6140270027525662707 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 631527175264377318, guid: 7f43009af2bf2e54ca5f6f4005aef69c, type: 3}
   m_PrefabInstance: {fileID: 6770385303573544469}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6140270028324803816 stripped
@@ -7190,6 +7232,8 @@ MonoBehaviour:
   myFx: {fileID: 1358301257}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
 --- !u!82 &635197279
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7301,6 +7345,8 @@ MonoBehaviour:
   myFx: {fileID: 635197279}
   hoverFX: {fileID: 8300000, guid: 1e0f3bfb16bc3de4183bd2d7a067e3ab, type: 3}
   clickFX: {fileID: 8300000, guid: a6f39890f06871246b17bff208569d0b, type: 3}
+  hoverVolume: 1
+  clickVolume: 1
 --- !u!114 &635197280
 MonoBehaviour:
   m_ObjectHideFlags: 0

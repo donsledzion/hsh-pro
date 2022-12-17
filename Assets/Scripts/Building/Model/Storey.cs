@@ -44,7 +44,7 @@ public class Storey
     public Storey()
     {
         _number = 0;
-        _name = "Default floor";
+        _name = "Parter";
         _elevation = 0f;
         _height = 320f;
     }

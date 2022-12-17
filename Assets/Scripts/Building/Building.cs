@@ -24,7 +24,7 @@ public class Building
         _name = "Default building";
         _sheetSize = new Vector2(1200f, 950f);
     }
-    public Building(string buildingName, string storeyName = "Default floor", float elevation = 0f, float height = 320f)
+    public Building(string buildingName, string storeyName = "Parter", float elevation = 0f, float height = 320f)
     {
         _name = buildingName;
         _storeys.Add(new Storey(0,storeyName,elevation,height));
@@ -94,7 +94,7 @@ public class Building
     public void AddStoreySimple(bool seAsCurrent = true)
     {
         Debug.Log("Adding simple storey");
-        string name = "Storey_" + (_storeys.Count + 1);
+        string name = "Piêtro_" + (_storeys.Count);
         float elevation = _storeys[_storeys.Count - 1].Elevation + _storeys[_storeys.Count - 1].Height;
         float height = _storeys[_storeys.Count - 1].Height;
         AddStorey(name,elevation,height);

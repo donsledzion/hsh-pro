@@ -142,15 +142,25 @@ public class StoreyPointsCollector : MonoBehaviour
 
         public float ThickestWallThickness()
         {
-            foreach(WallSection section in sections)
+            float thickestSize = -1;
+            try
             {
-                if (section.Wall == null) return 30f;
-                if (section.Wall.WallType == WallType.LoadBearing)
-                    return DefaultSettings.ins.LoadBareringWallWidth;
-                else if (section.Wall.WallType == WallType.Partition)
-                    return DefaultSettings.ins.PartialWallWidth;
+                foreach(WallSection section in sections)
+                {
+                    /*if (section.Wall == null) return 30f;*/
+                    /*if (section.Wall.WallType == WallType.LoadBearing)
+                        return DefaultSettings.ins.LoadBareringWallWidth;
+                    else if (section.Wall.WallType == WallType.Partition)
+                        return DefaultSettings.ins.PartialWallWidth;*/
+                    if(section.Wall.Thickness > thickestSize)
+                        thickestSize = section.Wall.Thickness;
+                }
             }
-            return 30f;
+            catch
+            {
+                Debug.LogError("Something went wrong while looking for the tickest wall section dimension!");
+            }
+            return -thickestSize;
         }
     }
 
