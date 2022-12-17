@@ -14,6 +14,7 @@ public class WallInfoDisplay : MonoBehaviour
     {
         if(_dropdown == null)
             _dropdown = GetComponent<TMP_Dropdown>();
+
     }
 
 

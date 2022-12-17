@@ -11,7 +11,7 @@ public class UIController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _gridSnapButtonLabel;
 
     [SerializeField] Slider gridLabelSlider;
-    [SerializeField] TextMeshProUGUI gridLabelText;
+    [SerializeField] TMP_InputField _gridDeinsityInput;
     [SerializeField] TextMeshProUGUI _angleSnapSliderLabel;
 
 
@@ -44,8 +44,8 @@ public class UIController : MonoBehaviour
 
     public void UpdateGridSizeLabel()
     {
-
-        gridLabelText.text = "Gêstoœæ siatki: " + gridLabelSlider.value + " cm";
+        if(gridLabelSlider.value > 0)
+            _gridDeinsityInput.text = gridLabelSlider.value.ToString();
     }
 
     public Vector3 GridSnap(Vector3 pointerPosition)
@@ -69,12 +69,12 @@ public class UIController : MonoBehaviour
             _angleSnapButtonLabel.text = "Angle snap: ON";
         else
             _angleSnapButtonLabel.text = "Angle snap: OFF";
-    }
+    }/*
 
     public void UpdateAngleSnapLabel()
     {
         _angleSnapSliderLabel.text = "K¹t przyci¹gania: " + _angleSnapSlider.value + "°";
-    }
+    }*/
 
     public void UpdateDynamicDimensions()
     {
