@@ -22,6 +22,17 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     [SerializeField] private AssetController invertoryKitchenFurniture;
     [SerializeField] private AssetController invertoryLivingRoomFurniture;
     [SerializeField] private AssetController invertoryDiningRoomFurniture;
+    [SerializeField] private AssetController invertoryBathroomItems;
+    [SerializeField] private AssetController invertoryBedroomItems;
+    [SerializeField] private AssetController invertoryLargeAGDItems;
+    [SerializeField] private AssetController invertorySmallAGDItems;
+    [SerializeField] private AssetController invertoryHiFiItems;
+    [SerializeField] private AssetController invertoryRadioItems;
+    [SerializeField] private AssetController invertoryCeilingLightsItems;
+    [SerializeField] private AssetController invertoryFloorLightsItems;
+    [SerializeField] private AssetController invertoryFreeStandingLightsItems;
+    [SerializeField] private AssetController invertoryWallLightsItems;
+    [SerializeField] private AssetController invertoryAccessoriesItems;
     [SerializeField] private GameObject surfaceSelector;
     Camera previewCamera;
 
@@ -30,7 +41,7 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
 
 
     private GameObject itemPrefab = null;
-    private GameObject furniturePrefab = null;
+    private GameObject ItemPrefab = null;
 
     private GameObject itemPrefabNotMovable = null;
 
@@ -44,23 +55,67 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         invertoryDoor.OnItemSelected += invertoryItems_OnItemSelectedDoor;
         invertoryWindow.OnItemSelected += invertoryItems_OnItemSelectedWindow;
         invertoryFloor.OnItemSelected += invertoryItems_OnItemSelectedFloor;
-        invertorySofaFurniture.OnItemSelected += invertoryItems_OnItemSelectedSofaFurniture;
-        invertoryCornersFurniture.OnItemSelected += invertoryItems_OnItemSelectedCornersFurniture;
-        invertoryArmchairFurniture.OnItemSelected += invertoryItems_OnItemSelectedArmchairsFurniture;
-        invertoryCoachiesFurniture.OnItemSelected += invertoryItems_OnItemCoachiesFurniture;
-        invertoryBedsFurniture.OnItemSelected += invertoryItems_OnItemBedsFurniture;
-        invertoryKitchenFurniture.OnItemSelected += invertoryItems_OnItemKitchenFurniture;
-        invertoryLivingRoomFurniture.OnItemSelected += invertoryItems_OnItemLivingRoomFurniture;
-        invertoryDiningRoomFurniture.OnItemSelected += invertoryItems_OnItemLivingRoomFurniture;
+        invertorySofaFurniture.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryCornersFurniture.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryArmchairFurniture.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryCoachiesFurniture.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryBedsFurniture.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryKitchenFurniture.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryLivingRoomFurniture.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryDiningRoomFurniture.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryBathroomItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryBedroomItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryLargeAGDItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertorySmallAGDItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryHiFiItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryRadioItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryCeilingLightsItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryFloorLightsItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryFreeStandingLightsItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryWallLightsItems.OnItemSelected += invertoryItems_OnItemShow;
+        invertoryAccessoriesItems.OnItemSelected += invertoryItems_OnItemShow;
         previewCamera = ReferenceController.ins.ItemInspectionCamera.Camera;
 
     }
 
-    private void invertoryItems_OnItemLivingRoomFurniture(object sender, ScriptableObjectsController itemSO)
+    private void invertoryItems_OnItemShow(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
-        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
-        furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
+        Vector3 positionOfItem;
+
+        
+        switch (itemSO.prefab.tag)
+        {
+
+            case "TopLocker":
+                positionOfItem = new Vector3(10000, 9998, 10003);
+                break;
+
+            case "Stove":
+                positionOfItem = new Vector3(10000, 10000, 10003);
+                break;            
+            
+            case "CeilingLight":
+                positionOfItem = new Vector3(10000, 10000.5f, 10003);
+                break;            
+            
+            case "WallLight":
+                positionOfItem = new Vector3(10000, 9995, 10003);
+                break;
+                            
+            case "WallAccessories":
+                positionOfItem = new Vector3(10000, 9998.5f, 10003);
+                break;
+
+            default :  positionOfItem = new Vector3(10000, 9999.2f, 10003);
+                break;
+
+        }
+        
+
+        ItemPrefab = Instantiate(itemSO.prefab, positionOfItem, Quaternion.identity);
+        ItemPrefab.transform.localScale = ItemPrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
+        if (ItemPrefab.tag == "Stove") ItemPrefab.transform.localRotation = Quaternion.Euler(-52,0,0) ;
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
         
 
@@ -75,8 +130,14 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     private void invertoryItems_OnItemKitchenFurniture(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
-        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
-        furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
+
+        Vector3 positionOfItem;
+
+        if (itemSO.prefab.tag == "TopLocker") positionOfItem = new Vector3(10000, 9998, 10003);
+        else positionOfItem = new Vector3(10000, 9999.2f, 10003);
+
+        ItemPrefab = Instantiate(itemSO.prefab, positionOfItem, Quaternion.identity);
+        ItemPrefab.transform.localScale = ItemPrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
         
 
@@ -91,8 +152,8 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     private void invertoryItems_OnItemBedsFurniture(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
-        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
-        furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
+        ItemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
+        ItemPrefab.transform.localScale = ItemPrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;        
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
@@ -106,8 +167,8 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     private void invertoryItems_OnItemCoachiesFurniture(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
-        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
-        furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
+        ItemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
+        ItemPrefab.transform.localScale = ItemPrefab.GetComponent<EquipmentItem>().ThumbScale;//new Vector3(0.5f, 1, 0.5f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;        
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
@@ -121,8 +182,8 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     private void invertoryItems_OnItemSelectedArmchairsFurniture(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
-        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
-        furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.5f);
+        ItemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
+        ItemPrefab.transform.localScale = ItemPrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.5f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;        
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
@@ -136,8 +197,8 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     private void invertoryItems_OnItemSelectedCornersFurniture(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
-        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.6f, 10003), Quaternion.identity);
-        furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.8f);
+        ItemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.6f, 10003), Quaternion.identity);
+        ItemPrefab.transform.localScale = ItemPrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.8f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
@@ -158,8 +219,8 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
     private void invertoryItems_OnItemSelectedSofaFurniture(object sender, ScriptableObjectsController itemSO)
     {
         destroyPrefab();
-        furniturePrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
-        furniturePrefab.transform.localScale = furniturePrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.8f);
+        ItemPrefab = Instantiate(itemSO.prefab, new Vector3(10000, 9999.2f, 10003), Quaternion.identity);
+        ItemPrefab.transform.localScale = ItemPrefab.GetComponent<EquipmentItem>().ThumbScale; //new Vector3(0.5f, 1, 0.8f);
         description.GetComponent<TextMeshProUGUI>().text = itemSO.Description.text;
 
         this.transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Button>().onClick.AddListener(() => {
@@ -240,9 +301,9 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
         {
             Destroy(itemPrefabNotMovable.gameObject);
         }
-        else if (furniturePrefab != null)
+        else if (ItemPrefab != null)
         {
-            Destroy(furniturePrefab.gameObject);
+            Destroy(ItemPrefab.gameObject);
         }
 
 
@@ -255,9 +316,9 @@ public class Item3DViewer : MonoBehaviour, IDragHandler
             itemPrefab.transform.eulerAngles += new Vector3(0, -eventData.delta.x, 0);
         }
 
-        if (furniturePrefab != null)
+        if (ItemPrefab != null)
         {
-            furniturePrefab.transform.eulerAngles += new Vector3(0, -eventData.delta.x, 0); //new Vector3(eventData.delta.y, -eventData.delta.x);
+            ItemPrefab.transform.eulerAngles += new Vector3(0, -eventData.delta.x, 0);// new Vector3(eventData.delta.y, -eventData.delta.x);
         }
 
     }
