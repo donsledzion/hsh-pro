@@ -32,10 +32,13 @@ public class BuildingSerializer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F6))
         {
             QuickLoad();
+            
+            //InformationWindowController._instance.ShowToolTipTimer("Zapisywanie", "Zapisano poprawnie projekt", new Vector3(500, 500, 100));
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {
             QuickSave();
+            //InformationWindowController._instance.ShowToolTipTimer("Wczytywanie", "Wczytano poprawnie projekt", new Vector3(500,500,100));
         }
     }
 

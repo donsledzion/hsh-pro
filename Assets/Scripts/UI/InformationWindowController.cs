@@ -10,6 +10,8 @@ public class InformationWindowController : MonoBehaviour
 
     public TextMeshProUGUI headerSection;
     public TextMeshProUGUI textToDisplaySection;
+    public GameObject infoWindow;
+
 
 
 
