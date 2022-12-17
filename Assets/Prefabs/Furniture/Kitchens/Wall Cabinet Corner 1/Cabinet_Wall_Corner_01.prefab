@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5121418322e744599a9972b867f5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thumbScale: {x: 1, y: 1, z: 1}
+  _thumbScale: {x: 0.008, y: 0.01, z: 0.007}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -372,6 +372,42 @@ MonoBehaviour:
   onDetachedFromHand:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7951851017083634693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018655814607471621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4153b26428ccf041950b92c057812a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHandHoverBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1285229020378931956}
+        m_TargetAssemblyTypeName: SojaExiles.opencloseDoor1, Assembly-CSharp
+        m_MethodName: Toggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHandHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttachedToHand:
+    m_PersistentCalls:
+      m_Calls: []
+  onDetachedFromHand:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8212606032413036648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,39 +460,3 @@ MonoBehaviour:
   highlightOnHover: 1
   hideHighlight: []
   hoverPriority: 0
---- !u!114 &7951851017083634693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9018655814607471621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4153b26428ccf041950b92c057812a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHandHoverBegin:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1285229020378931956}
-        m_TargetAssemblyTypeName: SojaExiles.opencloseDoor1, Assembly-CSharp
-        m_MethodName: Toggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHandHoverEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  onAttachedToHand:
-    m_PersistentCalls:
-      m_Calls: []
-  onDetachedFromHand:
-    m_PersistentCalls:
-      m_Calls: []
