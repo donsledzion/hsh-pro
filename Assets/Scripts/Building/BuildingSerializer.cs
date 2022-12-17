@@ -32,10 +32,13 @@ public class BuildingSerializer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F6))
         {
             QuickLoad();
+            InformationWindowController.Instance.ShowToolTipTimer("Wczytywanie", "Wczytano poprawnie projekt", new Vector3(500, 500, 100));
+
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {
             QuickSave();
+            InformationWindowController.Instance.ShowToolTipTimer("Zapisywanie", "Zapisano poprawnie projekt", new Vector3(500, 500, 100));
         }
     }
 
@@ -115,7 +118,7 @@ public class BuildingSerializer : MonoBehaviour
         return equipmentItems.Count;
     }
 
-    public SaveFileData GetFileData(string fileName)
+    public static SaveFileData GetFileData(string fileName)
     {
         string dataPath = Application.persistentDataPath;
 
@@ -144,7 +147,7 @@ public class BuildingSerializer : MonoBehaviour
         }
     }
 
-    private bool ValidSaveFile()
+    private static bool ValidSaveFile()
     {
         //TODO - check if file contains valid project info
         return true;

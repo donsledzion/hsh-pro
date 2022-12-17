@@ -23,7 +23,7 @@ public class InfoWindowTimer : MonoBehaviour,IPointerClickHandler
 
         
 
-        InformationWindowController._instance.ShowToolTipTimer(header, textToDisplay, position);   
+        InformationWindowController.Instance.ShowToolTipTimer(header, textToDisplay, position);   
     }
 
 /*    public void OnPointerDown(PointerEventData eventData)
