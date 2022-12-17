@@ -19,12 +19,12 @@ public class InformationTips : MonoBehaviour, IPointerEnterHandler,IPointerExitH
         Resolution resolution = Screen.currentResolution;
         position = new Vector2(resolution.width / 2, position.y);
         infoWindow.SetActive(true);
-        InformationWindowController._instance.ShowToolTip(header,textToDisplay,position);
+        InformationWindowController.Instance.ShowToolTip(header,textToDisplay,position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        InformationWindowController._instance.HideToolTip();
+        InformationWindowController.Instance.HideToolTip();
     }
 
 

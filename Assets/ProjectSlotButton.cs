@@ -16,7 +16,7 @@ public class ProjectSlotButton : MonoBehaviour
 
     public void UpdateName()
     {
-        SaveFileData fileData = BuildingSerializer.ins.GetFileData(gameObject.name + ".xml");
+        SaveFileData fileData = BuildingSerializer.GetFileData(gameObject.name + ".xml");
         if (string.IsNullOrEmpty(fileData.FileName))
         {
             Debug.LogWarning(fileData.Message);
