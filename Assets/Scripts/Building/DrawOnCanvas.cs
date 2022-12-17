@@ -27,7 +27,6 @@ namespace Walls2D
         {            
             pointerPosition = Input.mousePosition;
 
-            
             if (GameManager.ins.WallSectionEndSnap && snappedEndPointFound)
                 pointerPosition = CanvasController.CanvasCoordsToScreenPoint(snappedEndPoint);
             else if (GameManager.ins.WallSectionCloseSnap && snappedClosePointFound)

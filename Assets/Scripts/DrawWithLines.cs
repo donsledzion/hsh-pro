@@ -43,6 +43,11 @@ public abstract class DrawWithLines : DrawOnCanvas
                 _drawing2DController.ApplyDynamicInput(pointerPosition);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BreakLine();
+        }
     }
 
     protected abstract void BreakLine();
