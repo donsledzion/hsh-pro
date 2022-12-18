@@ -21,8 +21,11 @@ public class WallSectionDeleter : MonoBehaviour
             {
                 if(wallSection == section)
                 {
+                    Debug.Log("Removing section of type <color=green>" + wallSection.GetType().ToString() + "</color>");
                     sectionsWall = wall;
-                    if (IsSectionOnWallsEdge(section, sectionsWall))
+                    if (section.GetType() == typeof(Doorjamb) || section.GetType() == typeof(Windowjamb))
+                        wall.RemoveJamb((Jamb)section);
+                    else if (IsSectionOnWallsEdge(section, sectionsWall))
                         DeleteEdgeSection(section, sectionsWall);
                     else if (DeleteMidSection(section, sectionsWall)) return;
                 }
@@ -34,6 +37,7 @@ public class WallSectionDeleter : MonoBehaviour
                 break;
             }                
         }
+        Drawing2DController.ins.RedrawCurrentStorey();
     }
 
     public static bool IsSectionOnWallsEdge(WallSection section, Wall wall)
