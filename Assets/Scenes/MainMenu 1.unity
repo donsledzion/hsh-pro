@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: ef83e2ab100f99841b622b2182325a5a, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: a0960383032c5b942be3a2ffe04c18bc, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -420,7 +420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4328a1ccdcc61d44be691063316c830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileToLoadOnStart: 
 --- !u!4 &1965001260
 Transform:
   m_ObjectHideFlags: 0
@@ -780,6 +779,18 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1459336940}
+    - target: {fileID: 4172752926634230858, guid: 6663e8cbb31e41a408b6521c7390bdfe, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172752926634230858, guid: 6663e8cbb31e41a408b6521c7390bdfe, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SceneSwitcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172752926634230858, guid: 6663e8cbb31e41a408b6521c7390bdfe, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: WhiteBoard_DP
+      objectReference: {fileID: 0}
     - target: {fileID: 4172752926847032744, guid: 6663e8cbb31e41a408b6521c7390bdfe, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

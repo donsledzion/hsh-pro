@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 48ecf2791d68d1b41b512045bbb9f9fe, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridSnapButtonLabel: {fileID: 0}
   gridLabelSlider: {fileID: 4118300706197470817}
-  gridLabelText: {fileID: 4118300705451981493}
+  _gridDeinsityInput: {fileID: 0}
   _angleSnapSliderLabel: {fileID: 4118300707462878011}
   _dynamicDimensionsButtonLabel: {fileID: 0}
   _angleSnapSlider: {fileID: 4118300706725218094}
@@ -1155,6 +1155,9 @@ MonoBehaviour:
   _modeController: {fileID: 370844842}
   _storeySwitcherDropdown: {fileID: 1013588119}
   _whiteboardBackgroundInfo: {fileID: 1230900131}
+  _storeyPointsCollector: {fileID: 0}
+  _buildingDestroyer: {fileID: 0}
+  _builder3D: {fileID: 0}
 --- !u!1 &585099602 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2315470058640564835, guid: 8e63f86e4cd687b4b85b7b97a033c1c9, type: 3}
@@ -1665,6 +1668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978d77c1ad09da84e8ec4d8c7ce276dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputLabelPrefab: {fileID: 0}
 --- !u!1 &1493636349 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1842569630, guid: d5232b4b80fffe84f99613095371d7d0, type: 3}
@@ -1902,6 +1906,7 @@ MonoBehaviour:
   modalController: {fileID: 186357581}
   _inputWidth: {fileID: 1469057211}
   _inputHeight: {fileID: 1771144646}
+  _inputName: {fileID: 0}
   _whiteboardBackground: {fileID: 1230900127}
   _gridController: {fileID: 374718309}
 --- !u!1 &1826868301 stripped
@@ -1962,11 +1967,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fdafb6e8b415b43bfc68e383c6e44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawingCanvasBackgroundLBCorner: {x: 0, y: 0, z: 0}
+  SnapCornersDistance: 5
   Zoom: 0
   PointerOverUI: 0
   RelativeAngle: 1
-  ResolutionRatio: {x: 0, y: 0}
   SnappedEndPoint: {x: 0, y: 0}
   SnappedClosePoint: {x: 0, y: 0}
   GridSnap: 0
@@ -1974,6 +1978,8 @@ MonoBehaviour:
   DynamicDimensions: 0
   WallSectionEndSnap: 1
   WallSectionCloseSnap: 1
+  WallOrderDebugMode: 0
+  CornersFinishingDebugMode: 1
 --- !u!4 &1870348593
 Transform:
   m_ObjectHideFlags: 0
@@ -2690,17 +2696,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20555eda40ce9344891c01bde5359857, type: 3}
---- !u!114 &4118300705451981493 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3838127769644281167, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
-  m_PrefabInstance: {fileID: 4969373843784404164}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4118300706197470817 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3838127770137979291, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
@@ -2989,6 +2984,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1933196141}
+    - target: {fileID: 1059596552010357418, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1157981941116340921, guid: 8820c8a0cc09ed247af53af354b43b26, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
