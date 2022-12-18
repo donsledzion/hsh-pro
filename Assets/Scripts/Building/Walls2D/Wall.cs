@@ -138,7 +138,6 @@ namespace Walls2D
         {
             if(_wallSections.Contains(wallSection))
             {
-                Debug.Log("Inserting (inside if)");
                 WallSection duplicateSectionA = wallSection.Clone();
                 WallSection duplicateSectionB = wallSection.Clone();
                 List<WallSection> newSections = new List<WallSection>();
@@ -159,6 +158,22 @@ namespace Walls2D
                 return newWall;
             }
             return null;
+        }
+
+        public void RemoveJamb(Jamb jamb)
+        {
+            if(!_wallSections.Contains(jamb)) return;
+            int jambOrder = jamb.OrderInWall;
+            WallSection previousSection = _wallSections[jambOrder - 1];
+            WallSection nextSection = _wallSections[jambOrder + 1];
+            BasePoint newStart = previousSection.StartPoint;
+            BasePoint newEnd = nextSection.EndPoint;
+            List<WallSection> newSections = new List<WallSection>(_wallSections);
+            newSections.Remove(jamb);
+            newSections.Remove(nextSection);
+            _wallSections = newSections.ToArray();
+            previousSection.EndPoint = newEnd;
+            PutSectionsInOrder();
         }
 
         public void AssignSections()
