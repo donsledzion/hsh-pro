@@ -70,6 +70,9 @@ public class ModeController : MonoBehaviour
         mainCamera.SetActive(false);
         canvas.GetComponent<Canvas>().enabled = false;
 
+        refToScript = builder3D.GetComponent<Builder3D>();
+        refToScript.GenerateBuilding();
+
         Time.timeScale = 1;
         foreach (GameObject VrObjects in VRMOde)
         {
@@ -82,6 +85,7 @@ public class ModeController : MonoBehaviour
         ResetAllListObjects();
         cameraController.enabled = false;
         headerPanel.GetComponent<ToolsTabGroup>().onTabSelected(twoDHeader);
+
         foreach (GameObject objects2D in listOf2DObjects)
         {
             objects2D.SetActive(true);
@@ -124,6 +128,10 @@ public class ModeController : MonoBehaviour
     public void FinishingMode() {
 
         ResetAllListObjects();
+
+        refToScript = builder3D.GetComponent<Builder3D>();
+        refToScript.GenerateBuilding();
+
         canvas.GetComponent<Canvas>().enabled = false;
         foreach (GameObject objects3D in listOfFinishingObjects)
         {
@@ -167,8 +175,9 @@ public class ModeController : MonoBehaviour
         ResetFurnitureTabs();
         canvas.GetComponent<Canvas>().enabled = false;
         cameraController.enabled = true;
-//        refToScript = builder3D.GetComponent<Builder3D>();
-//        refToScript.GenerateBuilding();
+
+        refToScript = builder3D.GetComponent<Builder3D>();
+        refToScript.GenerateBuilding();
 
         foreach (GameObject objects3D in listOfDecorationObjects)
         {
