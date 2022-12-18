@@ -42,6 +42,9 @@ public class SheetResizer : MonoBehaviour
         float minY = 0;
         float maxX = 0;
         float maxY = 0;
+
+        float maxWidth = 20000;
+        float maxHeight = 20000;
         if(GameManager.ins.Building.Points.Length > 2)
         {
             foreach(Storey storey in GameManager.ins.Building.Storeys)
@@ -70,8 +73,19 @@ public class SheetResizer : MonoBehaviour
                 _validationErrorDisplay.text = "Zbyt ma³y rozmiar nowego arkusza. Obecny budynek siê na nim nie zmieœci";
                 return false;
             }
-        }
 
+            if(_newSize.x > maxWidth || _newSize.y > maxHeight)
+            {
+                _validationErrorDisplay.text = "Zbyt du¿y rozmiar arkusza. Maksymalne dopuszczalne wymiary to 20m x 20m";
+                return false;
+            }
+        }
+        ResetDialogTitle();
         return true;
+    }
+
+    public void ResetDialogTitle()
+    {
+        _validationErrorDisplay.text = "Zmieñ rozmiar arkusza";
     }
 }

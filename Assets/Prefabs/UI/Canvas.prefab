@@ -63257,6 +63257,7 @@ GameObject:
   - component: {fileID: 4969373844437760234}
   - component: {fileID: 4969373844437760233}
   - component: {fileID: 5620440971883587037}
+  - component: {fileID: 2874273249834221909}
   m_Layer: 5
   m_Name: ResizeWhiteboardDialog
   m_TagString: Untagged
@@ -63417,6 +63418,18 @@ MonoBehaviour:
   _sheetName: {fileID: 4969373843786442828}
   _validationErrorDisplay: {fileID: 4969373843422569824}
   minOffset: 50
+--- !u!114 &2874273249834221909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969373844437760226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a36135bc4a00a428cead10384a9202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4969373844462433356
 GameObject:
   m_ObjectHideFlags: 0
@@ -65538,6 +65551,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteboardHolder: {fileID: 4969373844880231741}
   LBCornerLabel: {fileID: 893085410779313910}
+  resolutionMismatchCorrectX: 1
+  resolutionMismatchCorrectY: 1
 --- !u!223 &4969373844738213729
 Canvas:
   m_ObjectHideFlags: 0
@@ -96582,6 +96597,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a020a583875d9134cbd3d7c466d8aa2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _afterAssignEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6650364606758150225
 GameObject:
   m_ObjectHideFlags: 0
