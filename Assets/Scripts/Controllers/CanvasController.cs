@@ -12,7 +12,6 @@ public class CanvasController : MonoBehaviour
     [SerializeField] TextMeshProUGUI CanvasCoordsTMPro;
     [SerializeField] public ZoomController pointerController;
     [SerializeField] public ClickerController clickerController;
-
     //======================================================================
     Canvas mainCanvas;
     public Vector3 drawingCanvasBackgroundLBCorner;
@@ -54,11 +53,11 @@ public class CanvasController : MonoBehaviour
         CanvasCoordsTMPro.text = "Canvas coords [" + coords.x + "," + coords.y + "]";
     }
 
-    public static Vector2 ScreenPointToCanvasCoords(Vector2 inputCoords)
+    public static Vector2 ScreenPointToCanvasCoords(Vector2 inputCoords, float correctX = 1f, float correctY = 1f)
     {
         Vector2 outCoords = inputCoords - new Vector2(
-            GameManager.ins.DrawingCanvasBackgroundLBCorner.x,
-            GameManager.ins.DrawingCanvasBackgroundLBCorner.y);
+            GameManager.ins.DrawingCanvasBackgroundLBCorner.x * correctX,
+            GameManager.ins.DrawingCanvasBackgroundLBCorner.y * correctY);
 
         return new Vector2(
             outCoords.x/GameManager.ins.ResolutionRatio.x,

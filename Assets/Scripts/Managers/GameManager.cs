@@ -23,11 +23,11 @@ public class GameManager : MonoBehaviour
 
     public float SnapCornersDistance = 5f;
 
-    public Vector3 DrawingCanvasBackgroundLBCorner;
+    public Vector3 DrawingCanvasBackgroundLBCorner { get; private set; }
     public float Zoom;
     public bool PointerOverUI;
     public bool RelativeAngle = true;
-    public Vector2 ResolutionRatio;
+    public Vector2 ResolutionRatio { get; private set; }
     public Vector2 SnappedEndPoint = new Vector2(0f,0f);
     public Vector2 SnappedClosePoint = new Vector2(0f,0f);
     public Building Building;
@@ -50,6 +50,17 @@ public class GameManager : MonoBehaviour
     public bool WallOrderDebugMode = false;
 
     public bool CornersFinishingDebugMode = true;
+    
+    public void SetLBCorner(Vector3 corner)
+    {
+        DrawingCanvasBackgroundLBCorner = corner;
+    }
+    
+    public void SetResolutionRatio(Vector2 ratio)
+    {
+        ResolutionRatio = ratio;
+    }
+
     public bool ToggleGridSnap()
     {
         GridSnap = !GridSnap;
