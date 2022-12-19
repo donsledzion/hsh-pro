@@ -10,10 +10,8 @@ public class ToggleSwitch : MonoBehaviour, IPointerDownHandler
     private bool _isOn = false;
     public bool isOn
     {
-        get
-        {
-            return _isOn;
-        }
+        get { return _isOn; }
+
     }
 
     [SerializeField]

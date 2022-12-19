@@ -10,6 +10,14 @@ public class ToolsTabButton : MonoBehaviour, IPointerClickHandler, IPointerEnter
     public ToolsTabGroup tabGroup;
     public int index;
     public Image background;
+    [SerializeField]
+    private bool _isOn = false;
+    public bool isOn
+    {
+        get { return _isOn; }
+
+        set { _isOn = value; }
+    }
 
 
     public void OnPointerClick(PointerEventData eventData)

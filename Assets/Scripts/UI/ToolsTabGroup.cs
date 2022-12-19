@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToolsTabGroup : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ToolsTabGroup : MonoBehaviour
     public ToolsTabButton selectedTab;
     public List<GameObject> objectsToSwap;
     private Object[] textures;
+
     //private AddressablesController addressablesController;
 
     public void Subscribe(ToolsTabButton button)
@@ -29,6 +31,13 @@ public class ToolsTabGroup : MonoBehaviour
             ResetTabs();
             button.background.color = tabhover;
         }
+
+        if (button.isOn)
+        {
+            ResetTabs();
+            button.background.color = tabActive;
+        }
+
     }
 
     public void onTabExit(ToolsTabButton button)
@@ -56,11 +65,25 @@ public class ToolsTabGroup : MonoBehaviour
         }
     }
 
+    public void onTabSelectedToggle(ToolsTabButton button) {
+
+        if (!button.isOn) 
+        {         
+            button.background.color = tabActive;
+            button.isOn = true;
+        }
+        else 
+        {
+            button.background.color = tabIdle;
+            button.isOn = false;
+        }
+    }
+
     public void ResetTabs()
     {
         foreach (ToolsTabButton button in tabButtons)
         {
-            if (selectedTab != null && button == selectedTab) { continue; }
+            if (button.isOn || (selectedTab != null && button == selectedTab)) { continue; }
             button.background.color = tabIdle;
         }
     }
