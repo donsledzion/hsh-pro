@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Walls2D
 {
@@ -173,6 +174,7 @@ namespace Walls2D
             List<WallSection> newSections = new List<WallSection>(_wallSections);
             if(jambOrder > 0 && jambOrder < _wallSections.Length - 1)
             {
+                Debug.Log("<color=green>This is FIRST option!</color>");
                 WallSection previousSection = _wallSections[jambOrder - 1];
                 WallSection nextSection = _wallSections[jambOrder + 1];
                 BasePoint newEnd = nextSection.EndPoint;
@@ -182,10 +184,13 @@ namespace Walls2D
             }
             else if(jambOrder == 0)
             {
+                Debug.Log("<color=green>This is SECOND option!</color>");
                 if (jambOrder == _wallSections.Length - 1)
                 {
                     Debug.LogWarning("<color=yellow>Caution</color> Swaping jamb seciton into straight section! Anything can happen!");
                     SwapSectionIntoStraight(jamb);
+                    PutSectionsInOrder();
+                    return;
                 }
                 else
                 {
@@ -199,15 +204,61 @@ namespace Walls2D
             {
                 if (jambOrder == 0)
                 {
-                    Debug.LogWarning("<color=yellow>Caution</color> Swaping jamb seciton into straight section! Anything can happen!");
+                    Debug.LogWarning("<color=red>Caution</color> Swaping jamb seciton into straight section! Anything can happen!");
                     SwapSectionIntoStraight(jamb);
+                    PutSectionsInOrder();
+                    return;
                 }
                 else
                 {
-                    BasePoint newEnd = jamb.EndPoint;
-                    newSections.Remove(jamb);
+                    Debug.Log("<color=green>This is THIRD option!</color>");
+
+                    //BasePoint newEnd = jamb.EndPoint;
                     WallSection previousSection = _wallSections[jambOrder - 1];
-                    previousSection.EndPoint = newEnd;
+                    if(previousSection.EndPoint.Position == jamb.StartPoint.Position)
+                    {
+                        Debug.Log("<color=red>Variant ONE!</color>");
+                        BasePoint newEnd = jamb.EndPoint;
+                        previousSection.EndPoint = newEnd;
+                    }
+                    else if(previousSection.EndPoint.Position == jamb.EndPoint.Position)
+                    {
+                        Debug.Log("<color=red>Variant TWO!</color>");
+                        if (previousSection.StartPoint.Position == jamb.StartPoint.Position)
+                        {
+                            Debug.LogWarning("<color><b>SECTIONS ARE ON THE SAME PLACE!!!</b> type: " + previousSection.GetType().ToString() + "</color>");
+                            BasePoint start = jamb.StartPoint;
+                            BasePoint end = jamb.EndPoint;
+                            newSections.Remove(jamb);
+                            newSections.Remove(previousSection);
+                            SectionStraight newStraight = new SectionStraight(start.Position,end.Position);
+                            newStraight.AssignToWall(this);
+                            newStraight.OrderInWall =  jambOrder;
+                            newSections.Add(newStraight);
+                        }
+                        else
+                        {
+                            BasePoint newEnd = jamb.StartPoint;
+                            previousSection.EndPoint = newEnd;
+                        }
+                    }
+                    else if(previousSection.StartPoint.Position == jamb.StartPoint.Position)
+                    {
+                        Debug.Log("<color=red>Variant THREE!</color>");
+                        BasePoint newStart = jamb.EndPoint;
+                        previousSection.StartPoint = newStart;
+                    }
+                    else if(previousSection.StartPoint.Position == jamb.EndPoint.Position)
+                    {
+                        Debug.Log("<color=red>Variant FOUR!</color>");
+                        BasePoint newStart = jamb.StartPoint;
+                        previousSection.StartPoint = newStart;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("It's impossible to be otherwise :| <color=red>CRAP</color>");
+                    }
+                    newSections.Remove(jamb);
                 }
             }
 
