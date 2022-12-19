@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Walls2D
 {
@@ -164,16 +165,116 @@ namespace Walls2D
         {
             if(!_wallSections.Contains(jamb)) return;
             int jambOrder = jamb.OrderInWall;
-            WallSection previousSection = _wallSections[jambOrder - 1];
-            WallSection nextSection = _wallSections[jambOrder + 1];
-            BasePoint newStart = previousSection.StartPoint;
-            BasePoint newEnd = nextSection.EndPoint;
+
+            //Need to consider three cases:
+            // 1) Jamb section is between  two wall sections
+            // 2) Jamb section is first section in wall and followed by straight section
+            // 3) Jamb section is last section and is preceeded by straight section
+            Debug.Log("Jamb's order in wall: <color=red><b>" + jambOrder + " / " + _wallSections.Length + "</b></color>");
             List<WallSection> newSections = new List<WallSection>(_wallSections);
-            newSections.Remove(jamb);
-            newSections.Remove(nextSection);
+            if(jambOrder > 0 && jambOrder < _wallSections.Length - 1)
+            {
+                Debug.Log("<color=green>This is FIRST option!</color>");
+                WallSection previousSection = _wallSections[jambOrder - 1];
+                WallSection nextSection = _wallSections[jambOrder + 1];
+                BasePoint newEnd = nextSection.EndPoint;
+                newSections.Remove(jamb);
+                newSections.Remove(nextSection);
+                previousSection.EndPoint = newEnd;
+            }
+            else if(jambOrder == 0)
+            {
+                Debug.Log("<color=green>This is SECOND option!</color>");
+                if (jambOrder == _wallSections.Length - 1)
+                {
+                    Debug.LogWarning("<color=yellow>Caution</color> Swaping jamb seciton into straight section! Anything can happen!");
+                    SwapSectionIntoStraight(jamb);
+                    PutSectionsInOrder();
+                    return;
+                }
+                else
+                {
+                    BasePoint newStart = jamb.StartPoint;
+                    newSections.Remove(jamb);
+                    WallSection nextSection = _wallSections[jambOrder + 1];
+                    nextSection.StartPoint = newStart;
+                }
+            }
+            else if(jambOrder == _wallSections.Length - 1)
+            {
+                if (jambOrder == 0)
+                {
+                    Debug.LogWarning("<color=red>Caution</color> Swaping jamb seciton into straight section! Anything can happen!");
+                    SwapSectionIntoStraight(jamb);
+                    PutSectionsInOrder();
+                    return;
+                }
+                else
+                {
+                    Debug.Log("<color=green>This is THIRD option!</color>");
+
+                    //BasePoint newEnd = jamb.EndPoint;
+                    WallSection previousSection = _wallSections[jambOrder - 1];
+                    if(previousSection.EndPoint.Position == jamb.StartPoint.Position)
+                    {
+                        Debug.Log("<color=red>Variant ONE!</color>");
+                        BasePoint newEnd = jamb.EndPoint;
+                        previousSection.EndPoint = newEnd;
+                    }
+                    else if(previousSection.EndPoint.Position == jamb.EndPoint.Position)
+                    {
+                        Debug.Log("<color=red>Variant TWO!</color>");
+                        if (previousSection.StartPoint.Position == jamb.StartPoint.Position)
+                        {
+                            Debug.LogWarning("<color><b>SECTIONS ARE ON THE SAME PLACE!!!</b> type: " + previousSection.GetType().ToString() + "</color>");
+                            BasePoint start = jamb.StartPoint;
+                            BasePoint end = jamb.EndPoint;
+                            newSections.Remove(jamb);
+                            newSections.Remove(previousSection);
+                            SectionStraight newStraight = new SectionStraight(start.Position,end.Position);
+                            newStraight.AssignToWall(this);
+                            newStraight.OrderInWall =  jambOrder;
+                            newSections.Add(newStraight);
+                        }
+                        else
+                        {
+                            BasePoint newEnd = jamb.StartPoint;
+                            previousSection.EndPoint = newEnd;
+                        }
+                    }
+                    else if(previousSection.StartPoint.Position == jamb.StartPoint.Position)
+                    {
+                        Debug.Log("<color=red>Variant THREE!</color>");
+                        BasePoint newStart = jamb.EndPoint;
+                        previousSection.StartPoint = newStart;
+                    }
+                    else if(previousSection.StartPoint.Position == jamb.EndPoint.Position)
+                    {
+                        Debug.Log("<color=red>Variant FOUR!</color>");
+                        BasePoint newStart = jamb.StartPoint;
+                        previousSection.StartPoint = newStart;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("It's impossible to be otherwise :| <color=red>CRAP</color>");
+                    }
+                    newSections.Remove(jamb);
+                }
+            }
+
+
             _wallSections = newSections.ToArray();
-            previousSection.EndPoint = newEnd;
             PutSectionsInOrder();
+        }
+
+        void SwapSectionIntoStraight(Jamb jamb)
+        {
+            int jambOrder = jamb.OrderInWall;
+            SectionStraight straightSection = new SectionStraight(jamb.StartPoint.Position, jamb.EndPoint.Position);
+            straightSection.AssignToWall(this);
+            straightSection.OrderInWall = jambOrder;
+            _wallSections[jambOrder] = straightSection;
+            AssignSections();
         }
 
         public void AssignSections()

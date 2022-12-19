@@ -119,8 +119,8 @@ public class Selector2D : Point2DSelector
                 }                
             }
         }
-        if(closestSection != null)
-            Debug.Log("Closest section wall: " + closestSection.Wall);
+        /*if(closestSection != null)
+            Debug.Log("Closest section wall: " + closestSection.Wall);*/
         return closestSection;
     }
 
@@ -173,7 +173,7 @@ public class Selector2D : Point2DSelector
     void ClearLine(UILineRenderer uILineRenderer)
     {
         _hoveredUILineRenderer.enabled = false;
-        Debug.Log("Clearing line...");
+        /*Debug.Log("Clearing line...");*/
         Vector2[] points = { };
         uILineRenderer.color = _defaultColor;
         uILineRenderer.Points = points;
