@@ -34,6 +34,7 @@ public class DynamicInputController : MonoBehaviour
 
     public void DisposeOfLabel()
     {
+        if (inputLabelInstance == null) return;
         GameObject labelObject = inputLabelInstance.gameObject;
         Destroy(inputLabelInstance);
         Destroy(labelObject);
