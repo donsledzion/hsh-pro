@@ -5,6 +5,13 @@ using Walls2D;
 
 public abstract class DrawWithLines : DrawOnCanvas
 {
+    protected bool _oneClick = false;
+    bool _timerRunning;
+    float _timerForDoubleClick;
+    bool _doubleClick = false;
+    [SerializeField] float _delay=.2f;
+
+
     protected DynamicInputController _dynamicInputController;
     public bool IsDrawing { get; protected set; }
 
@@ -16,7 +23,38 @@ public abstract class DrawWithLines : DrawOnCanvas
 
     protected override void Update()
     {
-        base.Update();
+        _doubleClick = false;
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!_oneClick) // first click no previous clicks
+            {
+                _oneClick = true;
+
+                _timerForDoubleClick = Time.time; // save the current time
+                                                    // do one click things;
+            }
+            else
+            {
+                _oneClick = false; // found a double click, now reset
+                _doubleClick = true;
+
+                //do double click things
+            }
+        }
+        if (_oneClick)
+        {
+            // if the time now is delay seconds more than when the first click started. 
+            if ((Time.time - _timerForDoubleClick) > _delay)
+            {
+
+                //basically if thats true its been too long and we want to reset so the next click is simply a single click and not a double click.
+
+                _oneClick = false;
+
+            }
+        }
+
+            base.Update();
         if (GameManager.ins.PointerOverUI && IsDrawing)
             _drawing2DController.DrawLive(pointerPosition);
 
@@ -27,7 +65,9 @@ public abstract class DrawWithLines : DrawOnCanvas
             _drawing2DController.AddLinePoint(CanvasController.ScreenPointToCanvasCoords(pointerPosition), true,false);
             HandleClick();
         }
-        if (Input.GetMouseButtonDown(1) && GameManager.ins.PointerOverUI)
+        
+
+        if ((Input.GetMouseButtonDown(1) || _doubleClick) && GameManager.ins.PointerOverUI)
         {
             BreakLine();
         }
