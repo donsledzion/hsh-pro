@@ -11,6 +11,7 @@ public class ToolsTabButton : MonoBehaviour, IPointerClickHandler, IPointerEnter
     public int index;
     public Image background;
     [SerializeField]
+    
     private bool _isOn = false;
     public bool isOn
     {
