@@ -33,6 +33,8 @@ public class ModeController : MonoBehaviour
     [SerializeField] List<GameObject> VRMOde = new List<GameObject>();
     [SerializeField] List<GameObject> surfaceSelectionMode = new List<GameObject>();
     [SerializeField] List<GameObject> DrawingTools = new List<GameObject>();
+    [SerializeField] List<GameObject> GridTools = new List<GameObject>();
+
     //[SerializeField] List<GameObject> LightObjects = new List<GameObject>();
     //[SerializeField] List<GameObject> RTVObjects = new List<GameObject>();
 
@@ -291,6 +293,22 @@ public class ModeController : MonoBehaviour
         prefatToFit.SetActive(false);
     }
 
+    public void GridOptionsTools(string typeOfSetting) {
+
+        if (typeOfSetting == "Default") {
+
+            
+            foreach (GameObject gridOptions in GridTools) {
+
+                if (gridOptions.name == "ToggleGrid") gridOptions.GetComponent<ToggleSwitch>().ResetToDefault();
+                if (gridOptions.name == "ToggleSnapGrid") gridOptions.GetComponent<ToggleSwitch>().ResetToDefault();
+                if (gridOptions.name == "ToggleAngleSnap") gridOptions.GetComponent<ToggleSwitch>().ResetToDefault();
+                if (gridOptions.name == "ToggleDynamicDimensions") gridOptions.GetComponent<ToggleSwitch>().ResetToDefault();
+            }         
+        }
+    }
+
+   // public void Grid
     public void ResetFurnitureTabs() {
 
         foreach (GameObject furnitureTab in MenuOfFurnitureController)
