@@ -42,7 +42,7 @@ public class BuildingSerializer : MonoBehaviour
         }
     }
 
-    void DeserializeBuilding(string path)
+    public void DeserializeBuilding(string path)
     {
         GameManager.ins.Building = Building.DeserializeFromXML(path);
         GameManager.ins.Building.RegenerateSectionsReferences();
@@ -94,18 +94,9 @@ public class BuildingSerializer : MonoBehaviour
         {
             Directory.CreateDirectory(Path.GetDirectoryName(dataPath));
         }
-        /*try
-        {*/
-            string filePath = Path.Combine(dataPath, fileName);
-            Debug.Log("Load data from: " + filePath);
-            DeserializeBuilding(filePath);/*
-        }
-        catch (Exception e)
-        {
-
-            Debug.LogError("Failed to load data from: " + dataPath);
-            Debug.LogError("Error " + e.Message);
-        }*/
+        string filePath = Path.Combine(dataPath, fileName);
+        Debug.Log("Load data from: " + filePath);
+        DeserializeBuilding(filePath);
     }
 
     private int UpdateEquipmentLocation()
@@ -118,9 +109,13 @@ public class BuildingSerializer : MonoBehaviour
         return equipmentItems.Count;
     }
 
-    public static SaveFileData GetFileData(string fileName)
+    public static SaveFileData GetFileData(string fileName, bool loadFromStreamingAssets=false)
     {
         string dataPath = Application.persistentDataPath;
+        if(loadFromStreamingAssets)
+        {
+            dataPath = Path.Combine(Application.streamingAssetsPath, "Templates");
+        }
 
         if (!Directory.Exists(Path.GetDirectoryName(dataPath)))
         {
