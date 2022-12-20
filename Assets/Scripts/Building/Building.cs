@@ -21,7 +21,7 @@ public class Building
 
     public Building()
     {
-        _name = "Default building";
+        _name = "Nowy domek";
         _sheetSize = new Vector2(1200f, 950f);
     }
     public Building(string buildingName, string storeyName = "Parter", float elevation = 0f, float height = 320f)
