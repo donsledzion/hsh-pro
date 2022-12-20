@@ -86,9 +86,11 @@ public class BuildingSerializer : MonoBehaviour
         }
     }
 
-    public void LoadFromFile(string fileName)
+    public void LoadFromFile(string fileName, bool loadFromStreamingAssets = false)
     {
         string dataPath = Application.persistentDataPath;
+        if (loadFromStreamingAssets)
+            dataPath = Path.Combine(Application.streamingAssetsPath,"Templates");
 
         if (!Directory.Exists(Path.GetDirectoryName(dataPath)))
         {
