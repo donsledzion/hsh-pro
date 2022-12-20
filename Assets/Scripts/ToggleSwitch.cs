@@ -11,6 +11,7 @@ public class ToggleSwitch : MonoBehaviour, IPointerDownHandler
     public bool isOn
     {
         get { return _isOn; }
+        set { _isOn = value;  }
 
     }
 
@@ -43,6 +44,10 @@ public class ToggleSwitch : MonoBehaviour, IPointerDownHandler
         Toggle(!isOn);
     }
 
+    public void UpdateToggle() 
+    {
+        Toggle(!isOn);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +93,18 @@ public class ToggleSwitch : MonoBehaviour, IPointerDownHandler
             toggleIndicator.DOAnchorPosX(onX, tweenTime);
         else
             toggleIndicator.DOAnchorPosX(offX, tweenTime);
+    }
+
+    public void ResetToDefault() {
+
+        isOn = false;
+        ToggleColor(false);
+        MoveIndicator(false);
+    }
+
+    public void UpdateToggle(bool currentState)
+    {
+         isOn = currentState;
     }
 }
 
