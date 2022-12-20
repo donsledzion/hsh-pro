@@ -8,10 +8,10 @@ public class LoadingProjectController : MonoBehaviour
     string _selectedSlotName => _selectedSlot.gameObject.name + ".xml";
     ProjectSlotButton _selectedSlot;
     [SerializeField] UnityEvent _afterAssignEvent;
-
+    [SerializeField] bool loadFromStreammingAssets = false;
     public void LoadFromFile(string slotName)
     {
-        BuildingSerializer.ins.LoadFromFile(slotName);
+        BuildingSerializer.ins.LoadFromFile(slotName,loadFromStreammingAssets);
     }
     public void SelectMe(GameObject go)
     {
