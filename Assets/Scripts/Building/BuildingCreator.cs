@@ -34,7 +34,7 @@ public class BuildingCreator : MonoBehaviour
     }
 
     [ContextMenu("Create New Building")]
-    public Building CreateNewBuilding(string name="Default Building")
+    public Building CreateNewBuilding(string name="Nowy domek")
     {
         if(_building == null)
         {

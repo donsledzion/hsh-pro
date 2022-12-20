@@ -24,6 +24,7 @@ public class LoadingProjectController : MonoBehaviour
         {
             LoadFromFile(_selectedSlotName);
             _selectedSlot.UpdateName();
+            gameObject.SetActive(false);
         }
     }
 
