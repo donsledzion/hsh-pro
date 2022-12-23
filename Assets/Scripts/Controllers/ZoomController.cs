@@ -15,6 +15,7 @@ public class ZoomController : MonoBehaviour
     [SerializeField] float scrollScale = 0.1f;
 
     float lastZoom = 1f;
+    bool pointerOverCenterWindow => GameManager.ins.PointerOverCenterWindow;
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class ZoomController : MonoBehaviour
     void Update()
     {
         outZoom = GameManager.ins.Zoom;
-        if(Input.mouseScrollDelta.y != 0)
+        if(Input.mouseScrollDelta.y != 0 && pointerOverCenterWindow)
         {
             //Debug.Log("Wheel delta: " + Input.mouseScrollDelta.y);
             outZoom = Mathf.Clamp(Mathf.Round((outZoom + Input.mouseScrollDelta.y * scrollScale)*10f)/10f, minZoom,maxZoom);

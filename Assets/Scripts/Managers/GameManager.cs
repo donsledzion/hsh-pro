@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Vector3 DrawingCanvasBackgroundLBCorner { get; private set; }
     public float Zoom;
     public bool PointerOverUI;
+    public bool PointerOverCenterWindow;
     public bool RelativeAngle = true;
     public Vector2 ResolutionRatio { get; private set; }
     public Vector2 SnappedEndPoint = new Vector2(0f,0f);
