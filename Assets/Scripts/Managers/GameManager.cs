@@ -117,5 +117,4 @@ public class GameManager : MonoBehaviour
 
         Drawing2DController.ins.SwitchToStorey(Building.CurrentStorey);
     }
-
 }

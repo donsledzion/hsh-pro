@@ -20,6 +20,7 @@ public class Drawing2DController : MonoBehaviour
     [SerializeField] GameObject storey2DPrefab;
     [SerializeField] GameObject wallOnCanvasPrefab;
     [SerializeField] GameObject cornerDebuggerPrefab;
+    [SerializeField] UILineRenderer selectedFloorLine;
     List<WallCornerDebugger> _cornerDebuggers = new List<WallCornerDebugger>();
 
     [SerializeField] DynamicInputController _dynamicInputController;
@@ -137,9 +138,11 @@ public class Drawing2DController : MonoBehaviour
             {
                 currentStorey = st;
                 SetStoreysVisibility();
+                ReferenceController.ins.FloorManager.UpdateList();
+                ClearSelectedFloor();
                 return;
             }
-        }        
+        }
         GameObject newStorey = Instantiate(storey2DPrefab, drawingsContainer);
         newStorey.name = storey.Name;
         newStorey.transform.SetParent(drawingsContainer);
@@ -147,6 +150,29 @@ public class Drawing2DController : MonoBehaviour
         currentStorey.StoreyReference = storey;
         _storeys2D.Add(currentStorey);
         SetStoreysVisibility();
+    }
+
+    public void DrawSelectedFloor(FloorSection2D section)
+    {
+        ClearSelectedFloor();
+        if (section == null) return;
+        List<Vector2> closedPoints = new List<Vector2>(section.Points);
+        if (closedPoints[0] != closedPoints[closedPoints.Count - 1])
+            closedPoints.Add(closedPoints[0]);
+
+        selectedFloorLine.Points = closedPoints.ToArray();
+        selectedFloorLine.color = Color.blue;
+        selectedFloorLine.LineThickness += .1f;
+        selectedFloorLine.LineThickness -= .1f;
+        selectedFloorLine.gameObject.SetActive(true);
+    }
+
+    void ClearSelectedFloor()
+    {
+        selectedFloorLine.Points = new Vector2[0];
+        selectedFloorLine.LineThickness += .1f;
+        selectedFloorLine.LineThickness -= .1f;
+        selectedFloorLine.gameObject.SetActive(false);
     }
 
     void SetStoreysVisibility()
@@ -185,6 +211,7 @@ public class Drawing2DController : MonoBehaviour
     public void StoreFloor(FloorSection2D floor)
     {
         currentStorey.AddFloorToStorey(floor);
+        ReferenceController.ins.FloorManager.UpdateList();
     }
 
     public void DrawStorey(Storey storey)
@@ -214,6 +241,8 @@ public class Drawing2DController : MonoBehaviour
     {
         currentStorey.ClearStorey2D();
         DrawStorey(BuildingCurrentStorey);
+        ReferenceController.ins.FloorManager.UpdateList();
+        DrawSelectedFloor(null);
         DrawLabels();
     }
 

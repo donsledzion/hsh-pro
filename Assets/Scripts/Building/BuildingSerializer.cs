@@ -48,7 +48,9 @@ public class BuildingSerializer : MonoBehaviour
         GameManager.ins.Building.RegenerateSectionsReferences();
         NewSheetCreator.Instance.CreateNewSheet(GameManager.ins.Building);
         ReferenceController.ins.StoreySwitcherDropdown.UpdateDropdown();
+        ReferenceController.ins.FloorManager.UpdateList();
         Drawing2DController.ins.RegenerateBuildingDrawing();
+        Drawing2DController.ins.DrawSelectedFloor(null);
     }
     void QuickSave()
     {

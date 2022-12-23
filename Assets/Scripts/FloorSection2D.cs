@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
+using System.Reflection;
 
 [XmlType("floor-section")]
 [Serializable]
@@ -21,6 +22,7 @@ public class FloorSection2D
     public Vector2[] Points { get { return _points; } set { _points = value; } }
     public string MaterialName { get { return _materialName; } set { _materialName = value; } }
 
+    public float Area => PolygonHelper.FindPolygonArea(Points) / 10000;
     public FloorSection2D()
     {
         _order = 0;
