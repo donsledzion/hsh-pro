@@ -7,6 +7,8 @@ public class FloorManager : MonoBehaviour
 {
     [SerializeField] GameObject _floorButtonPrefab;
     [SerializeField] Button _deleteButton;
+    [SerializeField] Button _orderUpButton;
+    [SerializeField] Button _orderDownButton;
     [SerializeField] Transform _buttonsContainer;
     FloorSection2D _selectedFloorSection;
 
@@ -20,6 +22,7 @@ public class FloorManager : MonoBehaviour
     [ContextMenu("Update List")]
     public void UpdateList()
     {
+        currentStorey.Floors.Sort();
         ClearList();
         foreach(FloorSection2D section in currentStorey.Floors)
         {
@@ -32,6 +35,18 @@ public class FloorManager : MonoBehaviour
     {
         _selectedFloorSection = null;
         Drawing2DController.ins.DrawSelectedFloor(_selectedFloorSection);
+    }
+
+    public void UpdateButtons()
+    {
+        UpdateDeleteButton();
+        UpdateOrderButtons();
+    }
+
+    public void UpdateOrderButtons()
+    {
+        _orderDownButton.interactable = _selectedFloorSection != null;
+        _orderUpButton.interactable = _selectedFloorSection != null;
     }
 
     public void UpdateDeleteButton()
@@ -54,7 +69,7 @@ public class FloorManager : MonoBehaviour
             _selectedFloorSection = button.FloorSection;
         else
             _selectedFloorSection = null;
-        UpdateDeleteButton();
+        UpdateButtons();
         Drawing2DController.ins.DrawSelectedFloor(_selectedFloorSection);
     }
 
@@ -68,5 +83,19 @@ public class FloorManager : MonoBehaviour
                 Destroy(_buttonTransform.gameObject);
             }    
         }
+    }
+
+    public void IncreaseOrder()
+    {
+        _selectedFloorSection.IncreseOrder();
+        _selectedFloorSection = null;
+        UpdateButtons();
+        UpdateList();
+    }
+
+    public void DecreseOrder()
+    {
+        _selectedFloorSection.DecreseOrder();
+        UpdateList();
     }
 }

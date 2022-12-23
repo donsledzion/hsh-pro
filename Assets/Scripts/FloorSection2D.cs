@@ -10,7 +10,7 @@ using System.Reflection;
 
 [XmlType("floor-section")]
 [Serializable]
-public class FloorSection2D
+public class FloorSection2D : IComparable<FloorSection2D>
 {
     int _order;
     float _topLevel;
@@ -53,6 +53,28 @@ public class FloorSection2D
         var XML = new XmlSerializer(typeof(FloorSection2D));
 
         return XML;
+    }
+
+    public void IncreseOrder()
+    {
+        Order++;
+    }
+
+    public void DecreseOrder()
+    {
+        Order--;
+    }
+
+    public int CompareTo(FloorSection2D other)
+    {
+        if(null == other)
+        {
+            return 1;
+        }
+        if (this.Order == other.Order) return 0;
+        if (this.Order > other.Order) return 1;
+        if (this.Order < other.Order) return -1;
+        return 0;
     }
 
     public static XElement Serialize(FloorSection2D floorSection)

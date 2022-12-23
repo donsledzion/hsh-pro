@@ -119,6 +119,9 @@ public class FloorPlane : MonoBehaviour
                 ScriptableObjectsController item = bundle.LoadAsset(Floor.MaterialName) as ScriptableObjectsController;
                 Material material = item.material;
                 _renderer.material = material;
+                //_renderer.material.renderQueue = Floor.Order;
+                string tagValue = _renderer.material.GetTag("Priority", true, "Tag not found");
+                Debug.Log("<color=green>Looking for tag PRIORITY: " + tagValue + "</color>");
                 SetTilling(new Vector2(item.tiling_x,item.tiling_y));
             }
             else

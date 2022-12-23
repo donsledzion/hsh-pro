@@ -41,6 +41,22 @@ public class Storey
         }
     }
 
+    public int LatestFloorOrder
+    {
+        get
+        {
+            int latestOrder = 0;
+            foreach(FloorSection2D floor in _floors)
+            {
+                if(floor.Order > latestOrder)
+                {
+                    latestOrder = floor.Order;
+                }
+            }
+            return latestOrder;
+        }
+    }
+
     public Storey()
     {
         _number = 0;
@@ -151,6 +167,7 @@ public class Storey
 
     public FloorSection2D AddNewFloorSection(FloorSection2D floorSection)
     {
+        floorSection.Order = LatestFloorOrder + 1;
         _floors.Add(floorSection);
         return floorSection;
     }
@@ -165,6 +182,8 @@ public class Storey
         return false;
 
     }
+
+    /*public void Reorder*/
 
     public Equipment AddNewEquipment(string guid, string assetName, string bundleName, Vector3 position, Vector3 rotation)
     {
