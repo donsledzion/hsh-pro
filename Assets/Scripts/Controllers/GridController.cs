@@ -34,8 +34,9 @@ public class GridController : MonoBehaviour
             for (int j = gridOffset; j < gridSize.x; j += gridOffset)
             {
                 Debug.Log("LB corner:= " + GameManager.ins.DrawingCanvasBackgroundLBCorner);
-                GameObject dot = Instantiate(gridDotPrefab, GameManager.ins.DrawingCanvasBackgroundLBCorner+new Vector3(j * GameManager.ins.Zoom, i * GameManager.ins.Zoom, 0),gridDotPrefab.transform.rotation);
-                dot.transform.SetParent(dotsContainer);
+                GameObject dot = Instantiate(gridDotPrefab, /*GameManager.ins.DrawingCanvasBackgroundLBCorner+new Vector3(j * GameManager.ins.Zoom, i * GameManager.ins.Zoom, 0),gridDotPrefab.transform.rotation*/dotsContainer);
+                /*Vector3 dotPosition = */
+                dot.transform.localPosition = new Vector3(j-gridSize.x/2f, i-gridSize.y/2f, 0);
             }
     }
 
