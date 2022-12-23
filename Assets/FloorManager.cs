@@ -68,6 +68,7 @@ public class FloorManager : MonoBehaviour
         if (button.GetComponent<Toggle>().isOn)
             _selectedFloorSection = button.FloorSection;
         else
+
             _selectedFloorSection = null;
         UpdateButtons();
         Drawing2DController.ins.DrawSelectedFloor(_selectedFloorSection);
