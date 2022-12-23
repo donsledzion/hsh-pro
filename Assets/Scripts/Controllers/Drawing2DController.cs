@@ -294,12 +294,12 @@ public class Drawing2DController : MonoBehaviour
         {
             tmpEmptyLabel = Instantiate(pointLabelPrefab, new Vector3(pointerPos.x, pointerPos.y, 0), pointLabelPrefab.transform.rotation);
 
-            tmpEmptyLabel.GetComponent<PointLabel>().SetLabelText("");
+            tmpEmptyLabel.GetComponent<PointLabel>().SetText("");
             tmpEmptyLabel.transform.SetParent(_liveUILineRenderer.transform);
 
         }
         tmpEmptyLabel.transform.position = targetPos;
-        tmpLabel.GetComponent<PointLabel>().SetLabelText("" + Mathf.Round((pointerPos - lastPoint).magnitude) + " [cm] | " + Mathf.Round(angle * 10) / 10f + "\u00B0");
+        tmpLabel.GetComponent<PointLabel>().SetText("" + Mathf.Round((pointerPos - lastPoint).magnitude) + " [cm] | " + Mathf.Round(angle * 10) / 10f + "\u00B0");
         tmpLabel.transform.position = targetPos - new Vector3(currentVector.x, currentVector.y, 0) / 2;
         tmpLabel.transform.localEulerAngles = new Vector3(0, 0, -labelAngle);
 
@@ -333,7 +333,7 @@ public class Drawing2DController : MonoBehaviour
             ovcPos = CanvasController.ScreenPointToCanvasCoords(position);
         else
             label.transform.position = position + GameManager.ins.DrawingCanvasBackgroundLBCorner;
-        label.GetComponent<PointLabel>().SetLabelText("[ " + ((int)(10 * ovcPos.x)) / 10f + " , " + ((int)(10 * ovcPos.y)) / 10f + " ]");
+        label.GetComponent<PointLabel>().SetText("[ " + ((int)(10 * ovcPos.x)) / 10f + " , " + ((int)(10 * ovcPos.y)) / 10f + " ]");
         return ovcPos;
     }
 
@@ -351,7 +351,7 @@ public class Drawing2DController : MonoBehaviour
 
         Vector3 ovcPos = position;
 
-        label.GetComponent<PointLabel>().SetLabelText("[ " + ((int)(10 * ovcPos.x)) / 10f + " , " + ((int)(10 * ovcPos.y)) / 10f + " ]");
+        label.GetComponent<PointLabel>().SetText("[ " + ((int)(10 * ovcPos.x)) / 10f + " , " + ((int)(10 * ovcPos.y)) / 10f + " ]");
         return ovcPos;
 
     }

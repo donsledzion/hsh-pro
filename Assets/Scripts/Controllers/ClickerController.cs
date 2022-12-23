@@ -33,7 +33,7 @@ public class ClickerController : MonoBehaviour
         {
             Vector3 ovcPos = (position - GameManager.ins.DrawingCanvasBackgroundLBCorner)/GameManager.ins.Zoom;
 
-            label.GetComponent<PointLabel>().SetLabelText("[ " + ((int)(10*ovcPos.x))/10f + " , " + ((int)(10*ovcPos.y))/10f + " ]");
+            label.GetComponent<PointLabel>().SetText("[ " + ((int)(10*ovcPos.x))/10f + " , " + ((int)(10*ovcPos.y))/10f + " ]");
         }
     }
 

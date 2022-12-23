@@ -39,6 +39,6 @@ public class PointerOverCenterWindowDetector : MonoBehaviour
         {
             if (result.gameObject.CompareTag("CenterWindow")) GameManager.ins.PointerOverCenterWindow = true;
         }
-        Debug.Log("Pointer over CenterWindow: " + GameManager.ins.PointerOverCenterWindow); 
+        Debug.Log("Pointer over CenterWindow: " + GameManager.ins.PointerOverCenterWindow);
     }
 }

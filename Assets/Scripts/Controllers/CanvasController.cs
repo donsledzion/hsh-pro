@@ -60,8 +60,8 @@ public class CanvasController : MonoBehaviour
             GameManager.ins.DrawingCanvasBackgroundLBCorner.y * correctY);
 
         return new Vector2(
-            outCoords.x/GameManager.ins.ResolutionRatio.x,
-            outCoords.y/GameManager.ins.ResolutionRatio.y)
+            outCoords.x/*/GameManager.ins.ResolutionRatio.x*/,
+            outCoords.y/*/GameManager.ins.ResolutionRatio.y*/)
             / GameManager.ins.Zoom;
     }
 
