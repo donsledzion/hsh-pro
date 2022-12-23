@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class CanvasController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class CanvasController : MonoBehaviour
     [SerializeField] public ZoomController pointerController;
     [SerializeField] public ClickerController clickerController;
     //======================================================================
+    [SerializeField] static Transform _drawingsTransform;
+    static GameObject _helperDotInstance;
     Canvas mainCanvas;
     public Vector3 drawingCanvasBackgroundLBCorner;
 
@@ -53,17 +56,28 @@ public class CanvasController : MonoBehaviour
         CanvasCoordsTMPro.text = "Canvas coords [" + coords.x + "," + coords.y + "]";
     }
 
-    public static Vector2 ScreenPointToCanvasCoords(Vector2 inputCoords, float correctX = 1f, float correctY = 1f)
+    public static Vector2 ScreenPointToCanvasCoords(Vector2 inputCoords)
     {
-        Vector2 outCoords = inputCoords - new Vector2(
+        
+        /*Vector2 outCoords = inputCoords - new Vector2(
             GameManager.ins.DrawingCanvasBackgroundLBCorner.x * correctX,
             GameManager.ins.DrawingCanvasBackgroundLBCorner.y * correctY);
 
         return new Vector2(
-            outCoords.x/*/GameManager.ins.ResolutionRatio.x*/,
-            outCoords.y/*/GameManager.ins.ResolutionRatio.y*/)
-            / GameManager.ins.Zoom;
+            outCoords.x*//*/GameManager.ins.ResolutionRatio.x*//*,
+            outCoords.y*//*/GameManager.ins.ResolutionRatio.y*//*)
+            / GameManager.ins.Zoom;*/
+        if(_helperDotInstance == null)
+        {
+            GameObject _helperDotPrefab = PrefabUtility.LoadPrefabContents("Assets/Prefabs/Drawing2D/GridDot.prefab") as GameObject;
+            _helperDotInstance = Instantiate(_helperDotPrefab, Drawing2DController.ins.transform);
+        }
+        _helperDotInstance.transform.position = inputCoords;
+
+        return _helperDotInstance.transform.localPosition;
     }
+
+
 
     public static Vector2 CanvasCoordsToScreenPoint(Vector2 canvasCoords)
     {

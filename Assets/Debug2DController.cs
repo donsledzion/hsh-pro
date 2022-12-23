@@ -94,14 +94,14 @@ public class Debug2DController : MonoBehaviour
             _cursorLabelInstance = Instantiate(_positionLabelPrefab, transform);
             _cursorLabel = _cursorLabelInstance.GetComponent<PointLabel>();
         }
-        AlternativeScreenPointToCanvasCoords(Input.mousePosition);
-        _alternativeLabel.Setup(AlternativeScreenPointToCanvasCoords(Input.mousePosition), Color.red);
+        /*AlternativeScreenPointToCanvasCoords(Input.mousePosition);
+        _alternativeLabel.Setup(AlternativeScreenPointToCanvasCoords(Input.mousePosition), Color.red);*/
 
         Vector2 mp = Input.mousePosition;
 
         //Vector2 inputData = new Vector2(mp.x*(1+resolutionMismatchCorrectX),mp.y*(1+resolutionMismatchCorrectY));
 
-        _debugScreenPointToCanvasInstance.transform.localPosition = CanvasController.ScreenPointToCanvasCoords(mp,resolutionMismatchCorrectX,resolutionMismatchCorrectY);
+        _debugScreenPointToCanvasInstance.transform.localPosition = CanvasController.ScreenPointToCanvasCoords(mp);
 
         //_sptccLabel.Setup(CanvasController.ScreenPointToCanvasCoords(mp), Color.cyan);
         
