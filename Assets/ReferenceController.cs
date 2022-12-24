@@ -19,6 +19,7 @@ public class ReferenceController : MonoBehaviour
     [SerializeField] BuildingDestroyer _buildingDestroyer;
     [SerializeField] Builder3D _builder3D;
     [SerializeField] FloorManager _floorManager;
+    [SerializeField] WallBuilder _wallBuilder;
     public GalleryOfItems GalleryOfItems => _galleryOfItems;
     public Item3DViewer Item3DViewer => _item3DViewer;
     public EquipmentInsertionMode EquipmentInsertionMode => _equipmentInsertionMode;
@@ -31,6 +32,8 @@ public class ReferenceController : MonoBehaviour
     public BuildingDestroyer BuildingDestroyer => _buildingDestroyer;
     public Builder3D Builder3D => _builder3D;
     public FloorManager FloorManager => _floorManager;
+    public WallBuilder WallBuilder => _wallBuilder;
+
 
     private void Awake()
     {

@@ -13,6 +13,7 @@ public abstract class DrawWithLines : DrawOnCanvas
 
 
     protected DynamicInputController _dynamicInputController;
+    protected bool _waitingForConfirm = false;
     public bool IsDrawing { get; protected set; }
 
     protected override void Start()
@@ -46,38 +47,41 @@ public abstract class DrawWithLines : DrawOnCanvas
         }
 
             base.Update();
-        if (GameManager.ins.PointerOverUI && IsDrawing)
-            _drawing2DController.DrawLive(pointerPosition);
-
-        if (Input.GetMouseButtonDown(0) && GameManager.ins.PointerOverUI)
+        if(!_waitingForConfirm)
         {
-            if (!IsDrawing)
-                IsDrawing = true;            
-            _drawing2DController.AddLinePoint(pointerPosition, true,false);
-            HandleClick();
-        }
+            if (GameManager.ins.PointerOverUI && IsDrawing)
+                _drawing2DController.DrawLive(pointerPosition);
+
+            if (Input.GetMouseButtonDown(0) && GameManager.ins.PointerOverUI)
+            {
+                if (!IsDrawing)
+                    IsDrawing = true;            
+                _drawing2DController.AddLinePoint(pointerPosition, true,false);
+                HandleClick();
+            }
         
 
-        if ((Input.GetMouseButtonDown(1) || _doubleClick) && GameManager.ins.PointerOverUI)
-        {
-            BreakLine();
-        }
-        if(GameManager.ins.DynamicDimensions)
-            _dynamicInputController.DynamicInput();
-
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            int pointsCount = _drawing2DController.LinePointsCount;
-            Vector2 lastPoint = _drawing2DController.LinePoints[pointsCount - 1];
-            if (_dynamicInputController.DynamicInputLength > 0 && lastPoint != Vector2.zero)
+            if ((Input.GetMouseButtonDown(1) || _doubleClick) && GameManager.ins.PointerOverUI)
             {
-                _drawing2DController.ApplyDynamicInput(pointerPosition);
+                BreakLine();
             }
-        }
+            if(GameManager.ins.DynamicDimensions)
+                _dynamicInputController.DynamicInput();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            BreakLine();
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                int pointsCount = _drawing2DController.LinePointsCount;
+                Vector2 lastPoint = _drawing2DController.LinePoints[pointsCount - 1];
+                if (_dynamicInputController.DynamicInputLength > 0 && lastPoint != Vector2.zero)
+                {
+                    _drawing2DController.ApplyDynamicInput(pointerPosition);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                BreakLine();
+            }
         }
     }
 

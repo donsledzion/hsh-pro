@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using Walls2D;
 
 public class WallInfoDisplay : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class WallInfoDisplay : MonoBehaviour
     [SerializeField] TMP_Dropdown _dropdown;
     [SerializeField] WallThicknessSelector _thicknessSelector;
 
+    public static float LastThickness;
     private void Start()
     {
         if(_dropdown == null)
@@ -24,14 +24,6 @@ public class WallInfoDisplay : MonoBehaviour
         //wallType.text = Drawing2DController.ins.
     }
 
-    /*public void UpdateWallThickness(string typeName)
-    {
-        float wallThickness= 
-        Drawing2DController.ins.CurrentWallThickness;
-        //    _wallType.text = "Type: " + wallType.ToString();
-       //_wallType.text = "Wybrano: " + typeName;
-    }*/
-
     public void UpdateWallThicknessInputField()
     {
         _wallThicknessInput.text = _thicknessSelector.WallSizes[_dropdown.value].Thickness.ToString();
@@ -39,5 +31,6 @@ public class WallInfoDisplay : MonoBehaviour
     public void UpdateCurrentWallThickness()
     {
         Drawing2DController.ins.CurrentWallThickness = float.Parse(_wallThicknessInput.text);
+        LastThickness = Drawing2DController.ins.CurrentWallThickness;
     }
 }
