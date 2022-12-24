@@ -26,31 +26,22 @@ public abstract class DrawWithLines : DrawOnCanvas
         _doubleClick = false;
         if (Input.GetMouseButtonDown(0))
         {
-            if (!_oneClick) // first click no previous clicks
+            if (!_oneClick)
             {
                 _oneClick = true;
-
-                _timerForDoubleClick = Time.time; // save the current time
-                                                    // do one click things;
+                _timerForDoubleClick = Time.time;
             }
             else
             {
-                _oneClick = false; // found a double click, now reset
+                _oneClick = false;
                 _doubleClick = true;
-
-                //do double click things
             }
         }
         if (_oneClick)
         {
-            // if the time now is delay seconds more than when the first click started. 
             if ((Time.time - _timerForDoubleClick) > _delay)
             {
-
-                //basically if thats true its been too long and we want to reset so the next click is simply a single click and not a double click.
-
                 _oneClick = false;
-
             }
         }
 

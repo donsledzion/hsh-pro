@@ -26,16 +26,6 @@ public class WallBuilder : DrawWithLines
         _wallSectionSnapClosePoint.AllowJambs = true;
     }
 
-    public void AddWallSection()
-    {
-        /*Vector2[] allPoints = _drawing2DController.LinePoints;
-        int allPointsCount = allPoints.Length;
-        if (allPointsCount < 2) return;
-        Vector2[] sectionPoints = { allPoints[allPointsCount - 2], allPoints[allPointsCount - 1] };
-        WallSection section = new SectionStraight(sectionPoints);        
-        _wallSections.Add(section);*/
-    }
-
     protected override void BreakLine()
     {
         if (_drawing2DController.IsEmptyOrDefault()) return;
@@ -49,9 +39,7 @@ public class WallBuilder : DrawWithLines
         }
         Wall wall = _drawing2DController.ApplyWallToBuilding();
         _drawing2DController.StoreWall(wall);
-        //=============================================================
         CheckForLinesToBreak();
-        //=============================================================
         _drawing2DController.ClearCurrentLine();
         
     }
@@ -66,10 +54,6 @@ public class WallBuilder : DrawWithLines
             {
                 if((ClosestSection(point,10f) == section) && section.PointAwayFromEdges(point))
                 {
-                    /*GameObject dotInstance = Instantiate(_gridDot, transform);
-                    dotInstance.transform.localPosition = point;
-                    dotInstance.transform.localScale = Vector3.one * 5f;
-                    dotInstance.GetComponent<Image>().color = Color.red;*/
                     if (section.SplitSection(point))
                         CheckForLinesToBreak();
                     return;
@@ -81,7 +65,7 @@ public class WallBuilder : DrawWithLines
 
     protected override void HandleClick()
     {
-        AddWallSection();
+
     }
 
     public WallSection ClosestSection(Vector2 point, float minDistanceFromEdge = 0f)
