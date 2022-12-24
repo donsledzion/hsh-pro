@@ -62,7 +62,7 @@ public abstract class DrawWithLines : DrawOnCanvas
         {
             if (!IsDrawing)
                 IsDrawing = true;            
-            _drawing2DController.AddLinePoint(CanvasController.ScreenPointToCanvasCoords(pointerPosition), true,false);
+            _drawing2DController.AddLinePoint(pointerPosition, true,false);
             HandleClick();
         }
         

@@ -50,7 +50,7 @@ public class UIController : MonoBehaviour
 
     public Vector3 GridSnap(Vector3 pointerPosition)
     {
-        float x = GameManager.ins.DrawingCanvasBackgroundLBCorner.x
+        /*float x = GameManager.ins.DrawingCanvasBackgroundLBCorner.x
                 + Mathf.Round((pointerPosition.x - GameManager.ins.DrawingCanvasBackgroundLBCorner.x)
                 / (gridLabelSlider.value * GameManager.ins.Zoom))
                 * (gridLabelSlider.value * GameManager.ins.Zoom);
@@ -58,8 +58,13 @@ public class UIController : MonoBehaviour
         float y = GameManager.ins.DrawingCanvasBackgroundLBCorner.y
                 + Mathf.Round((pointerPosition.y - GameManager.ins.DrawingCanvasBackgroundLBCorner.y)
                 / (gridLabelSlider.value * GameManager.ins.Zoom))
-                * (gridLabelSlider.value * GameManager.ins.Zoom);
+                * (gridLabelSlider.value * GameManager.ins.Zoom);*/
+        Vector3 input2CanvasCoords = CanvasController.ScreenPointToCanvasCoords(pointerPosition);
 
+        float x = Mathf.Round(input2CanvasCoords.x / gridLabelSlider.value) * gridLabelSlider.value;
+        float y = Mathf.Round(input2CanvasCoords.y / gridLabelSlider.value) * gridLabelSlider.value;
+
+        //return pointerPosition;
         return new Vector3(x, y, 0);
     }
 

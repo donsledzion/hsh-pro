@@ -26,9 +26,8 @@ public class AngleSnapController : MonoBehaviour
 
     public Vector3 AngleSnap(Vector3 pointerPosition)
     {
-        if (_drawing2DController.IsEmptyOrDefault()) return pointerPosition;
+        if (_drawing2DController.IsEmptyOrDefault()) return CanvasController.ScreenPointToCanvasCoords(pointerPosition);
 
-        float zoom = GameManager.ins.Zoom;
         Vector2 lbCorner = GameManager.ins.DrawingCanvasBackgroundLBCorner;
 
         int pointsCount = _drawing2DController.LinePointsCount;
@@ -37,8 +36,9 @@ public class AngleSnapController : MonoBehaviour
         Vector2 targetPos = pointerPosition;
 
         Vector2 globalVector = Vector2.right;
-        Vector2 lastPoint = lbCorner + _drawing2DController.LinePoints[pointsCount - 1] * zoom;
+        Vector2 lastPoint = _drawing2DController.LinePoints[pointsCount - 1];
         Vector2 currentVector = targetPos - lastPoint;
+        currentVector = Drawing2DController.ins.CurrentSectionVector(pointerPosition);
 
         float angle = Vector2.SignedAngle(currentVector, globalVector);
 

@@ -273,7 +273,7 @@ public class Drawing2DController : MonoBehaviour
         if (pointsCount < 1 || (_uILineRenderer.Points[0].x == 0f && _liveUILineRenderer.Points[0].y == 0f)) return;
 
         Vector2 lastPoint = _uILineRenderer.Points[pointsCount - 1];
-        Vector2 pointerPos = CanvasController.ScreenPointToCanvasCoords(targetPos);
+        Vector2 pointerPos = /*CanvasController.ScreenPointToCanvasCoords*/(targetPos);
         Vector2 lastVector = Vector2.right;
 
         if (pointsCount > 1 && GameManager.ins.RelativeAngle)
@@ -287,20 +287,20 @@ public class Drawing2DController : MonoBehaviour
 
         if (tmpLabel == null)
         {
-            tmpLabel = Instantiate(pointLabelPrefab, new Vector3(pointerPos.x, pointerPos.y, 0), pointLabelPrefab.transform.rotation);
-            tmpLabel.transform.SetParent(_liveUILineRenderer.transform);
+            tmpLabel = Instantiate(pointLabelPrefab, _liveUILineRenderer.transform);
+            tmpLabel.transform.localPosition = pointerPos;
         }
         if (tmpEmptyLabel == null)
         {
-            tmpEmptyLabel = Instantiate(pointLabelPrefab, new Vector3(pointerPos.x, pointerPos.y, 0), pointLabelPrefab.transform.rotation);
+            tmpEmptyLabel = Instantiate(pointLabelPrefab, _liveUILineRenderer.transform);
 
             tmpEmptyLabel.GetComponent<PointLabel>().SetText("");
-            tmpEmptyLabel.transform.SetParent(_liveUILineRenderer.transform);
+            tmpEmptyLabel.transform.localPosition = pointerPos;
 
         }
-        tmpEmptyLabel.transform.position = targetPos;
+        tmpEmptyLabel.transform.localPosition = targetPos;
         tmpLabel.GetComponent<PointLabel>().SetText("" + Mathf.Round((pointerPos - lastPoint).magnitude) + " [cm] | " + Mathf.Round(angle * 10) / 10f + "\u00B0");
-        tmpLabel.transform.position = targetPos - new Vector3(currentVector.x, currentVector.y, 0) / 2;
+        tmpLabel.transform.localPosition = targetPos - new Vector3(currentVector.x, currentVector.y, 0) / 2;
         tmpLabel.transform.localEulerAngles = new Vector3(0, 0, -labelAngle);
 
         _liveUILineRenderer.LineThickness += 0.1f;
@@ -379,8 +379,7 @@ public class Drawing2DController : MonoBehaviour
     public Vector2 CurrentSectionVector(Vector3 targetPos)
     {
         int pointsCount = _uILineRenderer.Points.Length;
-        Vector2 pointerPos = (targetPos - GameManager.ins.DrawingCanvasBackgroundLBCorner) / GameManager.ins.Zoom;
-        return pointerPos - _uILineRenderer.Points[pointsCount - 1];
+        return CanvasController.ScreenPointToCanvasCoords(Input.mousePosition) - _uILineRenderer.Points[pointsCount - 1];
     }
     public void ApplyDynamicInput(Vector3 pointerPosition)
     {
