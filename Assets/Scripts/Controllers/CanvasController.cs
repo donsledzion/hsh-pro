@@ -69,7 +69,7 @@ public class CanvasController : MonoBehaviour
             / GameManager.ins.Zoom;*/
         if(_helperDotInstance == null)
         {
-            GameObject _helperDotPrefab = PrefabUtility.LoadPrefabContents("Assets/Prefabs/Drawing2D/GridDot.prefab") as GameObject;
+            GameObject _helperDotPrefab = Resources.Load("Prefabs/GridDot") as GameObject;
             _helperDotInstance = Instantiate(_helperDotPrefab, Drawing2DController.ins.transform);
         }
         _helperDotInstance.transform.position = inputCoords;
